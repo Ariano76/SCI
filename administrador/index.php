@@ -31,7 +31,7 @@ if ($_POST) {
 
 	<body>
 
-		<?php $url="http://".$_SERVER['HTTP_HOST']."/sistema-sci" ?>
+		<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 		
 		<div class="container">
 			<div class="row">

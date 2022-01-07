@@ -4,7 +4,7 @@
   <div class="container">
     <h1 class="display-4">Validación de datos</h1>
     <p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p>    
-    <p class="lead">Habilite los procesos a ejecutarse en el sistema</p>    
+    <p class="lead">Habilite los procesos a ejecutarse</p>    
 
     
 
