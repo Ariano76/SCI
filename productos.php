@@ -1,21 +1,10 @@
 <?php include("template/cabecera.php");?>
-
 <?php 
-/*include("administrador/config/bd.php");*/
-use Phppot\DataSource;
-require_once './administrador/config/bd.php';
-$db = new DataSource();
-$conn = $db->getConnection();
+include("administrador/config/bddemo.php");
 
-/*$sql = $conexion->prepare("select * from libros");
-$sql = $conn->prepare("select * from libros");
-$sql->execute();*/
-
-$sqlSelect = "SELECT * FROM libros";
-$listaLibros = $db->select($sqlSelect);
-
-
-/*$listaLibros = $result->fetchAll(PDO::FETCH_ASSOC);*/
+$sql = $conexion->prepare("select * from libros");
+$sql->execute();
+$listaLibros = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
