@@ -2,31 +2,42 @@
 
 namespace Phpconnect;
 
-class TransactionSCI {
+class TransactionSCI 
+{
 
-const $db_host="localhost"; //localhost server 
-const $db_name="bd_bha_sci"; //database name
-const $db_user="root"; //database username
-const $db_password=""; //database password 
-
-  /**
-     * Open the database connection
-     */
-  public function __construct() {
-        // open database connection
-  	$conStr = sprintf("mysql:host=%s;dbname=%s", self::db_host, self::db_name);
-  	try {
-  		$this->pdo = new PDO($conStr, self::db_user, self::db_password);
-  	} catch (PDOException $e) {
-  		die($e->getMessage());
-  	}
-  }
+private  $DB_HOST = 'localhost'; //localhost server 
+private  $DB_NAME = 'bd_bha_sci'; //database name
+private  $DB_USER = 'root'; //database username
+private  $DB_PASSWORD = ''; //database password 
 
 	/**
      * PDO instance
      * @var PDO 
      */
 	private $pdo = null;
+	private $conn;
+
+  	/**
+     * Open the database connection
+     */
+  	function __construct() {
+  		$this->Connect();  	 
+
+  	}
+
+  	public function Connect() {
+  	    // open database connection
+  	    $dsn = 'mysql:host=' . $this->DB_HOST . ';dbname=' . $this->DB_NAME;
+  		//$conStr = sprintf("mysql:host=%s;dbname=%s", self::DB_HOST, self::DB_NAME);
+  		try {
+  			$this->pdo = new PDO($dsn, $this->DB_USER, $this->DB_PASSWORD );		
+  		} catch (PDOException $e) {
+  			die($e->getMessage());
+  		}
+
+  	}
+
+
 
 
     /**
