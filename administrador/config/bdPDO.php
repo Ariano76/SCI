@@ -1,6 +1,8 @@
 <?php
 
-class TransactionDemo {
+namespace Phpconnect;
+
+class TransactionSCI {
 
 const $db_host="localhost"; //localhost server 
 const $db_name="bd_bha_sci"; //database name
@@ -78,28 +80,70 @@ const $db_password=""; //database password
     }
 
 
-	public function transformacionDatos() {
+    public function limpiarStage() {
         // close the database connection
-		try {
-    		$this->pdo->beginTransaction();
+    	try { 	    		
 
-            // get available amount of the transferer account
-    		$sql = 'call SP_UpdateDobleEspacioBlanco()';
-    		 // call the stored procedure
-            $q = $pdo->query($sql);
-            $q->setFetchMode(PDO::FETCH_ASSOC);  		            
-           
-            // commit the transaction
-    		$this->pdo->commit();
+            // calling stored procedure command
+    		$sql = 'SP_LimpiarTablaStage(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);
+    		// si hubiera parametros se utiliza este codigo pass value to the command
+        	//$stmt->bindParam(':id', $customerNumber, PDO::PARAM_INT);
+    		
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
 
-    		echo 'La operación se realizo satisfactoriamente';
+        	 // execute the second query to get customer's level
+    		$row = $this->$pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		}
+    		
+    		//echo 'La operación se realizo satisfactoriamente';
 
     		return true;
-    	} catch (PDOException $e) {
-    		$this->pdo->rollBack();
-    		die($e->getMessage());
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
     	}
-	}
+    	return null;
+
+    }
+
+
+    public function transformacionDatos() {
+        // close the database connection
+    	try { 	    		
+
+            // calling stored procedure command
+    		$sql = 'SP_LimpiarTablaStage(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);
+    		// si hubiera parametros se utiliza este codigo pass value to the command
+        	//$stmt->bindParam(':id', $customerNumber, PDO::PARAM_INT);
+    		
+    		// execute the stored procedure
+    		$stmt->execute();
+
+    		$stmt->closeCursor();
+
+        	 // execute the second query to get customer's level
+    		$row = $this->$pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		}
+    		
+    		//echo 'La operación se realizo satisfactoriamente';
+
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+
+    }
+
 
 	/**
      * close the database connection
@@ -108,7 +152,6 @@ const $db_password=""; //database password
         // close the database connection
 		$this->pdo = null;
 	}
-
 
 }
 

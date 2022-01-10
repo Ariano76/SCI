@@ -1,4 +1,10 @@
-<?php include("template/cabecera.php"); ?>
+<?php include("template/cabecera.php"); 
+
+use Phpconnect\TransactionSCI;
+require_once './administrador/config/bdPDO.php';
+
+$db = new TransactionSCI();
+?>
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -35,6 +41,10 @@
         echo "Chosen colour : ".$value.'<br/>';
       }
     }
+
+    $insertId = $db->limpiarStage();
+
+
   }
   ?>
 
