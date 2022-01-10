@@ -87,9 +87,7 @@ const $db_password=""; //database password
     		$sql = 'call SP_UpdateDobleEspacioBlanco()';
     		 // call the stored procedure
             $q = $pdo->query($sql);
-            $q->setFetchMode(PDO::FETCH_ASSOC);
-
-   		            
+            $q->setFetchMode(PDO::FETCH_ASSOC);  		            
            
             // commit the transaction
     		$this->pdo->commit();
