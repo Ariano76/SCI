@@ -6,6 +6,13 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 
+	<!-- tabla reportes -->
+	<style>
+	table.dataTable thead {
+		background: linear-gradient(to right, #0575E6, #00F260);
+		color:white;	}
+	</style>  
+
 </head>
 <body>
 
@@ -36,8 +43,8 @@
 						</div>
 					</li>
 					<a class="nav-item nav-link" href="validacion.php">Validación</a>
-					
 					<a class="nav-item nav-link" href="uploadfile.php">Subir nuevos registros KOBO</a>
+					<a class="nav-item nav-link" href="repo_validacion_dni.php">Reporte</a>
 					<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
 					<a class="nav-item nav-link" href="nosotros.php">Nosotros</a>
 					<a class="nav-item nav-link" href="productos.php">Productos</a>

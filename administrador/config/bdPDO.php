@@ -28,9 +28,11 @@ private $DB_PASSWORD = ''; //database password
   	public function Connect() {
   	    // open database connection
   		$dsn = 'mysql:host=' . $this->DB_HOST . ';dbname=' . $this->DB_NAME;
+        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');            
   		//echo "Connected successfully";  		
+
   		try {
-  			$this->pdo = new PDO($dsn, $this->DB_USER, $this->DB_PASSWORD );		
+  			$this->pdo = new PDO($dsn, $this->DB_USER, $this->DB_PASSWORD, $opciones);
   		} catch (PDOException $e) {
   			die($e->getMessage());
   		}
@@ -298,7 +300,28 @@ private $DB_PASSWORD = ''; //database password
     		die("Error ocurrido:" . $e->getMessage());
     	}
     	return null;
-    }        
+    }
+
+    public function incidencia_Doc_Identidad() {
+        try {               
+            // calling stored procedure command
+            $sql = 'CALL SP_SelectDocIdentConIncidencias()';
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            //$data=$stmt;
+            return $stmt;
+            $stmt->closeCursor();
+            
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
+
+
 
 	/**
      * close the database connection
