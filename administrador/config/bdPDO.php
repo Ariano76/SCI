@@ -1,34 +1,34 @@
 <?php
 
-namespace Phpconnect;
+
 
 class TransactionSCI 
 {
 
-private  $DB_HOST = 'localhost'; //localhost server 
-private  $DB_NAME = 'bd_bha_sci'; //database name
-private  $DB_USER = 'root'; //database username
-private  $DB_PASSWORD = ''; //database password 
+private $DB_HOST = 'localhost'; //localhost server 
+private $DB_NAME = 'bd_bha_sci'; //database name
+private $DB_USER = 'root'; //database username
+private $DB_PASSWORD = ''; //database password 
 
 	/**
      * PDO instance
      * @var PDO 
      */
-	private $pdo = null;
-	private $conn;
+	private $pdo;
+	//private $conn;
 
   	/**
      * Open the database connection
      */
-  	function __construct() {
+  	public function __construct() {
   		$this->Connect();  	 
 
   	}
 
   	public function Connect() {
   	    // open database connection
-  	    $dsn = 'mysql:host=' . $this->DB_HOST . ';dbname=' . $this->DB_NAME;
-  		//$conStr = sprintf("mysql:host=%s;dbname=%s", self::DB_HOST, self::DB_NAME);
+  		$dsn = 'mysql:host=' . $this->DB_HOST . ';dbname=' . $this->DB_NAME;
+  		//echo "Connected successfully";  		
   		try {
   			$this->pdo = new PDO($dsn, $this->DB_USER, $this->DB_PASSWORD );		
   		} catch (PDOException $e) {
@@ -36,9 +36,6 @@ private  $DB_PASSWORD = ''; //database password
   		}
 
   	}
-
-
-
 
     /**
      * Transfer money between two accounts
@@ -90,13 +87,19 @@ private  $DB_PASSWORD = ''; //database password
     	}
     }
 
+    public function prueba(){
+    	if (!$pdo) {
+    		die("Connection failed: " . mysqli_connect_error());
+    	}
+    	echo "Connected successfully....";
+    }
+
 
     public function limpiarStage() {
-        // close the database connection
     	try { 	    		
 
             // calling stored procedure command
-    		$sql = 'SP_LimpiarTablaStage(@total)';
+    		$sql = 'CALL SP_LimpiarTablaStage(@total)';
     		// prepare for execution of the stored procedure
     		$stmt = $this->pdo->prepare($sql);
     		// si hubiera parametros se utiliza este codigo pass value to the command
@@ -107,7 +110,7 @@ private  $DB_PASSWORD = ''; //database password
     		$stmt->closeCursor();
 
         	 // execute the second query to get customer's level
-    		$row = $this->$pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
     		if ($row) {
     			return $row !== false ? $row['resultado'] : null;
     		}
@@ -119,42 +122,183 @@ private  $DB_PASSWORD = ''; //database password
     		die("Error ocurrido:" . $e->getMessage());
     	}
     	return null;
-
     }
 
-
-    public function transformacionDatos() {
-        // close the database connection
+    public function limpiarDobleEspacioBlanco() {
     	try { 	    		
-
             // calling stored procedure command
-    		$sql = 'SP_LimpiarTablaStage(@total)';
+    		$sql = 'CALL SP_UpdateDobleEspacioBlanco(@total)';
     		// prepare for execution of the stored procedure
-    		$stmt = $this->pdo->prepare($sql);
-    		// si hubiera parametros se utiliza este codigo pass value to the command
-        	//$stmt->bindParam(':id', $customerNumber, PDO::PARAM_INT);
-    		
+    		$stmt = $this->pdo->prepare($sql);    		    	
     		// execute the stored procedure
     		$stmt->execute();
-
     		$stmt->closeCursor();
-
         	 // execute the second query to get customer's level
-    		$row = $this->$pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
     		if ($row) {
     			return $row !== false ? $row['resultado'] : null;
-    		}
-    		
+    		} 
     		//echo 'La operación se realizo satisfactoriamente';
-
     		return true;
     	} catch (PDOException $e) {    		
     		die("Error ocurrido:" . $e->getMessage());
     	}
     	return null;
-
     }
 
+    public function limpiarTabulador() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateTab(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }    
+
+	public function limpiarSaltoLinea() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateSaltoLinea(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }    
+
+	public function limpiarLetraPuntoGuion() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateLetrasPuntoGuion(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }    
+
+	public function limpiarBackSlash() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateBackSlash(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }    
+
+	public function limpiarEspacioBlanco() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateTrim(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }        
+
+	public function recodificarSINO() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateRecodificarSiNo(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }        
+
+	public function actualizarDataTransito() {
+    	try { 	    		
+            // calling stored procedure command
+    		$sql = 'CALL SP_UpdateInfoTransito(@total)';
+    		// prepare for execution of the stored procedure
+    		$stmt = $this->pdo->prepare($sql);    		    	
+    		// execute the stored procedure
+    		$stmt->execute();
+    		$stmt->closeCursor();
+        	 // execute the second query to get customer's level
+    		$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+    		if ($row) {
+    			return $row !== false ? $row['resultado'] : null;
+    		} 
+    		//echo 'La operación se realizo satisfactoriamente';
+    		return true;
+    	} catch (PDOException $e) {    		
+    		die("Error ocurrido:" . $e->getMessage());
+    	}
+    	return null;
+    }        
 
 	/**
      * close the database connection

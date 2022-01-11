@@ -5,11 +5,22 @@ use Phppot\DataSource;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 require_once './administrador/config/bd.php';
+require_once './administrador/config/bdPDO.php';
 $db = new DataSource();
 $conn = $db->getConnection();
+
+$db_1 = new TransactionSCI();
+$conn_1 = $db_1->Connect();
+
+//echo $insertId;
+
 require_once ('./vendor/autoload.php');
 
 if (isset($_POST["import"])) {
+
+    //limpiar tabla stage
+    $insertId = $db_1->limpiarStage();
+
 
   $allowedFileType = [
     'application/vnd.ms-excel',

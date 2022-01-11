@@ -1,9 +1,11 @@
 <?php include("template/cabecera.php"); 
 
-use Phpconnect\TransactionSCI;
+//use TransactionSCI;
 require_once './administrador/config/bdPDO.php';
 
 $db = new TransactionSCI();
+$conn = $db->Connect();
+
 ?>
 
 <div class="jumbotron jumbotron-fluid">
@@ -35,14 +37,34 @@ $db = new TransactionSCI();
   <?php
   if(isset($_POST['submit'])){
 
-    if(!empty($_POST['opciones'])) {
+/*    if(!empty($_POST['opciones'])) {
 
       foreach($_POST['opciones'] as $value){
         echo "Chosen colour : ".$value.'<br/>';
       }
     }
+*/
 
-    $insertId = $db->limpiarStage();
+    $cod_01 = $db->limpiarDobleEspacioBlanco();
+    //echo $insertId;
+    $cod_02 = $db->limpiarTabulador();
+    //echo $insertId;
+    $cod_03 = $db->limpiarSaltoLinea();
+    //echo $insertId;
+    $cod_04 = $db->limpiarLetraPuntoGuion();
+    //echo $insertId;
+    $cod_05 = $db->limpiarBackSlash();
+    //echo $insertId;    
+    $cod_06 = $db->limpiarEspacioBlanco();
+    //echo $insertId;
+    $cod_07 = $db->recodificarSINO();
+    //echo $insertId;
+    $cod_08 = $db->actualizarDataTransito();
+    //echo $insertId;
+
+
+
+    echo 'Todos los procesos finalizarón satisfactoriamente.';
 
 
   }
