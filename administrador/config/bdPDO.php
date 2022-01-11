@@ -36,7 +36,6 @@ private $DB_PASSWORD = ''; //database password
   		} catch (PDOException $e) {
   			die($e->getMessage());
   		}
-
   	}
 
     /**
@@ -310,9 +309,9 @@ private $DB_PASSWORD = ''; //database password
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
             $stmt->execute();
-            //$data=$stmt;
-            return $stmt;
+            $data=$stmt->fetchAll();            
             $stmt->closeCursor();
+            return $data;
             
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());

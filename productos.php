@@ -24,17 +24,11 @@ $listaLibros = $sql->fetchAll(PDO::FETCH_ASSOC);
 					</div>
 				</div>
 			</div>
-
 			
 		<?php }
 		?>	
-
-
 	</div>
 </div>
-
-
-
 
 
 <?php include("template/pie.php"); ?>

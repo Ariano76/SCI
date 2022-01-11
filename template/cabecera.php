@@ -9,7 +9,7 @@
 	<!-- tabla reportes -->
 	<style>
 	table.dataTable thead {
-		background: linear-gradient(to right, #0575E6, #00F260);
+		background: linear-gradient(to right, #0575E6, #0575E6);
 		color:white;	}
 	</style>  
 

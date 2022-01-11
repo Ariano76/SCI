@@ -1,6 +1,9 @@
 <?php include("template/cabecera.php"); 
 
-//use TransactionSCI;
+require "vendor/autoload.php";
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 require_once './administrador/config/bdPDO.php';
 
 $db = new TransactionSCI();
@@ -14,7 +17,7 @@ $usuarios = $db->incidencia_Doc_Identidad();
   <div class="container">
     <div class="row"-->
       <h1 class="display-4">Observaciones en campos númericos</h1>
-    <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
+      <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
 
       <div class="col-lg-12">
         <table id="tablaUsuarios" class="table-striped table-bordered" style="width:100%">
@@ -25,7 +28,7 @@ $usuarios = $db->incidencia_Doc_Identidad();
               <th colspan="7">Integrante</th>
             </tr>
 
-            <th>User_id</th>
+            <th>ID</th>
             <th>Id Encuestador</th>
             <th>Documento #1</th>
             <th>Documento #2</th>
@@ -65,7 +68,74 @@ $usuarios = $db->incidencia_Doc_Identidad();
         </table>
       </div>
 
+      <div class="text-right">        
+        <div class="card-body">
+          <h4 class="card-title">Exportar datos</h4>
+        </div>
 
-  
+        <form method="post" action="">
+          <div class="float-right">  
+            <input type="radio" checked="checked" name="export_type" value="Excel"> Excel            
+            <input type="radio" name="export_type" value="csv"> CSV
+            <!--button type="submit" name="import" class="btn btn-primary">Export</button-->
+          </div> 
+          
+          <br>
+          <!--input type="submit" value="Procesar registros" name="submit" -->
+          <button type="submit" id="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Exportar archivo</button>
+        </form>
 
-  <?php include("template/pie.php"); ?>
+
+      </div>
+      <br>
+
+
+      <?php
+      if(isset($_POST['submit'])){
+        //False unless proven otherwise.
+        $usuarios = $db->incidencia_Doc_Identidad();
+        $agreedToTerms = false;
+        //Make sure that a radio button input was actually submitted.
+        if(isset($_POST['export_type'])){
+        //An array containing the radio input values that are allowed
+          $allowedAnswers = array('Excel', 'csv');
+        //The radio button value that the user sent us.
+          $chosenAnswer = $_POST['export_type'];
+        //Make sure that the value is in our array of allowed values.
+          if(in_array($chosenAnswer, $allowedAnswers)){
+            //Check to see if the user ticked yes.
+            if(strcasecmp($chosenAnswer, 'Excel') == 0){
+                //Set our variable to TRUE because they agreed.
+              $spreadsheet = new Spreadsheet();
+              $sheet = $spreadsheet->getActiveSheet();
+              $sheet->setTitle("Users");
+              $i = 1;
+              foreach($usuarios as $usuario) {
+                $sheet->setCellValue("A".$i, $usuario[0]);
+                $sheet->setCellValue("B".$i, $usuario[1]);
+                $sheet->setCellValue("C".$i, $usuario[2]);
+                $i++;
+              }
+              $writer = new Xlsx($spreadsheet);
+              $writer->save("users.xlsx");
+              $agreedToTerms = true;
+            }
+          }
+        }
+
+    //If the user agreed
+        if($agreedToTerms){
+        //Process the form, etc.          
+          echo '<div class="card-body">
+          <h4 class="card-title">Los datos se exportarón en formato Excel satisfactoriamente</h4>
+          </div>';
+        }else{
+          echo '<div class="card-body">
+          <h4 class="card-title">Los datos se exportarón en formato CSV satisfactoriamente</h4>
+          </div>';
+        }
+      }
+      ?>
+
+
+      <?php include("template/pie.php"); ?>
