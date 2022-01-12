@@ -25,15 +25,15 @@ $usuarios = $db->incidencia_Doc_Identidad();
             <tr>
               <th colspan="2">Encuesta</th>
               <th colspan="4">Beneficiario</th>
-              <th colspan="7">Integrante</th>
+              <th colspan="7">N° identificación: Integrante</th>
             </tr>
 
             <th>ID</th>
             <th>Id Encuestador</th>
             <th>Documento #1</th>
             <th>Documento #2</th>
-            <th>número WhatsApp</th>
-            <th>número SMS</th>
+            <th>N° WhatsApp</th>
+            <th>N° SMS</th>
             <th>1</th>
             <th>2</th>
             <th>3</th>
@@ -76,66 +76,89 @@ $usuarios = $db->incidencia_Doc_Identidad();
         <form method="post" action="">
           <div class="float-right">  
             <input type="radio" checked="checked" name="export_type" value="Excel"> Excel            
-            <input type="radio" name="export_type" value="csv"> CSV
-            <!--button type="submit" name="import" class="btn btn-primary">Export</button-->
-          </div> 
-          
-          <br>
-          <!--input type="submit" value="Procesar registros" name="submit" -->
-          <button type="submit" id="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Exportar archivo</button>
-        </form>
+            <!--input type="radio" name="export_type" value="csv"> CSV
+              <button type="submit" name="import" class="btn btn-primary">Export</button-->
+            </div> 
+
+            <br>
+            <!--input type="submit" value="Procesar registros" name="submit" -->
+            <button type="submit" id="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Exportar archivo</button>
+          </form>
 
 
-      </div>
-      <br>
+        </div>
+        <br>
 
 
-      <?php
-      if(isset($_POST['submit'])){
+        <?php
+        if(isset($_POST['submit'])){
         //False unless proven otherwise.
-        $usuarios = $db->incidencia_Doc_Identidad();
-        $agreedToTerms = false;
+          $usuarios = $db->incidencia_Doc_Identidad();
+
+          $agreedToTerms = false;
         //Make sure that a radio button input was actually submitted.
-        if(isset($_POST['export_type'])){
+          if(isset($_POST['export_type'])){
         //An array containing the radio input values that are allowed
-          $allowedAnswers = array('Excel', 'csv');
+            $allowedAnswers = array('Excel', 'csv');
         //The radio button value that the user sent us.
-          $chosenAnswer = $_POST['export_type'];
+            $chosenAnswer = $_POST['export_type'];
         //Make sure that the value is in our array of allowed values.
-          if(in_array($chosenAnswer, $allowedAnswers)){
+            if(in_array($chosenAnswer, $allowedAnswers)){
             //Check to see if the user ticked yes.
-            if(strcasecmp($chosenAnswer, 'Excel') == 0){
+              if(strcasecmp($chosenAnswer, 'Excel') == 0){
                 //Set our variable to TRUE because they agreed.
-              $spreadsheet = new Spreadsheet();
-              $sheet = $spreadsheet->getActiveSheet();
-              $sheet->setTitle("Users");
-              $i = 1;
-              foreach($usuarios as $usuario) {
-                $sheet->setCellValue("A".$i, $usuario[0]);
-                $sheet->setCellValue("B".$i, $usuario[1]);
-                $sheet->setCellValue("C".$i, $usuario[2]);
-                $i++;
+                $spreadsheet = new Spreadsheet();
+                $sheet = $spreadsheet->getActiveSheet();
+                $sheet->setTitle("Users");
+                $sheet->setCellValue("A1", "ID");
+                $sheet->setCellValue("B1", "ID_Encuestador");
+                $sheet->setCellValue("D1", "Documento 1 - Beneficiario");
+                $sheet->setCellValue("E1", "Documento 2 - Beneficiario");
+                $sheet->setCellValue("F1", "N° Whastapp");
+                $sheet->setCellValue("G1", "N° SMS");
+                $sheet->setCellValue("H1", "Documento Integ.1");
+                $sheet->setCellValue("I1", "Documento Integ.2");
+                $sheet->setCellValue("J1", "Documento Integ.3");
+                $sheet->setCellValue("K1", "Documento Integ.4");
+                $sheet->setCellValue("L1", "Documento Integ.5");
+                $sheet->setCellValue("M1", "Documento Integ.6");
+                $sheet->setCellValue("N1", "Documento Integ.7");
+                $i = 2;
+                foreach($usuarios as $usuario) {
+                  $sheet->setCellValue("A".$i, $usuario[0]);
+                  $sheet->setCellValue("B".$i, $usuario[1]);
+                  $sheet->setCellValue("D".$i, $usuario[2]);
+                  $sheet->setCellValue("E".$i, $usuario[3]);
+                  $sheet->setCellValue("F".$i, $usuario[4]);
+                  $sheet->setCellValue("G".$i, $usuario[5]);
+                  $sheet->setCellValue("H".$i, $usuario[6]);
+                  $sheet->setCellValue("I".$i, $usuario[7]);
+                  $sheet->setCellValue("J".$i, $usuario[8]);
+                  $sheet->setCellValue("K".$i, $usuario[9]);
+                  $sheet->setCellValue("L".$i, $usuario[10]);
+                  $sheet->setCellValue("M".$i, $usuario[11]);
+                  $sheet->setCellValue("N".$i, $usuario[12]);
+                  $i++;
+                }
+                $writer = new Xlsx($spreadsheet);
+                $writer->save("users.xlsx");
+                $agreedToTerms = true;
               }
-              $writer = new Xlsx($spreadsheet);
-              $writer->save("users.xlsx");
-              $agreedToTerms = true;
             }
           }
-        }
 
     //If the user agreed
-        if($agreedToTerms){
+          if($agreedToTerms){
         //Process the form, etc.          
-          echo '<div class="card-body">
-          <h4 class="card-title">Los datos se exportarón en formato Excel satisfactoriamente</h4>
-          </div>';
-        }else{
-          echo '<div class="card-body">
-          <h4 class="card-title">Los datos se exportarón en formato CSV satisfactoriamente</h4>
-          </div>';
+            echo '<div class="card-body">
+            <h4 class="card-title">Los datos se exportarón en formato Excel satisfactoriamente</h4>
+            </div>';
+          }else{
+            echo '<div class="card-body">
+            <h4 class="card-title">Los datos se exportarón en formato CSV satisfactoriamente</h4>
+            </div>';
+          }
         }
-      }
-      ?>
+        ?>
 
-
-      <?php include("template/pie.php"); ?>
+        <?php include("template/pie.php"); ?>
