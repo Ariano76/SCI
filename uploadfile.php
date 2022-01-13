@@ -38,7 +38,7 @@ if (isset($_POST["import"])) {
     $spreadSheetAry = $excelSheet->toArray();
     $sheetCount = count($spreadSheetAry);
 
-    $insertId = $db_1->limpiarStage();
+    $insertId = $db_1->limpiarStage("SP_LimpiarTablaStage");
 
     for ($i = 0; $i <= $sheetCount; $i ++) {
         $dato_01 = "";
