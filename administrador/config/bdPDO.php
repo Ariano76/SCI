@@ -319,6 +319,23 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
+    public function incidencia_Nombres() {
+        try {               
+            // calling stored procedure command
+            $sql = 'CALL SP_SelectNombresConDigitos()';
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $data=$stmt->fetchAll();            
+            $stmt->closeCursor();
+            return $data;
+            
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
 
 
 

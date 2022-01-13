@@ -6,6 +6,17 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 
+	<!-- jQuery -->
+	<script type="text/javascript" 
+		src="https://code.jquery.com/jquery-3.5.1.js">
+	</script>
+	  <!-- DataTables CSS -->
+  	<link rel="stylesheet"
+        href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">  
+  	<!-- DataTables JS -->
+  	<!--script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
+  	</script-->
+
 	<!-- tabla reportes -->
 	<style>
 	table.dataTable thead {
@@ -24,7 +35,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a class="nav-item nav-link active" href="index.php">Inicio</a>					
+					<a class="nav-item nav-link active" href="index.php">Inicio</a>
 					<li>
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Beneficiarios</a>
 						<div class="dropdown-menu">
@@ -42,9 +53,20 @@
 							<a class="dropdown-item" href="#">Estatus</a>
 						</div>
 					</li>
-					<a class="nav-item nav-link" href="validacion.php">Validación</a>
-					<a class="nav-item nav-link" href="uploadfile.php">Subir nuevos registros KOBO</a>
-					<a class="nav-item nav-link" href="repo_validacion_dni.php">Reporte</a>
+					<li>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="uploadfile.php">Nuevos beneficiarios</a>
+							<a class="dropdown-item" href="validacion.php">Validación</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="repo_validacion_dni.php">Documentos con incidencias</a>
+							<a class="dropdown-item" href="repo_validacion_nombres.php">Nombres con incidencias</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Derivación a sectores</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Estatus</a>
+						</div>
+					</li>					
 					<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
 					<a class="nav-item nav-link" href="nosotros.php">Nosotros</a>
 					<a class="nav-item nav-link" href="productos.php">Productos</a>
