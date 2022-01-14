@@ -9,7 +9,7 @@ require_once './administrador/config/bdPDO.php';
 $db = new TransactionSCI();
 $conn = $db->Connect();
 
-$usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
+$usuarios = $db->incidencia_Doc_Identidad("SP_SelectDHDocIdentConIncidencias");
 
 ?>
 
@@ -23,24 +23,12 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
         <table id="tablaUsuarios" class="table-striped table-bordered" style="width:100%">
           <thead class="text-center">
             <tr>
-              <th colspan="2">Encuesta</th>
               <th colspan="4">Beneficiario</th>
-              <th colspan="7">N° identificación: Integrante</th>
             </tr>
-
             <th>ID</th>
-            <th>Id Encuestador</th>
-            <th>Documento #1</th>
-            <th>Documento #2</th>
-            <th>N° WhatsApp</th>
-            <th>N° SMS</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
+            <th>Nombres y Apellidos</th>
+            <th>Tipo documento</th>
+            <th>Numero documento</th>
           </thead>
           <tbody>
             <?php
@@ -51,15 +39,6 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
                 <td><?php echo $usuario[1]?></td>
                 <td><?php echo $usuario[2]?></td>
                 <td><?php echo $usuario[3]?></td>
-                <td><?php echo $usuario[4]?></td>
-                <td><?php echo $usuario[5]?></td>
-                <td><?php echo $usuario[6]?></td>
-                <td><?php echo $usuario[7]?></td>
-                <td><?php echo $usuario[8]?></td>
-                <td><?php echo $usuario[9]?></td>
-                <td><?php echo $usuario[10]?></td>
-                <td><?php echo $usuario[11]?></td>
-                <td><?php echo $usuario[12]?></td>
               </tr>
               <?php
             }
@@ -94,7 +73,6 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
             <button type="submit" id="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Exportar archivo</button>
           </form>
 
-
         </div>
         <br>
 
@@ -102,7 +80,7 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
         <?php
         if(isset($_POST['submit'])){
         //False unless proven otherwise.
-          $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
+          $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDHDocIdentConIncidencias");
 
           $agreedToTerms = false;
         //Make sure that a radio button input was actually submitted.
@@ -120,37 +98,19 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
                 $sheet = $spreadsheet->getActiveSheet();
                 $sheet->setTitle("Users");
                 $sheet->setCellValue("A1", "ID");
-                $sheet->setCellValue("B1", "ID_Encuestador");
-                $sheet->setCellValue("C1", "Documento 1 - Beneficiario");
-                $sheet->setCellValue("D1", "Documento 2 - Beneficiario");
-                $sheet->setCellValue("E1", "N° Whastapp");
-                $sheet->setCellValue("F1", "N° SMS");
-                $sheet->setCellValue("G1", "Documento Integ.1");
-                $sheet->setCellValue("H1", "Documento Integ.2");
-                $sheet->setCellValue("I1", "Documento Integ.3");
-                $sheet->setCellValue("J1", "Documento Integ.4");
-                $sheet->setCellValue("K1", "Documento Integ.5");
-                $sheet->setCellValue("L1", "Documento Integ.6");
-                $sheet->setCellValue("M1", "Documento Integ.7");
+                $sheet->setCellValue("B1", "Nombres y Apellidos");
+                $sheet->setCellValue("C1", "Tipo documento");
+                $sheet->setCellValue("D1", "Numero documento");
                 $i = 2;
                 foreach($usuarios as $usuario) {
                   $sheet->setCellValue("A".$i, $usuario[0]);
                   $sheet->setCellValue("B".$i, $usuario[1]);
                   $sheet->setCellValue("C".$i, $usuario[2]);
                   $sheet->setCellValue("D".$i, $usuario[3]);
-                  $sheet->setCellValue("E".$i, $usuario[4]);
-                  $sheet->setCellValue("F".$i, $usuario[5]);
-                  $sheet->setCellValue("G".$i, $usuario[6]);
-                  $sheet->setCellValue("H".$i, $usuario[7]);
-                  $sheet->setCellValue("I".$i, $usuario[8]);
-                  $sheet->setCellValue("J".$i, $usuario[9]);
-                  $sheet->setCellValue("K".$i, $usuario[10]);
-                  $sheet->setCellValue("L".$i, $usuario[11]);
-                  $sheet->setCellValue("M".$i, $usuario[12]);
                   $i++;
                 }
                 $writer = new Xlsx($spreadsheet);
-                $writer->save("Usuarios con incidencias en documento.xlsx");
+                $writer->save("Usuarios data historica con incidencias en documento.xlsx");
                 $agreedToTerms = true;
               }
             }

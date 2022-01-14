@@ -62,7 +62,7 @@ href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   								<a class="dropdown-item" href="repo_validacion_dni.php">Documentos con incidencias</a>
   								<a class="dropdown-item" href="repo_validacion_nombres.php">Nombres con incidencias</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="#">Derivación a sectores</a>
+  								<a class="dropdown-item" href="#">Cotejo en Base Historica</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="#">Estatus</a>
   							</div>
@@ -71,10 +71,10 @@ href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
   							<div class="dropdown-menu">
   								<a class="dropdown-item" href="upload_datahistorica.php">Beneficiarios</a>
-  								<a class="dropdown-item" href="validacion.php">Validación</a>
+  								<a class="dropdown-item" href="validacionDH.php">Validación</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="repo_validacion_dni.php">Documentos con incidencias</a>
-  								<a class="dropdown-item" href="repo_validacion_nombres.php">Nombres con incidencias</a>
+  								<a class="dropdown-item" href="repo_validacionDH_dni.php">Documentos con incidencias</a>
+  								<a class="dropdown-item" href="repo_validacionDH_nombres.php">Nombres con incidencias</a>
   							</div>
   						</li>					
   						<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
