@@ -45,21 +45,19 @@ $conn = $db->Connect();
     }
 */
 
-    $cod_01 = $db->limpiarDobleEspacioBlanco();
+    $cod_03 = $db->update_stored_procedure_DH("SP_UpdateDHSaltoLinea");
     //echo $insertId;
-    $cod_02 = $db->limpiarTabulador();
+    $cod_04 = $db->update_stored_procedure_DH("SP_UpdateDHBackSlash");
     //echo $insertId;
-    $cod_03 = $db->limpiarSaltoLinea();
-    //echo $insertId;
-    $cod_04 = $db->limpiarLetraPuntoGuion();
-    //echo $insertId;
-    $cod_05 = $db->limpiarBackSlash();
+    $cod_05 = $db->update_stored_procedure_DH("SP_UpdateDHSoloAlfanumericos");
     //echo $insertId;    
-    $cod_06 = $db->limpiarEspacioBlanco();
+    $cod_06 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarCaracteres_acentos");
     //echo $insertId;
-    $cod_07 = $db->recodificarSINO();
+    $cod_07 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarDobleEspacioBlanco");
     //echo $insertId;
-    $cod_08 = $db->actualizarDataTransito();
+    $cod_08 = $db->update_stored_procedure_DH("SP_UpdateDHTipoDocumento");
+    $cod_09 = $db->update_stored_procedure_DH("SP_UpdateDHSoloTextoTipoDocumento");
+    $cod_10 = $db->update_stored_procedure_DH("SP_UpdateDHTrim");
     //echo $insertId;
 
 

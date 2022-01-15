@@ -339,6 +339,36 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
+// STORED PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
+
+    public function update_stored_procedure_DH($sp) {
+        try {               
+            // calling stored procedure command
+            //$sql = 'CALL SP_SelectNombresConDigitos()';
+            $sql = "CALL " . $sp . "(@total)";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $stmt->closeCursor();
+             // execute the second query to get customer's level
+            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
+            //echo 'La operación se realizo satisfactoriamente';
+            return true;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+
+    }
+
+
+
+
+
 
 
 	/**
