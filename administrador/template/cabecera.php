@@ -25,7 +25,7 @@ if (!isset($_SESSION['usuario'])) {
 </head>
 <body>
 
-	<?php $url="http://".$_SERVER['HTTP_HOST']."/sistema-sci" ?>
+	<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<a class="navbar-brand" href="#">Save The Children</a>

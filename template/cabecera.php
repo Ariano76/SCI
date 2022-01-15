@@ -63,8 +63,6 @@ href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   								<a class="dropdown-item" href="repo_validacion_nombres.php">Nombres con incidencias</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="#">Cotejo en Base Historica</a>
-  								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="#">Estatus</a>
   							</div>
   						</li>					
   						<li>
@@ -77,6 +75,13 @@ href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   								<a class="dropdown-item" href="repo_validacionDH_nombres.php">Nombres con incidencias</a>
   							</div>
   						</li>					
+  						<li>
+  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
+  							<div class="dropdown-menu">
+  								<a class="dropdown-item" href="upload_datahistorica.php">Datos Historicos</a>
+  								<a class="dropdown-item" href="validacionDH.php">Nuevos Beneficiarios</a>
+  							</div>
+  						</li>
   						<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
   						<a class="nav-item nav-link" href="nosotros.php">Nosotros</a>
   						<a class="nav-item nav-link" href="productos.php">Productos</a>

@@ -7,7 +7,7 @@ $txtImagen = (isset($_FILES['txtImagen']['name']))?$_FILES['txtImagen']['name']:
 $accion = (isset($_POST['accion']))?$_POST['accion']:"";
 
 
-include("../config/bd.php");
+include("../config/bddemo.php");
 
 switch ($accion) {
 	case "agregar":
