@@ -61,8 +61,6 @@ href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="repo_validacion_dni.php">Documentos con incidencias</a>
   								<a class="dropdown-item" href="repo_validacion_nombres.php">Nombres con incidencias</a>
-  								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="#">Cotejo en Base Historica</a>
   							</div>
   						</li>					
   						<li>

@@ -368,7 +368,7 @@ private $DB_PASSWORD = ''; //database password
 
 // FUNCION PARA MIGRAR LOS DATOS A PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
 
-    public function cotejo(){
+    public function cotejo($idBusqueda){
         $cadena=null;
         try{
             $array = array();
@@ -389,9 +389,30 @@ private $DB_PASSWORD = ''; //database password
                             $cadena .= "+" . $usuario[$i] . "* ";
                         }                         
                     }
-
                 }
-                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, MATCH(nombre_1, nombre_2, apellido_1, apellido_2,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(nombre_1, nombre_2, apellido_1, apellido_2, numero_documento) AGAINST('".$cadena."' IN BOOLEAN MODE)";
+                // GUARDANDO EL CASO DE BUSQUEDA
+                $nulo=0;
+                $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
+                    // prepare for execution of the stored procedure
+                $stmt = $this->pdo->prepare($sql1);
+                    // pass value to the command
+                $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
+                $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
+                $stmt->bindParam(':id_result', $nulo, PDO::PARAM_INT);
+                $stmt->bindParam(':nomb_1', $usuario[0], PDO::PARAM_STR);
+                $stmt->bindParam(':nomb_2', $usuario[1], PDO::PARAM_STR);
+                $stmt->bindParam(':ape_1', $usuario[2], PDO::PARAM_STR);
+                $stmt->bindParam(':ape_2', $usuario[3], PDO::PARAM_STR);
+                $stmt->bindParam(':tipo_doc', $nulo, PDO::PARAM_STR);
+                $stmt->bindParam(':numero_doc', $nulo, PDO::PARAM_STR);
+                $stmt->bindParam(':proyecto', $nulo, PDO::PARAM_STR);
+                // execute the stored procedure
+                $stmt->execute();
+                $stmt->closeCursor();   
+
+                // REALIZANDO LA BUSQUEDA FULLTEXT 
+
+                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('".$cadena."' IN BOOLEAN MODE)";
                 // call the stored procedure
                     $q = $this->pdo->prepare($sql);            
                     $q->execute();
@@ -400,10 +421,11 @@ private $DB_PASSWORD = ''; //database password
                     $q->closeCursor();
 
                     foreach($resultado as $usu){
-                        $sql1 = 'CALL SP_InsertResultadoCotejo(:id_caso,:id_result,:nomb_1,:nomb_2,:ape_1,:ape_2,:tipo_doc,:numero_doc,:proyecto )';
+                        $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
                     // prepare for execution of the stored procedure
                         $stmt = $this->pdo->prepare($sql1);
                     // pass value to the command
+                        $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
                         $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
                         $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
                         $stmt->bindParam(':nomb_1', $usu[1], PDO::PARAM_STR);
@@ -416,54 +438,41 @@ private $DB_PASSWORD = ''; //database password
                     // execute the stored procedure
                         $stmt->execute();
                         $stmt->closeCursor();                        
-                        echo "Principal: ".$contPrinc. " Secundario: ".$contSecund."<br>";
+                        //echo "Principal: ".$contPrinc. " Secundario: ".$contSecund."<br>";
                         $contSecund++;
                     }
-                    echo $cadena . "<br>" . $sql. "<br>" . "Principal: " .$contPrinc."<br>";
+                    //echo $cadena . "<br>" . $sql. "<br>" . "Principal: " .$contPrinc."<br>";
                     $cadena = "";
                     $sql = "";
                     $contPrinc++;
                     $contSecund=1;
                 }
-
-        /*while ($r = $lista):
-            $contSecund = 1;
-                //$sql1 = 'CALL SP_SelectCotejo()';
-                //$rs = $this->pdo->query($sql);
-                //$rs->setFetchMode(PDO::FETCH_ASSOC);
-            for ($i = 0; $i < 4; $i++) {
-                if ($lista[$i]!=null) {
-                    $cadena = "+" . $lista[$i] . "* ";
-                } 
-            }
-            echo $cadena . "<br>";
-
-
-            while ($r = $rs->fetch()):
-
-                $sql1 = 'CALL SP_InsertResulatdoCotejo()';
-                    // prepare for execution of the stored procedure
-                $stmt = $pdo->prepare($sql1);
-                    // pass value to the command
-                $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
-                $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
-                $stmt->bindParam(':nomb_1', $r['customerName'], PDO::PARAM_STR);
-                $stmt->bindParam(':nomb_2', $r['customerName'], PDO::PARAM_STR);
-                $stmt->bindParam(':ape_1', $r['customerName'], PDO::PARAM_STR);
-                $stmt->bindParam(':ape_2', $r['customerName'], PDO::PARAM_STR);
-                $stmt->bindParam(':tipo_doc', $r['customerName'], PDO::PARAM_STR);
-                $stmt->bindParam(':numero_doc', $r['customerName'], PDO::PARAM_STR);
-                $stmt->bindParam(':proyecto', $r['customerName'], PDO::PARAM_STR);
-                    // execute the stored procedure
-                $stmt->execute();
-                $stmt->closeCursor();
-
-            endwhile;*/            
-            /*endwhile;*/
         } catch (PDOException $e) {
             die("Error occurred:" . $e->getMessage());
         }
     }
+
+
+    public function resultado_cotejo($codigo) {
+        try {               
+            // calling stored procedure command
+            //$sql = 'CALL SP_SelectNombresConDigitos()';
+            $sql = "CALL SP_SelectResultadoCotejo(" . $codigo . ")";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $data=$stmt->fetchAll();            
+            $stmt->closeCursor();
+            return $data;
+            
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
+
 
 
 
