@@ -75,6 +75,7 @@ href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
   								<a class="dropdown-item" href="repo_validacionDH_nombres.php">Nombres con incidencias</a>
   							</div>
   						</li>					
+  						<a class="nav-item nav-link" href="cotejo_beneficiarios.php">Cotejar Beneficiarios</a>
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
   							<div class="dropdown-menu">
