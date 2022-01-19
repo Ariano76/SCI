@@ -34,13 +34,14 @@ if (isset($_POST["import"])) {
   $sheet->setCellValue("B1", "Id_Cotejo");
   $sheet->setCellValue("C1", "Id_Caso");
   $sheet->setCellValue("D1", "Id_Resultado");
-  $sheet->setCellValue("E1", "nombre_1");
-  $sheet->setCellValue("F1", "nombre_2");
-  $sheet->setCellValue("G1", "apellido_1");
-  $sheet->setCellValue("H1", "apellido_2");
-  $sheet->setCellValue("I1", "Tipo_Documento");
-  $sheet->setCellValue("J1", "Numero_Documento");
-  $sheet->setCellValue("K1", "Proyecto");
+  $sheet->setCellValue("E1", "Tipo_Busqueda");
+  $sheet->setCellValue("F1", "nombre_1");
+  $sheet->setCellValue("G1", "nombre_2");
+  $sheet->setCellValue("H1", "apellido_1");
+  $sheet->setCellValue("I1", "apellido_2");
+  $sheet->setCellValue("J1", "Tipo_Documento");
+  $sheet->setCellValue("K1", "Numero_Documento");
+  $sheet->setCellValue("L1", "Proyecto");
   $i = 2;
   foreach($usuarios as $usuario) {
     $sheet->setCellValue("A".$i, $usuario[0]);
@@ -54,6 +55,7 @@ if (isset($_POST["import"])) {
     $sheet->setCellValue("I".$i, $usuario[8]);
     $sheet->setCellValue("J".$i, $usuario[9]);
     $sheet->setCellValue("K".$i, $usuario[10]);
+    $sheet->setCellValue("L".$i, $usuario[11]);
     $i++;
   }
   $writer = new Xlsx($spreadsheet);
