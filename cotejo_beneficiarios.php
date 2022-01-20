@@ -1,15 +1,11 @@
 <?php include("template/cabecera.php"); ?>
 
 <?php
-//use Phppot\DataSource;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-//use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-require_once './administrador/config/bd.php';
+//require_once './administrador/config/bd.php';
 require_once './administrador/config/bdPDO.php';
-//$db = new DataSource();
-//$conn = $db->getConnection();
 
 $db_1 = new TransactionSCI();
 $conn_1 = $db_1->Connect();

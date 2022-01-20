@@ -4,6 +4,12 @@ session_start();
 
 if ($_POST) {
 
+//require_once './administrador/config/bdPDO.php';
+
+//$db_1 = new TransactionSCI();
+//$conn_1 = $db_1->Connect();
+
+
 	if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
 		$_SESSION['usuario'] = 'ok';
 		$_SESSION['nombreUsuario'] = 'Percy';
@@ -11,8 +17,6 @@ if ($_POST) {
 	}else {
 		$mensaje = "Error: El usuario o contraseña no coinciden.";
 	}
-
-	
 }
 ?>
 
