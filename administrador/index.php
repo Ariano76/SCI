@@ -4,10 +4,10 @@ session_start();
 
 if ($_POST) {
 
-//require_once './administrador/config/bdPDO.php';
+require_once './config/bdPDO.php';
 
-//$db_1 = new TransactionSCI();
-//$conn_1 = $db_1->Connect();
+$db_1 = new TransactionSCI();
+$conn_1 = $db_1->Connect();
 
 
 	if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
