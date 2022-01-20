@@ -8,7 +8,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 require_once './administrador/config/bdPDO.php';
 
 $db_1 = new TransactionSCI();
-$conn_1 = $db_1->Connect();
+//$conn_1 = $db_1->Connect();
 
 //echo $insertId;
 

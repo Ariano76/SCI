@@ -2,19 +2,23 @@
 
 session_start();
 
+
+
 if ($_POST) {
-
 require_once './config/bdPDO.php';
+$db = new TransactionSCI();
+//$conn_1 = $db->Connect();
 
-$db_1 = new TransactionSCI();
-$conn_1 = $db_1->Connect();
-
-
-	if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
+$codigo = $db->login($_POST['usuario'], $_POST['contrasenia']);
+	//if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
+		//$_SESSION['usuario'] = 'ok';
+		//$_SESSION['nombreUsuario'] = 'Percy';
+	if($codigo == 1){
 		$_SESSION['usuario'] = 'ok';
-		$_SESSION['nombreUsuario'] = 'Percy';
-		header('Location:inicio.php');
-	}else {
+		$_SESSION['nombreUsuario'] = $_POST['usuario'];
+		//$_SESSION['xxx'] = $codigo;
+		header('Location:inicio.php');	
+	} else {
 		$mensaje = "Error: El usuario o contraseña no coinciden.";
 	}
 }
