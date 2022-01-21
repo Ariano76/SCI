@@ -32,11 +32,11 @@ private $DB_PASSWORD = ''; //database password
   		//echo "Connected successfully";  		
 
         try {
-         $this->pdo = new PDO($dsn, $this->DB_USER, $this->DB_PASSWORD, $opciones);
-     } catch (PDOException $e) {
-         die($e->getMessage());
-     }
- }
+           $this->pdo = new PDO($dsn, $this->DB_USER, $this->DB_PASSWORD, $opciones);
+       } catch (PDOException $e) {
+           die($e->getMessage());
+       }
+   }
 
     /**
      * Transfer money between two accounts
@@ -344,7 +344,6 @@ private $DB_PASSWORD = ''; //database password
     public function update_stored_procedure_DH($sp) {
         try {               
             // calling stored procedure command
-            //$sql = 'CALL SP_SelectNombresConDigitos()';
             $sql = "CALL " . $sp . "(@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
@@ -460,126 +459,149 @@ private $DB_PASSWORD = ''; //database password
                     // REALIZANDO LA BUSQUEDA FULLTEXT POR NUMERO DOCUMENTO
                     $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                     // call the stored procedure
-                    $q = $this->pdo->prepare($sql);            
-                    $q->execute();
+                        $q = $this->pdo->prepare($sql);            
+                        $q->execute();
                     //$q->setFetchMode(PDO::FETCH_ASSOC); 
-                    $resultado = $q->fetchAll();
-                    $q->closeCursor();
+                        $resultado = $q->fetchAll();
+                        $q->closeCursor();
                     // GUARDANDO EL RESULTADO DE LA BUSQUEDA
-                    foreach($resultado as $usu) {
-                        $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
+                        foreach($resultado as $usu) {
+                            $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
                         // prepare for execution of the stored procedure
-                        $stmt = $this->pdo->prepare($sql1);
+                            $stmt = $this->pdo->prepare($sql1);
                         // pass value to the command
-                        $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
-                        $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
-                        $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
-                        $stmt->bindParam(':id_tipo', $tipo, PDO::PARAM_STR);
-                        $stmt->bindParam(':nomb_1', $usu[1], PDO::PARAM_STR);
-                        $stmt->bindParam(':nomb_2', $usu[2], PDO::PARAM_STR);
-                        $stmt->bindParam(':ape_1', $usu[3], PDO::PARAM_STR);
-                        $stmt->bindParam(':ape_2', $usu[4], PDO::PARAM_STR);
-                        $stmt->bindParam(':tipo_doc', $usu[5], PDO::PARAM_STR);
-                        $stmt->bindParam(':numero_doc', $usu[6], PDO::PARAM_STR);
-                        $stmt->bindParam(':proyecto', $usu[7], PDO::PARAM_STR);
+                            $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
+                            $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
+                            $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
+                            $stmt->bindParam(':id_tipo', $tipo, PDO::PARAM_STR);
+                            $stmt->bindParam(':nomb_1', $usu[1], PDO::PARAM_STR);
+                            $stmt->bindParam(':nomb_2', $usu[2], PDO::PARAM_STR);
+                            $stmt->bindParam(':ape_1', $usu[3], PDO::PARAM_STR);
+                            $stmt->bindParam(':ape_2', $usu[4], PDO::PARAM_STR);
+                            $stmt->bindParam(':tipo_doc', $usu[5], PDO::PARAM_STR);
+                            $stmt->bindParam(':numero_doc', $usu[6], PDO::PARAM_STR);
+                            $stmt->bindParam(':proyecto', $usu[7], PDO::PARAM_STR);
                     // execute the stored procedure
-                        $stmt->execute();
-                        $stmt->closeCursor();                        
+                            $stmt->execute();
+                            $stmt->closeCursor();                        
                         //echo "Principal: ".$contPrinc. " Secundario: ".$contSecund."<br>";
-                        $contSecund++;
-                    }
+                            $contSecund++;
+                        }
                     //echo $cadena . "<br>" . $sql. "<br>" . "Principal: " .$contPrinc."<br>";
-                    $cadena = "";
-                    $sql = "";
-                    $contPrinc++;
-                    $contSecund=1000;
+                        $cadena = "";
+                        $sql = "";
+                        $contPrinc++;
+                        $contSecund=1000;
+                    }
+
+
+                } catch (PDOException $e) {
+                    die("Error occurred:" . $e->getMessage());
                 }
+            }
 
 
-        } catch (PDOException $e) {
-            die("Error occurred:" . $e->getMessage());
-        }
-    }
-
-
-    public function resultado_cotejo($codigo) {
-        try {               
+            public function resultado_cotejo($codigo) {
+                try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectNombresConDigitos()';
-            $sql = "CALL SP_SelectResultadoCotejo(" . $codigo . ")";
+                    $sql = "CALL SP_SelectResultadoCotejo(" . $codigo . ")";
             // prepare for execution of the stored procedure
-            $stmt = $this->pdo->prepare($sql);                  
+                    $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
-            $stmt->execute();
-            $data=$stmt->fetchAll();            
-            $stmt->closeCursor();
-            return $data;
-            
-        } catch (PDOException $e) {         
-            die("Error ocurrido:" . $e->getMessage());
-        }
-        return null;
-    }
+                    $stmt->execute();
+                    $data=$stmt->fetchAll();            
+                    $stmt->closeCursor();
+                    return $data;
+                    
+                } catch (PDOException $e) {         
+                    die("Error ocurrido:" . $e->getMessage());
+                }
+                return null;
+            }
 
-    public function login($usuario, $pass) {
-        try {               
-            $sql = "CALL SP_Login_validar('".$usuario."','".$pass."',@total)";
+            public function login($usuario, $pass) {
+                try {               
+                    $sql = "CALL SP_Login_validar('".$usuario."','".$pass."',@total)";
             // prepare for execution of the stored procedure
-            $stmt = $this->pdo->prepare($sql);                  
+                    $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
-            $stmt->execute();
-            $stmt->closeCursor();
+                    $stmt->execute();
+                    $stmt->closeCursor();
              // execute the second query to get customer's level
-            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-            if ($row) {
-                return $row !== false ? $row['resultado'] : null;
-            } 
+                    $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+                    if ($row) {
+                        return $row !== false ? $row['resultado'] : null;
+                    } 
             //echo 'La operación se realizo satisfactoriamente';
-            return true;
-            
-        } catch (PDOException $e) {         
-            die("Error ocurrido:" . $e->getMessage());            
-        }
-        return $data;
-    }
+                    return true;
+                    
+                } catch (PDOException $e) {         
+                    die("Error ocurrido:" . $e->getMessage());            
+                }
+                return $data;
+            }
 
-    public function select_usuarios() {
-        try {               
+            public function select_usuarios() {
+                try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectNombresConDigitos()';
-            $sql = "CALL SP_Usuarios_Select()";
+                    $sql = "CALL SP_Usuarios_Select()";
             // prepare for execution of the stored procedure
-            $stmt = $this->pdo->prepare($sql);                  
+                    $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
-            $stmt->execute();
-            $data=$stmt->fetchAll();            
-            $stmt->closeCursor();
-            return $data;
-            
-        } catch (PDOException $e) {         
-            die("Error ocurrido:" . $e->getMessage());
-        }
-        return null;
-    }
+                    $stmt->execute();
+                    $data=$stmt->fetchAll();            
+                    $stmt->closeCursor();
+                    return $data;
+                    
+                } catch (PDOException $e) {         
+                    die("Error ocurrido:" . $e->getMessage());
+                }
+                return null;
+            }
 
-    public function select_usuario($codigo) {
-        try {               
+            public function select_usuario($codigo) {
+                try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectNombresConDigitos()';
-            $sql = "CALL SP_Usuario_Select(" . $codigo. ")";
+                    $sql = "CALL SP_Usuario_Select(" . $codigo. ")";
             // prepare for execution of the stored procedure
-            $stmt = $this->pdo->prepare($sql);                  
+                    $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
-            $stmt->execute();
-            $data=$stmt->fetchAll();            
-            $stmt->closeCursor();
-            return $data;
-            
-        } catch (PDOException $e) {         
-            die("Error ocurrido:" . $e->getMessage());
-        }
-        return null;
-    }    
+                    $stmt->execute();
+                    $data=$stmt->fetchAll();            
+                    $stmt->closeCursor();
+                    return $data;
+                    
+                } catch (PDOException $e) {         
+                    die("Error ocurrido:" . $e->getMessage());
+                }
+                return null;
+            }    
+
+            public function update_usuario($cod, $nombre, $correo, $idrol, $idestado) {
+                try {               
+            // calling stored procedure command
+                    $sql = "CALL SP_Usuario_Update(".$cod.",'".$nombre."','".$correo."',".$idrol.",".$idestado.",@total)";
+            // prepare for execution of the stored procedure
+                    $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+                    $stmt->execute();
+                    $stmt->closeCursor();
+             // execute the second query to get customer's level
+                    $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+                    if ($row) {
+                        return $row !== false ? $row['resultado'] : null;
+                    } 
+            //echo 'La operación se realizo satisfactoriamente';
+                    return true;
+                } catch (PDOException $e) {         
+                    die("Error ocurrido:" . $e->getMessage());
+                }
+                return null;
+            }
+
 
 
 

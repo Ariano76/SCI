@@ -32,38 +32,12 @@ switch ($accion) {
 	break;
 
 	case "modificar":
-	$sql = $conexion->prepare("update libros set nombre=:nombre where idlibros=:id");
-	$sql->bindparam(":id", $txtID);
-	$sql->bindparam(":nombre", $txtNombre);
-	$sql->execute();
-
-	if ($txtImagen!="") {
-
-		$fecha=new DateTime();
-		$nombreArchivo = ($txtImagen!="")?$fecha->getTimestamp()."_".$_FILES['txtImagen']['name']:"img.jpg";
-		$tmpImagen = $_FILES['txtImagen']['tmp_name'];
-
-		move_uploaded_file($tmpImagen, "../../img/".$nombreArchivo);
-
-		$sql = $conexion->prepare("select * from libros where idlibros=:id");
-		$sql->bindparam(":id", $txtID);
-		$sql->execute();
-		$libro = $sql->fetch(PDO::FETCH_LAZY);
-
-		if (isset($libro["imagen"]) && ($libro['imagen']!= 'img.jpg')) {
-			if (file_exists('../../img/'.$libro['imagen'])) {
-				unlink('../../img/'.$libro['imagen']);
-			}
-		}
-
-		$sql = $conexion->prepare("update libros set imagen=:imagen where idlibros=:id");
-		$sql->bindparam(":id", $txtID);
-		$sql->bindparam(":imagen", $nombreArchivo);
-		$sql->execute();
-
+	$nuevorol = 2;
+	if ($txtNomRol==1) {
+		$nuevorol = 1;
 	}
-
-	header("Location:productos.php");
+	$usuario = $db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
+	header("Location:usuarios.php");
 
 	break;
 
