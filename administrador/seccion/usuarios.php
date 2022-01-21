@@ -3,13 +3,10 @@
 
 $txtID = (isset($_POST['txtID']))?$_POST['txtID']:"";
 $txtNombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
-//$txtImagen = (isset($_FILES['txtImagen']['name']))?$_FILES['txtImagen']['name']:"";
 $txtCorreo = (isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
-$txtRol = (isset($_POST['txtRol']))?$_POST['txtRol']:"";
+$txtNomRol = (isset($_POST['txtNomRol']))?$_POST['txtNomRol']:"";
 $accion = (isset($_POST['accion']))?$_POST['accion']:"";
 
-
-//include("../config/bd.php");
 require_once '../config/bdPDO.php';
 $db_1 = new TransactionSCI();
 
@@ -81,7 +78,7 @@ switch ($accion) {
 	foreach ($usuario as $value) {
 		$txtNombre = $value['nombre_usuario'];
 		$txtCorreo = $value['correo'];
-		$txtRol = $value['nombre_rol'];
+		$txtNomRol = $value['nombre_rol'];
 	}
 
 	break;
@@ -128,60 +125,65 @@ $listaLibros = $db_1->select_usuarios();
 				</div>
 
 				<div class="form-group">
-					<label for="txtNombre">Nombre:</label>
-					<input required type="text" class="form-control" value="<?php echo $txtNombre; ?>" name="txtNombre" id="txtNombre" placeholder="Nombre del libro">			
+					<label for="txtNombre">Usuario:</label>
+					<input required type="text" class="form-control" value="<?php echo $txtNombre; ?>" name="txtNombre" id="txtNombre" placeholder="Nombre del usuario">			
 				</div>
 
 				<div class="form-group">
 					<label for="txtCorreo">Correo:</label>
-					<input required type="text" class="form-control" value="<?php echo $txtCorreo; ?>" name="txtCorreo" id="txtCorreo" placeholder="Correo">			
+					<input required type="email" class="form-control" value="<?php echo $txtCorreo; ?>" name="txtCorreo" id="txtCorreo" placeholder="Correo">			
 				</div>
 
 				<div class="form-group">
-					<label for="txtRol">Rol:</label>
-					<input required type="text" class="form-control" value="<?php echo $txtRol; ?>" name="txtRol" id="txtRol" placeholder="Rol asignado">			
-				</div>			
+					<label for="txtRol">Rol:</label><br>
+						<select>
+							<option value="Administrador"<?=$txtNomRol == 'Administrador' ? ' selected="selected"' : '';?>>Administrador</option>
+							<option value="Analista"<?=$txtNomRol == 'Analista' ? ' selected="selected"' : '';?>>Analista</option>
+						</select>
 
-				<div class="btn-group" role="group" aria-label="Basic example">
-					<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-lg">Agregar</button>
-					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="modificar" class="btn btn-warning btn-lg">Moficar</button>
-					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="cancelar" class="btn btn-info btn-lg">Cancelar</button>
-				</div>
-			</form>
+					</div>
+
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-lg">Agregar</button>
+						<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="modificar" class="btn btn-warning btn-lg">Moficar</button>
+						<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="cancelar" class="btn btn-info btn-lg">Cancelar</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="col-md-8">
+	<div class="col-md-8">
 
-	<table class="table table-bordered table-inverse table-hover">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Usuario</th>
-				<th>Correo</th>
-				<th>Rol</th>
-				<th>Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php foreach ($listaLibros as $libro) {?>
-				
+		<table class="table table-bordered table-inverse table-hover">
+			<thead>
 				<tr>
-					<td><?php echo $libro['id_usuario'] ?></td>
-					<td><?php echo $libro['nombre_usuario'] ?></td>
-					<td><?php echo $libro['correo'] ?></td>
-					<td><?php echo $libro['nombre_rol'] ?></td>
+					<th>ID</th>
+					<th>Usuario</th>
+					<th>Correo</th>
+					<th>Rol</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($listaLibros as $libro) {?>
+
+					<tr>
+						<td><?php echo $libro['id_usuario'] ?></td>
+						<td><?php echo $libro['nombre_usuario'] ?></td>
+						<td><?php echo $libro['correo'] ?></td>
+						<td><?php echo $libro['nombre_rol'] ?></td>
 
 						<td>
 							<form method="POST"> 
 								<input type="hidden" name="txtID" value="<?php echo $libro['id_usuario'];?>" />
+								<input type="hidden" name="txtNomRol" value="<?php echo $libro['nombre_rol'];?>" />
 								<input type="submit" name="accion" value="seleccionar" class="btn btn-primary" />
 								<input type="submit" name="accion" value="borrar" class="btn btn-danger" />
+								<input type="submit" name="accion" value="clave" class="btn btn-warning" />
 							</form>
 						</td>
 					</tr>
-
 				<?php } ?>
 			</tbody>
 		</table>
