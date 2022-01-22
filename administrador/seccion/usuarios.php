@@ -5,83 +5,66 @@ $txtID = (isset($_POST['txtID']))?$_POST['txtID']:"";
 $txtNombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
 $txtCorreo = (isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
 $txtNomRol = (isset($_POST['txtNomRol']))?$_POST['txtNomRol']:"";
+$optRoles = (isset($_POST['optRoles']))?$_POST['optRoles']:"";
 $accion = (isset($_POST['accion']))?$_POST['accion']:"";
 
 require_once '../config/bdPDO.php';
 $db_1 = new TransactionSCI();
 
-switch ($accion) {
-	case "agregar":
-	$sql = $conexion->prepare("insert into libros (nombre,imagen) values (:nombre,:imagen)
-		;");
-	$sql->bindparam(":nombre", $txtNombre);
-
-	$fecha=new DateTime();
-	$nombreArchivo = ($txtImagen!="")?$fecha->getTimestamp()."_".$_FILES['txtImagen']['name']:"img.jpg";
-	$tmpImagen = $_FILES['txtImagen']['tmp_name'];
-
-	if ($tmpImagen!="") {
-		move_uploaded_file($tmpImagen, "../../img/".$nombreArchivo);
+	$nuevorol = 2;
+	if ($optRoles == "Administrador") {
+		$nuevorol = 1;
 	}
 
-	$sql->bindparam(":imagen", $nombreArchivo);
-	$sql->execute();
+switch ($accion) {
 
-	header("Location:productos.php");
-
+	case "agregar":
+	$db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);	
+	header("Location:usuarios.php");
 	break;
 
 	case "modificar":
-	$nuevorol = 2;
-	if ($txtNomRol==1) {
-		$nuevorol = 1;
-	}
-	$usuario = $db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
+	//$usuario = $db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
+	$db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
 	header("Location:usuarios.php");
-
 	break;
 
 	case "cancelar":
 	header("Location:usuarios.php");
-
 	break;
 
 	case "seleccionar":
 	$usuario = $db_1->select_usuario($txtID);
-
 	foreach ($usuario as $value) {
 		$txtNombre = $value['nombre_usuario'];
 		$txtCorreo = $value['correo'];
 		$txtNomRol = $value['nombre_rol'];
 	}
-
 	break;
 
 	case "borrar":
-	$sql = $conexion->prepare("select imagen from libros where idlibros=:id");
-	$sql->bindparam(":id", $txtID);
-	$sql->execute();
-	$libro = $sql->fetch(PDO::FETCH_LAZY);
-
-	if (isset($libro["imagen"]) && ($libro['imagen']!= 'img.jpg')) {
-		if (file_exists('../../img/'.$libro['imagen'])) {
-			unlink('../../img/'.$libro['imagen']);
-		}
-	}
-
-	$sql = $conexion->prepare("delete from libros where idlibros=:id");
-	$sql->bindparam(":id", $txtID);
-	$sql->execute();
-
-	header("Location:productos.php");
-
+	header("Location:usuarios.php");
 	break;
 }
 
 // OBTENER LISTA DE USUARIOS
-$listaLibros = $db_1->select_usuarios();
+$usuarios = $db_1->select_usuarios();
 
 ?>
+ <!-- JS dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<!-- Bootstrap 4 dependency -->
+<script src="popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- libreria para utilizar iconos en nuestras paginas  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- bootbox code -->
+<script type="text/javascript" src="script/bootbox.min.js"></script>
+<script src="bootbox.locales.min.js"></script>
+<script type="text/javascript" src="script/deleteRecords.js"></script>
 
 <div class="col-md-4">
 
@@ -110,59 +93,73 @@ $listaLibros = $db_1->select_usuarios();
 
 				<div class="form-group">
 					<label for="txtRol">Rol:</label><br>
-						<select>
-							<option value="Administrador"<?=$txtNomRol == 'Administrador' ? ' selected="selected"' : '';?>>Administrador</option>
-							<option value="Analista"<?=$txtNomRol == 'Analista' ? ' selected="selected"' : '';?>>Analista</option>
-						</select>
+					<select name="optRoles">
+						<option value="Administrador"<?=$txtNomRol == 'Administrador' ? ' selected="selected"' : '';?>>Administrador</option>
+						<option value="Analista"<?=$txtNomRol == 'Analista' ? ' selected="selected"' : '';?>>Analista</option>
+					</select>
+				</div>
 
-					</div>
-
-					<div class="btn-group" role="group" aria-label="Basic example">
-						<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-lg">Agregar</button>
-						<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="modificar" class="btn btn-warning btn-lg">Moficar</button>
-						<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="cancelar" class="btn btn-info btn-lg">Cancelar</button>
-					</div>
-				</form>
-			</div>
+				<div class="btn-group" role="group" aria-label="Basic example" >
+					<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-sm">Agregar</button>
+					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="modificar" class="btn btn-warning btn-sm">Modificar</button>
+					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="cancelar" class="btn btn-info btn-sm">Cancelar</button>
+				</div>
+			</form>
 		</div>
 	</div>
+</div>
 
-	<div class="col-md-8">
+<div class="col-md-8">
 
-		<table class="table table-bordered table-inverse table-hover">
-			<thead>
+	<table class="table table-bordered table-inverse table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Usuario</th>
+				<th>Correo</th>
+				<th>Rol</th>
+				<th>Borrar</th>
+				<th>Password</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($usuarios as $usuario) {?>
+
 				<tr>
-					<th>ID</th>
-					<th>Usuario</th>
-					<th>Correo</th>
-					<th>Rol</th>
-					<th>Acciones</th>
+					<td><?php echo $usuario['id_usuario'] ?></td>
+					<td><?php echo $usuario['nombre_usuario'] ?></td>
+					<td><?php echo $usuario['correo'] ?></td>
+					<td><?php echo $usuario['nombre_rol'] ?></td>
+					<td align="center">							
+						<a class="delete_employee" data-emp-id="<?php echo $usuario["id_usuario"];?>" href=#>
+						<i class="fas fa-trash-alt"></i>
+						</a>
+					</td>
+					<td align="center">							
+						<a class="delete_employee" data-emp-id="<?php echo $usuario["id_usuario"];?>" href=#>
+						<i class="fas fa-recycle"></i>
+						</a>
+					</td>
+
+					<td>
+						<form method="POST"> 
+							<input type="hidden" name="txtID" value="<?php echo $usuario['id_usuario'];?>" />
+							<input type="hidden" name="txtNomRol" value="<?php echo $usuario['nombre_rol'];?>" />
+							<input type="submit" name="accion" value="seleccionar" class="btn btn-primary btn-sm" />
+							<!--<input type="submit" name="accion" value="borrar" class="btn btn-danger btn-sm" href="javascript:void(0)"/>-->
+							<!--input type="submit" name="accion" value="reset pass" class="btn btn-danger btn-sm" /-->
+
+						</form>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($listaLibros as $libro) {?>
+			<?php 
+		} 
+		?>
+		</tbody>
+	</table>
 
-					<tr>
-						<td><?php echo $libro['id_usuario'] ?></td>
-						<td><?php echo $libro['nombre_usuario'] ?></td>
-						<td><?php echo $libro['correo'] ?></td>
-						<td><?php echo $libro['nombre_rol'] ?></td>
-
-						<td>
-							<form method="POST"> 
-								<input type="hidden" name="txtID" value="<?php echo $libro['id_usuario'];?>" />
-								<input type="hidden" name="txtNomRol" value="<?php echo $libro['nombre_rol'];?>" />
-								<input type="submit" name="accion" value="seleccionar" class="btn btn-primary" />
-								<input type="submit" name="accion" value="borrar" class="btn btn-danger" />
-								<input type="submit" name="accion" value="clave" class="btn btn-warning" />
-							</form>
-						</td>
-					</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-
-	</div>
+</div>
 
 
-	<?php include("../template/pie.php") ?>
+<?php include("../template/pie.php") ?>
