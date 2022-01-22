@@ -1,18 +1,25 @@
 <?php
 
-//require_once '../config/bdPDO.php';
-
-//$db_1 = new TransactionSCI();
-//$codigo = $_REQUEST['empid']
-include_once("db_connect.php");
+require_once '../config/bdPDO.php';
+$db_1 = new TransactionSCI();
+$codigo = $_POST['empid'];
+//include_once("db_connect.php");
 
 if($_POST['empid']) {
 
-	//$resultset = $db_1->delete_usuario($codigo);
-	$sql = "DELETE FROM usuarios WHERE id_usuario='".$_POST['empid']."'";
-	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));	
-	if($resultset) {
-		echo 1;
+	if ($_POST['accion'] == 0) {
+		$resultset = $db_1->delete_usuario($codigo);
+		if($resultset) {
+			echo 1;
+		}
+	}
+
+	if ($_POST['accion'] == 1) {
+		$resultset = $db_1->update_password($codigo,$_POST['clave']);
+		if($resultset) {
+			echo 1;
+		}
+
 	}
 }
 ?>

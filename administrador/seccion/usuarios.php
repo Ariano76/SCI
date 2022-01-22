@@ -11,15 +11,15 @@ $accion = (isset($_POST['accion']))?$_POST['accion']:"";
 require_once '../config/bdPDO.php';
 $db_1 = new TransactionSCI();
 
-	$nuevorol = 2;
-	if ($optRoles == "Administrador") {
-		$nuevorol = 1;
-	}
+$nuevorol = 2;
+if ($optRoles == "Administrador") {
+	$nuevorol = 1;
+}
 
 switch ($accion) {
 
 	case "agregar":
-	$db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);	
+	$db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);
 	header("Location:usuarios.php");
 	break;
 
@@ -51,7 +51,7 @@ switch ($accion) {
 $usuarios = $db_1->select_usuarios();
 
 ?>
- <!-- JS dependencies -->
+<!-- JS dependencies -->
 <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
 <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
 <!--script src="https://code.jquery.com/jquery-3.3.1.min.js"></script-->
@@ -136,12 +136,12 @@ $usuarios = $db_1->select_usuarios();
 					<td><?php echo $usuario['nombre_rol'] ?></td>
 					<td align="center">							
 						<a class="delete_employee" data-emp-id="<?php echo $usuario["id_usuario"];?>" href=#>
-						<i class="fas fa-trash-alt"></i>
+							<i class="fas fa-trash-alt"></i>
 						</a>
 					</td>
 					<td align="center">							
-						<a class="delete_employee" data-emp-id="<?php echo $usuario["id_usuario"];?>" href=#>
-						<i class="fas fa-recycle"></i>
+						<a class="update_pass" data-emp-id="<?php echo $usuario["id_usuario"];?>" href=#>
+							<i class="fas fa-recycle"></i>
 						</a>
 					</td>
 
@@ -151,14 +151,13 @@ $usuarios = $db_1->select_usuarios();
 							<input type="hidden" name="txtNomRol" value="<?php echo $usuario['nombre_rol'];?>" />
 							<input type="submit" name="accion" value="seleccionar" class="btn btn-primary btn-sm" />
 							<!--<input type="submit" name="accion" value="borrar" class="btn btn-danger btn-sm" href="javascript:void(0)"/>-->
-							<!--input type="submit" name="accion" value="reset pass" class="btn btn-danger btn-sm" /-->
 
 						</form>
 					</td>
 				</tr>
-			<?php 
-		} 
-		?>
+				<?php 
+			} 
+			?>
 		</tbody>
 	</table>
 

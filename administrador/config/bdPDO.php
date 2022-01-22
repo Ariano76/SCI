@@ -626,19 +626,41 @@ private $DB_PASSWORD = ''; //database password
 
             public function delete_usuario($id) {
                 try {               
-            // calling stored procedure command
+                    // calling stored procedure command
                     $sql = "CALL SP_Usuario_Delete(".$id.",@total)";
-            // prepare for execution of the stored procedure
+                    // prepare for execution of the stored procedure
                     $stmt = $this->pdo->prepare($sql);                  
-            // execute the stored procedure
+                    // execute the stored procedure
                     $stmt->execute();
                     $stmt->closeCursor();
-             // execute the second query to get customer's level
+                    // execute the second query to get customer's level
                     $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
                     if ($row) {
                         return $row !== false ? $row['resultado'] : null;
                     } 
-            //echo 'La operación se realizo satisfactoriamente';
+                    //echo 'La operación se realizo satisfactoriamente';
+                    return true;
+                } catch (PDOException $e) {         
+                    die("Error ocurrido:" . $e->getMessage());
+                }
+                return null;
+            }
+
+            public function update_password($id,$clave) {
+                try {               
+                    // calling stored procedure command
+                    $sql = "CALL SP_Usuario_Update_Password(".$id.",".$clave.",@total)";
+                    // prepare for execution of the stored procedure
+                    $stmt = $this->pdo->prepare($sql);                  
+                    // execute the stored procedure
+                    $stmt->execute();
+                    $stmt->closeCursor();
+                    // execute the second query to get customer's level
+                    $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+                    if ($row) {
+                        return $row !== false ? $row['resultado'] : null;
+                    } 
+                    //echo 'La operación se realizo satisfactoriamente';
                     return true;
                 } catch (PDOException $e) {         
                     die("Error ocurrido:" . $e->getMessage());
