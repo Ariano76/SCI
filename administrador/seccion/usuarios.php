@@ -52,10 +52,14 @@ $usuarios = $db_1->select_usuarios();
 
 ?>
  <!-- JS dependencies -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
+<!--script src="https://code.jquery.com/jquery-3.3.1.min.js"></script-->
+<!--script src="https://code.jquery.com/jquery-3.1.1.min.js"></script-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <!-- Bootstrap 4 dependency -->
-<script src="popper.min.js"></script>
+<!--script src="popper.min.js"></script-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- libreria para utilizar iconos en nuestras paginas  -->
@@ -63,7 +67,6 @@ $usuarios = $db_1->select_usuarios();
 
 <!-- bootbox code -->
 <script type="text/javascript" src="script/bootbox.min.js"></script>
-<script src="bootbox.locales.min.js"></script>
 <script type="text/javascript" src="script/deleteRecords.js"></script>
 
 <div class="col-md-4">
