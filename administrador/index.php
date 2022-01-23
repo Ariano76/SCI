@@ -5,11 +5,11 @@ session_start();
 
 
 if ($_POST) {
-require_once './config/bdPDO.php';
-$db = new TransactionSCI();
+	require_once './config/bdPDO.php';
+	$db = new TransactionSCI();
 //$conn_1 = $db->Connect();
 
-$codigo = $db->login($_POST['usuario'], $_POST['contrasenia']);
+	$codigo = $db->login($_POST['usuario'], $_POST['contrasenia']);
 	//if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
 		//$_SESSION['usuario'] = 'ok';
 		//$_SESSION['nombreUsuario'] = 'Percy';

@@ -7,6 +7,9 @@ $txtCorreo = (isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
 $txtNomRol = (isset($_POST['txtNomRol']))?$_POST['txtNomRol']:"";
 $optRoles = (isset($_POST['optRoles']))?$_POST['optRoles']:"";
 $accion = (isset($_POST['accion']))?$_POST['accion']:"";
+$id = $_GET['id'];
+//$codRolLogueado = "";
+//$txtAdd = $get['id'];
 
 require_once '../config/bdPDO.php';
 $db_1 = new TransactionSCI();
@@ -19,18 +22,18 @@ if ($optRoles == "Administrador") {
 switch ($accion) {
 
 	case "agregar":
-	$db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);
-	header("Location:usuarios.php");
+	$result = $db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);
+	header("Location:usuarios.php?id=$result");
 	break;
 
 	case "modificar":
 	//$usuario = $db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
 	$db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
-	header("Location:usuarios.php");
+	header("Location:usuarios.php?id=null");
 	break;
 
 	case "cancelar":
-	header("Location:usuarios.php");
+	header("Location:usuarios.php?id=null");
 	break;
 
 	case "seleccionar":
@@ -39,11 +42,12 @@ switch ($accion) {
 		$txtNombre = $value['nombre_usuario'];
 		$txtCorreo = $value['correo'];
 		$txtNomRol = $value['nombre_rol'];
+		$id=2;
 	}
 	break;
 
 	case "borrar":
-	header("Location:usuarios.php");
+	header("Location:usuarios.php?id=null");
 	break;
 }
 
@@ -68,6 +72,15 @@ $usuarios = $db_1->select_usuarios();
 <!-- bootbox code -->
 <script type="text/javascript" src="script/bootbox.min.js"></script>
 <script type="text/javascript" src="script/deleteRecords.js"></script>
+
+<?php
+if($id == 1){
+	echo "<script>bootbox.alert('El usuario se creo satisfactoriamente.');</script>";
+}
+elseif($id == 0){
+	echo "<script>bootbox.alert('Hubo un error al momento de crear el usuario. Revise!');</script>";
+}
+?>
 
 <div class="col-md-4">
 
@@ -104,8 +117,8 @@ $usuarios = $db_1->select_usuarios();
 
 				<div class="btn-group" role="group" aria-label="Basic example" >
 					<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-sm">Agregar</button>
-					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="modificar" class="btn btn-warning btn-sm">Modificar</button>
-					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":""; ?> value="cancelar" class="btn btn-info btn-sm">Cancelar</button>
+					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":"";?> value="modificar" class="btn btn-warning btn-sm">Modificar</button>
+					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":"";?> value="cancelar" class="btn btn-info btn-sm">Cancelar</button>
 				</div>
 			</form>
 		</div>
@@ -149,8 +162,8 @@ $usuarios = $db_1->select_usuarios();
 						<form method="POST"> 
 							<input type="hidden" name="txtID" value="<?php echo $usuario['id_usuario'];?>" />
 							<input type="hidden" name="txtNomRol" value="<?php echo $usuario['nombre_rol'];?>" />
+							<input type="hidden" name="txtAdd" value="OK" />
 							<input type="submit" name="accion" value="seleccionar" class="btn btn-primary btn-sm" />
-							<!--<input type="submit" name="accion" value="borrar" class="btn btn-danger btn-sm" href="javascript:void(0)"/>-->
 
 						</form>
 					</td>

@@ -202,10 +202,9 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-
 // FUNCION PARA MIGRAR LOS DATOS A PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
 
-    public function cotejo($idBusqueda){
+    public function cotejo($idBusqueda) {
         $cadena=null;
         $tipo;
         try {
@@ -232,9 +231,9 @@ private $DB_PASSWORD = ''; //database password
                 $nulo = 0;
                 $tipo = "Nombre";
                 $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
-                    // prepare for execution of the stored procedure
+                // prepare for execution of the stored procedure
                 $stmt = $this->pdo->prepare($sql1);
-                    // pass value to the command
+                // pass value to the command
                 $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
                 $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
                 $stmt->bindParam(':id_result', $nulo, PDO::PARAM_INT);
@@ -256,7 +255,7 @@ private $DB_PASSWORD = ''; //database password
                 $q->execute();                
                 $resultado = $q->fetchAll();
                 $q->closeCursor();
-                    // GUARDANDO EL RESULTADO DE LA BUSQUEDA
+                // GUARDANDO EL RESULTADO DE LA BUSQUEDA
                 foreach($resultado as $usu) {
                     $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
                     // prepare for execution of the stored procedure
@@ -276,10 +275,9 @@ private $DB_PASSWORD = ''; //database password
                     // execute the stored procedure
                     $stmt->execute();
                     $stmt->closeCursor();                        
-                    //echo "Principal: ".$contPrinc. " Secundario: ".$contSecund."<br>";
+                    
                     $contSecund++;
                 }
-                    //echo $cadena . "<br>" . $sql. "<br>" . "Principal: " .$contPrinc."<br>";
                 $cadena = "";
                 $sql = "";
                 $contPrinc++;
@@ -302,40 +300,36 @@ private $DB_PASSWORD = ''; //database password
                 $resultado = $q->fetchAll();
                 $q->closeCursor();
                     // GUARDANDO EL RESULTADO DE LA BUSQUEDA
-                    foreach($resultado as $usu) {
-                        $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
+                foreach($resultado as $usu) {
+                    $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
                         // prepare for execution of the stored procedure
-                        $stmt = $this->pdo->prepare($sql1);
-                        // pass value to the command
-                        $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
-                        $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
-                        $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
-                        $stmt->bindParam(':id_tipo', $tipo, PDO::PARAM_STR);
-                        $stmt->bindParam(':nomb_1', $usu[1], PDO::PARAM_STR);
-                        $stmt->bindParam(':nomb_2', $usu[2], PDO::PARAM_STR);
-                        $stmt->bindParam(':ape_1', $usu[3], PDO::PARAM_STR);
-                        $stmt->bindParam(':ape_2', $usu[4], PDO::PARAM_STR);
-                        $stmt->bindParam(':tipo_doc', $usu[5], PDO::PARAM_STR);
-                        $stmt->bindParam(':numero_doc', $usu[6], PDO::PARAM_STR);
-                        $stmt->bindParam(':proyecto', $usu[7], PDO::PARAM_STR);
+                    $stmt = $this->pdo->prepare($sql1);
+                    // pass value to the command
+                    $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_tipo', $tipo, PDO::PARAM_STR);
+                    $stmt->bindParam(':nomb_1', $usu[1], PDO::PARAM_STR);
+                    $stmt->bindParam(':nomb_2', $usu[2], PDO::PARAM_STR);
+                    $stmt->bindParam(':ape_1', $usu[3], PDO::PARAM_STR);
+                    $stmt->bindParam(':ape_2', $usu[4], PDO::PARAM_STR);
+                    $stmt->bindParam(':tipo_doc', $usu[5], PDO::PARAM_STR);
+                    $stmt->bindParam(':numero_doc', $usu[6], PDO::PARAM_STR);
+                    $stmt->bindParam(':proyecto', $usu[7], PDO::PARAM_STR);
                     // execute the stored procedure
-                        $stmt->execute();
-                        $stmt->closeCursor();                        
-                        //echo "Principal: ".$contPrinc. " Secundario: ".$contSecund."<br>";
-                        $contSecund++;
-                    }
-                    //echo $cadena . "<br>" . $sql. "<br>" . "Principal: " .$contPrinc."<br>";
-                    $cadena = "";
-                    $sql = "";
-                    $contPrinc++;
-                    $contSecund=1000;
+                    $stmt->execute();
+                    $stmt->closeCursor();
+                    $contSecund++;
                 }
-
+                $cadena = "";
+                $sql = "";
+                $contPrinc++;
+                $contSecund=1000;
+            }
         } catch (PDOException $e) {
             die("Error occurred:" . $e->getMessage());
         }
     }
-
 
     public function resultado_cotejo($codigo) {
         try {               
@@ -444,9 +438,9 @@ private $DB_PASSWORD = ''; //database password
             $stmt->closeCursor();
              // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-                if ($row) {
-                    return $row !== false ? $row['resultado'] : null;
-                } 
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
             //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
