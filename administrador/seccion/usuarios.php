@@ -8,8 +8,6 @@ $txtNomRol = (isset($_POST['txtNomRol']))?$_POST['txtNomRol']:"";
 $optRoles = (isset($_POST['optRoles']))?$_POST['optRoles']:"";
 $accion = (isset($_POST['accion']))?$_POST['accion']:"";
 $id = $_GET['id'];
-//$codRolLogueado = "";
-//$txtAdd = $get['id'];
 
 require_once '../config/bdPDO.php';
 $db_1 = new TransactionSCI();
@@ -55,23 +53,6 @@ switch ($accion) {
 $usuarios = $db_1->select_usuarios();
 
 ?>
-<!-- JS dependencies -->
-<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script-->
-<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
-<!--script src="https://code.jquery.com/jquery-3.3.1.min.js"></script-->
-<!--script src="https://code.jquery.com/jquery-3.1.1.min.js"></script-->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<!-- Bootstrap 4 dependency -->
-<!--script src="popper.min.js"></script-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<!-- libreria para utilizar iconos en nuestras paginas  -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-<!-- bootbox code -->
-<script type="text/javascript" src="script/bootbox.min.js"></script>
-<script type="text/javascript" src="script/deleteRecords.js"></script>
 
 <?php
 if($id == 1){
@@ -104,7 +85,7 @@ elseif($id == 0){
 
 				<div class="form-group">
 					<label for="txtCorreo">Correo:</label>
-					<input required type="email" class="form-control" value="<?php echo $txtCorreo; ?>" name="txtCorreo" id="txtCorreo" placeholder="Correo">			
+					<input required type="email" class="form-control" value="<?php echo $txtCorreo; ?>" name="txtCorreo" id="txtCorreo" placeholder="Ingrese correo electronico">			
 				</div>
 
 				<div class="form-group">
