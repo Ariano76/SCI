@@ -71,16 +71,16 @@
   							</div>
   						</li>					
   						<a class="nav-item nav-link" href="cotejo_beneficiarios.php">Cotejar Beneficiarios</a>
-  						<li>
+  						<!--li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
   							<div class="dropdown-menu">
   								<a class="dropdown-item" href="upload_datahistorica.php">Datos Historicos</a>
   								<a class="dropdown-item" href="validacionDH.php">Nuevos Beneficiarios</a>
   							</div>
-  						</li>
+  						</li-->
   						<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
   						<a class="nav-item nav-link" href="nosotros.php">Nosotros</a>
-  						<a class="nav-item nav-link" href="productos.php">Productos</a>
+  						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
   					</div>
   				</div>
   			</div>

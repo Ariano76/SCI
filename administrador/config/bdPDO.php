@@ -290,7 +290,8 @@ private $DB_PASSWORD = ''; //database password
             $tipo = "Numero";
             foreach($lista as $usuario) {                    
                 // RECUPERANDO EL NUMERO DE DOCUMENTO
-                $cadena .= "+" . $usuario[5] . "* ";
+                //$cadena .= "+" . $usuario[5] . "* ";
+                $cadena = $usuario[5];
                 // REALIZANDO LA BUSQUEDA FULLTEXT POR NUMERO DOCUMENTO
                 $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                     // call the stored procedure
