@@ -62,12 +62,15 @@ if (isset($_POST["import"])) {
         $dato_07 = "";
         if (isset($spreadSheetAry[$i][6])) {
             $dato_07  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][6]); }
+        $dato_08 = "";
+        if (isset($spreadSheetAry[$i][7])) {
+            $dato_08  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][7]); }
       
       if (
-        ! empty($dato_01) || ! empty($dato_02) || ! empty($dato_03) || ! empty($dato_04) || ! empty($dato_05) || ! empty($dato_06) || ! empty($dato_07) ) {
-        $query = "insert into stage_data_historica(nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto) values(?, ?, ?, ?, ?, ?, ?)";
-        $paramType = "sssssss";
-        $paramArray = array($dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07);
+        ! empty($dato_01) || ! empty($dato_02) || ! empty($dato_03) || ! empty($dato_04) || ! empty($dato_05) || ! empty($dato_06) || ! empty($dato_07) || ! empty($dato_08) ) {
+        $query = "insert into stage_data_historica(nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia) values(?, ?, ?, ?, ?, ?, ?, ?)";
+        $paramType = "ssssssss";
+        $paramArray = array($dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08);
         $insertId = $db->insert($query, $paramType, $paramArray);
                 // $query = "insert into tbl_info(name,description) values('" . $name . "','" . $description . "')";
                 // $result = mysqli_query($conn, $query);
