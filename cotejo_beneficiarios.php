@@ -38,6 +38,7 @@ if (isset($_POST["import"])) {
   $sheet->setCellValue("J1", "Tipo_Documento");
   $sheet->setCellValue("K1", "Numero_Documento");
   $sheet->setCellValue("L1", "Proyecto");
+  $sheet->setCellValue("M1", "Cod_Familia");
   $i = 2;
   foreach($usuarios as $usuario) {
     $sheet->setCellValue("A".$i, $usuario[0]);
@@ -52,6 +53,7 @@ if (isset($_POST["import"])) {
     $sheet->setCellValue("J".$i, $usuario[9]);
     $sheet->setCellValue("K".$i, $usuario[10]);
     $sheet->setCellValue("L".$i, $usuario[11]);
+    $sheet->setCellValue("M".$i, $usuario[12]);
     $i++;
   }
   $writer = new Xlsx($spreadsheet);
