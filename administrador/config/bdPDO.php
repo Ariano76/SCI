@@ -250,7 +250,7 @@ private $DB_PASSWORD = ''; //database password
                 $stmt->execute();
                 $stmt->closeCursor();
                 // REALIZANDO LA BUSQUEDA FULLTEXT 
-                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto,cod_familia, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
+                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                 // call the stored procedure
                 $q = $this->pdo->prepare($sql);            
                 $q->execute();                
