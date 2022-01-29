@@ -230,7 +230,7 @@ private $DB_PASSWORD = ''; //database password
                 // GUARDANDO EL CASO DE BUSQUEDA
                 $nulo = 0;
                 $tipo = "Nombre";
-                $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
+                $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia )';
                 // prepare for execution of the stored procedure
                 $stmt = $this->pdo->prepare($sql1);
                 // pass value to the command
@@ -245,11 +245,12 @@ private $DB_PASSWORD = ''; //database password
                 $stmt->bindParam(':tipo_doc', $usuario[4], PDO::PARAM_STR);
                 $stmt->bindParam(':numero_doc', $usuario[5], PDO::PARAM_STR);
                 $stmt->bindParam(':proyecto', $nulo, PDO::PARAM_STR);
+                $stmt->bindParam(':cod_familia', $usuario[7], PDO::PARAM_STR);
                 // execute the stored procedure
                 $stmt->execute();
                 $stmt->closeCursor();
                 // REALIZANDO LA BUSQUEDA FULLTEXT 
-                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
+                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto,cod_familia, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                 // call the stored procedure
                 $q = $this->pdo->prepare($sql);            
                 $q->execute();                
@@ -257,7 +258,7 @@ private $DB_PASSWORD = ''; //database password
                 $q->closeCursor();
                 // GUARDANDO EL RESULTADO DE LA BUSQUEDA
                 foreach($resultado as $usu) {
-                    $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
+                    $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia )';
                     // prepare for execution of the stored procedure
                     $stmt = $this->pdo->prepare($sql1);
                     // pass value to the command
@@ -272,6 +273,7 @@ private $DB_PASSWORD = ''; //database password
                     $stmt->bindParam(':tipo_doc', $usu[5], PDO::PARAM_STR);
                     $stmt->bindParam(':numero_doc', $usu[6], PDO::PARAM_STR);
                     $stmt->bindParam(':proyecto', $usu[7], PDO::PARAM_STR);
+                    $stmt->bindParam(':cod_familia', $usu[8], PDO::PARAM_STR);
                     // execute the stored procedure
                     $stmt->execute();
                     $stmt->closeCursor();                        
@@ -293,7 +295,7 @@ private $DB_PASSWORD = ''; //database password
                 //$cadena .= "+" . $usuario[5] . "* ";
                 $cadena = $usuario[5];
                 // REALIZANDO LA BUSQUEDA FULLTEXT POR NUMERO DOCUMENTO
-                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
+                $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                     // call the stored procedure
                 $q = $this->pdo->prepare($sql);            
                 $q->execute();
@@ -302,7 +304,7 @@ private $DB_PASSWORD = ''; //database password
                 $q->closeCursor();
                     // GUARDANDO EL RESULTADO DE LA BUSQUEDA
                 foreach($resultado as $usu) {
-                    $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto )';
+                    $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia )';
                         // prepare for execution of the stored procedure
                     $stmt = $this->pdo->prepare($sql1);
                     // pass value to the command
@@ -317,6 +319,7 @@ private $DB_PASSWORD = ''; //database password
                     $stmt->bindParam(':tipo_doc', $usu[5], PDO::PARAM_STR);
                     $stmt->bindParam(':numero_doc', $usu[6], PDO::PARAM_STR);
                     $stmt->bindParam(':proyecto', $usu[7], PDO::PARAM_STR);
+                    $stmt->bindParam(':cod_familia', $usu[8], PDO::PARAM_STR);
                     // execute the stored procedure
                     $stmt->execute();
                     $stmt->closeCursor();
