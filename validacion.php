@@ -44,30 +44,22 @@ $conn = $db->Connect();
       }
     }
 */
-
+    
     $cod_01 = $db->limpiarDataKobo("SP_UpdateDobleEspacioBlanco");
     $cod_02 = $db->limpiarDataKobo("SP_UpdateTab");
     $cod_03 = $db->limpiarDataKobo("SP_UpdateSaltoLinea");
     $cod_04 = $db->limpiarDataKobo("SP_UpdateLetrasPuntoGuion");
     $cod_05 = $db->limpiarDataKobo("SP_UpdateBackSlash");
+    $cod_00 = $db->limpiarDataKobo("SP_UpdateNewLineReturnLine");
     $cod_06 = $db->limpiarDataKobo("SP_UpdateTrim");
     $cod_07 = $db->limpiarDataKobo("SP_UpdateRecodificarSiNo");
     $cod_08 = $db->limpiarDataKobo("SP_UpdateInfoTransito");
-
-    /*
-    $cod_01 = $db->limpiarDobleEspacioBlanco();
-    $cod_02 = $db->limpiarTabulador();
-    $cod_03 = $db->limpiarSaltoLinea();
-    $cod_04 = $db->limpiarLetraPuntoGuion();
-    $cod_05 = $db->limpiarBackSlash();
-    $cod_06 = $db->limpiarEspacioBlanco();
-    $cod_07 = $db->recodificarSINO();
-    $cod_08 = $db->actualizarDataTransito();
-    */
+    
 
     echo 'Todos los procesos finalizarón satisfactoriamente.';
 
   }
+
   ?>
 
   <?php include("template/pie.php"); ?>
