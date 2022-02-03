@@ -57,7 +57,7 @@ if (!isset($_SESSION['usuario'])) {
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
-						<a class="dropdown-item" href="">Nuevos Beneficiarios</a>
+						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
 					</div>
 				</li>
 				<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->

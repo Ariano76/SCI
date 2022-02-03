@@ -18,8 +18,13 @@ if (isset($_POST["import"])) {
   $type = "OK";
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
+  // recupera todos los registros de tabla STAGE_00
+  $usuarios = $db_1->select_beneficiarios(); 
 
-  $db_1->migrar_data_historica();
+  foreach($usuarios as $usuario) {
+    
+  }
+
 /*
   $usuarios = $db_1->resultado_cotejo($timestamp1);
 
@@ -76,7 +81,7 @@ if (isset($_POST["import"])) {
 
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Migrar datos de beneficiarios a la Tabla de Datos Historica
+      Migrar datos de beneficiarios validados al proyecto actual
     </div>
     <div class="card-body">
       <form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
@@ -91,7 +96,7 @@ if (isset($_POST["import"])) {
         </div>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos Historicos</button>
+          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos Beneficiarios Validados</button>
         </div>
       </form>
     </div>

@@ -277,7 +277,6 @@ private $DB_PASSWORD = ''; //database password
                     // execute the stored procedure
                     $stmt->execute();
                     $stmt->closeCursor();                        
-                    
                     $contSecund++;
                 }
                 $cadena = "";
@@ -290,7 +289,7 @@ private $DB_PASSWORD = ''; //database password
             $contPrinc = 1;
             $contSecund = 1000;
             $tipo = "Numero";
-            foreach($lista as $usuario) {                    
+            foreach($lista as $usuario){                    
                 // RECUPERANDO EL NUMERO DE DOCUMENTO
                 //$cadena .= "+" . $usuario[5] . "* ";
                 $cadena = $usuario[5];
@@ -350,7 +349,7 @@ private $DB_PASSWORD = ''; //database password
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
-        return null;
+            return null;
     }
 
     public function login($usuario, $pass) {
@@ -363,9 +362,9 @@ private $DB_PASSWORD = ''; //database password
             $stmt->closeCursor();
              // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-                if ($row) {
-                    return $row !== false ? $row['resultado'] : null;
-                } 
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
             //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
@@ -389,8 +388,8 @@ private $DB_PASSWORD = ''; //database password
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
-        return null;
-    }
+            return null;
+        }
 
     public function select_usuario($codigo) {
         try {               
@@ -420,15 +419,15 @@ private $DB_PASSWORD = ''; //database password
             $stmt->closeCursor();
              // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-                if ($row) {
-                    return $row !== false ? $row['resultado'] : null;
-                } 
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
             //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
-        return null;
+            return null;
     }
 
     public function insert_usuario($nombre, $correo, $idrol, $idestado) {
@@ -450,12 +449,12 @@ private $DB_PASSWORD = ''; //database password
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
-        return null;
-    }
+            return null;
+        }
 
     public function delete_usuario($id) {
         try {               
-                    // calling stored procedure command
+            // calling stored procedure command
             $sql = "CALL SP_Usuario_Delete(".$id.",@total)";
                     // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
@@ -466,13 +465,12 @@ private $DB_PASSWORD = ''; //database password
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             if ($row) {
                 return $row !== false ? $row['resultado'] : null;
-            } 
-                    //echo 'La operación se realizo satisfactoriamente';
+            }             
             return true;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
-        return null;
+            return null;
     }
 
     public function update_password($id,$clave) {
@@ -486,9 +484,9 @@ private $DB_PASSWORD = ''; //database password
             $stmt->closeCursor();
             // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-                if ($row) {
-                    return $row !== false ? $row['resultado'] : null;
-                } 
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
                     //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
@@ -508,9 +506,9 @@ private $DB_PASSWORD = ''; //database password
             $stmt->closeCursor();
             // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-                if ($row) {
-                    return $row !== false ? $row['resultado'] : null;
-                } 
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
                     //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
@@ -518,6 +516,40 @@ private $DB_PASSWORD = ''; //database password
         }
         return null;
     }
+
+    public function select_beneficiarios() {
+        try {               
+            // calling stored procedure command
+            //$sql = 'CALL SP_SelectNombresConDigitos()';
+            $sql = "CALL SP_Select_stage_00()";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $data=$stmt->fetchAll();            
+            $stmt->closeCursor();
+            return $data;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
+    public function Insert_beneficiario() {
+        try {
+            $sql = "CALL SP_Select_stage_00(@total)";
+            $stmt = $this->pdo->prepare($sql);                  
+            $stmt->execute();
+            $idBeneficiario = $stmt->fetchColumn();            
+            $stmt->closeCursor();
+            return $idBeneficiario;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
+
 
 
 
