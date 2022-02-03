@@ -535,15 +535,44 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function Insert_beneficiario() {
+    public function Insert_beneficiario($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07, $d_08, $d_09, $d_10, $d_11, $d_12, $d_13, $d_14, $d_15, $d_16, $d_17, $d_18, $d_19, $d_20, $d_21, $d_22) {
         try {
-            $sql = "CALL SP_Select_stage_00(@total)";
-            $stmt = $this->pdo->prepare($sql);                  
+            $sql = "CALL SP_Insert_beneficiario('".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."','".$d_13."','".$d_14."','".$d_15."','".$d_16."','".$d_17."','".$d_18."','".$d_19."','".$d_20."','".$d_21."','".$d_22."',@cod)";
+            //$sql = "CALL SP_Insert_beneficiario(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            //$demo=0;
+            $stmt = $this->pdo->prepare($sql);            
+            //$stmt->bindParam(':d_01', ':d_02', ':d_03', ':d_04', ':d_05', ':d_06', ':d_07', ':d_08', ':d_09', ':d_10', ':d_11', ':d_12', ':d_13', ':d_14', ':d_15', ':d_16', ':d_17', ':d_18', ':d_19', ':d_20', ':d_21', ':d_22', 0); 
+            /*$stmt->bindParam(1, $d_01, PDO::PARAM_STR);
+            $stmt->bindParam(2, $d_02, PDO::PARAM_STR);
+            $stmt->bindParam(3, $d_03, PDO::PARAM_INT);
+            $stmt->bindParam(4, $d_04, PDO::PARAM_STR);
+            $stmt->bindParam(5, $d_05, PDO::PARAM_STR);
+            $stmt->bindParam(6, $d_06, PDO::PARAM_STR);
+            $stmt->bindParam(7, $d_07, PDO::PARAM_STR);
+            $stmt->bindParam(8, $d_08, PDO::PARAM_STR);
+            $stmt->bindParam(9, $d_09, PDO::PARAM_STR);
+            $stmt->bindParam(10, $d_10, PDO::PARAM_STR);
+            $stmt->bindParam(11, $d_11, PDO::PARAM_STR);
+            $stmt->bindParam(12, $d_12, PDO::PARAM_STR);
+            $stmt->bindParam(13, $d_13, PDO::PARAM_STR);
+            $stmt->bindParam(14, $d_14, PDO::PARAM_STR);
+            $stmt->bindParam(15, $d_15, PDO::PARAM_STR);
+            $stmt->bindParam(16, $d_16, PDO::PARAM_INT);
+            $stmt->bindParam(17, $d_17, PDO::PARAM_STR);
+            $stmt->bindParam(18, $d_18, PDO::PARAM_STR);
+            $stmt->bindParam(19, $d_19, PDO::PARAM_STR);
+            $stmt->bindParam(20, $d_20, PDO::PARAM_STR);
+            $stmt->bindParam(21, $d_21, PDO::PARAM_STR);
+            $stmt->bindParam(22, $d_22, PDO::PARAM_STR);
+            $stmt->bindParam(23, $demo, PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT, 12);
+            */
             $stmt->execute();
-            $idBeneficiario = $stmt->fetchColumn();            
+            //$idBeneficiario = $stmt->fetchColumn();
+            //$idBeneficiario = $this->stmt->query("select @cod")->fetch(PDO::FETCH_ASSOC);
+            $idBeneficiario = $this->pdo->query("SELECT @cod AS resultado")->fetch(PDO::FETCH_ASSOC);
             $stmt->closeCursor();
             return $idBeneficiario;
-        } catch (PDOException $e) {         
+        } catch (PDOException $e) {
             die("Error ocurrido:" . $e->getMessage());
         }
         return null;

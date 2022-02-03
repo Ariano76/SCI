@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS `SP_Insert_beneficiario`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_Insert_beneficiario`(OUT success INT,
+CREATE PROCEDURE `SP_Insert_beneficiario`(
 	In dato_01  VARCHAR(250), In dato_02 VARCHAR(250) , In dato_03 boolean ,	
     In dato_04 VARCHAR(250) , In dato_05 VARCHAR(250) ,
 	In dato_06 VARCHAR(250) , In dato_07 VARCHAR(250) ,
@@ -11,7 +11,7 @@ CREATE PROCEDURE `SP_Insert_beneficiario`(OUT success INT,
 	In dato_16 boolean , In dato_17 VARCHAR(25) ,
 	In dato_18 DATE , In dato_19  VARCHAR(250) ,
 	In dato_20 VARCHAR(25) , In dato_21 DATE ,
-	In dato_22 VARCHAR(250) 
+	In dato_22 VARCHAR(250), OUT success INT 
 )
 BEGIN
 	DECLARE exit handler for sqlexception

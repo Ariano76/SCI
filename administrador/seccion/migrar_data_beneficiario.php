@@ -22,7 +22,9 @@ if (isset($_POST["import"])) {
   $usuarios = $db_1->select_beneficiarios(); 
 
   foreach($usuarios as $usuario) {
-    
+
+    $usuarios = $db_1->Insert_beneficiario($usuario[7], $usuario[8], $usuario[9], $usuario[10], $usuario[11], $usuario[12], $usuario[13], $usuario[14], $usuario[15], $usuario[16], $usuario[17], $usuario[18], $usuario[19], $usuario[20], $usuario[21], $usuario[22], $usuario[23], $usuario[24], $usuario[25], $usuario[26], $usuario[27], $usuario[28]); 
+
   }
 
 /*
