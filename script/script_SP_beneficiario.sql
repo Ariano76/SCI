@@ -387,14 +387,17 @@ END ;;
 DELIMITER ;
 
 
-call SP_Select_stage_00;
+call SP_Select_stage_00();
 describe integrantes;
-call SP_Insert_integrantes(@total, 
-'Percy', 'Oswalfo', 'Herrera', 'Mogrovejo', 'masculno', '1976/04/23', 'padre', 'otro', 'dni', '10141618', 
-'Percy1', 'Oswalfo1', 'Herrera1', 'Mogrovejo1', 'masculno1', '1976/04/23', 'padre1', 'otro1', 'dni1', '101416181', 
-'Percy2', 'Oswalfo2', 'Herrera2', 'Mogrovejo2', 'masculno2', '1976/04/23', 'padre2', 'otro2', 'dni2', '101416182', 
-'Percy3', 'Oswalfo3', 'Herrera3', 'Mogrovejo3', 'masculno3', '1976/04/23', 'padre3', 'otro3', 'dni3', '101416183', 
-'Percy4', 'Oswalfo4', 'Herrera4', 'Mogrovejo4', 'masculno4', '1976/04/23', 'padre4', 'otro4', 'dni4', '101416184', 
-'Percy5', 'Oswalfo5', 'Herrera5', 'Mogrovejo5', 'masculno5', '1976/04/23', 'padre5', 'otro5', 'dni5', '101416185', 
-'Percy6', 'Oswalfo6', 'Herrera6', 'Mogrovejo6', 'masculno6', '1976/04/23', 'padre6', 'otro6', 'dni6', '101416186', 10);
+call SP_Insert_beneficiario('Arequipa', NULL, '1', 'Arequipa', 'Estadia', NULL, 'Cerro Colorado', NULL, NULL, 'LUISIANDRI', 'CAROLINA', NULL, NULL, 'Mujer', '1992-12-30', NULL, '20189895', '2026-04-30', NULL, NULL, NULL, 'Primero', @total);
 select @total;
+
+INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_region, en_que_provincia, transit_settle, en_que_otro_caso_1, en_que_distrito, en_que_otro_caso_2, en_que_otro_caso_3, primer_nombre, segundo_nombre, primer_apellido,segundo_apellido, genero, fecha_nacimiento, tiene_carne_extranjeria, numero_cedula, fecha_caducidad_cedula, tipo_identificacion, numero_identificacion, fecha_caducidad_identificacion, documentos_fisico_original)
+    VALUES ('Arequipa', NULL, '1', 'Arequipa', 'Estadia', NULL, 'Cerro Colorado', NULL, NULL, 'LUISIANDRI', 'CAROLINA', NULL, NULL, 'Mujer', '1992-12-30', NULL, '20189895', '2026-04-30', NULL, NULL, NULL, 'Primero');    
+
+
+
+
+
+
+

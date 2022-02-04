@@ -10,7 +10,7 @@ require_once ('../config/bdPDO.php');
 $db_1 = new TransactionSCI();
 //$conn_1 = $db_1->Connect();
 
-//echo $insertId;
+
 
 require_once ('../../vendor/autoload.php');
 
@@ -22,8 +22,49 @@ if (isset($_POST["import"])) {
   $usuarios = $db_1->select_beneficiarios(); 
 
   foreach($usuarios as $usuario) {
+    $d01 = ($usuario[7] == '') ? null : $usuario[7];
+    $d02 = ($usuario[8] == '') ? null : $usuario[8];
+    $d03 = ($usuario[9] == '') ? null : $usuario[9];
+    $d04 = ($usuario[10] == '') ? null : $usuario[10];
+    $d05 = ($usuario[11] == '') ? null : $usuario[11];
+    $d06 = ($usuario[12] == '') ? null : $usuario[12];
+    $d07 = ($usuario[13] == '') ? null : $usuario[13];
+    $d08 = ($usuario[14] == '') ? null : $usuario[14];
+    $d09 = ($usuario[15] == '') ? null : $usuario[15];
+    $d10 = ($usuario[16] == '') ? null : $usuario[16];
+    $d11 = ($usuario[17] == '') ? null : $usuario[17];
+    $d12 = ($usuario[18] == '') ? null : $usuario[18];
+    $d13 = ($usuario[19] == '') ? null : $usuario[19];
+    $d14 = ($usuario[20] == '') ? null : $usuario[20];
+    if ($usuario[21] == '') {
+      $d15 = '2000/01/01';
+      }else{
+        $x = $db_1->validar_fecha_espanol($usuario[21]);
+          $d15 = ($x) ?  $usuario[21] : '2000/01/01';
+      }
+    //$d15 = ($db_1->validar_fecha_espanol($usuario[21]) == true) ? $usuario[21] : NULL ;
 
-    $usuarios = $db_1->Insert_beneficiario($usuario[7], $usuario[8], $usuario[9], $usuario[10], $usuario[11], $usuario[12], $usuario[13], $usuario[14], $usuario[15], $usuario[16], $usuario[17], $usuario[18], $usuario[19], $usuario[20], $usuario[21], $usuario[22], $usuario[23], $usuario[24], $usuario[25], $usuario[26], $usuario[27], $usuario[28]); 
+    $d16 = ($usuario[22] == '') ? 0 : $usuario[22];
+    $d17 = ($usuario[23] == '') ? null : $usuario[23];
+    //$d18 = ($db_1->validar_fecha_espanol($usuario[24]) == true) ? $usuario[24] : NULL ;
+    if ($usuario[24] == '') {
+      $d18 = '2000/01/01';
+      }else{
+        $x = $db_1->validar_fecha_espanol($usuario[24]);
+          $d18 = ($x) ?  $usuario[24] : '2000/01/01';
+      }
+    $d19 = ($usuario[25] == '') ? null : $usuario[25];
+    $d20 = ($usuario[26] == '') ? null : $usuario[26];
+    //$d21 = ($db_1->validar_fecha_espanol($usuario[27]) == true) ?  $usuario[27] : NULL ;
+    if ($usuario[27] == '') {
+      $d21 = '2000/01/01';
+      }else{
+        $x = $db_1->validar_fecha_espanol($usuario[27]);
+          $d21 = ($x) ?  $usuario[27] : '2000/01/01';
+      }
+    $d22 = ($usuario[28] == '') ? null : $usuario[28];    
+
+    $xCod = $db_1->Insert_beneficiario($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $d13, $d14, $d15, $d16, $d17, $d18, $d19, $d20, $d21, $d22); 
 
   }
 

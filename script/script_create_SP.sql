@@ -427,8 +427,8 @@ DECLARE exit handler for sqlexception
 	END;
  
 	START TRANSACTION;
-    UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Tránsito' WHERE dato_11 = 'transit' or dato_11 = 'transito' or dato_11 = 'Transito';
-	UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Estadía' WHERE dato_11 = 'Estadia' or dato_11 = 'estadia' or dato_11 = 'settlement';
+    UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Transito' WHERE dato_11 = 'transit' or dato_11 = 'transito' or dato_11 = 'Tránsito';
+	UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Estadia' WHERE dato_11 = 'Estadía' or dato_11 = 'estadia' or dato_11 = 'settlement';
 	UPDATE bd_bha_sci.stage_00 SET dato_26 = null WHERE dato_26 = 'Ninguno' ;
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO VALIDO' WHERE dato_143 = 'valido' or dato_143 = 'Registro válido' or dato_143 = 'Registro Válido' or dato_143 = 'VÁLIDO' or dato_143 = 'REGISTRO VÁLIDO' or dato_143 = 'Registro valido' or dato_143 = 'Registro Valido' or dato_143 = 'registro valido';
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO INVALIDO' WHERE dato_143 = 'Registro inválido' or dato_143 = 'REGISTRO INVÁLIDO' or dato_143 = 'Registro Inválido' or dato_143 = 'Registro invalido';
