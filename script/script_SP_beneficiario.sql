@@ -51,7 +51,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_comunicacion`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_Insert_comunicacion`(
+CREATE PROCEDURE `SP_Insert_comunicacion`(OUT success INT,
 	In dato_01 VARCHAR(250), In dato_02 boolean , In dato_03 boolean ,	
     In dato_04 boolean , In dato_05 boolean , In dato_06 VARCHAR(250) , 
     In dato_07 VARCHAR(250), In dato_08 VARCHAR(250) , In dato_09 boolean ,
@@ -59,8 +59,23 @@ CREATE PROCEDURE `SP_Insert_comunicacion`(
     In dato_13 VARCHAR(250), In dato_14 VARCHAR(250) , In dato_15 int 
 )
 BEGIN
+DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
 	INSERT INTO comunicacion(tiene_los_siguientes_medios_comunicacion, celular_basico, smartphone, laptop, ninguno, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms, cual_numero_usa_con_frecuencia, es_telefono_propio, como_accede_a_internet, cual_es_su_direccion, vive_o_viaja_con_otros_familiares, cuantos_viven_o_viajan_con_usted, cuantos_tienen_ingreso_por_trabajo, id_beneficiario)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13, dato_14, dato_15);    
+    SET success = 1;
+    COMMIT;   
 END ;;
 DELIMITER ;
 

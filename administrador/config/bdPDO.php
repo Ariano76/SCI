@@ -581,9 +581,7 @@ private $DB_PASSWORD = ''; //database password
             $sql = "CALL SP_Insert_encuesta(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."')";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-            //$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             $stmt->closeCursor();
-            //return $row["resultado"];
             return true;
         } catch (PDOException $e) {
             die("Error ocurrido:" . $e->getMessage());
@@ -597,9 +595,7 @@ private $DB_PASSWORD = ''; //database password
             $sql = "CALL SP_Insert_comunicacion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."','".$d_13."','".$d_14."','".$d_15."')";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-            //$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             $stmt->closeCursor();
-            //return $row["resultado"];
             return true;
         } catch (PDOException $e) {
             die("Error ocurrido:" . $e->getMessage());
@@ -613,9 +609,49 @@ private $DB_PASSWORD = ''; //database password
             $sql = "CALL SP_Insert_nutricion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."')";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-            //$row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             $stmt->closeCursor();
-            //return $row["resultado"];
+            return true;
+        } catch (PDOException $e) {
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        //echo 'Error <br>';
+        return null;
+    }    
+
+    public function Insert_educacion($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07, $d_08, $d_09, $d_10, $d_11, $d_12, $d_13) {
+        try {
+            $sql = "CALL SP_Insert_educacion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."',".$d_13.")";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $stmt->closeCursor();
+            return true;
+        } catch (PDOException $e) {
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        //echo 'Error <br>';
+        return null;
+    }    
+
+    public function Insert_salud($d_01, $d_02, $d_03, $d_04, $d_05) {
+        try {
+            $sql = "CALL SP_Insert_salud(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."',".$d_05.")";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $stmt->closeCursor();
+            return true;
+        } catch (PDOException $e) {
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        //echo 'Error <br>';
+        return null;
+    }    
+
+    public function Insert_derivacion_sectores($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07) {
+        try {
+            $sql = "CALL SP_Insert_derivacion_sectores(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."',".$d_07.")";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $stmt->closeCursor();
             return true;
         } catch (PDOException $e) {
             die("Error ocurrido:" . $e->getMessage());
