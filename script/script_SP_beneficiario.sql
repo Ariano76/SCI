@@ -11,26 +11,13 @@ CREATE PROCEDURE `SP_Insert_beneficiario`(
 	In dato_16 boolean , In dato_17 VARCHAR(25) ,
 	In dato_18 DATE , In dato_19  VARCHAR(250) ,
 	In dato_20 VARCHAR(25) , In dato_21 DATE ,
-	In dato_22 VARCHAR(250), OUT success INT 
+	In dato_22 VARCHAR(250), OUT success INTEGER 
 )
 BEGIN
-	DECLARE exit handler for sqlexception
-	BEGIN     -- ERROR
-		SET success = 0;
-	ROLLBACK;
-	END;
-   
-	DECLARE exit handler for sqlwarning
-	BEGIN     -- WARNING
-		SET success = -1;
-	ROLLBACK;
-	END;
- 
-	START TRANSACTION;
+	
 	INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_region, en_que_provincia, transit_settle, en_que_otro_caso_1, en_que_distrito, en_que_otro_caso_2, en_que_otro_caso_3, primer_nombre, segundo_nombre, primer_apellido,segundo_apellido, genero, fecha_nacimiento, tiene_carne_extranjeria, numero_cedula, fecha_caducidad_cedula, tipo_identificacion, numero_identificacion, fecha_caducidad_identificacion, documentos_fisico_original)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13,dato_14, dato_15, dato_16, dato_17, dato_18, dato_19, dato_20, dato_21, dato_22);    
     SET success := last_insert_id();
-    COMMIT;
 END ;;
 DELIMITER ;
 
@@ -53,8 +40,8 @@ BEGIN
 		SET success = -1;
 	ROLLBACK;
 	END;
- 
-	START TRANSACTION;
+    
+    START TRANSACTION;
 	INSERT INTO encuesta(fecha_encuesta, id_encuestador, nombre_encuestador, region_encuestador, como_realizo_encuesta, esta_de_acuerdo, id_beneficiario)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07);    
     SET success = 1;
@@ -64,7 +51,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_comunicacion`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_Insert_comunicacion`(OUT success INT,
+CREATE PROCEDURE `SP_Insert_comunicacion`(
 	In dato_01 VARCHAR(250), In dato_02 boolean , In dato_03 boolean ,	
     In dato_04 boolean , In dato_05 boolean , In dato_06 VARCHAR(250) , 
     In dato_07 VARCHAR(250), In dato_08 VARCHAR(250) , In dato_09 boolean ,
@@ -72,23 +59,8 @@ CREATE PROCEDURE `SP_Insert_comunicacion`(OUT success INT,
     In dato_13 VARCHAR(250), In dato_14 VARCHAR(250) , In dato_15 int 
 )
 BEGIN
-	DECLARE exit handler for sqlexception
-	BEGIN     -- ERROR
-		SET success = 0;
-	ROLLBACK;
-	END;
-   
-	DECLARE exit handler for sqlwarning
-	BEGIN     -- WARNING
-		SET success = -1;
-	ROLLBACK;
-	END;
- 
-	START TRANSACTION;
 	INSERT INTO comunicacion(tiene_los_siguientes_medios_comunicacion, celular_basico, smartphone, laptop, ninguno, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms, cual_numero_usa_con_frecuencia, es_telefono_propio, como_accede_a_internet, cual_es_su_direccion, vive_o_viaja_con_otros_familiares, cuantos_viven_o_viajan_con_usted, cuantos_tienen_ingreso_por_trabajo, id_beneficiario)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13, dato_14, dato_15);    
-    SET success = 1;
-    COMMIT;
 END ;;
 DELIMITER ;
 
@@ -389,14 +361,14 @@ DELIMITER ;
 
 call SP_Select_stage_00();
 describe integrantes;
-call SP_Insert_beneficiario('Arequipa', NULL, '1', 'Arequipa', 'Estadia', NULL, 'Cerro Colorado', NULL, NULL, 'LUISIANDRI', 'CAROLINA', NULL, NULL, 'Mujer', '1992-12-30', NULL, '20189895', '2026-04-30', NULL, NULL, NULL, 'Primero', @total);
-select @total;
+call SP_Insert_encuesta(@total, NULL, '1', 'Arequipa', 'Estadia', NULL, 'Cerro Colorado', NULL);
+select @total as resultado;
 
 INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_region, en_que_provincia, transit_settle, en_que_otro_caso_1, en_que_distrito, en_que_otro_caso_2, en_que_otro_caso_3, primer_nombre, segundo_nombre, primer_apellido,segundo_apellido, genero, fecha_nacimiento, tiene_carne_extranjeria, numero_cedula, fecha_caducidad_cedula, tipo_identificacion, numero_identificacion, fecha_caducidad_identificacion, documentos_fisico_original)
     VALUES ('Arequipa', NULL, '1', 'Arequipa', 'Estadia', NULL, 'Cerro Colorado', NULL, NULL, 'LUISIANDRI', 'CAROLINA', NULL, NULL, 'Mujer', '1992-12-30', NULL, '20189895', '2026-04-30', NULL, NULL, NULL, 'Primero');    
 
-
-
+/* REINICIAR EL AUTO INCREMENTE DE LAS TABLAS */
+ALTER TABLE bd_bha_sci.beneficiario AUTO_INCREMENT = 1;
 
 
 

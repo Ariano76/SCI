@@ -44,7 +44,7 @@ if (isset($_POST["import"])) {
       }
     //$d15 = ($db_1->validar_fecha_espanol($usuario[21]) == true) ? $usuario[21] : NULL ;
 
-    $d16 = ($usuario[22] == '') ? 0 : $usuario[22];
+    $d16 = ($usuario[22] == '') ? null : $usuario[22];
     $d17 = ($usuario[23] == '') ? null : $usuario[23];
     //$d18 = ($db_1->validar_fecha_espanol($usuario[24]) == true) ? $usuario[24] : NULL ;
     if ($usuario[24] == '') {
@@ -65,6 +65,61 @@ if (isset($_POST["import"])) {
     $d22 = ($usuario[28] == '') ? null : $usuario[28];    
 
     $xCod = $db_1->Insert_beneficiario($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $d13, $d14, $d15, $d16, $d17, $d18, $d19, $d20, $d21, $d22); 
+    //echo $xCod."<br>";    
+    
+
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA ENCUESTA
+    //$d01 = ($usuario[1] == '') ? null : $usuario[1];
+    if ($usuario[1] == '') {
+      $d01 = '2000/01/01';
+      }else{
+        $x = $db_1->validar_fecha_espanol($usuario[1]);
+          $d01 = ($x) ?  $usuario[1] : '2000/01/01';
+      }
+    $d02 = ($usuario[2] == '') ? null : $usuario[2];
+    $d03 = ($usuario[3] == '') ? null : $usuario[3];
+    $d04 = ($usuario[4] == '') ? null : $usuario[4];
+    $d05 = ($usuario[5] == '') ? null : $usuario[5];
+    $d06 = ($usuario[6] == '') ? null : $usuario[6];
+
+    $db_1->Insert_encuesta($d01, $d02, $d03, $d04, $d05, $d06, $xCod); 
+
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA COMUNICACION
+
+    $d01 = (empty($usuario[29])) ? null : $usuario[29];
+    $d02 = (empty($usuario[30])) ? null : $usuario[30];
+    $d03 = (empty($usuario[31])) ? null : $usuario[31];
+    $d04 = (empty($usuario[32])) ? null : $usuario[32];
+    $d05 = (empty($usuario[33])) ? null : $usuario[33];
+    $d06 = (empty($usuario[34])) ? null : $usuario[34];
+    $d07 = (empty($usuario[35])) ? null : $usuario[35];
+    $d08 = (empty($usuario[36])) ? null : $usuario[36];
+    $d09 = (empty($usuario[37])) ? null : $usuario[37];
+    $d10 = (empty($usuario[38])) ? null : $usuario[38];
+    $d11 = (empty($usuario[39])) ? null : $usuario[39];
+    $d12 = (empty($usuario[40])) ? null : $usuario[40];
+    $d13 = (empty($usuario[41])) ? null : $usuario[41];
+    $d14 = (empty($usuario[42])) ? null : $usuario[42];
+
+    $db_1->Insert_comunicacion($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $d13, $d14, $xCod); 
+
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA NUTRICION
+
+    $d01 = (empty($usuario[43])) ? null : $usuario[43];
+    $d02 = (empty($usuario[44])) ? null : $usuario[44];
+    $d03 = (empty($usuario[45])) ? null : $usuario[45];
+    $d04 = (empty($usuario[46])) ? null : $usuario[46];
+    $d05 = (empty($usuario[47])) ? null : $usuario[47];
+    $d06 = (empty($usuario[48])) ? null : $usuario[48];
+    $d07 = (empty($usuario[49])) ? null : $usuario[49];
+    $d08 = (empty($usuario[50])) ? null : $usuario[50];
+
+    $db_1->Insert_nutricion($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $xCod); 
+
+
+
+  
+
 
   }
 
