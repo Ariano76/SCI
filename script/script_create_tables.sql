@@ -6,10 +6,10 @@ DROP TABLE if exists educacion;
 DROP TABLE if exists salud;
 DROP TABLE if exists nutricion;
 DROP TABLE if exists comunicacion;
-DROP TABLE if exists Integrantes;
+DROP TABLE if exists integrantes;
 DROP TABLE if exists estatus;
-DROP TABLE if exists estados;
 DROP TABLE if exists beneficiario;
+DROP TABLE if exists estados;
 DROP TABLE if exists usuarios;
 DROP TABLE if exists roles;
 
@@ -32,7 +32,7 @@ CREATE TABLE beneficiario
 	primer_apellido      VARCHAR(250) NULL,
 	segundo_apellido     VARCHAR(250) NULL,
 	genero               VARCHAR(250) NULL,
-	fecha_nacimiento     DATE NULL,
+	fecha_nacimiento     DATE,
 	tiene_carne_extranjeria boolean NULL,
 	numero_cedula        VARCHAR(25) NULL,
 	fecha_caducidad_cedula DATE NULL,
@@ -119,7 +119,7 @@ MODIFY id_educacion INT NOT NULL AUTO_INCREMENT ;
 CREATE TABLE encuesta
 (
 	id_encuesta          INTEGER NOT NULL,
-	fecha_encuesta       DATE NULL,
+	fecha_encuesta       DATE,
 	id_encuestador       INTEGER NULL,
 	nombre_encuestador   VARCHAR(250) NULL,
 	region_encuestador   VARCHAR(100) NULL,
@@ -142,7 +142,7 @@ CREATE TABLE integrantes
 	apellido_1a          VARCHAR(250) NULL,
 	apellido_1b          VARCHAR(250) NULL,
 	genero_1             VARCHAR(250) NULL,
-	fecha_nacimiento_1   DATE NULL,
+	fecha_nacimiento_1   DATE,
 	relacion_1           VARCHAR(250) NULL,
 	otro_1               VARCHAR(250) NULL,
 	tipo_identificacion_1 VARCHAR(250) NULL,
@@ -152,7 +152,7 @@ CREATE TABLE integrantes
 	apellido_2a          VARCHAR(250) NULL,
 	apellido_2b          VARCHAR(250) NULL,
 	genero_2             VARCHAR(250) NULL,
-	fecha_nacimiento_2   DATE NULL,
+	fecha_nacimiento_2   DATE,
 	relacion_2           VARCHAR(250) NULL,
 	otro_2               VARCHAR(250) NULL,
 	tipo_identificacion_2 VARCHAR(250) NULL,
@@ -162,7 +162,7 @@ CREATE TABLE integrantes
 	apellido_3a          VARCHAR(250) NULL,
 	apellido_3b          VARCHAR(250) NULL,
 	genero_3             VARCHAR(250) NULL,
-	fecha_nacimiento_3   DATE NULL,
+	fecha_nacimiento_3   DATE,
 	relacion_3           VARCHAR(250) NULL,
 	otro_3               VARCHAR(250) NULL,
 	tipo_identificacion_3 VARCHAR(250) NULL,
@@ -172,7 +172,7 @@ CREATE TABLE integrantes
 	apellido_4a          VARCHAR(250) NULL,
 	apellido_4b          VARCHAR(250) NULL,
 	genero_4             VARCHAR(250) NULL,
-	fecha_nacimiento_4   DATE NULL,
+	fecha_nacimiento_4   DATE,
 	relacion_4           VARCHAR(250) NULL,
 	otro_4               VARCHAR(250) NULL,
 	tipo_identificacion_4 VARCHAR(250) NULL,
@@ -182,7 +182,7 @@ CREATE TABLE integrantes
 	apellido_5a          VARCHAR(250) NULL,
 	apellido_5b          VARCHAR(250) NULL,
 	genero_5             VARCHAR(250) NULL,
-	fecha_nacimiento_5   DATE NULL,
+	fecha_nacimiento_5   DATE,
 	relacion_5           VARCHAR(250) NULL,
 	otro_5               VARCHAR(250) NULL,
 	tipo_identificacion_5 VARCHAR(250) NULL,
@@ -192,7 +192,7 @@ CREATE TABLE integrantes
 	apellido_6a          VARCHAR(250) NULL,
 	apellido_6b          VARCHAR(250) NULL,
 	genero_6             VARCHAR(250) NULL,
-	fecha_nacimiento_6   DATE NULL,
+	fecha_nacimiento_6   DATE,
 	relacion_6           VARCHAR(250) NULL,
 	otro_6               VARCHAR(250) NULL,
 	tipo_identificacion_6 VARCHAR(250) NULL,
@@ -202,7 +202,7 @@ CREATE TABLE integrantes
 	apellido_7a          VARCHAR(250) NULL,
 	apellido_7b          VARCHAR(250) NULL,
 	genero_7             VARCHAR(250) NULL,
-	fecha_nacimiento_7   DATE NULL,
+	fecha_nacimiento_7   DATE,
 	relacion_7           VARCHAR(250) NULL,
 	otro_7               VARCHAR(250) NULL,
 	tipo_identificacion_7 VARCHAR(250) NULL,
@@ -306,7 +306,9 @@ ADD PRIMARY KEY (id_rol);
 ALTER TABLE roles
 MODIFY id_rol INT NOT NULL AUTO_INCREMENT ;
 
+/*********************************
 -- CREACION DE LLAVES FORANEAS 
+*********************************/
 
 ALTER TABLE comunicacion
 ADD FOREIGN KEY R_22 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
