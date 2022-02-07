@@ -537,7 +537,7 @@ private $DB_PASSWORD = ''; //database password
 
     public function Insert_beneficiario($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07, $d_08, $d_09, $d_10, $d_11, $d_12, $d_13, $d_14, $d_15, $d_16, $d_17, $d_18, $d_19, $d_20, $d_21, $d_22) {
         try {
-            $sql = "CALL SP_Insert_beneficiario('".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."','".$d_13."','".$d_14."','".$d_15."','".$d_16."','".$d_17."','".$d_18."','".$d_19."','".$d_20."','".$d_21."','".$d_22."',@total)";
+            $sql = "CALL SP_Insert_beneficiario('".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."','".$d_13."','".$d_14."','".$d_15."','".$d_16."','".$d_17."','".$d_18."','".$d_19."','".$d_20."','".$d_21."','".$d_22."', @total)";
             //$sql = "CALL SP_Insert_beneficiario(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $row=0;
             $stmt = $this->pdo->prepare($sql);
@@ -578,7 +578,7 @@ private $DB_PASSWORD = ''; //database password
 
     public function Insert_encuesta($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07) {
         try {
-            $sql = "CALL SP_Insert_encuesta(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."')";
+            $sql = "CALL SP_Insert_encuesta(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."',".$d_07.")";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $stmt->closeCursor();
@@ -592,7 +592,7 @@ private $DB_PASSWORD = ''; //database password
 
     public function Insert_comunicacion($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07, $d_08, $d_09, $d_10, $d_11, $d_12, $d_13, $d_14, $d_15) {
         try {
-            $sql = "CALL SP_Insert_comunicacion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."','".$d_13."','".$d_14."','".$d_15."')";
+            $sql = "CALL SP_Insert_comunicacion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."','".$d_12."','".$d_13."','".$d_14."',".$d_15.")";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $stmt->closeCursor();
@@ -606,7 +606,7 @@ private $DB_PASSWORD = ''; //database password
 
     public function Insert_nutricion($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07, $d_08, $d_09) {
         try {
-            $sql = "CALL SP_Insert_nutricion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."')";
+            $sql = "CALL SP_Insert_nutricion(@total,'".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."',".$d_09.")";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $stmt->closeCursor();

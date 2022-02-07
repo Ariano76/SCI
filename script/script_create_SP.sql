@@ -72,8 +72,9 @@ BEGIN
 	START TRANSACTION;
 		UPDATE bd_bha_sci.stage_00 
 		SET 
-        dato_01 = REGEXP_REPLACE(dato_01, '\\s', ''), dato_02 = REGEXP_REPLACE(dato_02, '\\s', ''), 
-        dato_03 = REGEXP_REPLACE(dato_03, '\\s', ''), dato_04 = REGEXP_REPLACE(dato_04, '\\s', ''), 
+        /*dato_01 = REGEXP_REPLACE(dato_01, '\\s', ''), */
+        dato_02 = REGEXP_REPLACE(dato_02, '\\s', ''), 
+        /*dato_03 = REGEXP_REPLACE(dato_03, '\\s', ''), dato_04 = REGEXP_REPLACE(dato_04, '\\s', ''), 
         dato_05 = REGEXP_REPLACE(dato_05, '\\s', ''), dato_06 = REGEXP_REPLACE(dato_06, '\\s', ''), 
         dato_07 = REGEXP_REPLACE(dato_07, '\\s', ''), dato_08 = REGEXP_REPLACE(dato_08, '\\s', ''), 
         dato_09 = REGEXP_REPLACE(dato_09, '\\s', ''), dato_10 = REGEXP_REPLACE(dato_10, '\\s', ''), 
@@ -82,14 +83,17 @@ BEGIN
         dato_15 = REGEXP_REPLACE(dato_15, '\\s', ''), dato_16 = REGEXP_REPLACE(dato_16, '\\s', ''), 
         dato_17 = REGEXP_REPLACE(dato_17, '\\s', ''), dato_18 = REGEXP_REPLACE(dato_18, '\\s', ''), 
         dato_19 = REGEXP_REPLACE(dato_19, '\\s', ''), dato_20 = REGEXP_REPLACE(dato_20, '\\s', ''), 
-        dato_21 = REGEXP_REPLACE(dato_21, '\\s', ''), dato_22 = REGEXP_REPLACE(dato_22, '\\s', ''), 
-        dato_23 = REGEXP_REPLACE(dato_23, '\\s', ''), dato_24 = REGEXP_REPLACE(dato_24, '\\s', ''), 
-        dato_25 = REGEXP_REPLACE(dato_25, '\\s', ''), dato_26 = REGEXP_REPLACE(dato_26, '\\s', ''), 
-        dato_27 = REGEXP_REPLACE(dato_27, '\\s', ''), dato_28 = REGEXP_REPLACE(dato_28, '\\s', ''), 
+        dato_21 = REGEXP_REPLACE(dato_21, '\\s', ''), dato_22 = REGEXP_REPLACE(dato_22, '\\s', ''), */
+        dato_23 = REGEXP_REPLACE(dato_23, '\\s', ''), 
+        /*dato_24 = REGEXP_REPLACE(dato_24, '\\s', ''), 
+        dato_25 = REGEXP_REPLACE(dato_25, '\\s', ''), */
+        dato_26 = REGEXP_REPLACE(dato_26, '\\s', ''), 
+        /*dato_27 = REGEXP_REPLACE(dato_27, '\\s', ''), dato_28 = REGEXP_REPLACE(dato_28, '\\s', ''), 
         dato_29 = REGEXP_REPLACE(dato_29, '\\s', ''), dato_30 = REGEXP_REPLACE(dato_30, '\\s', ''), 
         dato_31 = REGEXP_REPLACE(dato_31, '\\s', ''), dato_32 = REGEXP_REPLACE(dato_32, '\\s', ''), 
-        dato_33 = REGEXP_REPLACE(dato_33, '\\s', ''), dato_34 = REGEXP_REPLACE(dato_34, '\\s', ''), 
-        dato_35 = REGEXP_REPLACE(dato_35, '\\s', ''), dato_36 = REGEXP_REPLACE(dato_36, '\\s', ''), 
+        dato_33 = REGEXP_REPLACE(dato_33, '\\s', ''), */
+        dato_34 = REGEXP_REPLACE(dato_34, '\\s', ''), dato_35 = REGEXP_REPLACE(dato_35, '\\s', ''), 
+        /*dato_36 = REGEXP_REPLACE(dato_36, '\\s', ''), 
         dato_37 = REGEXP_REPLACE(dato_37, '\\s', ''), dato_38 = REGEXP_REPLACE(dato_38, '\\s', ''), 
         dato_39 = REGEXP_REPLACE(dato_39, '\\s', ''), dato_40 = REGEXP_REPLACE(dato_40, '\\s', ''), 
         dato_41 = REGEXP_REPLACE(dato_41, '\\s', ''), dato_42 = REGEXP_REPLACE(dato_42, '\\s', ''), 
@@ -108,42 +112,49 @@ BEGIN
         dato_67 = REGEXP_REPLACE(dato_67, '\\s', ''), dato_68 = REGEXP_REPLACE(dato_68, '\\s', ''), 
         dato_69 = REGEXP_REPLACE(dato_69, '\\s', ''), dato_70 = REGEXP_REPLACE(dato_70, '\\s', ''), 
         dato_71 = REGEXP_REPLACE(dato_71, '\\s', ''), dato_72 = REGEXP_REPLACE(dato_72, '\\s', ''), 
-        dato_73 = REGEXP_REPLACE(dato_73, '\\s', ''), dato_74 = REGEXP_REPLACE(dato_74, '\\s', ''), 
-        dato_75 = REGEXP_REPLACE(dato_75, '\\s', ''), dato_76 = REGEXP_REPLACE(dato_76, '\\s', ''), 
+        dato_73 = REGEXP_REPLACE(dato_73, '\\s', ''), */
+        dato_74 = REGEXP_REPLACE(dato_74, '\\s', ''), 
+        /*dato_75 = REGEXP_REPLACE(dato_75, '\\s', ''), dato_76 = REGEXP_REPLACE(dato_76, '\\s', ''), 
         dato_77 = REGEXP_REPLACE(dato_77, '\\s', ''), dato_78 = REGEXP_REPLACE(dato_78, '\\s', ''), 
         dato_79 = REGEXP_REPLACE(dato_79, '\\s', ''), dato_80 = REGEXP_REPLACE(dato_80, '\\s', ''), 
         dato_81 = REGEXP_REPLACE(dato_81, '\\s', ''), dato_82 = REGEXP_REPLACE(dato_82, '\\s', ''), 
-        dato_83 = REGEXP_REPLACE(dato_83, '\\s', ''), dato_84 = REGEXP_REPLACE(dato_84, '\\s', ''), 
-        dato_85 = REGEXP_REPLACE(dato_85, '\\s', ''), dato_86 = REGEXP_REPLACE(dato_86, '\\s', ''), 
+        dato_83 = REGEXP_REPLACE(dato_83, '\\s', ''), */
+        dato_84 = REGEXP_REPLACE(dato_84, '\\s', ''), 
+        /*dato_85 = REGEXP_REPLACE(dato_85, '\\s', ''), dato_86 = REGEXP_REPLACE(dato_86, '\\s', ''), 
         dato_87 = REGEXP_REPLACE(dato_87, '\\s', ''), dato_88 = REGEXP_REPLACE(dato_88, '\\s', ''), 
         dato_89 = REGEXP_REPLACE(dato_89, '\\s', ''), dato_90 = REGEXP_REPLACE(dato_90, '\\s', ''), 
         dato_91 = REGEXP_REPLACE(dato_91, '\\s', ''), dato_92 = REGEXP_REPLACE(dato_92, '\\s', ''), 
-        dato_93 = REGEXP_REPLACE(dato_93, '\\s', ''), dato_94 = REGEXP_REPLACE(dato_94, '\\s', ''), 
-        dato_95 = REGEXP_REPLACE(dato_95, '\\s', ''), dato_96 = REGEXP_REPLACE(dato_96, '\\s', ''), 
+        dato_93 = REGEXP_REPLACE(dato_93, '\\s', ''), */
+        dato_94 = REGEXP_REPLACE(dato_94, '\\s', ''), 
+        /*dato_95 = REGEXP_REPLACE(dato_95, '\\s', ''), dato_96 = REGEXP_REPLACE(dato_96, '\\s', ''), 
         dato_97 = REGEXP_REPLACE(dato_97, '\\s', ''), dato_98 = REGEXP_REPLACE(dato_98, '\\s', ''), 
         dato_99 = REGEXP_REPLACE(dato_99, '\\s', ''), dato_100 = REGEXP_REPLACE(dato_100, '\\s', ''), 
         dato_101 = REGEXP_REPLACE(dato_101, '\\s', ''), dato_102 = REGEXP_REPLACE(dato_102, '\\s', ''), 
-        dato_103 = REGEXP_REPLACE(dato_103, '\\s', ''), dato_104 = REGEXP_REPLACE(dato_104, '\\s', ''), 
-        dato_105 = REGEXP_REPLACE(dato_105, '\\s', ''), dato_106 = REGEXP_REPLACE(dato_106, '\\s', ''), 
+        dato_103 = REGEXP_REPLACE(dato_103, '\\s', ''), */
+        dato_104 = REGEXP_REPLACE(dato_104, '\\s', ''), 
+        /*dato_105 = REGEXP_REPLACE(dato_105, '\\s', ''), dato_106 = REGEXP_REPLACE(dato_106, '\\s', ''), 
         dato_107 = REGEXP_REPLACE(dato_107, '\\s', ''), dato_108 = REGEXP_REPLACE(dato_108, '\\s', ''), 
         dato_109 = REGEXP_REPLACE(dato_109, '\\s', ''), dato_110 = REGEXP_REPLACE(dato_110, '\\s', ''), 
         dato_111 = REGEXP_REPLACE(dato_111, '\\s', ''), dato_112 = REGEXP_REPLACE(dato_112, '\\s', ''), 
-        dato_113 = REGEXP_REPLACE(dato_113, '\\s', ''), dato_114 = REGEXP_REPLACE(dato_114, '\\s', ''), 
-        dato_115 = REGEXP_REPLACE(dato_115, '\\s', ''), dato_116 = REGEXP_REPLACE(dato_116, '\\s', ''), 
+        dato_113 = REGEXP_REPLACE(dato_113, '\\s', ''), */
+        dato_114 = REGEXP_REPLACE(dato_114, '\\s', ''), 
+        /*dato_115 = REGEXP_REPLACE(dato_115, '\\s', ''), dato_116 = REGEXP_REPLACE(dato_116, '\\s', ''), 
         dato_117 = REGEXP_REPLACE(dato_117, '\\s', ''), dato_118 = REGEXP_REPLACE(dato_118, '\\s', ''), 
         dato_119 = REGEXP_REPLACE(dato_119, '\\s', ''), dato_120 = REGEXP_REPLACE(dato_120, '\\s', ''), 
         dato_121 = REGEXP_REPLACE(dato_121, '\\s', ''), dato_122 = REGEXP_REPLACE(dato_122, '\\s', ''), 
-        dato_123 = REGEXP_REPLACE(dato_123, '\\s', ''), dato_124 = REGEXP_REPLACE(dato_124, '\\s', ''), 
-        dato_125 = REGEXP_REPLACE(dato_125, '\\s', ''), dato_126 = REGEXP_REPLACE(dato_126, '\\s', ''), 
+        dato_123 = REGEXP_REPLACE(dato_123, '\\s', ''), */
+        dato_124 = REGEXP_REPLACE(dato_124, '\\s', ''), 
+        /*dato_125 = REGEXP_REPLACE(dato_125, '\\s', ''), dato_126 = REGEXP_REPLACE(dato_126, '\\s', ''), 
         dato_127 = REGEXP_REPLACE(dato_127, '\\s', ''), dato_128 = REGEXP_REPLACE(dato_128, '\\s', ''), 
         dato_129 = REGEXP_REPLACE(dato_129, '\\s', ''), dato_130 = REGEXP_REPLACE(dato_130, '\\s', ''), 
         dato_131 = REGEXP_REPLACE(dato_131, '\\s', ''), dato_132 = REGEXP_REPLACE(dato_132, '\\s', ''), 
-        dato_133 = REGEXP_REPLACE(dato_133, '\\s', ''), dato_134 = REGEXP_REPLACE(dato_134, '\\s', ''), 
-        dato_135 = REGEXP_REPLACE(dato_135, '\\s', ''), dato_136 = REGEXP_REPLACE(dato_136, '\\s', ''), 
+        dato_133 = REGEXP_REPLACE(dato_133, '\\s', ''), */
+        dato_134 = REGEXP_REPLACE(dato_134, '\\s', '');
+        /*dato_135 = REGEXP_REPLACE(dato_135, '\\s', ''), dato_136 = REGEXP_REPLACE(dato_136, '\\s', ''), 
         dato_137 = REGEXP_REPLACE(dato_137, '\\s', ''), dato_138 = REGEXP_REPLACE(dato_138, '\\s', ''), 
         dato_139 = REGEXP_REPLACE(dato_139, '\\s', ''), dato_140 = REGEXP_REPLACE(dato_140, '\\s', ''), 
         dato_141 = REGEXP_REPLACE(dato_141, '\\s', ''), dato_142 = REGEXP_REPLACE(dato_142, '\\s', ''), 
-        dato_143 = REGEXP_REPLACE(dato_143, '\\s', ''), dato_144 = REGEXP_REPLACE(dato_144, '\\s', '');
+        dato_143 = REGEXP_REPLACE(dato_143, '\\s', ''), dato_144 = REGEXP_REPLACE(dato_144, '\\s', '');*/
         SET success = 1;
     COMMIT;
 END ;;
@@ -233,55 +244,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-    UPDATE bd_bha_sci.stage_00 SET dato_01 = REGEXP_REPLACE(dato_01, '\\n', ''), dato_02 = REGEXP_REPLACE(dato_02, '\\n', ''), 
-	dato_03 = REGEXP_REPLACE(dato_03, '\\n', ''), dato_04 = REGEXP_REPLACE(dato_04, '\\n', ''), dato_05 = REGEXP_REPLACE(dato_05, '\\n', ''), 
-	dato_06 = REGEXP_REPLACE(dato_06, '\\n', ''), dato_07 = REGEXP_REPLACE(dato_07, '\\n', ''), dato_08 = REGEXP_REPLACE(dato_08, '\\n', ''), 
-	dato_09 = REGEXP_REPLACE(dato_09, '\\n', ''), dato_10 = REGEXP_REPLACE(dato_10, '\\n', ''), dato_11 = REGEXP_REPLACE(dato_11, '\\n', ''), 
-	dato_12 = REGEXP_REPLACE(dato_12, '\\n', ''), dato_13 = REGEXP_REPLACE(dato_13, '\\n', ''), dato_14 = REGEXP_REPLACE(dato_14, '\\n', ''), 
-	dato_15 = REGEXP_REPLACE(dato_15, '\\n', ''), dato_16 = REGEXP_REPLACE(dato_16, '\\n', ''), dato_17 = REGEXP_REPLACE(dato_17, '\\n', ''), 
-	dato_18 = REGEXP_REPLACE(dato_18, '\\n', ''), dato_19 = REGEXP_REPLACE(dato_19, '\\n', ''), dato_20 = REGEXP_REPLACE(dato_20, '\\n', ''), 
-	dato_21 = REGEXP_REPLACE(dato_21, '\\n', ''), dato_22 = REGEXP_REPLACE(dato_22, '\\n', ''), dato_23 = REGEXP_REPLACE(dato_23, '\\n', ''), 
-	dato_24 = REGEXP_REPLACE(dato_24, '\\n', ''), dato_25 = REGEXP_REPLACE(dato_25, '\\n', ''), dato_26 = REGEXP_REPLACE(dato_26, '\\n', ''), 
-	dato_27 = REGEXP_REPLACE(dato_27, '\\n', ''), dato_28 = REGEXP_REPLACE(dato_28, '\\n', ''), dato_29 = REGEXP_REPLACE(dato_29, '\\n', ''), 
-	dato_30 = REGEXP_REPLACE(dato_30, '\\n', ''), dato_31 = REGEXP_REPLACE(dato_31, '\\n', ''), dato_32 = REGEXP_REPLACE(dato_32, '\\n', ''), 
-	dato_33 = REGEXP_REPLACE(dato_33, '\\n', ''), dato_34 = REGEXP_REPLACE(dato_34, '\\n', ''), dato_35 = REGEXP_REPLACE(dato_35, '\\n', ''), 
-	dato_36 = REGEXP_REPLACE(dato_36, '\\n', ''), dato_37 = REGEXP_REPLACE(dato_37, '\\n', ''), dato_38 = REGEXP_REPLACE(dato_38, '\\n', ''), 
-	dato_39 = REGEXP_REPLACE(dato_39, '\\n', ''), dato_40 = REGEXP_REPLACE(dato_40, '\\n', ''), dato_41 = REGEXP_REPLACE(dato_41, '\\n', ''), 
-	dato_42 = REGEXP_REPLACE(dato_42, '\\n', ''), dato_43 = REGEXP_REPLACE(dato_43, '\\n', ''), dato_44 = REGEXP_REPLACE(dato_44, '\\n', ''), 
-	dato_45 = REGEXP_REPLACE(dato_45, '\\n', ''), dato_46 = REGEXP_REPLACE(dato_46, '\\n', ''), dato_47 = REGEXP_REPLACE(dato_47, '\\n', ''), 
-	dato_48 = REGEXP_REPLACE(dato_48, '\\n', ''), dato_49 = REGEXP_REPLACE(dato_49, '\\n', ''), dato_50 = REGEXP_REPLACE(dato_50, '\\n', ''), 
-	dato_51 = REGEXP_REPLACE(dato_51, '\\n', ''), dato_52 = REGEXP_REPLACE(dato_52, '\\n', ''), dato_53 = REGEXP_REPLACE(dato_53, '\\n', ''), 
-	dato_54 = REGEXP_REPLACE(dato_54, '\\n', ''), dato_55 = REGEXP_REPLACE(dato_55, '\\n', ''), dato_56 = REGEXP_REPLACE(dato_56, '\\n', ''), 
-	dato_57 = REGEXP_REPLACE(dato_57, '\\n', ''), dato_58 = REGEXP_REPLACE(dato_58, '\\n', ''), dato_59 = REGEXP_REPLACE(dato_59, '\\n', ''), 
-	dato_60 = REGEXP_REPLACE(dato_60, '\\n', ''), dato_61 = REGEXP_REPLACE(dato_61, '\\n', ''), dato_62 = REGEXP_REPLACE(dato_62, '\\n', ''), 
-	dato_63 = REGEXP_REPLACE(dato_63, '\\n', ''), dato_64 = REGEXP_REPLACE(dato_64, '\\n', ''), dato_65 = REGEXP_REPLACE(dato_65, '\\n', ''), 
-	dato_66 = REGEXP_REPLACE(dato_66, '\\n', ''), dato_67 = REGEXP_REPLACE(dato_67, '\\n', ''), dato_68 = REGEXP_REPLACE(dato_68, '\\n', ''), 
-	dato_69 = REGEXP_REPLACE(dato_69, '\\n', ''), dato_70 = REGEXP_REPLACE(dato_70, '\\n', ''), dato_71 = REGEXP_REPLACE(dato_71, '\\n', ''), 
-	dato_72 = REGEXP_REPLACE(dato_72, '\\n', ''), dato_73 = REGEXP_REPLACE(dato_73, '\\n', ''), dato_74 = REGEXP_REPLACE(dato_74, '\\n', ''), 
-	dato_75 = REGEXP_REPLACE(dato_75, '\\n', ''), dato_76 = REGEXP_REPLACE(dato_76, '\\n', ''), dato_77 = REGEXP_REPLACE(dato_77, '\\n', ''), 
-	dato_78 = REGEXP_REPLACE(dato_78, '\\n', ''), dato_79 = REGEXP_REPLACE(dato_79, '\\n', ''), dato_80 = REGEXP_REPLACE(dato_80, '\\n', ''), 
-	dato_81 = REGEXP_REPLACE(dato_81, '\\n', ''), dato_82 = REGEXP_REPLACE(dato_82, '\\n', ''), dato_83 = REGEXP_REPLACE(dato_83, '\\n', ''), 
-	dato_84 = REGEXP_REPLACE(dato_84, '\\n', ''), dato_85 = REGEXP_REPLACE(dato_85, '\\n', ''), dato_86 = REGEXP_REPLACE(dato_86, '\\n', ''), 
-	dato_87 = REGEXP_REPLACE(dato_87, '\\n', ''), dato_88 = REGEXP_REPLACE(dato_88, '\\n', ''), dato_89 = REGEXP_REPLACE(dato_89, '\\n', ''), 
-	dato_90 = REGEXP_REPLACE(dato_90, '\\n', ''), dato_91 = REGEXP_REPLACE(dato_91, '\\n', ''), dato_92 = REGEXP_REPLACE(dato_92, '\\n', ''), 
-	dato_93 = REGEXP_REPLACE(dato_93, '\\n', ''), dato_94 = REGEXP_REPLACE(dato_94, '\\n', ''), dato_95 = REGEXP_REPLACE(dato_95, '\\n', ''), 
-	dato_96 = REGEXP_REPLACE(dato_96, '\\n', ''), dato_97 = REGEXP_REPLACE(dato_97, '\\n', ''), dato_98 = REGEXP_REPLACE(dato_98, '\\n', ''), 
-	dato_99 = REGEXP_REPLACE(dato_99, '\\n', ''), dato_100 = REGEXP_REPLACE(dato_100, '\\n', ''), dato_101 = REGEXP_REPLACE(dato_101, '\\n', ''), 
-	dato_102 = REGEXP_REPLACE(dato_102, '\\n', ''), dato_103 = REGEXP_REPLACE(dato_103, '\\n', ''), dato_104 = REGEXP_REPLACE(dato_104, '\\n', ''), 
-	dato_105 = REGEXP_REPLACE(dato_105, '\\n', ''), dato_106 = REGEXP_REPLACE(dato_106, '\\n', ''), dato_107 = REGEXP_REPLACE(dato_107, '\\n', ''), 
-	dato_108 = REGEXP_REPLACE(dato_108, '\\n', ''), dato_109 = REGEXP_REPLACE(dato_109, '\\n', ''), dato_110 = REGEXP_REPLACE(dato_110, '\\n', ''), 
-	dato_111 = REGEXP_REPLACE(dato_111, '\\n', ''), dato_112 = REGEXP_REPLACE(dato_112, '\\n', ''), dato_113 = REGEXP_REPLACE(dato_113, '\\n', ''), 
-	dato_114 = REGEXP_REPLACE(dato_114, '\\n', ''), dato_115 = REGEXP_REPLACE(dato_115, '\\n', ''), dato_116 = REGEXP_REPLACE(dato_116, '\\n', ''), 
-	dato_117 = REGEXP_REPLACE(dato_117, '\\n', ''), dato_118 = REGEXP_REPLACE(dato_118, '\\n', ''), dato_119 = REGEXP_REPLACE(dato_119, '\\n', ''), 
-	dato_120 = REGEXP_REPLACE(dato_120, '\\n', ''), dato_121 = REGEXP_REPLACE(dato_121, '\\n', ''), dato_122 = REGEXP_REPLACE(dato_122, '\\n', ''), 
-	dato_123 = REGEXP_REPLACE(dato_123, '\\n', ''), dato_124 = REGEXP_REPLACE(dato_124, '\\n', ''), dato_125 = REGEXP_REPLACE(dato_125, '\\n', ''), 
-	dato_126 = REGEXP_REPLACE(dato_126, '\\n', ''), dato_127 = REGEXP_REPLACE(dato_127, '\\n', ''), dato_128 = REGEXP_REPLACE(dato_128, '\\n', ''), 
-	dato_129 = REGEXP_REPLACE(dato_129, '\\n', ''), dato_130 = REGEXP_REPLACE(dato_130, '\\n', ''), dato_131 = REGEXP_REPLACE(dato_131, '\\n', ''), 
-	dato_132 = REGEXP_REPLACE(dato_132, '\\n', ''), dato_133 = REGEXP_REPLACE(dato_133, '\\n', ''), dato_134 = REGEXP_REPLACE(dato_134, '\\n', ''), 
-	dato_135 = REGEXP_REPLACE(dato_135, '\\n', ''), dato_136 = REGEXP_REPLACE(dato_136, '\\n', ''), dato_137 = REGEXP_REPLACE(dato_137, '\\n', ''), 
-	dato_138 = REGEXP_REPLACE(dato_138, '\\n', ''), dato_139 = REGEXP_REPLACE(dato_139, '\\n', ''), dato_140 = REGEXP_REPLACE(dato_140, '\\n', ''), 
-	dato_141 = REGEXP_REPLACE(dato_141, '\\n', ''), dato_142 = REGEXP_REPLACE(dato_142, '\\n', ''), dato_143 = REGEXP_REPLACE(dato_143, '\\n', ''), 
-    dato_144 = REGEXP_REPLACE(dato_144, '\\n', '');
+    UPDATE bd_bha_sci.stage_00 SET dato_134 = REGEXP_REPLACE(dato_134, '\\n', ''), dato_124 = REGEXP_REPLACE(dato_124, '\\n', ''), dato_114 = REGEXP_REPLACE(dato_114, '\\n', ''), dato_104 = REGEXP_REPLACE(dato_104, '\\n', ''), dato_94 = REGEXP_REPLACE(dato_94, '\\n', ''), dato_84 = REGEXP_REPLACE(dato_84, '\\n', ''), dato_74 = REGEXP_REPLACE(dato_74, '\\n', ''), dato_34 = REGEXP_REPLACE(dato_34, '\\n', ''), dato_35 = REGEXP_REPLACE(dato_35, '\\n', ''), dato_26 = REGEXP_REPLACE(dato_26, '\\n', ''), dato_23 = REGEXP_REPLACE(dato_23, '\\n', ''), dato_02 = REGEXP_REPLACE(dato_02, '\\n', '');
     SET success = 1;
     COMMIT;
 END ;;
@@ -340,6 +303,44 @@ BEGIN
 	DATO_74 = REGEXP_REPLACE(DATO_74, '[A-Za-z._-]', ''), DATO_35 = REGEXP_REPLACE(DATO_35, '[A-Za-z._-]', ''),
 	DATO_34 = REGEXP_REPLACE(DATO_34, '[A-Za-z._-]', ''), DATO_26 = REGEXP_REPLACE(DATO_26, '[A-Za-z._-]', ''),
 	DATO_23 = REGEXP_REPLACE(DATO_23, '[A-Za-z._-]', ''), DATO_02 = REGEXP_REPLACE(DATO_02, '[A-Za-z._-]', '');
+    SET success = 1;
+    COMMIT;
+END ;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_UpdateAscii`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_UpdateAscii`(OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN
+     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN
+     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
+    UPDATE bd_bha_sci.stage_00 
+	SET 
+    DATO_01 = replace(DATO_01, UNHEX('C2A0'), ''), DATO_02 = replace(DATO_02, UNHEX('C2A0'),  ''),
+    DATO_21 = replace(DATO_21, UNHEX('C2A0'),  ''), DATO_23 = replace(DATO_23, UNHEX('C2A0'),  ''), 
+    DATO_24 = replace(DATO_24, UNHEX('C2A0'), ''), DATO_26 = replace(DATO_26, UNHEX('C2A0'), ''),
+    DATO_27 = replace(DATO_27, UNHEX('C2A0'),  ''), DATO_34 = replace(DATO_34, UNHEX('C2A0'),  ''), 
+    DATO_35 = replace(DATO_35, UNHEX('C2A0'),  ''), DATO_70 = replace(DATO_70, UNHEX('C2A0'), ''),
+    DATO_74 = replace(DATO_74, UNHEX('C2A0'),  ''), DATO_80 = replace(DATO_80, UNHEX('C2A0'), ''), 
+    DATO_84 = replace(DATO_84, UNHEX('C2A0'), ''), DATO_90 = replace(DATO_90, UNHEX('C2A0'), ''),
+    DATO_94 = replace(DATO_94, UNHEX('C2A0'),  ''), DATO_100 = replace(DATO_100, UNHEX('C2A0'),  ''), 
+    DATO_104 = replace(DATO_104, UNHEX('C2A0'),  ''), DATO_110 = replace(DATO_110, UNHEX('C2A0'),  ''),
+    DATO_114 = replace(DATO_114, UNHEX('C2A0'),  ''), DATO_120 = replace(DATO_120, UNHEX('C2A0'),  ''), 
+    DATO_124 = replace(DATO_124, UNHEX('C2A0'),  ''), DATO_130 = replace(DATO_130, UNHEX('C2A0'), ''), 
+    DATO_134 = replace(DATO_134, UNHEX('C2A0'),  '');
     SET success = 1;
     COMMIT;
 END ;;

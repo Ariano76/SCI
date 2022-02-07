@@ -1,5 +1,6 @@
--- ELIMINAR TABLAS EXISTENTES
+USE bd_bha_sci;
 
+-- ELIMINAR TABLAS EXISTENTES
 DROP TABLE if exists encuesta;
 DROP TABLE if exists derivacion_sectores;
 DROP TABLE if exists educacion;
@@ -32,13 +33,13 @@ CREATE TABLE beneficiario
 	primer_apellido      VARCHAR(250) NULL,
 	segundo_apellido     VARCHAR(250) NULL,
 	genero               VARCHAR(250) NULL,
-	fecha_nacimiento     DATE,
+	fecha_nacimiento     DATE NULL,
 	tiene_carne_extranjeria boolean NULL,
 	numero_cedula        VARCHAR(25) NULL,
-	fecha_caducidad_cedula DATE NULL,
+	fecha_caducidad_cedula DATE NULL ,
 	tipo_identificacion  VARCHAR(250) NULL,
 	numero_identificacion VARCHAR(25) NULL,
-	fecha_caducidad_identificacion DATE NULL,
+	fecha_caducidad_identificacion DATE NULL ,
 	documentos_fisico_original VARCHAR(250) NULL
 );
 
@@ -119,7 +120,7 @@ MODIFY id_educacion INT NOT NULL AUTO_INCREMENT ;
 CREATE TABLE encuesta
 (
 	id_encuesta          INTEGER NOT NULL,
-	fecha_encuesta       DATE,
+	fecha_encuesta       DATE NULL,
 	id_encuestador       INTEGER NULL,
 	nombre_encuestador   VARCHAR(250) NULL,
 	region_encuestador   VARCHAR(100) NULL,
@@ -142,7 +143,7 @@ CREATE TABLE integrantes
 	apellido_1a          VARCHAR(250) NULL,
 	apellido_1b          VARCHAR(250) NULL,
 	genero_1             VARCHAR(250) NULL,
-	fecha_nacimiento_1   DATE,
+	fecha_nacimiento_1   DATE NULL,
 	relacion_1           VARCHAR(250) NULL,
 	otro_1               VARCHAR(250) NULL,
 	tipo_identificacion_1 VARCHAR(250) NULL,
@@ -152,7 +153,7 @@ CREATE TABLE integrantes
 	apellido_2a          VARCHAR(250) NULL,
 	apellido_2b          VARCHAR(250) NULL,
 	genero_2             VARCHAR(250) NULL,
-	fecha_nacimiento_2   DATE,
+	fecha_nacimiento_2   DATE NULL,
 	relacion_2           VARCHAR(250) NULL,
 	otro_2               VARCHAR(250) NULL,
 	tipo_identificacion_2 VARCHAR(250) NULL,
@@ -162,7 +163,7 @@ CREATE TABLE integrantes
 	apellido_3a          VARCHAR(250) NULL,
 	apellido_3b          VARCHAR(250) NULL,
 	genero_3             VARCHAR(250) NULL,
-	fecha_nacimiento_3   DATE,
+	fecha_nacimiento_3   DATE NULL,
 	relacion_3           VARCHAR(250) NULL,
 	otro_3               VARCHAR(250) NULL,
 	tipo_identificacion_3 VARCHAR(250) NULL,
@@ -172,7 +173,7 @@ CREATE TABLE integrantes
 	apellido_4a          VARCHAR(250) NULL,
 	apellido_4b          VARCHAR(250) NULL,
 	genero_4             VARCHAR(250) NULL,
-	fecha_nacimiento_4   DATE,
+	fecha_nacimiento_4   DATE NULL,
 	relacion_4           VARCHAR(250) NULL,
 	otro_4               VARCHAR(250) NULL,
 	tipo_identificacion_4 VARCHAR(250) NULL,
@@ -182,7 +183,7 @@ CREATE TABLE integrantes
 	apellido_5a          VARCHAR(250) NULL,
 	apellido_5b          VARCHAR(250) NULL,
 	genero_5             VARCHAR(250) NULL,
-	fecha_nacimiento_5   DATE,
+	fecha_nacimiento_5   DATE NULL,
 	relacion_5           VARCHAR(250) NULL,
 	otro_5               VARCHAR(250) NULL,
 	tipo_identificacion_5 VARCHAR(250) NULL,
@@ -192,7 +193,7 @@ CREATE TABLE integrantes
 	apellido_6a          VARCHAR(250) NULL,
 	apellido_6b          VARCHAR(250) NULL,
 	genero_6             VARCHAR(250) NULL,
-	fecha_nacimiento_6   DATE,
+	fecha_nacimiento_6   DATE NULL,
 	relacion_6           VARCHAR(250) NULL,
 	otro_6               VARCHAR(250) NULL,
 	tipo_identificacion_6 VARCHAR(250) NULL,
@@ -202,7 +203,7 @@ CREATE TABLE integrantes
 	apellido_7a          VARCHAR(250) NULL,
 	apellido_7b          VARCHAR(250) NULL,
 	genero_7             VARCHAR(250) NULL,
-	fecha_nacimiento_7   DATE,
+	fecha_nacimiento_7   DATE NULL,
 	relacion_7           VARCHAR(250) NULL,
 	otro_7               VARCHAR(250) NULL,
 	tipo_identificacion_7 VARCHAR(250) NULL,

@@ -44,7 +44,7 @@ $conn = $db->Connect();
       }
     }
 */
-    
+    $cod_00 = $db->limpiarDataKobo("SP_UpdateAscii");
     $cod_01 = $db->limpiarDataKobo("SP_UpdateDobleEspacioBlanco");
     $cod_02 = $db->limpiarDataKobo("SP_UpdateTab");
     $cod_03 = $db->limpiarDataKobo("SP_UpdateSaltoLinea");
@@ -54,6 +54,7 @@ $conn = $db->Connect();
     $cod_06 = $db->limpiarDataKobo("SP_UpdateTrim");
     $cod_07 = $db->limpiarDataKobo("SP_UpdateRecodificarSiNo");
     $cod_08 = $db->limpiarDataKobo("SP_UpdateInfoTransito");
+    
     
 
     echo 'Todos los procesos finalizarón satisfactoriamente.';
