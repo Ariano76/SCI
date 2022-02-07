@@ -373,8 +373,20 @@ BEGIN
 END ;;
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_Select_encuesta`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_Select_encuesta`()
+BEGIN
+	SELECT * FROM encuesta;
+END ;;
+DELIMITER ;
 
-call SP_Select_stage_00();
+
+
+
+
+
+call SP_Select_encuesta();
 describe integrantes;
 call SP_Insert_integrantes(@total, 
 'MEYER ',' ',' ',' HERRERA ',' Hombre ',' 1995-02-11 ',' Pareja ',' ',' Carnet de Extranjeria ',' 001896958 ',' LUISSAJER ',' JOSE ',' PACHECO ',' PIÑA ',' Hombre ',' 2010-05-12 ',' Hijo ',' ',' Acta de Nacimiento ',' 4113 ',' MEYLEM ',' JIREH ',' SULUAGA ',' PIÑA ',' Mujer ',' 2020-09-28 ',' Hijo ',' ',' DNI ',' 92037639 ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ', 1 );

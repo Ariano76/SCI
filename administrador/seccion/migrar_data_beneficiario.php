@@ -5,12 +5,12 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 //require_once './administrador/config/bd.php';
-require_once ('../config/bdPDO.php');
+
+require_once ('../config/bdPDObenef.php');
+
 
 $db_1 = new TransactionSCI();
 //$conn_1 = $db_1->Connect();
-
-
 
 require_once ('../../vendor/autoload.php');
 
@@ -19,7 +19,7 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
   // recupera todos los registros de tabla STAGE_00
-  $usuarios = $db_1->select_beneficiarios(); 
+  $usuarios = $db_1->select_beneficiarios("SP_Select_stage_00");
 
   foreach($usuarios as $usuario) {
     $d01 = (empty($usuario[7])) ? null : $usuario[7];
@@ -37,10 +37,10 @@ if (isset($_POST["import"])) {
     $d13 = ($usuario[19] == '') ? null : $usuario[19];
     $d14 = ($usuario[20] == '') ? null : $usuario[20];
     if (empty($usuario[21])) {
-      $d15 = '2000/01/01';
+      $d15 = '1900/01/01';
       }else{
         $x = $db_1->validar_fecha_espanol($usuario[21]);
-          $d15 = ($x) ?  $usuario[21] : '2000/01/01';
+          $d15 = ($x) ?  $usuario[21] : '1900/01/01';
       }
     //$d15 = ($db_1->validar_fecha_espanol($usuario[21]) == true) ? $usuario[21] : NULL ;
 
@@ -48,19 +48,19 @@ if (isset($_POST["import"])) {
     $d17 = ($usuario[23] == '') ? null : $usuario[23];
     //$d18 = ($db_1->validar_fecha_espanol($usuario[24]) == true) ? $usuario[24] : NULL ;
     if (empty($usuario[24])) {
-      $d18 = '2000/01/01';
+      $d18 = '1900/01/01';
       }else{
         $x = $db_1->validar_fecha_espanol($usuario[24]);
-          $d18 = ($x) ?  $usuario[24] : '2000/01/01';
+          $d18 = ($x) ?  $usuario[24] : '1900/01/01';
       }
     $d19 = ($usuario[25] == '') ? null : $usuario[25];
     $d20 = ($usuario[26] == '') ? null : $usuario[26];
     //$d21 = ($db_1->validar_fecha_espanol($usuario[27]) == true) ?  $usuario[27] : NULL ;
     if (empty($usuario[27])) {
-      $d21 = '2000/01/01';
+      $d21 = '1900/01/01';
       }else{
         $x = $db_1->validar_fecha_espanol($usuario[27]);
-          $d21 = ($x) ?  $usuario[27] : '2000/01/01';
+          $d21 = ($x) ?  $usuario[27] : '1900/01/01';
       }
     $d22 = ($usuario[28] == '') ? null : $usuario[28];    
 
@@ -71,10 +71,10 @@ if (isset($_POST["import"])) {
     // RUTINA PARA INSERTAR REGISTROS EN TABLA ENCUESTA
     //$d01 = ($usuario[1] == '') ? null : $usuario[1];
     if (empty($usuario[1])) {
-      $d01 = '2000/01/01';
+      $d01 = '1900/01/01';
       }else{
         $x = $db_1->validar_fecha_espanol($usuario[1]);
-          $d01 = ($x) ?  $usuario[1] : '2000/01/01';
+          $d01 = ($x) ?  $usuario[1] : '1900/01/01';
       }
     $d02 = (empty($usuario[2])) ? NULL : $usuario[2];
     $d03 = (empty($usuario[3])) ? NULL : $usuario[3];
@@ -160,10 +160,10 @@ if (isset($_POST["import"])) {
     $d04 = (empty($usuario[68])) ? null : $usuario[68];
     $d05 = (empty($usuario[69])) ? null : $usuario[69];
     if (empty($usuario[70])) {
-      $d06 = '2000/01/01';
+      $d06 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[70]);
-        $d06 = ($x) ?  $usuario[70] : '2000/01/01';
+        $d06 = ($x) ?  $usuario[70] : '1900/01/01';
     }
     $d07 = (empty($usuario[71])) ? null : $usuario[71];
     $d08 = (empty($usuario[72])) ? null : $usuario[72];
@@ -177,10 +177,10 @@ if (isset($_POST["import"])) {
     $d14 = (empty($usuario[78])) ? null : $usuario[78];
     $d15 = (empty($usuario[79])) ? null : $usuario[79];
     if (empty($usuario[80])) {
-      $d16 = '2000/01/01';
+      $d16 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[80]);
-        $d16 = ($x) ?  $usuario[80] : '2000/01/01';
+        $d16 = ($x) ?  $usuario[80] : '1900/01/01';
     }
     $d17 = (empty($usuario[81])) ? null : $usuario[81];
     $d18 = (empty($usuario[82])) ? null : $usuario[82];
@@ -194,10 +194,10 @@ if (isset($_POST["import"])) {
     $d24 = (empty($usuario[88])) ? null : $usuario[88];
     $d25 = (empty($usuario[89])) ? null : $usuario[89];
     if (empty($usuario[90])) {
-      $d26 = '2000/01/01';
+      $d26 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[90]);
-        $d26 = ($x) ?  $usuario[90] : '2000/01/01';
+        $d26 = ($x) ?  $usuario[90] : '1900/01/01';
     }
     $d27 = (empty($usuario[91])) ? null : $usuario[91];
     $d28 = (empty($usuario[92])) ? null : $usuario[92];
@@ -211,10 +211,10 @@ if (isset($_POST["import"])) {
     $d34 = (empty($usuario[98])) ? null : $usuario[98];
     $d35 = (empty($usuario[99])) ? null : $usuario[99];
     if (empty($usuario[100])) {
-      $d36 = '2000/01/01';
+      $d36 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[100]);
-        $d36 = ($x) ?  $usuario[100] : '2000/01/01';
+        $d36 = ($x) ?  $usuario[100] : '1900/01/01';
     }
     $d37 = (empty($usuario[101])) ? null : $usuario[101];
     $d38 = (empty($usuario[102])) ? null : $usuario[102];
@@ -228,10 +228,10 @@ if (isset($_POST["import"])) {
     $d44 = (empty($usuario[108])) ? null : $usuario[108];
     $d45 = (empty($usuario[109])) ? null : $usuario[109];
     if (empty($usuario[110])) {
-      $d46 = '2000/01/01';
+      $d46 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[110]);
-        $d46 = ($x) ?  $usuario[110] : '2000/01/01';
+        $d46 = ($x) ?  $usuario[110] : '1900/01/01';
     }
     $d47 = (empty($usuario[111])) ? null : $usuario[111];
     $d48 = (empty($usuario[112])) ? null : $usuario[112];
@@ -245,10 +245,10 @@ if (isset($_POST["import"])) {
     $d54 = (empty($usuario[118])) ? null : $usuario[118];
     $d55 = (empty($usuario[119])) ? null : $usuario[119];
     if (empty($usuario[120])) {
-      $d56 = '2000/01/01';
+      $d56 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[120]);
-        $d56 = ($x) ?  $usuario[120] : '2000/01/01';
+        $d56 = ($x) ?  $usuario[120] : '1900/01/01';
     }
     $d57 = (empty($usuario[121])) ? null : $usuario[121];
     $d58 = (empty($usuario[122])) ? null : $usuario[122];
@@ -262,10 +262,10 @@ if (isset($_POST["import"])) {
     $d64 = (empty($usuario[128])) ? null : $usuario[128];
     $d65 = (empty($usuario[129])) ? null : $usuario[129];
     if (empty($usuario[130])) {
-      $d66 = '2000/01/01';
+      $d66 = '1900/01/01';
     }else{
       $x = $db_1->validar_fecha_espanol($usuario[130]);
-        $d66 = ($x) ?  $usuario[130] : '2000/01/01';
+        $d66 = ($x) ?  $usuario[130] : '1900/01/01';
     }
     $d67 = (empty($usuario[131])) ? null : $usuario[131];
     $d68 = (empty($usuario[132])) ? null : $usuario[132];
