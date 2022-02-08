@@ -13,9 +13,9 @@ if ($_POST) {
 	//if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
 		//$_SESSION['usuario'] = 'ok';
 		//$_SESSION['nombreUsuario'] = 'Percy';
-	if($codigo == 1){
+	if($codigo >= 1){
 		$_SESSION['usuario'] = 'ok';
-		$_SESSION['nombreUsuario'] = $_POST['usuario'];
+		$_SESSION['nombreUsuario'] = $_POST['usuario'];		
 		//$_SESSION['xxx'] = $codigo;
 		header('Location:inicio.php');	
 	} else {

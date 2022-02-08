@@ -984,7 +984,7 @@ BEGIN
  
 	START TRANSACTION;
     SET @clave = password(pass);
-    SELECT count(*) into success FROM bd_bha_sci.usuarios where nombre_usuario = usuario and contrasenia = @clave;
+    SELECT id_usuario into success FROM bd_bha_sci.usuarios where nombre_usuario = usuario and contrasenia = @clave;
     COMMIT;
 END ;;
 DELIMITER ;

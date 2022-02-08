@@ -377,16 +377,15 @@ DROP PROCEDURE IF EXISTS `SP_Select_encuesta`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_Select_encuesta`()
 BEGIN
-	SELECT * FROM encuesta;
+	SELECT concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, /*e.fecha_encuesta, e.id_encuestador, e.nombre_encuestador, e.region_encuestador, e.como_realizo_encuesta, e.esta_de_acuerdo, */ e.id_beneficiario
+    FROM encuesta e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;
 END ;;
 DELIMITER ;
 
 
 
-
-
-
 call SP_Select_encuesta();
+
 describe integrantes;
 call SP_Insert_integrantes(@total, 
 'MEYER ',' ',' ',' HERRERA ',' Hombre ',' 1995-02-11 ',' Pareja ',' ',' Carnet de Extranjeria ',' 001896958 ',' LUISSAJER ',' JOSE ',' PACHECO ',' PIÑA ',' Hombre ',' 2010-05-12 ',' Hijo ',' ',' Acta de Nacimiento ',' 4113 ',' MEYLEM ',' JIREH ',' SULUAGA ',' PIÑA ',' Mujer ',' 2020-09-28 ',' Hijo ',' ',' DNI ',' 92037639 ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ', 1 );

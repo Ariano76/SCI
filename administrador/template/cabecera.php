@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario'])) {
 	header("Location:../index.php");	
 }else {
 	if ($_SESSION['usuario'] == 'ok') {
-		$nombreUsuario = $_SESSION['nombreUsuario'];
+		$nombreUsuario = $_SESSION['nombreUsuario'];		
 	}
 }
 
@@ -52,6 +52,7 @@ if (!isset($_SESSION['usuario'])) {
 			<div class="navbar-nav">	      
 				<a class="nav-item nav-link active" href="#">Administrador del sitio web</a>
 				<a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php" ?>">Inicio</a>				
+				<a class="nav-item nav-link" href="">Actualizar Constraseña</a>
 				<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/usuarios.php?id=null" ?>">Usuarios</a>
 				<li>
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>

@@ -8,11 +8,14 @@
 
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">  
-<!-- DataTables JS -->
+	<!-- DataTables CSS -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">  
+	<!-- DataTables JS -->
   	<!--script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
   	</script-->
+
+	<!-- libreria para utilizar iconos en nuestras paginas  -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">  	
 
   	<!-- tabla reportes -->
   	<style>
@@ -36,7 +39,7 @@
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Beneficiarios</a>
   							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="#">Encuesta</a>
+  								<a class="dropdown-item" href="encuesta.php">Encuesta</a>
   								<a class="dropdown-item" href="#">Beneficiario</a>
   								<a class="dropdown-item" href="#">Familiares</a>
   								<a class="dropdown-item" href="#">Comunicación</a>
