@@ -11,20 +11,35 @@ include("administrador/config/connection.php");
 <!--div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="row"-->
-      <h1 class="display-4">DATOS DE ENCUESTA</h1> 
+      <h1 class="display-4">DATOS DE BENEFICIARIO</h1> 
 
       <div class="col-lg-12">
         <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed" style="width:100%">
           <thead class="text-center">
             <tr>
               <th>Id Beneficiario</th>
-              <th>Beneficiario</th>
-              <th>Fecha Encuesta</th>
-              <th>Id Encuestador</th>                                
-              <th>Encuestador</th>  
-              <th>Region Encuestador</th>
-              <th>Realizo encuesta</th>
-              <th>Esta de acuerdo</th>
+              <th>primer_nombre</th>
+              <th>segundo_nombre</th>
+              <th>primer_apellido</th>                                
+              <th>segundo_apellido</th>  
+              <th>region_beneficiario</th>
+              <th>otra_region</th>
+              <th>se_instalara_en_esta_region</th>
+              <th>en_que_provincia</th>
+              <th>transit_settle</th>
+              <th>en_que_otro_caso_1</th>
+              <th>en_que_distrito</th>
+              <th>en_que_otro_caso_2</th>
+              <th>en_que_otro_caso_3</th>
+              <th>genero</th>
+              <th>fecha_nacimiento</th>
+              <th>tiene_carne_extranjeria</th>
+              <th>numero_cedula</th>
+              <th>fecha_caducidad_cedula</th>
+              <th>tipo_identificacion</th>
+              <th>numero_identificacion</th>
+              <th>fecha_caducidad_identificacion</th>
+              <th>documentos_fisico_original</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -44,7 +59,7 @@ include("administrador/config/connection.php");
             'paging': 'true',
             'order': [],
             'ajax': {
-              'url': 'fetch_data.php',
+              'url': 'fetch_data_beneficiario.php',
               'type': 'post',
             },
             "aoColumnDefs": [{
