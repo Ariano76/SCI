@@ -10,9 +10,11 @@ $esta_de_acuerdo = $_POST['esta_de_acuerdo'];
 $id = $_POST['id'];
 
 $sql = "UPDATE `encuesta` SET  `fecha_encuesta`= '$fecha_encuesta', `id_encuestador`='$id_encuestador',  `nombre_encuestador`='$nombre_encuestador',  `region_encuestador`='$region_encuestador',  `como_realizo_encuesta`='$como_realizo_encuesta',  `esta_de_acuerdo`='$esta_de_acuerdo' WHERE id_beneficiario='$id' ";
+
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
-if($query ==true)
+
+if($query==true)
 {
     $data = array(
         'status'=>'true',
@@ -21,10 +23,10 @@ if($query ==true)
 }
 else
 {
-     $data = array(
-        'status'=>'false',
-    );
-    echo json_encode($data);
+   $data = array(
+    'status'=>'false',
+);
+   echo json_encode($data);
 } 
 
 ?>

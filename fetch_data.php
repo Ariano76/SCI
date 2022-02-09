@@ -37,7 +37,7 @@ if(isset($_POST['order']))
 }
 else
 {
-	$sql .= " ORDER BY id_beneficiario desc";
+	$sql .= " ORDER BY id_beneficiario asc";
 }
 
 if($_POST['length'] != -1)
@@ -68,7 +68,7 @@ while($row = mysqli_fetch_assoc($query))
 $output = array(
 	'draw'=> intval($_POST['draw']),
 	'recordsTotal' =>$count_rows ,
-	'recordsFiltered'=>   $total_all_rows,
+	'recordsFiltered'=> $total_all_rows,
 	'data'=>$data,
 );
 echo  json_encode($output);

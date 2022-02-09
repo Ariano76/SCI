@@ -4,169 +4,225 @@ require "vendor/autoload.php";
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-require_once './administrador/config/bdPDObenef.php';
-
-$db = new TransactionSCI();
-$conn = $db->Connect();
-
-$usuarios = $db->select_beneficiarios("SP_Select_encuesta");
+include("administrador/config/connection.php");
 
 ?>
 
 <!--div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="row"-->
-      <h1 class="display-4">DATOS DE ENCUESTA</h1>
-      <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
+      <h1 class="display-4">DATOS DE ENCUESTA</h1> 
 
       <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table-striped table-bordered" style="width:100%">
+        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed" style="width:100%">
           <thead class="text-center">
             <tr>
+              <th>Id Beneficiario</th>
               <th>Beneficiario</th>
               <th>Fecha Encuesta</th>
-              <!--th>Id Encuestador</th>
-              <th>Encuestador</th>
+              <th>Id Encuestador</th>                                
+              <th>Encuestador</th>  
               <th>Region Encuestador</th>
-              <th>Como realizo encuesta</th>
-              <th>Esta de acuerdo</th-->
+              <th>Realizo encuesta</th>
+              <th>Esta de acuerdo</th>
               <th>Acción</th>
             </tr>
           </thead>
-          <tbody>
-            <?php
-            foreach($usuarios as $usuario){
-              ?>
-              <tr>
-                <td><?php echo $usuario[0]?></td>
-                <td><?php echo $usuario[1]?></td>
-               <!-- <td><!?php echo $usuario[2]?></td>
-                <td><!?php echo $usuario[3]?></td>
-                <td><!?php echo $usuario[4]?></td>
-                <td><!?php echo $usuario[5]?></td>
-                <td><!?php echo $usuario[6]?></td> -->
-                <td align=center>
-                  <form method="POST"> 
-                    <input type="hidden" name="txtID" value="<?php echo $usuario[2];?>" />
-                    <!--input type="submit" name="accion" value="seleccionar" class="btn btn-primary btn-sm" /-->
-                    <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                      <a class="update_pass" data-emp-id="<?php echo $usuario[2];?>" href=#>
-                      <i class="fas fa-recycle"></i>
-                    </a>
-                  </form>
-                </td>
-              </tr>
-              <?php
-            }
-            ?>
-          </tbody>
-        </table>
-
-        <script>
-          $(document).ready(function(){
-            $('#tablaUsuarios').DataTable({
-              scrollX: true
-            }); 
-          });
-        </script>
-
+        </table>   
       </div>
 
-      <div class="text-right">        
-        <div class="card-body">
-          <h4 class="card-title">Exportar datos</h4>
-        </div>
 
-        <form method="post" action="">
-          <div class="float-right">  
-            <input type="radio" checked="checked" name="export_type" value="Excel"> Excel            
-            <!--input type="radio" name="export_type" value="csv"> CSV
-              <button type="submit" name="import" class="btn btn-primary">Export</button-->
-            </div> 
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('#tablaUsuarios').DataTable({
+            "fnCreatedRow": function(nRow, aData, iDataIndex) {
+              $(nRow).attr('id', aData[0]);
+            },
+            scrollX: true,
+            'serverSide': 'true',
+            'processing': 'true',
+            'paging': 'true',
+            'order': [],
+            'ajax': {
+              'url': 'fetch_data.php',
+              'type': 'post',
+            },
+            "aoColumnDefs": [{
+              "bSortable": false,
+              "aTargets": [8]
+            },
+            ]
+          });
+        });
+        /*$(document).ready(function(){
+          $("#exampleModal").find("input[type=radio]").click(function() {
+            alert($('input[type=radio]:checked').val());
+          });
+        });*/
+        $(document).on('submit', '#updateUser', function(e) {
+          e.preventDefault();
+      //var tr = $(this).closest('tr');
+      var nombre = $('#nombreField').val();
+      var fecha_encuesta = $('#fecha_encuestaField').val();
+      var id_encuestador = $('#id_encuestadorField').val();
+      var nombre_encuestador = $('#nombre_encuestadorField').val();
+      var region_encuestador = $('#region_encuestadorField').val();
+      var como_realizo_encuesta = $('#como_realizo_encuestaField').val();
+      var esta_de_acuerdo = $('#esta_de_acuerdoField').val();
+      
+      var cod = $("input[type=radio]:checked").val();
 
-            <br>
-            <!--input type="submit" value="Procesar registros" name="submit" -->
-            <button type="submit" id="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Exportar archivo</button>
-          </form>
+      var trid = $('#trid').val();
+      var id = $('#id').val();           
 
+      if (nombre != '' && fecha_encuesta != '' && id_encuestador != '' && nombre_encuestador != '' && region_encuestador != '' && como_realizo_encuesta != '' && esta_de_acuerdo != '') {
 
-        </div>
-      </br>
-    </br>
-
-
-    <?php
-    if(isset($_POST['submit'])){
-        //False unless proven otherwise.
-      $usuarios = $db->select_beneficiarios("SP_Select_encuesta");
-
-      $agreedToTerms = false;
-        //Make sure that a radio button input was actually submitted.
-      if(isset($_POST['export_type'])){
-        //An array containing the radio input values that are allowed
-        $allowedAnswers = array('Excel', 'csv');
-        //The radio button value that the user sent us.
-        $chosenAnswer = $_POST['export_type'];
-        //Make sure that the value is in our array of allowed values.
-        if(in_array($chosenAnswer, $allowedAnswers)){
-            //Check to see if the user ticked yes.
-          if(strcasecmp($chosenAnswer, 'Excel') == 0){
-                //Set our variable to TRUE because they agreed.
-            $spreadsheet = new Spreadsheet();
-            $sheet = $spreadsheet->getActiveSheet();
-            $sheet->setTitle("Users");
-            $sheet->setCellValue("A1", "ID");
-            $sheet->setCellValue("B1", "ID_Encuestador");
-            $sheet->setCellValue("C1", "Documento 1 - Beneficiario");
-            $sheet->setCellValue("D1", "Documento 2 - Beneficiario");
-            $sheet->setCellValue("E1", "N° Whastapp");
-            $sheet->setCellValue("F1", "N° SMS");
-            $sheet->setCellValue("G1", "Documento Integ.1");           
-            $i = 2;
-            foreach($usuarios as $usuario) {
-              $sheet->setCellValue("A".$i, $usuario[0]);
-              $sheet->setCellValue("B".$i, $usuario[1]);
-              $sheet->setCellValue("C".$i, $usuario[2]);
-              $sheet->setCellValue("D".$i, $usuario[3]);
-              $sheet->setCellValue("E".$i, $usuario[4]);
-              $sheet->setCellValue("F".$i, $usuario[5]);
-              $sheet->setCellValue("G".$i, $usuario[6]);
-              $i++;
+        console.log("esta_de_acuerdo : " + esta_de_acuerdo);
+        console.log("Valor seleccionado en RadioButton : " + cod);
+        
+        $.ajax({
+          url: "update_user.php",
+          type: "post",
+          data: {
+            nombre: nombre,
+            fecha_encuesta: fecha_encuesta,
+            id_encuestador: id_encuestador,
+            nombre_encuestador: nombre_encuestador,
+            region_encuestador: region_encuestador,
+            como_realizo_encuesta: como_realizo_encuesta,
+            esta_de_acuerdo: cod,
+            id: id
+          },
+          success: function(data) {
+            var json = JSON.parse(data);
+            var status = json.status;
+            if (status == 'true') {
+              table = $('#tablaUsuarios').DataTable();
+              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
+              var row = table.row("[id='" + trid + "']");
+              row.row("[id='" + trid + "']").data([id, nombre, fecha_encuesta, id_encuestador, nombre_encuestador, region_encuestador, como_realizo_encuesta, cod, button]);
+              $('#exampleModal').modal('hide');
+            } else {
+              alert('failed');
             }
-            $writer = new Xlsx($spreadsheet);
-            $writer->save("Reporte datos de Encuesta.xlsx");
-            $agreedToTerms = true;
           }
-        }
+        });
+      } else {
+        alert('Fill all the required fields');
       }
+    });
+        $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
+          var table = $('#tablaUsuarios').DataTable();
+          var trid = $(this).closest('tr').attr('id');
+      // console.log(selectedRow);
+      var id = $(this).data('id');
+      $('#exampleModal').modal('show');
 
-    //If the user agreed
-      if($agreedToTerms){
-        //Process the form, etc.          
-        echo '<div class="card-body">
-        <h4 class="card-title">Los datos se exportarón en formato Excel satisfactoriamente</h4>
-        </div>';
-      }else{
-        echo '<div class="card-body">
-        <h4 class="card-title">Los datos se exportarón en formato CSV satisfactoriamente</h4>
-        </div>';
-      }
-    }
-    ?>
+      $.ajax({
+        url: "get_single_data.php",
+        data: {
+          id: id
+        },
+        type: 'post',
+        success: function(data) {
+          var json = JSON.parse(data);
+          $('#nombreField').val(json.nombre);
+          $('#fecha_encuestaField').val(json.fecha_encuesta);
+          $('#id_encuestadorField').val(json.id_encuestador);
+          $('#nombre_encuestadorField').val(json.nombre_encuestador);
+          $('#region_encuestadorField').val(json.region_encuestador);
+          $('#como_realizo_encuestaField').val(json.como_realizo_encuesta);
+          $('#esta_de_acuerdoField').val(json.esta_de_acuerdo);
+          $('#id').val(id);
+          $('#trid').val(trid);
 
-    <?php include("template/pie.php"); ?>
+          console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
+
+          if (json.esta_de_acuerdo == "1") {
+            $('#exampleModal').find(':radio[name=acepto][value="1"]').prop('checked', true);
+          } else {
+            $('#exampleModal').find(':radio[name=acepto][value="0"]').prop('checked', true);
+          }
+
+        }        
+      })
+    });
+
+  </script>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!--div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"-->
+    <div class="modal-dialog" role="document">
+    <!--div class="modal-dialog modal-lg" role="document"-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR DATOS ENCUESTA</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="updateUser">
+            <input type="hidden" name="id" id="id" value="">
+            <input type="hidden" name="trid" id="trid" value="">
+            
+            <div class="mb-3 row">
+              <label for="nombreField" class="col-md-3 form-label">Beneficiario</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="nombreField" name="name" disabled>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="fecha_encuestaField" class="col-md-3 form-label">Fecha Encuesta</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="fecha_encuestaField" name="email">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="id_encuestadorField" class="col-md-3 form-label">Id Encuestador</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="id_encuestadorField" name="mobile">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="nombre_encuestadorField" class="col-md-3 form-label">Encuestador</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="nombre_encuestadorField" name="City">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="region_encuestadorField" class="col-md-3 form-label">Region Encuestador</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="region_encuestadorField" name="City">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="como_realizo_encuestaField" class="col-md-3 form-label">Realizo la encuesta</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="como_realizo_encuestaField" name="City">
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="esta_de_acuerdoField" class="col-md-3 form-label">Esta de acuerdo</label>
+              <div class="col-md-9">
+              <label class="radio-inline">
+                <input type="radio" name="acepto" id="esta_de_acuerdoField1" value="1"> Si 
+              <!--/label>
+              <label class="radio-inline"-->
+                <input type="radio" name="acepto" id="esta_de_acuerdoField2" value="0"> No 
+              </label>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <?php include("template/pie.php"); ?>
