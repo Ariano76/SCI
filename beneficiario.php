@@ -23,11 +23,11 @@ include("administrador/config/connection.php");
               <th>Primer&nbsp;apellido</th>                                
               <th>Segundo&nbsp;apellido</th>  
               <th>Region&nbsp;beneficiario</th>
-              <th>Otra&nbsp;región</th>
+              <th>¿En&nbsp;que&nbsp;otra&nbsp;región?</th>
               <th>¿Se&nbsp;instalara&nbsp;en&nbsp;esta&nbsp;región?</th>
               <th>&nbsp;¿En&nbsp;que&nbsp;provincia&nbsp;se&nbsp;instalara?</th>
               <th>Transito&nbsp;o&nbsp;Estadia</th>
-              <th>Otro</th>
+              <th>¿En&nbsp;que&nbsp;otra&nbsp;provincia&nbsp;se&nbsp;instalara?</th>
               <th>&nbsp;¿En&nbsp;que&nbsp;distrito&nbsp;se&nbsp;instalara?</th>
               <th>Otro&nbsp;caso</th>
               <th>¿En&nbsp;que&nbsp;otro&nbsp;distrito&nbsp;se&nbsp;instalara?</th>
@@ -100,7 +100,7 @@ include("administrador/config/connection.php");
       var fecha_caducidad_identificacion = $('#fecha_caducidad_identificacionField').val();
       var documentos_fisico_original = $('#documentos_fisico_originalField').val();
       
-      var codRegion = $("input[type=radio]:checked").val();
+      var codRegion = $("input[name=region]:checked").val();
       var codCarnet = $("input[name=carne]:checked").val();
 
       var trid = $('#trid').val();
