@@ -39,10 +39,12 @@
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Beneficiarios</a>
   							<div class="dropdown-menu">
+  								<a class="dropdown-item" href="">Datos Generales</a>
+  								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="encuesta.php">Encuesta</a>
   								<a class="dropdown-item" href="beneficiario.php">Beneficiario</a>
   								<a class="dropdown-item" href="#">Familiares</a>
-  								<a class="dropdown-item" href="#">Comunicación</a>
+  								<a class="dropdown-item" href="comunicacion.php">Comunicación</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="#">Nutrición</a>
   								<a class="dropdown-item" href="#">Salud</a>
