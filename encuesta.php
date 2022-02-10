@@ -17,14 +17,14 @@ include("administrador/config/connection.php");
         <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed" style="width:100%">
           <thead class="text-center">
             <tr>
-              <th>Id Beneficiario</th>
-              <th>Beneficiario</th>
-              <th>Fecha Encuesta</th>
-              <th>Id Encuestador</th>                                
-              <th>Encuestador</th>  
-              <th>Region Encuestador</th>
-              <th>Realizo encuesta</th>
-              <th>Esta de acuerdo</th>
+              <th>Codigo</th>
+              <th>Nombre&nbsp;del&nbsp;Beneficiario</th>
+              <th>Fecha&nbsp;Encuesta</th>
+              <th>Id&nbsp;Encuestador</th>                                
+              <th>Nombre&nbsp;Encuestador</th>  
+              <th>Region&nbsp;Encuestador</th>
+              <th>¿Como&nbsp;realizo&nbsp;la&nbsp;encuesta?</th>
+              <th>¿Esta&nbsp;de&nbsp;acuerdo?</th>
               <th>Acción</th>
             </tr>
           </thead>
