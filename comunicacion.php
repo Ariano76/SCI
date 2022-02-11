@@ -19,6 +19,7 @@ include("administrador/config/connection.php");
             <tr>
               <th>Codigo</th>
               <th>Nombres&nbsp;y&nbsp;apellidos&nbsp;del&nbsp;beneficiario</th>
+              <th>Número&nbsp;de&nbsp;Cedula</th>
               <th>¿&nbsp;Podria&nbsp;decirnos&nbsp;cuales&nbsp;son&nbsp;los&nbsp;medios&nbsp;de&nbsp;comunicación&nbsp;con&nbsp;los&nbsp;que&nbsp;cuenta&nbsp;?</th>
               <th>¿Tiene&nbsp;celular&nbsp;basico?</th>                                
               <th>¿Tiene&nbsp;smartphone?</th>  
@@ -71,6 +72,7 @@ include("administrador/config/connection.php");
           e.preventDefault();
       //var tr = $(this).closest('tr');
       var nombre = $('#nombreField').val();
+      var numero_cedula = $('#numero_cedulaField').val();
       var tiene_los_siguientes_medios_comunicacion = $('#tiene_los_siguientes_medios_comunicacionField').val();
       var celular_basico = $('#celular_basicoField').val();
       var smartphone = $('#smartphoneField').val();
@@ -106,6 +108,7 @@ include("administrador/config/connection.php");
           type: "post",
           data: {
             nombre: nombre,
+            numero_cedula: numero_cedula,
             tiene_los_siguientes_medios_comunicacion: tiene_los_siguientes_medios_comunicacion,
             celular_basico: codCelular,
             smartphone: codSmartPhone,
@@ -129,7 +132,7 @@ include("administrador/config/connection.php");
               table = $('#tablaUsuarios').DataTable();
               var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
               var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, nombre,  tiene_los_siguientes_medios_comunicacion, codCelular, codSmartPhone, codLaptop, codNinguno, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms, cual_numero_usa_con_frecuencia, codPropio, como_accede_a_internet, cual_es_su_direccion, codFamilia, cuantos_viven_o_viajan_con_usted,  cuantos_tienen_ingreso_por_trabajo, button]);
+              row.row("[id='" + trid + "']").data([id, nombre, numero_cedula, tiene_los_siguientes_medios_comunicacion, codCelular, codSmartPhone, codLaptop, codNinguno, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms, cual_numero_usa_con_frecuencia, codPropio, como_accede_a_internet, cual_es_su_direccion, codFamilia, cuantos_viven_o_viajan_con_usted,  cuantos_tienen_ingreso_por_trabajo, button]);
               $('#exampleModal').modal('hide');
             } else {
               alert('failed');
@@ -156,6 +159,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
         success: function(data) {
           var json = JSON.parse(data);
           $('#nombreField').val(json.nombre);
+          $('#numero_cedulaField').val(json.numero_cedula);
           $('#tiene_los_siguientes_medios_comunicacionField').val(json.tiene_los_siguientes_medios_comunicacion);
           $('#celular_basicoField').val(json.celular_basico);
           $('#smartphoneField').val(json.smartphone);
@@ -230,11 +234,17 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nombreField" class="col-md-3 form-label">Nombre Beneficiario</label>
+              <label for="nombreField" class="col-md-3 form-label">Nombre&nbsp;Beneficiario</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" id="nombreField" name="name" disabled>
               </div>
             </div>
+            <div class="mb-3 row">
+              <label for="numero_cedulaField" class="col-md-3 form-label">Número&nbsp;de&nbsp;cedula</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="numero_cedulaField" name="name" disabled>
+              </div>
+            </div>            
             <div class="mb-3 row">
               <label for="tiene_los_siguientes_medios_comunicacionField" class="col-md-3 form-label">¿Tiene los siguientes medios de comunicación?</label>
               <div class="col-md-9">

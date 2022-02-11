@@ -34,6 +34,10 @@ CREATE VIEW `bd_bha_sci`.`vista_nutricion` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, e.alguien_de_su_hogar_esta_embarazada, e.tiempo_de_gestacion, e.lleva_su_control_en_centro_de_salud, e.alguien_de_su_hogar_tiene_siguientes_condiciones, e.lactando_con_nn_menor_2_anios, e.no_lactando_con_nn_menor_2_anios, e.madre_nn_2_a_5_anios, e.ninguno
     FROM nutricion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
+drop view IF EXISTS vista_nutricion;
+CREATE VIEW `bd_bha_sci`.`vista_nutricion` AS
+	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, e.alguien_de_su_hogar_esta_embarazada, e.tiempo_de_gestacion, e.lleva_su_control_en_centro_de_salud, e.alguien_de_su_hogar_tiene_siguientes_condiciones, e.lactando_con_nn_menor_2_anios, e.no_lactando_con_nn_menor_2_anios, e.madre_nn_2_a_5_anios, e.ninguno
+    FROM nutricion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
 
 select * from vista_comunicacion order by id_beneficiario;
