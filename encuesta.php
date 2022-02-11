@@ -18,7 +18,8 @@ include("administrador/config/connection.php");
           <thead class="text-center">
             <tr>
               <th>Codigo</th>
-              <th>Nombre&nbsp;del&nbsp;Beneficiario</th>
+              <th>Nombres&nbsp;y&nbsp;apellidos&nbsp;del&nbsp;beneficiario</th>
+              <th>Número&nbsp;de&nbsp;Cedula</th>
               <th>Fecha&nbsp;Encuesta</th>
               <th>Id&nbsp;Encuestador</th>                                
               <th>Nombre&nbsp;Encuestador</th>  
@@ -49,7 +50,7 @@ include("administrador/config/connection.php");
             },
             "aoColumnDefs": [{
               "bSortable": false,
-              "aTargets": [8]
+              "aTargets": [9]
             },
             ]
           });
@@ -63,6 +64,7 @@ include("administrador/config/connection.php");
           e.preventDefault();
       //var tr = $(this).closest('tr');
       var nombre = $('#nombreField').val();
+      var numero_cedula = $('#numero_cedulaField').val();
       var fecha_encuesta = $('#fecha_encuestaField').val();
       var id_encuestador = $('#id_encuestadorField').val();
       var nombre_encuestador = $('#nombre_encuestadorField').val();
@@ -85,6 +87,7 @@ include("administrador/config/connection.php");
           type: "post",
           data: {
             nombre: nombre,
+            numero_cedula: numero_cedula,
             fecha_encuesta: fecha_encuesta,
             id_encuestador: id_encuestador,
             nombre_encuestador: nombre_encuestador,
@@ -100,7 +103,7 @@ include("administrador/config/connection.php");
               table = $('#tablaUsuarios').DataTable();
               var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
               var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, nombre, fecha_encuesta, id_encuestador, nombre_encuestador, region_encuestador, como_realizo_encuesta, cod, button]);
+              row.row("[id='" + trid + "']").data([id, nombre, numero_cedula, fecha_encuesta, id_encuestador, nombre_encuestador, region_encuestador, como_realizo_encuesta, cod, button]);
               $('#exampleModal').modal('hide');
             } else {
               alert('failed');
@@ -127,6 +130,7 @@ include("administrador/config/connection.php");
         success: function(data) {
           var json = JSON.parse(data);
           $('#nombreField').val(json.nombre);
+          $('#numero_cedulaField').val(json.numero_cedula);
           $('#fecha_encuestaField').val(json.fecha_encuesta);
           $('#id_encuestadorField').val(json.id_encuestador);
           $('#nombre_encuestadorField').val(json.nombre_encuestador);
@@ -170,6 +174,12 @@ include("administrador/config/connection.php");
                 <input type="text" class="form-control" id="nombreField" name="name" disabled>
               </div>
             </div>
+            <div class="mb-3 row">
+              <label for="numero_cedulaField" class="col-md-3 form-label">Número&nbsp;cedula</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" id="numero_cedulaField" name="name" disabled>
+              </div>
+            </div>                        
             <div class="mb-3 row">
               <label for="fecha_encuestaField" class="col-md-3 form-label">Fecha Encuesta</label>
               <div class="col-md-9">

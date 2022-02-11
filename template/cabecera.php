@@ -47,7 +47,7 @@
   								<a class="dropdown-item" href="comunicacion.php">Comunicación</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="nutricion.php">Nutrición</a>
-  								<a class="dropdown-item" href="#">Salud</a>
+  								<a class="dropdown-item" href="salud.php">Salud</a>
   								<a class="dropdown-item" href="#">Educación</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="#">Derivación a sectores</a>
