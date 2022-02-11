@@ -46,7 +46,7 @@
   								<a class="dropdown-item" href="#">Familiares</a>
   								<a class="dropdown-item" href="comunicacion.php">Comunicación</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="#">Nutrición</a>
+  								<a class="dropdown-item" href="nutricion.php">Nutrición</a>
   								<a class="dropdown-item" href="#">Salud</a>
   								<a class="dropdown-item" href="#">Educación</a>
   								<div class="dropdown-divider"></div>

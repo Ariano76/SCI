@@ -29,7 +29,14 @@ CREATE VIEW `bd_bha_sci`.`vista_comunicacion` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, e.tiene_los_siguientes_medios_comunicacion, e.celular_basico, e.smartphone, e.laptop, e.ninguno, e.cual_es_su_numero_whatsapp, e.cual_es_su_numero_recibir_sms, e.cual_numero_usa_con_frecuencia, e.es_telefono_propio, e.como_accede_a_internet, e.cual_es_su_direccion, e.vive_o_viaja_con_otros_familiares, e.cuantos_viven_o_viajan_con_usted, e.cuantos_tienen_ingreso_por_trabajo
     FROM comunicacion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
-select * from vista_comunicacion order by vive_o_viaja_con_otros_familiares;
+drop view IF EXISTS vista_nutricion;
+CREATE VIEW `bd_bha_sci`.`vista_nutricion` AS
+	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, e.alguien_de_su_hogar_esta_embarazada, e.tiempo_de_gestacion, e.lleva_su_control_en_centro_de_salud, e.alguien_de_su_hogar_tiene_siguientes_condiciones, e.lactando_con_nn_menor_2_anios, e.no_lactando_con_nn_menor_2_anios, e.madre_nn_2_a_5_anios, e.ninguno
+    FROM nutricion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
+
+
+
+select * from vista_comunicacion order by id_beneficiario;
     
     
     
