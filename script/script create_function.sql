@@ -38,9 +38,13 @@ drop view IF EXISTS vista_salud;
 CREATE VIEW `bd_bha_sci`.`vista_salud` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.algun_miembro_tiene_discapacidad, e.algun_miembro_tiene_problemas_salud, e.derivacion_salud, e.derivacion_proteccion
     FROM salud e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
+    
+drop view IF EXISTS vista_educacion;
+CREATE VIEW `bd_bha_sci`.`vista_educacion` AS
+	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.viaja_con_menores_de_17_anios, e.todos_los_nna_estan_matriculados, e.que_dispositvo_utilizan_en_clases_virtuales, e.celular_basico, e.smartphone, e.laptop, e.ninguno, e.que_dificultades_tuvo_al_matricular_nna, e.no_conocia_procedimiento_matricula, e.no_cuento_con_los_documentos, e.no_habia_vacantes, e.otro
+    FROM educacion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
-
-select * from vista_salud order by id_beneficiario;
+select * from vista_educacion order by todos_los_nna_estan_matriculados desc;
     
     
     

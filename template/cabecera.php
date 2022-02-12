@@ -48,7 +48,7 @@
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="nutricion.php">Nutrición</a>
   								<a class="dropdown-item" href="salud.php">Salud</a>
-  								<a class="dropdown-item" href="#">Educación</a>
+  								<a class="dropdown-item" href="educacion.php">Educación</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="#">Derivación a sectores</a>
   								<div class="dropdown-divider"></div>
@@ -84,7 +84,7 @@
   							</div>
   						</li-->
   						<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
-  						<a class="nav-item nav-link" href="nosotros.php">Nosotros</a>
+  						<a class="nav-item nav-link" href=".\beneficiario\demo.html">Nosotros</a>
   						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
   					</div>
   				</div>

@@ -11,7 +11,7 @@ include("administrador/config/connection.php");
 <!--div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="row"-->
-      <h1 class="display-4">DATOS DE SALUD</h1> 
+      <h1 class="display-8">DATOS DE SALUD</h1> 
 
       <div class="col-lg-12">
         <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed" style="width:100%">
