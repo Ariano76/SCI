@@ -4,8 +4,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	
+	<!--link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+	
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<!-- DataTables CSS -->
@@ -26,6 +29,7 @@
 
   	</head>
   	<body>
+  		<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 
   		<nav class="navbar navbar-expand-md navbar-dark bg-primary">
   			<div class="container-fluid">		
@@ -35,22 +39,22 @@
   				</button>
   				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   					<div class="navbar-nav">
-  						<a class="nav-item nav-link active" href="index.php">Inicio</a>
+  						<a class="nav-item nav-link active" href="<?php echo $url."/index.php"?>">Inicio</a>
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Beneficiarios</a>
   							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="">Datos Generales</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/derivacion.php" ?>">Datos Generales</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="encuesta.php">Encuesta</a>
-  								<a class="dropdown-item" href="beneficiario.php">Beneficiario</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/encuesta.php"?>">Encuesta</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/beneficiario.php"?>">Beneficiario</a>
   								<a class="dropdown-item" href="#">Familiares</a>
-  								<a class="dropdown-item" href="comunicacion.php">Comunicación</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/comunicacion.php"?>">Comunicación</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="nutricion.php">Nutrición</a>
-  								<a class="dropdown-item" href="salud.php">Salud</a>
-  								<a class="dropdown-item" href="educacion.php">Educación</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/nutricion.php"?>">Nutrición</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/salud.php"?>">Salud</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/educacion.php"?>">Educación</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="#">Derivación a sectores</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/derivacion.php"?>">Derivación a sectores</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="#">Estatus</a>
   							</div>
@@ -58,24 +62,24 @@
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
   							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="uploadfile.php">Nuevos beneficiarios</a>
-  								<a class="dropdown-item" href="validacion.php">Validación</a>
+  								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
+  								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Validación</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="repo_validacion_dni.php">Documentos con incidencias</a>
-  								<a class="dropdown-item" href="repo_validacion_nombres.php">Nombres con incidencias</a>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
   							</div>
   						</li>					
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
   							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="upload_datahistorica.php">Beneficiarios</a>
-  								<a class="dropdown-item" href="validacionDH.php">Validación</a>
+  								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Beneficiarios</a>
+  								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Validación</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="repo_validacionDH_dni.php">Documentos con incidencias</a>
-  								<a class="dropdown-item" href="repo_validacionDH_nombres.php">Nombres con incidencias</a>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
   							</div>
   						</li>					
-  						<a class="nav-item nav-link" href="cotejo_beneficiarios.php">Cotejar Beneficiarios</a>
+  						<a class="nav-item nav-link" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios</a>
   						<!--li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
   							<div class="dropdown-menu">
@@ -83,8 +87,8 @@
   								<a class="dropdown-item" href="validacionDH.php">Nuevos Beneficiarios</a>
   							</div>
   						</li-->
-  						<a class="nav-item nav-link" href="administrador\index.php" tabindex="-1" aria-disabled="true">Administrador</a>
-  						<a class="nav-item nav-link" href=".\beneficiario\demo.html">Nosotros</a>
+  						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>
+  						<a class="nav-item nav-link" href="<?php echo $url."/beneficiario/demo.html"?>">Nosotros</a>
   						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
   					</div>
   				</div>

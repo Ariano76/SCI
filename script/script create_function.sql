@@ -44,7 +44,14 @@ CREATE VIEW `bd_bha_sci`.`vista_educacion` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.viaja_con_menores_de_17_anios, e.todos_los_nna_estan_matriculados, e.que_dispositvo_utilizan_en_clases_virtuales, e.celular_basico, e.smartphone, e.laptop, e.ninguno, e.que_dificultades_tuvo_al_matricular_nna, e.no_conocia_procedimiento_matricula, e.no_cuento_con_los_documentos, e.no_habia_vacantes, e.otro
     FROM educacion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
-select * from vista_educacion order by todos_los_nna_estan_matriculados desc;
+drop view IF EXISTS vista_derivacion_sectores;
+CREATE VIEW `bd_bha_sci`.`vista_derivacion_sectores` AS
+	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.interesado_participar_nutricion, e.interesado_participar_salud, e.interesado_participar_medios_vida, e.actividades_interesado_participar, e.interesado_entrenamiento_vocacional, e.interesado_emprendimiento 
+    FROM derivacion_sectores e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
+
+
+
+select * from vista_derivacion_sectores;
     
     
     
