@@ -16,7 +16,7 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
 <!--div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="row"-->
-      <h1 class="display-4">Observaciones en campos númericos</h1>
+      <h1 class="display-8">Observaciones en campos númericos</h1>
       <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
 
       <div class="col-lg-12">

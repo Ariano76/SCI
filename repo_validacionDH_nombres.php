@@ -13,7 +13,7 @@ $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos");
 
 ?>
 
-<h1 class="display-4">Observaciones en Nombres y Apellidos</h1>
+<h1 class="display-8">Observaciones en Nombres y Apellidos</h1>
 <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
 
 <div class="col-lg-12">

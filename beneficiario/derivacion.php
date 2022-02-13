@@ -14,7 +14,8 @@ include("../administrador/config/connection.php");
       <h1 class="display-8">DATOS DE DERIVACION SECTORES</h1> 
 
       <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed" style="width:100%">
+        <table id="tablaUsuarios" class="table table-striped table-bordered nowrap" style="width:100%">
+        <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small" style="width:100%"-->
           <thead class="text-center">
             <tr>
               <th>Codigo</th>
@@ -30,8 +31,8 @@ include("../administrador/config/connection.php");
             </tr>
           </thead>
         </table>   
-      </div>
 
+      </div>
       <script type="text/javascript">
         $(document).ready(function() {
           $('#tablaUsuarios').DataTable({
@@ -54,6 +55,8 @@ include("../administrador/config/connection.php");
             ]
           });
         });
+
+
         /*$(document).ready(function(){
           $("#exampleModal").find("input[type=radio]").click(function() {
             alert($('input[type=radio]:checked').val());

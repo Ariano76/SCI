@@ -10,7 +10,7 @@ $conn = $db->Connect();
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Validación de datos</h1>
+    <h1 class="display-8">Validación de datos</h1>
     <p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p>    
     <p class="lead">Habilite los procesos a ejecutarse.</p>    
     
