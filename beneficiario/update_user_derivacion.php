@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $interesado_participar_nutricion = $_POST['interesado_participar_nutricion'];
 $interesado_participar_salud = $_POST['interesado_participar_salud'];
 $interesado_participar_medios_vida = $_POST['interesado_participar_medios_vida'];

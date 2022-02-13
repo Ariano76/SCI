@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $algun_miembro_tiene_discapacidad = $_POST['algun_miembro_tiene_discapacidad'];
 $algun_miembro_tiene_problemas_salud = $_POST['algun_miembro_tiene_problemas_salud'];
 $derivacion_salud = $_POST['derivacion_salud'];

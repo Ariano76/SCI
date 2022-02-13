@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $nombre = $_POST['nombre'];
 $fecha_encuesta = $_POST['fecha_encuesta'];
 $id_encuestador = $_POST['id_encuestador'];

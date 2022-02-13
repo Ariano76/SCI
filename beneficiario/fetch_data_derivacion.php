@@ -1,4 +1,4 @@
-<?php include("administrador/config/connection.php");
+<?php include("../administrador/config/connection.php");
 
 $output= array();
 $sql = "SELECT * FROM vista_derivacion_sectores";

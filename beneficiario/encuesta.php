@@ -1,10 +1,10 @@
-<?php include("template/cabecera.php"); 
+<?php include("../template/cabecera.php"); 
 
 //require "vendor/autoload.php";
 //use PhpOffice\PhpSpreadsheet\Spreadsheet;
 //use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-include("administrador/config/connection.php");
+include("../administrador/config/connection.php");
 
 ?>
 
@@ -235,4 +235,4 @@ include("administrador/config/connection.php");
   </div>
 
 
-  <?php include("template/pie.php"); ?>
+  <?php include("../template/pie.php"); ?>

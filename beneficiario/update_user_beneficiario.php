@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $region_beneficiario = $_POST['region_beneficiario'];
 $otra_region = $_POST['otra_region'];
 $se_instalara_en_esta_region = $_POST['se_instalara_en_esta_region'];

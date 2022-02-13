@@ -1,4 +1,4 @@
-<?php include("administrador/config/connection.php");
+<?php include("../administrador/config/connection.php");
 $id = $_POST['id'];
 $sql = "SELECT * FROM vista_salud WHERE id_beneficiario='$id' LIMIT 1";
 $query = mysqli_query($con,$sql);

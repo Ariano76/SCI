@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $tiene_los_siguientes_medios_comunicacion = $_POST['tiene_los_siguientes_medios_comunicacion'];
 $celular_basico = $_POST['celular_basico'];
 $smartphone = $_POST['smartphone'];

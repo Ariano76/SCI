@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $alguien_de_su_hogar_esta_embarazada = $_POST['alguien_de_su_hogar_esta_embarazada'];
 $tiempo_de_gestacion = $_POST['tiempo_de_gestacion'];
 $lleva_su_control_en_centro_de_salud = $_POST['lleva_su_control_en_centro_de_salud'];

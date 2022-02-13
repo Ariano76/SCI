@@ -1,10 +1,10 @@
-<?php include("template/cabecera.php"); 
+<?php include("../template/cabecera.php"); 
 
 //require "vendor/autoload.php";
 //use PhpOffice\PhpSpreadsheet\Spreadsheet;
 //use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-include("administrador/config/connection.php");
+include("../administrador/config/connection.php");
 
 ?>
 
@@ -363,4 +363,4 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   </div>
 
 
-  <?php include("template/pie.php"); ?>
+  <?php include("../template/pie.php"); ?>

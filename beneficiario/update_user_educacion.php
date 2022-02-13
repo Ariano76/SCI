@@ -1,5 +1,5 @@
 <?php 
-include('administrador/config/connection.php');
+include('../administrador/config/connection.php');
 $viaja_con_menores_de_17_anios = $_POST['viaja_con_menores_de_17_anios'];
 $todos_los_nna_estan_matriculados = $_POST['todos_los_nna_estan_matriculados'];
 $que_dispositvo_utilizan_en_clases_virtuales = $_POST['que_dispositvo_utilizan_en_clases_virtuales'];
