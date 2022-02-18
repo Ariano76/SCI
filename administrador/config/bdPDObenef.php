@@ -1,7 +1,5 @@
 <?php
 
-
-
 class TransactionSCI 
 {
 
@@ -169,6 +167,10 @@ private $DB_PASSWORD = ''; //database password
         //echo 'Error <br>';
         return null;
     }    
+
+
+
+
 
 
 

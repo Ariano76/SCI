@@ -358,7 +358,6 @@ ADD FOREIGN KEY R_25 (id_beneficiario) REFERENCES beneficiario (id_beneficiario)
 
 ALTER TABLE estatus
 ADD FOREIGN KEY R_37 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
-
 ALTER TABLE estatus
 ADD FOREIGN KEY R_38 (id_estado) REFERENCES estados (id_estado);
 
@@ -373,5 +372,5 @@ ALTER TABLE acciones
 ADD FOREIGN KEY R_41 (id_entidad) REFERENCES entidades (id_entidad);
 
 
-
+insert into estados (estado) values('REGISTRO VALIDO'),('REGISTRO INVALIDO'),('REGISTRO EN ESPERA');
 

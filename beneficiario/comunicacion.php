@@ -1,16 +1,9 @@
 <?php include("../template/cabecera.php"); 
 
-//require "vendor/autoload.php";
-//use PhpOffice\PhpSpreadsheet\Spreadsheet;
-//use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
 include("../administrador/config/connection.php");
 
 ?>
 
-<!--div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="row"-->
       <h1 class="display-8">DATOS DE COMUNICACION</h1> 
 
       <div class="col-lg-12">
@@ -40,7 +33,6 @@ include("../administrador/config/connection.php");
         </table>   
       </div>
 
-
       <script type="text/javascript">
         $(document).ready(function() {
           $('#tablaUsuarios').DataTable({
@@ -63,11 +55,6 @@ include("../administrador/config/connection.php");
             ]
           });
         });
-        /*$(document).ready(function(){
-          $("#exampleModal").find("input[type=radio]").click(function() {
-            alert($('input[type=radio]:checked').val());
-          });
-        });*/
         $(document).on('submit', '#updateUser', function(e) {
           e.preventDefault();
       //var tr = $(this).closest('tr');
@@ -97,9 +84,6 @@ include("../administrador/config/connection.php");
 
       var trid = $('#trid').val();
       var id = $('#id').val();           
-
-/*      if (region_beneficiario != '' && otra_region != '' && se_instalara_en_esta_region != '' && en_que_provincia != '' && transit_settle != '' && en_que_otro_caso_1 != '' && en_que_distrito != ''  && en_que_otro_caso_2 != '' && en_que_otro_caso_3 != '' && primer_nombre != '' && segundo_nombre != '' && primer_apellido != '' && segundo_apellido != '' && genero != '' && fecha_nacimiento != '' && tiene_carne_extranjeria != '' && numero_cedula != '' && fecha_caducidad_cedula != '' && tipo_identificacion != '' && numero_identificacion != '' && fecha_caducidad_identificacion != '' && documentos_fisico_original ) {
-  */
         //console.log("esta_de_acuerdo : " + esta_de_acuerdo);
         //console.log("Valor seleccionado en RadioButton : " + cod);
         
@@ -139,9 +123,6 @@ include("../administrador/config/connection.php");
             }
           }
         });
-/*      } else {
-        alert('Fill all the required fields');
-      }*/
     });
 $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   var table = $('#tablaUsuarios').DataTable();
