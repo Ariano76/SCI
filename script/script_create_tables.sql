@@ -13,6 +13,8 @@ DROP TABLE if exists beneficiario;
 DROP TABLE if exists estados;
 DROP TABLE if exists usuarios;
 DROP TABLE if exists roles;
+DROP TABLE if exists acciones;
+DROP TABLE if exists entidades;
 
 -- CREACION DE TABLAS
 
@@ -307,6 +309,28 @@ ADD PRIMARY KEY (id_rol);
 ALTER TABLE roles
 MODIFY id_rol INT NOT NULL AUTO_INCREMENT ;
 
+CREATE TABLE acciones
+(
+	id_accion		INTEGER NOT NULL,
+	id_entidad			INTEGER NOT NULL,
+    id_beneficiario	INTEGER NOT NULL,
+    fecha 		DATETIME NULL DEFAULT CURRENT_TIMESTAMP
+);
+ALTER TABLE acciones
+ADD PRIMARY KEY (id_accion);
+ALTER TABLE acciones
+MODIFY id_accion INT NOT NULL AUTO_INCREMENT ;
+
+CREATE TABLE entidades
+(
+	id_entidad	INTEGER NOT NULL,
+	nombre		VARCHAR(50) NULL    
+);
+ALTER TABLE entidades
+ADD PRIMARY KEY (id_entidad);
+ALTER TABLE entidades
+MODIFY id_entidad INT NOT NULL AUTO_INCREMENT ;
+
 /*********************************
 -- CREACION DE LLAVES FORANEAS 
 *********************************/
@@ -342,4 +366,12 @@ ALTER TABLE usuarios
 ADD FOREIGN KEY R_39 (id_rol) REFERENCES roles (id_rol);
 ALTER TABLE usuarios
 ADD CONSTRAINT UC_usuarios UNIQUE (nombre_usuario);
+
+ALTER TABLE acciones
+ADD FOREIGN KEY R_40 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
+ALTER TABLE acciones
+ADD FOREIGN KEY R_41 (id_entidad) REFERENCES entidades (id_entidad);
+
+
+
 

@@ -28,6 +28,7 @@ ALTER TABLE bd_bha_sci.educacion AUTO_INCREMENT = 1;
 ALTER TABLE bd_bha_sci.salud AUTO_INCREMENT = 1;
 ALTER TABLE bd_bha_sci.derivacion_sectores AUTO_INCREMENT = 1;
 ALTER TABLE bd_bha_sci.integrantes AUTO_INCREMENT = 1;
+ALTER TABLE bd_bha_sci.acciones AUTO_INCREMENT = 1;
 
 delete from bd_bha_sci.encuesta where id_encuesta>0;
 DELIMITER ;
@@ -43,4 +44,7 @@ delete from bd_bha_sci.derivacion_sectores where id_derivacion>0;
 DELIMITER ;
 delete from bd_bha_sci.integrantes where id_integrantes>0;
 DELIMITER ;
+delete from bd_bha_sci.acciones where id_accion>0;
+DELIMITER ;
 delete from bd_bha_sci.beneficiario where id_beneficiario>0;
+

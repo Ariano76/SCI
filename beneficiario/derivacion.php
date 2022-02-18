@@ -14,8 +14,8 @@ include("../administrador/config/connection.php");
       <h1 class="display-8">DATOS DE DERIVACION SECTORES</h1> 
 
       <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table table-striped table-bordered nowrap" style="width:100%">
-        <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small" style="width:100%"-->
+        <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed nowrap" style="width:100%"-->
+        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
           <thead class="text-center">
             <tr>
               <th>Codigo</th>

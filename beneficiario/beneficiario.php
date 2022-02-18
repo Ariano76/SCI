@@ -14,7 +14,7 @@ include("../administrador/config/connection.php");
       <h1 class="display-8">DATOS DE BENEFICIARIO</h1> 
 
       <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed" style="width:100%">
+        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
           <thead class="text-center">
             <tr>
               <th>Codigo</th>

@@ -49,9 +49,73 @@ CREATE VIEW `bd_bha_sci`.`vista_derivacion_sectores` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.interesado_participar_nutricion, e.interesado_participar_salud, e.interesado_participar_medios_vida, e.actividades_interesado_participar, e.interesado_entrenamiento_vocacional, e.interesado_emprendimiento 
     FROM derivacion_sectores e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
+/* CREACION DE TRIGGERS */
+
+drop trigger if exists logAcciones_1;
+delimiter //
+create trigger logAcciones_1 after update on beneficiario
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (2, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_2;
+delimiter //
+create trigger logAcciones_2 after update on comunicacion
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (3, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_3;
+delimiter //
+create trigger logAcciones_3 after update on derivacion_sectores
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (4, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_4;
+delimiter //
+create trigger logAcciones_4 after update on educacion
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (5, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_5;
+delimiter //
+create trigger logAcciones_5 after update on encuesta
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (6, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_6;
+delimiter //
+create trigger logAcciones_6 after update on integrantes
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (7, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_7;
+delimiter //
+create trigger logAcciones_7 after update on nutricion
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (8, NEW.id_beneficiario);
+end//
+delimiter ;
+
+drop trigger if exists logAcciones_8;
+delimiter //
+create trigger logAcciones_8 after update on salud
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (9, NEW.id_beneficiario);
+end//
+delimiter ;
 
 
-select * from vista_derivacion_sectores;
     
     
     
