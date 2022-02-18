@@ -328,7 +328,6 @@ BEGIN
 END ;;
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS `SP_Insert_derivacion_sectores_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_Insert_derivacion_sectores_00`(In dato_01 boolean, In dato_02 boolean , In dato_03 boolean ,	
@@ -381,8 +380,6 @@ BEGIN
     FROM encuesta e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;
 END ;;
 DELIMITER ;
-
-
 
 call SP_Select_encuesta();
 
