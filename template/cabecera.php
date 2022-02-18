@@ -31,9 +31,12 @@
   	<body>
   		<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 
-  		<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  		<!--nav class="navbar navbar-expand-md navbar-dark bg-primary"-->
+  		<!--nav class="navbar navbar-expand-md navbar-light" style="background-color: #DA291C;"-->
+  		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
   			<div class="container-fluid">		
-  				<a class="navbar-brand" href="#">Save The Children</a>
+  				<a class="navbar-brand" href="#"></a>
+  				<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
   				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
   					<span class="navbar-toggler-icon"></span>
   				</button>
