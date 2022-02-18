@@ -48,6 +48,11 @@ drop view IF EXISTS vista_derivacion_sectores;
 CREATE VIEW `bd_bha_sci`.`vista_derivacion_sectores` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.interesado_participar_nutricion, e.interesado_participar_salud, e.interesado_participar_medios_vida, e.actividades_interesado_participar, e.interesado_entrenamiento_vocacional, e.interesado_emprendimiento 
     FROM derivacion_sectores e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
+    
+drop view IF EXISTS vista_estatus;
+CREATE VIEW `bd_bha_sci`.`vista_estatus` AS
+	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.observaciones, e.id_estado
+    FROM estatus e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
 
 drop view IF EXISTS vista_acciones;
 CREATE VIEW `bd_bha_sci`.`vista_acciones` AS
@@ -55,7 +60,7 @@ CREATE VIEW `bd_bha_sci`.`vista_acciones` AS
     FROM acciones a inner join beneficiario b on a.id_beneficiario = b.id_beneficiario 
     inner join entidades e on a.id_entidad = e.id_entidad order by a.fecha DESC;  
 
-select * from vista_acciones;
+select * from vista_estatus;
 
 /* CREACION DE TRIGGERS */
 

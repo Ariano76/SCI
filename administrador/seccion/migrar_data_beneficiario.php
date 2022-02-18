@@ -152,6 +152,13 @@ if (isset($_POST["import"])) {
 
     $db_1->Insert_derivacion_sectores($d01, $d02, $d03, $d04, $d05, $d06, $xCod); 
 
+// RUTINA PARA INSERTAR REGISTROS EN TABLA estatus
+
+    $d01 = (empty($usuario[144])) ? null : $usuario[144];
+    $d02 = (empty($usuario[143])) ? null : $usuario[143];    
+    
+    $db_1->Insert_estatus($d01, $d02, $xCod);     
+
 // RUTINA PARA INSERTAR REGISTROS EN TABLA INTEGRANTES
     // INTEGRANTE 01
     $d01 = (empty($usuario[65])) ? null : $usuario[65];

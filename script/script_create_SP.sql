@@ -503,7 +503,11 @@ DECLARE exit handler for sqlexception
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO VALIDO' WHERE dato_143 = 'valido' or dato_143 = 'Registro válido' or dato_143 = 'Registro Válido' or dato_143 = 'VÁLIDO' or dato_143 = 'REGISTRO VÁLIDO' or dato_143 = 'Registro valido' or dato_143 = 'Registro Valido' or dato_143 = 'registro valido';
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO INVALIDO' WHERE dato_143 = 'Registro inválido' or dato_143 = 'REGISTRO INVÁLIDO' or dato_143 = 'Registro Inválido' or dato_143 = 'Registro invalido';
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO EN ESPERA' WHERE dato_143 = 'REG. EN ESPERA' or dato_143 = 'Registro en espera';
-	SELECT ROW_COUNT() AS 'Affected rows';
+    
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 1 WHERE dato_143 = 'REGISTRO VALIDO';
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 2 WHERE dato_143 = 'REGISTRO INVALIDO';
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 3 WHERE dato_143 = 'REGISTRO EN ESPERA';
+	/*SELECT ROW_COUNT() AS 'Affected rows';*/
     SET success = 1;
     COMMIT;
 END ;;

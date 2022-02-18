@@ -255,7 +255,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	INSERT INTO estatus(observaciones, id_beneficiario, id_estado)
+	INSERT INTO estatus(observaciones, id_estado, id_beneficiario)
     VALUES (dato_01, dato_02, dato_03);    
     SET success = 1;
     COMMIT;
