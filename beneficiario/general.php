@@ -74,8 +74,8 @@ include("../administrador/config/connection.php");
       var numero_cedula = $('#numero_cedulaField').val();
       var tipo_identificacion = $('#tipo_identificacionField').val();
       var numero_identificacion = $('#numero_identificacionField').val();
-      var cual_es_su_numero_whatsapp = $('#cual_es_su_numero_whatsapp').val();      
-      var cual_es_su_numero_recibir_sms = $('#cual_es_su_numero_recibir_sms').val();
+      var cual_es_su_numero_whatsapp = $('#cual_es_su_numero_whatsappField').val();      
+      var cual_es_su_numero_recibir_sms = $('#cual_es_su_numero_recibir_smsField').val();
       var fecha_nacimiento = $('#fecha_nacimientoField').val();
 
       var trid = $('#trid').val();
@@ -113,6 +113,8 @@ include("../administrador/config/connection.php");
               row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, 
                 button]);
               $('#exampleModal').modal('hide');
+          console.log("cual_es_su_numero_whatsapp :" + cual_es_su_numero_whatsapp);
+          console.log("cual_es_su_numero_recibir_sms :" + cual_es_su_numero_recibir_sms);
             } else {
               alert('failed');
             }
@@ -183,62 +185,62 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="primer_nombreField" class="col-md-3 form-label">1er Nombre</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="primer_nombreField" name="name">
+                <input type="text" class="form-control" id="primer_nombreField" name="name1">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="segundo_nombreField" class="col-md-3 form-label">2do Nombre</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="segundo_nombreField" name="email">
+                <input type="text" class="form-control" id="segundo_nombreField" name="name2">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="primer_apellidoField" class="col-md-3 form-label">1er Apelido</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="primer_apellidoField" name="mobile">
+                <input type="text" class="form-control" id="primer_apellidoField" name="ape1">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="segundo_apellidoField" class="col-md-3 form-label">2do Apellido</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="segundo_apellidoField" name="City">
+                <input type="text" class="form-control" id="segundo_apellidoField" name="ape2">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="numero_cedulaField" class="col-md-3 form-label">Numero cedula</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="numero_cedulaField" name="City">
+                <input type="text" class="form-control" id="numero_cedulaField" name="cedula">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="tipo_identificacionField" class="col-md-3 form-label">Tipo identificación</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="tipo_identificacionField" name="City">
+                <input type="text" class="form-control" id="tipo_identificacionField" name="tipoident">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="numero_identificacionField" class="col-md-3 form-label">Numero identificación</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="numero_identificacionField" name="City">
+                <input type="text" class="form-control" id="numero_identificacionField" name="numiden">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_es_su_numero_whatsappField" class="col-md-3 form-label">Cual es su numero de Whatsapp</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_numero_whatsappField" name="City">
+                <input type="text" class="form-control" id="cual_es_su_numero_whatsappField" name="whatsapp" pattern="[0-9]+">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_es_su_numero_recibir_smsField" class="col-md-3 form-label">Cual es su numero de SMS</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_numero_recibir_smsField" name="City">
+                <input type="text" class="form-control" id="cual_es_su_numero_recibir_smsField" name="sms" pattern="[0-9]+">
               </div>
             </div>
 
             <div class="mb-3 row">
               <label for="fecha_nacimientoField" class="col-md-3 form-label">Fecha nacimiento</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="fecha_nacimientoField" name="City">
+                <input type="text" class="form-control" id="fecha_nacimientoField" name="fecha">
               </div>
             </div>
 

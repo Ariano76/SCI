@@ -302,12 +302,12 @@ BEGIN
 	END;
     
     START TRANSACTION;
-	UPDATE beneficiario SET primer_nombre=dato_01, segundo_nombre=dato_02, primer_apellido=dato_03, segundo_apellido=dato_04, numero_cedula=dato_05, tipo_identificacion=dato_06, numero_identificacion=dato_07, fecha_nacimiento=dato_10
-    WHERE id_beneficiario=dato_11;    
     
 	UPDATE comunicacion SET cual_es_su_numero_whatsapp=dato_08, cual_es_su_numero_recibir_sms=dato_09
     WHERE id_beneficiario=dato_11;    
-    
+
+	UPDATE beneficiario SET primer_nombre=dato_01, segundo_nombre=dato_02, primer_apellido=dato_03, segundo_apellido=dato_04, numero_cedula=dato_05, tipo_identificacion=dato_06, numero_identificacion=dato_07, fecha_nacimiento=dato_10
+    WHERE id_beneficiario=dato_11;        
     SET success = 1;
     COMMIT;
 END ;;
