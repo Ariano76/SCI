@@ -281,7 +281,39 @@ BEGIN
 END ;;
 DELIMITER ;
 
-call SP_Insert_estatus(@total,'Aprobado en su primer intento', 19222 ,1);
+DROP PROCEDURE IF EXISTS `SP_Update_General`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_Update_General`(
+	In dato_01 VARCHAR(250), In dato_02 VARCHAR(250), In dato_03 VARCHAR(250), In dato_04 VARCHAR(250), 
+    In dato_05 VARCHAR(25), In dato_06 VARCHAR(250), In dato_07 VARCHAR(25), In dato_08 VARCHAR(250), 
+    In dato_09 VARCHAR(250), In dato_10 date, In dato_11 INT, OUT success INT
+)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
+    
+    START TRANSACTION;
+	UPDATE beneficiario SET primer_nombre=dato_01, segundo_nombre=dato_02, primer_apellido=dato_03, segundo_apellido=dato_04, numero_cedula=dato_05, tipo_identificacion=dato_06, numero_identificacion=dato_07, fecha_nacimiento=dato_10
+    WHERE id_beneficiario=dato_11;    
+    
+	UPDATE comunicacion SET cual_es_su_numero_whatsapp=dato_08, cual_es_su_numero_recibir_sms=dato_09
+    WHERE id_beneficiario=dato_11;    
+    
+    SET success = 1;
+    COMMIT;
+END ;;
+DELIMITER ;
+
+call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
 
 describe integrantes;

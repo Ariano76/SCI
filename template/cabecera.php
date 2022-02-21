@@ -46,7 +46,7 @@
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Beneficiarios</a>
   							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/derivacion.php" ?>">Datos Generales</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/general.php" ?>">Datos Generales</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/encuesta.php"?>">Encuesta</a>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/beneficiario.php"?>">Beneficiario</a>

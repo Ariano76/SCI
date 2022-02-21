@@ -59,8 +59,13 @@ CREATE VIEW `bd_bha_sci`.`vista_acciones` AS
 	SELECT a.id_accion, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.id_beneficiario, e.nombre as entidad, a.fecha
     FROM acciones a inner join beneficiario b on a.id_beneficiario = b.id_beneficiario 
     inner join entidades e on a.id_entidad = e.id_entidad order by a.fecha DESC;  
+    
+drop view IF EXISTS vista_general;
+CREATE VIEW `bd_bha_sci`.`vista_general` AS
+	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.numero_cedula, b.tipo_identificacion, b.numero_identificacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, b.fecha_nacimiento
+    FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario; 
 
-select * from vista_estatus;
+select * from vista_general;
 
 /* CREACION DE TRIGGERS */
 

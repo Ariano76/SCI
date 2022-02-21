@@ -183,7 +183,21 @@ private $DB_PASSWORD = ''; //database password
     }    
 
 
-
+    public function Update_General($d_01, $d_02, $d_03, $d_04, $d_05, $d_06, $d_07, $d_08, $d_09, $d_10, $d_11) {
+        try {
+            $sql = "CALL SP_Update_General('".$d_01."','".$d_02."','".$d_03."','".$d_04."','".$d_05."','".$d_06."','".$d_07."','".$d_08."','".$d_09."','".$d_10."','".$d_11."', @total)";
+            $row=0;
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
+            return $row["resultado"];
+        } catch (PDOException $e) {
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        //echo 'Error <br>';
+        return null;
+    }
 
 
 
