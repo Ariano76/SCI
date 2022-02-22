@@ -154,9 +154,6 @@ include("../administrador/config/connection.php");
             }
           }
         });
-/*      } else {
-        alert('Fill all the required fields');
-      }*/
     });
 $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   var table = $('#tablaUsuarios').DataTable();

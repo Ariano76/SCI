@@ -58,15 +58,10 @@ include("../administrador/config/connection.php");
             ]
           });
         });
-        /*$(document).ready(function(){
-          $("#exampleModal").find("input[type=radio]").click(function() {
-            alert($('input[type=radio]:checked').val());
-          });
-        });*/
         $(document).on('submit', '#updateUser', function(e) {
           e.preventDefault();
       //var tr = $(this).closest('tr');
-      var nombre_beneficiario = $('#nombre_beneficiario').val();
+      var nombre_beneficiario = $('#nombre_beneficiarioField').val();
       var primer_nombre = $('#primer_nombreField').val();
       var segundo_nombre = $('#segundo_nombreField').val();
       var primer_apellido = $('#primer_apellidoField').val();
@@ -110,11 +105,8 @@ include("../administrador/config/connection.php");
               table = $('#tablaUsuarios').DataTable();
               var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
               var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, 
-                button]);
+              row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, button]);
               $('#exampleModal').modal('hide');
-          console.log("cual_es_su_numero_whatsapp :" + cual_es_su_numero_whatsapp);
-          console.log("cual_es_su_numero_recibir_sms :" + cual_es_su_numero_recibir_sms);
             } else {
               alert('failed');
             }
@@ -124,9 +116,9 @@ include("../administrador/config/connection.php");
         alert('Fill all the required fields');
       }*/
     });
-$('#tablaUsuarios').on('click', '.editbtn ', function(event) {
-  var table = $('#tablaUsuarios').DataTable();
-  var trid = $(this).closest('tr').attr('id');
+    $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
+    var table = $('#tablaUsuarios').DataTable();
+    var trid = $(this).closest('tr').attr('id');
       // console.log(selectedRow);
       var id = $(this).data('id');
       $('#exampleModal').modal('show');
@@ -154,8 +146,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
           $('#id').val(id);
           $('#trid').val(trid);
 
-          console.log("cual_es_su_numero_whatsapp :" + json.cual_es_su_numero_whatsapp);
-          console.log("cual_es_su_numero_recibir_sms :" + json.cual_es_su_numero_recibir_sms);
+          //console.log("cual_es_su_numero_whatsapp :" + json.cual_es_su_numero_whatsapp);
+          //console.log("cual_es_su_numero_recibir_sms :" + json.cual_es_su_numero_recibir_sms);
         }        
       })
     });
@@ -179,7 +171,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="nombre_beneficiarioField" class="col-md-3 form-label">Nombre del Beneficiario</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="nombre_beneficiarioField" name="name" disabled>
+                <input type="text" class="form-control" id="nombre_beneficiarioField" name="name">
               </div>
             </div>
             <div class="mb-3 row">

@@ -5,7 +5,7 @@ include("../administrador/config/connection.php");
 ?>
       <h1 class="display-8">REPORTE DE CAMBIOS EN ENTIDADES</h1> 
 
-      <div class="col-lg-7">
+      <div class="col-lg-12">
         <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
           <thead class="text-center">
             <tr>
@@ -19,7 +19,6 @@ include("../administrador/config/connection.php");
           </thead>
         </table>   
       </div>
-
 
       <script type="text/javascript">
         $(document).ready(function() {

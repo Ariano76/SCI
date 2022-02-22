@@ -315,7 +315,7 @@ DELIMITER ;
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
-
+select * from vista_general;
 describe integrantes;
 call SP_Insert_integrantes(@total, 
 'MEYER ',' ',' ',' HERRERA ',' Hombre ',' 1995-02-11 ',' Pareja ',' ',' Carnet de Extranjeria ',' 001896958 ',' LUISSAJER ',' JOSE ',' PACHECO ',' PIÑA ',' Hombre ',' 2010-05-12 ',' Hijo ',' ',' Acta de Nacimiento ',' 4113 ',' MEYLEM ',' JIREH ',' SULUAGA ',' PIÑA ',' Mujer ',' 2020-09-28 ',' Hijo ',' ',' DNI ',' 92037639 ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' 2000/01/01 ',' ',' ',' ',' ', 1 );

@@ -5,6 +5,14 @@ require_once '../administrador/config/bdPDObenef.php';
 $db = new TransactionSCI();
 $conn = $db->Connect();
 
+/*function debug_to_console( $opc ) {
+    if ( is_array( $opc ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $opc) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $opc . "' );</script>";
+    echo $output;
+}*/
+
 $nombre_beneficiario = $_POST['nombre_beneficiario'];
 $primer_nombre = $_POST['primer_nombre'];
 $segundo_nombre = $_POST['segundo_nombre'];
@@ -25,7 +33,9 @@ $cod_00 = $db->Update_General($primer_nombre, $segundo_nombre, $primer_apellido,
 //$query= mysqli_query($con,$sql);
 //$lastId = mysqli_insert_id($con);
 
-if($cod_00==1) // El SP DEVUELVE 1
+//debug_to_console( $cod_00 );
+// El SP DEVUELVE 1
+if($cod_00 == true) 
 {
     $data = array(
         'status'=>'true',

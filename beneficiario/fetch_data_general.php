@@ -68,7 +68,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['numero_identificacion'];
 	$sub_array[] = $row['cual_es_su_numero_whatsapp'];
 	$sub_array[] = $row['cual_es_su_numero_recibir_sms'];
-	$sub_array[] = $row['fecha_nacimiento'];
+	$sub_array[] = $row['fecha_nacimiento'];	
 	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;
 }
