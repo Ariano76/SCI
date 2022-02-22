@@ -6,7 +6,7 @@ include("../administrador/config/connection.php");
 <h1 class="display-8">ESTATUS DEL BENEFICIARIO</h1> 
 
 <div class="col-lg-12">
-  <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed nowrap" style="width:100%">
+  <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed small" style="width:100%">
     <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%"-->
     <thead class="text-center">
       <tr>
@@ -79,7 +79,16 @@ include("../administrador/config/connection.php");
         table = $('#tablaUsuarios').DataTable();
         var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
         var row = table.row("[id='" + trid + "']");
-        row.row("[id='" + trid + "']").data([id, nombre, numero_cedula, observaciones, codEstatus, button]);
+        var nomEst;
+        if (codEstatus==1) {
+          nomEst = 'VALIDO'
+        } else if (codEstatus==2){
+          nomEst = 'INVALIDO'
+        } else{
+          nomEst = 'EN ESPERA'
+        }
+
+        row.row("[id='" + trid + "']").data([id, nombre, numero_cedula, observaciones, nomEst, button]);
         $('#exampleModal').modal('hide');
       } else {
         alert('failed');
@@ -113,9 +122,9 @@ include("../administrador/config/connection.php");
           $('#id').val(id);
           $('#trid').val(trid);
           //console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
-          if (json.id_estado == "1") {
+          if (json.id_estado == "VALIDO") {
             $('#exampleModal').find(':radio[name=estatus][value="1"]').prop('checked', true);
-          } else if (json.id_estado == "2") {
+          } else if (json.id_estado == "INVALIDO") {
             $('#exampleModal').find(':radio[name=estatus][value="2"]').prop('checked', true);
           } else {
             $('#exampleModal').find(':radio[name=estatus][value="3"]').prop('checked', true);
@@ -157,7 +166,7 @@ include("../administrador/config/connection.php");
               <label for="observacionesField" class="col-md-3 form-label">Observaciones</label>
               <div class="col-md-9">
                 <!--input type="text" class="form-control" id="observacionesField" name="name"-->
-                <textarea name="text" id="observacionesField" rows="3" cols="70"></textarea>
+                <textarea name="text" id="observacionesField" rows="3" cols="70" maxlength="250"></textarea>
               </div>
             </div>            
             <div class="mb-3 row">

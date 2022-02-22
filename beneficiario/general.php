@@ -171,7 +171,7 @@ include("../administrador/config/connection.php");
             <div class="mb-3 row">
               <label for="nombre_beneficiarioField" class="col-md-3 form-label">Nombre del Beneficiario</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="nombre_beneficiarioField" name="name">
+                <input type="text" class="form-control" id="nombre_beneficiarioField" name="name" disabled>
               </div>
             </div>
             <div class="mb-3 row">
