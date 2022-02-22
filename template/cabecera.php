@@ -50,7 +50,7 @@
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/encuesta.php"?>">Encuesta</a>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/beneficiario.php"?>">Beneficiario</a>
-  								<a class="dropdown-item" href="#">Familiares</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/integrantes.php"?>">Familiares</a>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/comunicacion.php"?>">Comunicación</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/nutricion.php"?>">Nutrición</a>
