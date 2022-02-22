@@ -51,8 +51,9 @@ CREATE VIEW `bd_bha_sci`.`vista_derivacion_sectores` AS
     
 drop view IF EXISTS vista_estatus;
 CREATE VIEW `bd_bha_sci`.`vista_estatus` AS
-	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.observaciones, e.id_estado
-    FROM estatus e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
+	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.observaciones, es.estado as id_estado
+    FROM estatus e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario 
+    inner join estados es on e.id_estado = es.id_estado;  
 
 drop view IF EXISTS vista_acciones;
 CREATE VIEW `bd_bha_sci`.`vista_acciones` AS

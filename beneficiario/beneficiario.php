@@ -320,7 +320,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="fecha_nacimientoField" class="col-md-3 form-label">Fecha nacimiento</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="fecha_nacimientoField" name="City">
+                <!--input type="text" class="form-control" id="fecha_nacimientoField" name="City"-->
+                <input id="fecha_nacimientoField" type="date" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">
@@ -330,7 +331,6 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
                   <input type="radio" name="carne" id="tiene_carne_extranjeriaField1" value="1"> Si 
                   <input type="radio" name="carne" id="tiene_carne_extranjeriaField2" value="0"> No 
                 </label>
-
                 <!--input type="text" class="form-control" id="tiene_carne_extranjeriaField" name="City"-->
               </div>
             </div>
@@ -343,7 +343,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="fecha_caducidad_cedulaField" class="col-md-3 form-label">Fecha caducidad cedula</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="fecha_caducidad_cedulaField" name="City">
+                <!--input type="text" class="form-control" id="fecha_caducidad_cedulaField" name="City"-->
+                <input id="fecha_caducidad_cedulaField" type="date" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">
@@ -361,7 +362,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="fecha_caducidad_identificacionField" class="col-md-3 form-label">Fecha Caducidad</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="fecha_caducidad_identificacionField" name="City">
+                <!--input type="text" class="form-control" id="fecha_caducidad_identificacionField" name="City"-->
+                <input id="fecha_caducidad_identificacionField" type="date" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">

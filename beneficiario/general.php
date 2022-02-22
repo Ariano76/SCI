@@ -232,7 +232,8 @@ include("../administrador/config/connection.php");
             <div class="mb-3 row">
               <label for="fecha_nacimientoField" class="col-md-3 form-label">Fecha nacimiento</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="fecha_nacimientoField" name="fecha">
+                <!--input type="text" class="form-control" id="fecha_nacimientoField" name="fecha"-->
+                <input id="fecha_nacimientoField" type="date" name="fecha" value="2017-06-01">
               </div>
             </div>
 
