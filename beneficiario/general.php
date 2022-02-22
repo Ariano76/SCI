@@ -177,55 +177,55 @@ include("../administrador/config/connection.php");
             <div class="mb-3 row">
               <label for="primer_nombreField" class="col-md-3 form-label">1er Nombre</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="primer_nombreField" name="name1">
+                <input type="text" class="form-control" id="primer_nombreField" name="name1" maxlength="50">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="segundo_nombreField" class="col-md-3 form-label">2do Nombre</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="segundo_nombreField" name="name2">
-              </div>
+                <input type="text" class="form-control" id="segundo_nombreField" name="name2" maxlength="50">
+              </div> 
             </div>
             <div class="mb-3 row">
               <label for="primer_apellidoField" class="col-md-3 form-label">1er Apelido</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="primer_apellidoField" name="ape1">
+                <input type="text" class="form-control" id="primer_apellidoField" name="ape1" maxlength="50">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="segundo_apellidoField" class="col-md-3 form-label">2do Apellido</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="segundo_apellidoField" name="ape2">
+                <input type="text" class="form-control" id="segundo_apellidoField" name="ape2" maxlength="50">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="numero_cedulaField" class="col-md-3 form-label">Numero cedula</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="numero_cedulaField" name="cedula">
+                <input type="text" class="form-control" id="numero_cedulaField" name="cedula" maxlength="25">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="tipo_identificacionField" class="col-md-3 form-label">Tipo identificación</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="tipo_identificacionField" name="tipoident">
+                <input type="text" class="form-control" id="tipo_identificacionField" name="tipoident" maxlength="50">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="numero_identificacionField" class="col-md-3 form-label">Numero identificación</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="numero_identificacionField" name="numiden">
+                <input type="text" class="form-control" id="numero_identificacionField" name="numiden" maxlength="25">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_es_su_numero_whatsappField" class="col-md-3 form-label">Cual es su numero de Whatsapp</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_numero_whatsappField" name="whatsapp" pattern="[0-9]+">
+                <input type="text" class="form-control" id="cual_es_su_numero_whatsappField" name="whatsapp" maxlength="25" pattern="[0-9]+">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_es_su_numero_recibir_smsField" class="col-md-3 form-label">Cual es su numero de SMS</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_numero_recibir_smsField" name="sms" pattern="[0-9]+">
+                <input type="text" class="form-control" id="cual_es_su_numero_recibir_smsField" name="sms" maxlength="25" pattern="[0-9]+">
               </div>
             </div>
 

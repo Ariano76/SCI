@@ -186,25 +186,25 @@ include("../administrador/config/connection.php");
             <div class="mb-3 row">
               <label for="id_encuestadorField" class="col-md-3 form-label">Id Encuestador</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="id_encuestadorField" name="mobile">
+                <input type="text" class="form-control" id="id_encuestadorField" name="mobile" maxlength="11" pattern="[0-9]+">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="nombre_encuestadorField" class="col-md-3 form-label">Encuestador</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="nombre_encuestadorField" name="City">
+                <input type="text" class="form-control" id="nombre_encuestadorField" name="City" maxlength="100" >
               </div>
             </div>
             <div class="mb-3 row">
               <label for="region_encuestadorField" class="col-md-3 form-label">Region Encuestador</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="region_encuestadorField" name="City">
+                <input type="text" class="form-control" id="region_encuestadorField" name="City" maxlength="100" >
               </div>
             </div>
             <div class="mb-3 row">
               <label for="como_realizo_encuestaField" class="col-md-3 form-label">Realizo la encuesta</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="como_realizo_encuestaField" name="City">
+                <input type="text" class="form-control" id="como_realizo_encuestaField" name="City" maxlength="100" >
               </div>
             </div>
             <div class="mb-3 row">

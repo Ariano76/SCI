@@ -276,7 +276,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               <label for="que_dispositvo_utilizan_en_clases_virtualesField" class="col-md-3 form-label">¿Que dispositivo utilizan en sus clases virtuales?</label>
               <div class="col-md-9">
                 <!--input type="text" class="form-control" id="que_dispositvo_utilizan_en_clases_virtualesField" name="name"-->
-                <textarea name="text" id="que_dispositvo_utilizan_en_clases_virtualesField" rows="3" cols="70"></textarea>
+                <textarea name="text" id="que_dispositvo_utilizan_en_clases_virtualesField" maxlength="250" rows="3" cols="70"></textarea>
               </div>
             </div>
             <div class="mb-3 row">
@@ -319,7 +319,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               <label for="que_dificultades_tuvo_al_matricular_nnaField" class="col-md-3 form-label">¿Que dificultades tuvo al matricular a los menores?</label>
               <div class="col-md-9">
                 <!--input type="text" class="form-control" id="que_dificultades_tuvo_al_matricular_nnaField" name="name"-->
-                <textarea name="text" id="que_dificultades_tuvo_al_matricular_nnaField" rows="3" cols="70"></textarea>
+                <textarea name="text" id="que_dificultades_tuvo_al_matricular_nnaField" maxlength="250" rows="3" cols="70"></textarea>
               </div>
             </div>            
             <div class="mb-3 row">

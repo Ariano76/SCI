@@ -233,7 +233,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="actividades_interesado_participarField" class="col-md-3 form-label">¿En cuál de las actividades estaria interesado?</label>
               <div class="col-md-9">                
-                <textarea name="text" id="actividades_interesado_participarField" rows="3" cols="70"></textarea>
+                <textarea name="text" id="actividades_interesado_participarField" maxlength="250" rows="3" cols="70"></textarea>
               </div>
             </div>
             <div class="mb-3 row">

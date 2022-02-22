@@ -231,7 +231,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="tiempo_de_gestacionField" class="col-md-3 form-label">Tiempo de gestación</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="tiempo_de_gestacionField" name="name">
+                <input type="text" class="form-control" id="tiempo_de_gestacionField" maxlength="250" name="name">
               </div>
             </div>
             <div class="mb-3 row">
@@ -246,7 +246,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="alguien_de_su_hogar_tiene_siguientes_condicionesField" class="col-md-3 form-label">¿Alguien de su hogar tiene siguientes condiciones?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="alguien_de_su_hogar_tiene_siguientes_condicionesField" name="name">
+                <input type="text" class="form-control" maxlength="250" id="alguien_de_su_hogar_tiene_siguientes_condicionesField" name="name">
               </div>
             </div>
 

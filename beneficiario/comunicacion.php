@@ -25,8 +25,8 @@ include("../administrador/config/connection.php");
               <th>¿Como&nbsp;es&nbsp;su&nbsp;acceso&nbsp;a&nbsp;internet&nbsp;con&nbsp;mayor&nbsp;frecuencia&nbsp;,&nbsp;Plan&nbsp;de&nbsp;datos&nbsp;o&nbsp;Prepago? </th>
               <th>&nbsp;&nbsp;¿&nbsp;Podria&nbsp;decirnos&nbsp;cuál&nbsp;es&nbsp;la&nbsp;dirección&nbsp;de&nbsp;su&nbsp;actual&nbsp;residencia&nbsp;?&nbsp;&nbsp;</th>
               <th>¿Vive&nbsp;o&nbsp;viaja&nbsp;con&nbsp;otros&nbsp;familiares?</th>
-              <th>¿Cuantos&nbsp;viven&nbsp;o&nbsp;viajan&nbsp;con&nbsp;usted</th>
-              <th>¿Cuantos&nbsp;tienen&nbsp;ingreso&nbsp;económico&nbsp;por&nbsp;trabajo</th>
+              <th>¿Cuantos&nbsp;viven&nbsp;o&nbsp;viajan&nbsp;con&nbsp;usted?</th>
+              <th>¿Cuantos&nbsp;tienen&nbsp;ingreso&nbsp;económico&nbsp;por&nbsp;trabajo?</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -50,7 +50,7 @@ include("../administrador/config/connection.php");
             },
             "aoColumnDefs": [{
               "bSortable": false,
-              "aTargets": [16]
+              "aTargets": [17]
             },
             ]
           });
@@ -229,7 +229,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="tiene_los_siguientes_medios_comunicacionField" class="col-md-3 form-label">¿Tiene los siguientes medios de comunicación?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="tiene_los_siguientes_medios_comunicacionField" name="email">
+                <input type="text" class="form-control" id="tiene_los_siguientes_medios_comunicacionField" name="email" maxlength="250" >
               </div>
             </div>
             <div class="mb-3 row">
@@ -272,19 +272,19 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="cual_es_su_numero_whatsappField" class="col-md-3 form-label">¿Cuál es su número de Whatsapp?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_numero_whatsappField" name="mobile" pattern="[0-9]+">
+                <input type="text" class="form-control" id="cual_es_su_numero_whatsappField" name="mobile" maxlength="50" pattern="[0-9]+">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_es_su_numero_recibir_smsField" class="col-md-3 form-label">¿Cuál es su número para recibir SMS?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_numero_recibir_smsField" name="City" pattern="[0-9]+">
+                <input type="text" class="form-control" id="cual_es_su_numero_recibir_smsField" name="City" maxlength="50" pattern="[0-9]+">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_numero_usa_con_frecuenciaField" class="col-md-3 form-label">¿Cuál número usa con mayor frecuencia?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_numero_usa_con_frecuenciaField" name="City">
+                <input type="text" class="form-control" id="cual_numero_usa_con_frecuenciaField" name="City" maxlength="250">
               </div>
             </div>
             <div class="mb-3 row">
@@ -299,13 +299,13 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="como_accede_a_internetField" class="col-md-3 form-label">¿Como accede a internet?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="como_accede_a_internetField" name="City">
+                <input type="text" class="form-control" id="como_accede_a_internetField" name="City" maxlength="250">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cual_es_su_direccionField" class="col-md-3 form-label">¿Cuál es su dirección?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cual_es_su_direccionField" name="City">
+                <input type="text" class="form-control" id="cual_es_su_direccionField" maxlength="250" name="City">
               </div>
             </div>
 
@@ -321,13 +321,13 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="cuantos_viven_o_viajan_con_ustedField" class="col-md-3 form-label">¿Cuantos viven o viajan con usted?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cuantos_viven_o_viajan_con_ustedField" name="City">
+                <input type="text" class="form-control" id="cuantos_viven_o_viajan_con_ustedField" name="City" maxlength="250">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="cuantos_tienen_ingreso_por_trabajoField" class="col-md-3 form-label">¿Cuantos tienen ingreso por trabajo?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="cuantos_tienen_ingreso_por_trabajoField" name="City">
+                <input type="text" class="form-control" id="cuantos_tienen_ingreso_por_trabajoField" name="City" maxlength="250">
               </div>
             </div>
 

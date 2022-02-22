@@ -166,25 +166,25 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="algun_miembro_tiene_discapacidadField" class="col-md-3 form-label">¿Algun miembro tiene discapacidad?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="algun_miembro_tiene_discapacidadField" name="name">
+                <input type="text" class="form-control" maxlength="250" id="algun_miembro_tiene_discapacidadField" name="name">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="algun_miembro_tiene_problemas_saludField" class="col-md-3 form-label">¿Algun miembro tiene problemas de salud?</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="algun_miembro_tiene_problemas_saludField" name="name">
+                <input type="text" class="form-control" maxlength="250" id="algun_miembro_tiene_problemas_saludField" name="name">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="derivacion_saludField" class="col-md-3 form-label">Derivación Salud</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="derivacion_saludField" name="name">
+                <input type="text" class="form-control" id="derivacion_saludField" maxlength="250" name="name">
               </div>
             </div>
             <div class="mb-3 row">
               <label for="derivacion_proteccionField" class="col-md-3 form-label">Derivación Protección</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="derivacion_proteccionField" name="name">
+                <input type="text" class="form-control" id="derivacion_proteccionField" maxlength="250" name="name">
               </div>
             </div>
 
