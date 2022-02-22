@@ -64,8 +64,13 @@ drop view IF EXISTS vista_general;
 CREATE VIEW `bd_bha_sci`.`vista_general` AS
 	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.numero_cedula, b.tipo_identificacion, b.numero_identificacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, b.fecha_nacimiento
     FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario; 
+    
+drop view IF EXISTS vista_integrante;
+CREATE VIEW `bd_bha_sci`.`vista_integrante` AS
+	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, i.nombre_1a, i.nombre_1b, i.apellido_1a, i.apellido_1b, i.genero_1, i.fecha_nacimiento_1, i.relacion_1, i.otro_1, i.tipo_identificacion_1, i.numero_identificacion_1
+    FROM beneficiario b inner join integrantes i on b.id_beneficiario = i.id_beneficiario; 
 
-select * from vista_general;
+select * from vista_estatus;
 
 /* CREACION DE TRIGGERS */
 

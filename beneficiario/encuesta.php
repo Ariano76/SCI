@@ -8,9 +8,6 @@ include("../administrador/config/connection.php");
 
 ?>
 
-<!--div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="row"-->
       <h1 class="display-8">DATOS DE ENCUESTA</h1> 
 
       <div class="col-lg-12">

@@ -372,5 +372,5 @@ ALTER TABLE acciones
 ADD FOREIGN KEY R_41 (id_entidad) REFERENCES entidades (id_entidad);
 
 
-insert into estados (estado) values('REGISTRO VALIDO'),('REGISTRO INVALIDO'),('REGISTRO EN ESPERA');
+insert into estados (estado) values('VALIDO'),('INVALIDO'),('EN ESPERA');
 

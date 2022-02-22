@@ -59,7 +59,7 @@
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/derivacion.php"?>">Derivación a sectores</a>
   								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="#">Estatus</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/estatus.php"?>">Estatus</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/bitacora.php"?>">Bitacora</a>
   							</div>

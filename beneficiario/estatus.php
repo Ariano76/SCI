@@ -1,62 +1,48 @@
 <?php include("../template/cabecera.php"); 
 
-//require "vendor/autoload.php";
-//use PhpOffice\PhpSpreadsheet\Spreadsheet;
-//use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
 include("../administrador/config/connection.php");
 
 ?>
+<h1 class="display-8">ESTATUS DEL BENEFICIARIO</h1> 
 
-<!--div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="row"-->
-      <h1 class="display-8">ESTATUS DEL BENEFICIARIO</h1> 
+<div class="col-lg-12">
+  <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed nowrap" style="width:100%">
+    <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%"-->
+    <thead class="text-center">
+      <tr>
+        <th>Codigo</th>
+        <th>Nombres&nbsp;y&nbsp;apellidos&nbsp;del&nbsp;beneficiario</th>
+        <th>Número&nbsp;de&nbsp;Cedula</th>                                
+        <th>Observaciones</th>  
+        <th>Estatus</th>  
+        <th>Acción</th>
+      </tr>
+    </thead>
+  </table>   
 
-      <div class="col-lg-12">
-        <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed nowrap" style="width:100%"-->
-        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
-          <thead class="text-center">
-            <tr>
-              <th>Codigo</th>
-              <th>Nombres&nbsp;y&nbsp;apellidos&nbsp;del&nbsp;beneficiario</th>
-              <th>Número&nbsp;de&nbsp;Cedula</th>                                
-              <th>Programa&nbsp;de&nbsp;Nutrición&nbsp;¿&nbsp;participara&nbsp;?</th>  
-              <th>Programa&nbsp;de&nbsp;Salud&nbsp;¿&nbsp;participara&nbsp;?</th>  
-              <th>Programa&nbsp;Medio&nbsp;de&nbsp;Vida&nbsp;¿&nbsp;participara&nbsp;?</th> 
-              <th>¿En&nbsp;cuál&nbsp;de&nbsp;las&nbsp;siguientes&nbsp;actividades&nbsp;estaria&nbsp;interesado&nbsp;en&nbsp;participar&nbsp;?</th> 
-              <th>Capacitación&nbsp;de&nbsp;entrenamiento&nbsp;vocacional</th> 
-              <th>Capacitación&nbsp;para&nbsp;iniciar&nbsp;emprendimiento</th> 
-              <th>Acción</th>
-            </tr>
-          </thead>
-        </table>   
-
-      </div>
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $('#tablaUsuarios').DataTable({
-            "fnCreatedRow": function(nRow, aData, iDataIndex) {
-              $(nRow).attr('id', aData[0]);
-            },
-            scrollX: true,
-            'serverSide': 'true',
-            'processing': 'true',
-            'paging': 'true',
-            'order': [],
-            'ajax': {
-              'url': 'fetch_data_derivacion.php',
-              'type': 'post',
-            },
-            "aoColumnDefs": [{
-              "bSortable": false,
-              "aTargets": [9]
-            },
-            ]
-          });
-        });
-
-
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#tablaUsuarios').DataTable({
+      "fnCreatedRow": function(nRow, aData, iDataIndex) {
+        $(nRow).attr('id', aData[0]);
+      },
+      scrollX: true,
+      'serverSide': 'true',
+      'processing': 'true',
+      'paging': 'true',
+      'order': [],
+      'ajax': {
+        'url': 'fetch_data_estatus.php',
+        'type': 'post',
+      },
+      "aoColumnDefs": [{
+        "bSortable": false,
+        "aTargets": [5]
+      },
+      ]
+    });
+  });
         /*$(document).ready(function(){
           $("#exampleModal").find("input[type=radio]").click(function() {
             alert($('input[type=radio]:checked').val());
@@ -67,64 +53,52 @@ include("../administrador/config/connection.php");
       //var tr = $(this).closest('tr');
       var nombre = $('#nombreField').val();
       var numero_cedula = $('#numero_cedulaField').val();
-      var interesado_participar_nutricion = $('#interesado_participar_nutricionField').val();
-      var interesado_participar_salud = $('#interesado_participar_saludField').val();
-      var interesado_participar_medios_vida = $('#interesado_participar_medios_vidaField').val();
-      var actividades_interesado_participar = $('#actividades_interesado_participarField').val();
-      var interesado_entrenamiento_vocacional = $('#interesado_entrenamiento_vocacionalField').val();
-      var interesado_emprendimiento = $('#interesado_emprendimientoField').val();
-      
-      var codNutricion = $("input[name=nutricion]:checked").val();
-      var codSalud = $("input[name=salud]:checked").val();
-      var codVida = $("input[name=vida]:checked").val();
-      var codVocacional = $("input[name=vocacional]:checked").val();
-      var codEmprendimiento = $("input[name=emprendimiento]:checked").val();
+      var observaciones = $('#observacionesField').val();
+      var id_estado = $('#id_estadoField').val();
+
+      var codEstatus = $("input[name=estatus]:checked").val();
 
       var trid = $('#trid').val();
       var id = $('#id').val();           
 /*      if (region_beneficiario != '' && otra_region != '' && se_instalara_en_esta_region != '' && en_que_provincia != '' && transit_settle != '' && en_que_otro_caso_1 != '' && en_que_distrito != ''  && en_que_otro_caso_2 != '' && en_que_otro_caso_3 != '' && primer_nombre != '' && segundo_nombre != '' && primer_apellido != '' && segundo_apellido != '' && genero != '' && fecha_nacimiento != '' && tiene_carne_extranjeria != '' && numero_cedula != '' && fecha_caducidad_cedula != '' && tipo_identificacion != '' && numero_identificacion != '' && fecha_caducidad_identificacion != '' && documentos_fisico_original ) {
   */
-        $.ajax({
-          url: "update_user_derivacion.php",
-          type: "post",
-          data: {
-            nombre: nombre,
-            numero_cedula: numero_cedula,
-            interesado_participar_nutricion: codNutricion,
-            interesado_participar_salud: codSalud,
-            interesado_participar_medios_vida: codVida,
-            actividades_interesado_participar: actividades_interesado_participar,
-            interesado_entrenamiento_vocacional: codVocacional,
-            interesado_emprendimiento: codEmprendimiento,
-            id: id
-          },
-          success: function(data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'true') {
-              table = $('#tablaUsuarios').DataTable();
-              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
-              var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, nombre,  numero_cedula, codNutricion, codSalud, codVida, actividades_interesado_participar, codVocacional, codEmprendimiento, button]);
-              $('#exampleModal').modal('hide');
-            } else {
-              alert('failed');
-            }
-          }
-        });
+  $.ajax({
+    url: "update_user_estatus.php",
+    type: "post",
+    data: {
+      nombre: nombre,
+      numero_cedula: numero_cedula,
+      observaciones: observaciones,
+      id_estado: codEstatus,
+      id: id
+    },
+    success: function(data) {
+      var json = JSON.parse(data);
+      var status = json.status;
+      if (status == 'true') {
+        table = $('#tablaUsuarios').DataTable();
+        var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
+        var row = table.row("[id='" + trid + "']");
+        row.row("[id='" + trid + "']").data([id, nombre, numero_cedula, observaciones, codEstatus, button]);
+        $('#exampleModal').modal('hide');
+      } else {
+        alert('failed');
+      }
+    }
+  });
 /*      } else {
         alert('Fill all the required fields');
       }*/
     });
-$('#tablaUsuarios').on('click', '.editbtn ', function(event) {
-  var table = $('#tablaUsuarios').DataTable();
-  var trid = $(this).closest('tr').attr('id');
+        $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
+          var table = $('#tablaUsuarios').DataTable();
+          var trid = $(this).closest('tr').attr('id');
       // console.log(selectedRow);
       var id = $(this).data('id');
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "get_single_derivacion.php",
+        url: "get_single_estatus.php",
         data: {
           id: id
         },
@@ -133,44 +107,21 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
           var json = JSON.parse(data);
           $('#nombreField').val(json.nombre);
           $('#numero_cedulaField').val(json.numero_cedula);
-          $('#interesado_participar_nutricionField').val(json.interesado_participar_nutricion);
-          $('#interesado_participar_saludField').val(json.interesado_participar_salud);
-          $('#interesado_participar_medios_vidaField').val(json.interesado_participar_medios_vida);
-          $('#actividades_interesado_participarField').val(json.actividades_interesado_participar);
-          $('#interesado_entrenamiento_vocacionalField').val(json.interesado_entrenamiento_vocacional);
-          $('#interesado_emprendimientoField').val(json.interesado_emprendimiento);
+          $('#observacionesField').val(json.observaciones);
+          $('#id_estadoField').val(json.id_estado);
+
           $('#id').val(id);
           $('#trid').val(trid);
-
           //console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
+          if (json.id_estado == "1") {
+            $('#exampleModal').find(':radio[name=estatus][value="1"]').prop('checked', true);
+          } else if (json.id_estado == "2") {
+            $('#exampleModal').find(':radio[name=estatus][value="2"]').prop('checked', true);
+          } else {
+            $('#exampleModal').find(':radio[name=estatus][value="3"]').prop('checked', true);
+          }
 
-          if (json.interesado_participar_nutricion == "1") {
-            $('#exampleModal').find(':radio[name=nutricion][value="1"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=nutricion][value="0"]').prop('checked', true);
-          }
-          if (json.interesado_participar_salud == "1") {
-            $('#exampleModal').find(':radio[name=salud][value="1"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=salud][value="0"]').prop('checked', true);
-          }
-          if (json.interesado_participar_medios_vida == "1") {
-            $('#exampleModal').find(':radio[name=vida][value="1"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=vida][value="0"]').prop('checked', true);
-          }
-          if (json.interesado_entrenamiento_vocacional == "1") {
-            $('#exampleModal').find(':radio[name=vocacional][value="1"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=vocacional][value="0"]').prop('checked', true);
-          }
-          if (json.interesado_emprendimiento == "1") {
-            $('#exampleModal').find(':radio[name=emprendimiento][value="1"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=emprendimiento][value="0"]').prop('checked', true);
-          }
-                   
-        }        
+        }
       })
     });
 
@@ -182,7 +133,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR DATOS DERIVACION SECTORES</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ESTATUS BENEFICIARIO</h5>
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -203,55 +154,32 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="interesado_participar_nutricionField" class="col-md-3 form-label">Programa Nutrición ¿participara?</label>
+              <label for="observacionesField" class="col-md-3 form-label">Observaciones</label>
               <div class="col-md-9">
-                <label class="radio-inline">
-                  <input type="radio" name="nutricion" id="interesado_participar_nutricionField1" value="1"> Si 
-                  <input type="radio" name="nutricion" id="interesado_participar_nutricionField2" value="0"> No 
-                </label>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="interesado_participar_saludField" class="col-md-3 form-label">Programa Salud ¿participara?</label>
-              <div class="col-md-9">
-                <label class="radio-inline">
-                  <input type="radio" name="salud" id="interesado_participar_saludField1" value="1"> Si 
-                  <input type="radio" name="salud" id="interesado_participar_saludField2" value="0"> No 
-                </label>
+                <!--input type="text" class="form-control" id="observacionesField" name="name"-->
+                <textarea name="text" id="observacionesField" rows="3" cols="70"></textarea>
               </div>
             </div>            
             <div class="mb-3 row">
-              <label for="interesado_participar_medios_vidaField" class="col-md-3 form-label">Programa Medios de Vida ¿participara?</label>
+              <label for="id_estadoField" class="col-md-3 form-label">Estatus</label>
               <div class="col-md-9">
-                <label class="radio-inline">
-                  <input type="radio" name="vida" id="interesado_participar_medios_vidaField1" value="1"> Si 
-                  <input type="radio" name="vida" id="interesado_participar_medios_vidaField2" value="0"> No 
-                </label>
-              </div>
-            </div>            
-
-            <div class="mb-3 row">
-              <label for="actividades_interesado_participarField" class="col-md-3 form-label">¿En cuál de las actividades estaria interesado?</label>
-              <div class="col-md-9">                
-                <textarea name="text" id="actividades_interesado_participarField" rows="3" cols="70"></textarea>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="interesado_entrenamiento_vocacionalField" class="col-md-3 form-label">Entrenamiento Vocacional</label>
-              <div class="col-md-9">
-                <label class="radio-inline">
-                  <input type="radio" name="vocacional" id="interesado_entrenamiento_vocacionalField1" value="1"> Si 
-                  <input type="radio" name="vocacional" id="interesado_entrenamiento_vocacionalField2" value="0"> No 
-                </label>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="interesado_emprendimientoField" class="col-md-3 form-label">Smartphone</label>
-              <div class="col-md-9">
-                <label class="radio-inline">
-                  <input type="radio" name="emprendimiento" id="interesado_emprendimientoField1" value="1"> Si 
-                  <input type="radio" name="emprendimiento" id="interesado_emprendimientoField2" value="0"> No 
-                </label>
+                <!--label class="radio-inline">
+                  <input type="radio" name="estatus" id="id_estadoField1" value="1"> REGISTRO VALIDO 
+                  <input type="radio" name="estatus" id="id_estadoField2" value="2"> REGISTRO INVALIDO 
+                  <input type="radio" name="estatus" id="id_estadoField3" value="3"> REGISTRO EN ESPERA 
+                </label-->
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField1" name="estatus" class="custom-control-input" value="1">
+                  <label class="custom-control-label" for="customRadio1">REGISTRO VALIDO</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField2" name="estatus" class="custom-control-input" value="2">
+                  <label class="custom-control-label" for="customRadio2">REGISTRO INVALIDO</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField3" name="estatus" class="custom-control-input" value="3">
+                  <label class="custom-control-label" for="customRadio2">REGISTRO EN ESPERA</label>
+                </div>                
               </div>
             </div>
 
