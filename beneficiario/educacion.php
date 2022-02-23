@@ -230,20 +230,20 @@ include("../administrador/config/connection.php");
           <input type="hidden" name="trid" id="trid" value="">
           
           <div class="mb-3 row">
-            <label for="nombreField" class="col-md-3 form-label">Nombre Beneficiario</label>
-            <div class="col-md-9">
+            <label for="nombreField" class="col-md-4 form-label">Nombre Beneficiario</label>
+            <div class="col-md-8">
               <input type="text" class="form-control" id="nombreField" name="name" disabled>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="numero_cedulaField" class="col-md-3 form-label">Número Cedula</label>
-            <div class="col-md-9">
+            <label for="numero_cedulaField" class="col-md-4 form-label">Número Cedula</label>
+            <div class="col-md-8">
               <input type="text" class="form-control" id="numero_cedulaField" name="name" disabled>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="viaja_con_menores_de_17_aniosField" class="col-md-3 form-label">¿Viaja con menores de 17 años?</label>
-            <div class="col-md-9">
+            <label for="viaja_con_menores_de_17_aniosField" class="col-md-4 form-label">¿Viaja con menores de 17 años?</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="menores" id="viaja_con_menores_de_17_aniosField1" value="1"> Si 
                 <input type="radio" name="menores" id="viaja_con_menores_de_17_aniosField2" value="0"> No 
@@ -251,8 +251,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="todos_los_nna_estan_matriculadosField" class="col-md-3 form-label">¿Todos los NNa estan matriculados?</label>
-            <div class="col-md-9">
+            <label for="todos_los_nna_estan_matriculadosField" class="col-md-4 form-label">¿Todos los NNa estan matriculados?</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="matriculados" id="todos_los_nna_estan_matriculadosField1" value="1"> Si 
                 <input type="radio" name="matriculados" id="todos_los_nna_estan_matriculadosField2" value="0"> No 
@@ -260,15 +260,15 @@ include("../administrador/config/connection.php");
             </div>
           </div>            
           <div class="mb-3 row">
-            <label for="que_dispositvo_utilizan_en_clases_virtualesField" class="col-md-3 form-label">¿Que dispositivo utilizan en sus clases virtuales?</label>
-            <div class="col-md-9">
+            <label for="que_dispositvo_utilizan_en_clases_virtualesField" class="col-md-4 form-label">¿Que dispositivo utilizan en sus clases virtuales?</label>
+            <div class="col-md-8">
               <!--input type="text" class="form-control" id="que_dispositvo_utilizan_en_clases_virtualesField" name="name"-->
-              <textarea name="text" id="que_dispositvo_utilizan_en_clases_virtualesField" maxlength="250" rows="3" cols="70"></textarea>
+              <textarea name="text" id="que_dispositvo_utilizan_en_clases_virtualesField" maxlength="250" rows="3" cols="60"></textarea>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="celular_basicoField" class="col-md-3 form-label">Celular basico?</label>
-            <div class="col-md-9">
+            <label for="celular_basicoField" class="col-md-4 form-label">Celular basico?</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="celular" id="celular_basicoField1" value="1"> Si 
                 <input type="radio" name="celular" id="celular_basicoField2" value="0"> No 
@@ -276,8 +276,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="smartphoneField" class="col-md-3 form-label">Smartphone</label>
-            <div class="col-md-9">
+            <label for="smartphoneField" class="col-md-4 form-label">Smartphone</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="smartphone" id="smartphoneField1" value="1"> Si 
                 <input type="radio" name="smartphone" id="smartphoneField2" value="0"> No 
@@ -285,8 +285,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="laptopField" class="col-md-3 form-label">Laptop</label>
-            <div class="col-md-9">
+            <label for="laptopField" class="col-md-4 form-label">Laptop</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="laptop" id="laptopField1" value="1"> Si 
                 <input type="radio" name="laptop" id="laptopField2" value="0"> No 
@@ -294,8 +294,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="ningunoField" class="col-md-3 form-label">Ninguno</label>
-            <div class="col-md-9">
+            <label for="ningunoField" class="col-md-4 form-label">Ninguno</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="ninguno" id="ningunoField1" value="1"> Si 
                 <input type="radio" name="ninguno" id="ningunoField2" value="0"> No 
@@ -303,15 +303,15 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="que_dificultades_tuvo_al_matricular_nnaField" class="col-md-3 form-label">¿Que dificultades tuvo al matricular a los menores?</label>
-            <div class="col-md-9">
+            <label for="que_dificultades_tuvo_al_matricular_nnaField" class="col-md-4 form-label">¿Que dificultades tuvo al matricular a los menores?</label>
+            <div class="col-md-8">
               <!--input type="text" class="form-control" id="que_dificultades_tuvo_al_matricular_nnaField" name="name"-->
-              <textarea name="text" id="que_dificultades_tuvo_al_matricular_nnaField" maxlength="250" rows="3" cols="70"></textarea>
+              <textarea name="text" id="que_dificultades_tuvo_al_matricular_nnaField" maxlength="250" rows="3" cols="60"></textarea>
             </div>
           </div>            
           <div class="mb-3 row">
-            <label for="no_conocia_procedimiento_matriculaField" class="col-md-3 form-label">No conocia los procedimiento de matricula</label>
-            <div class="col-md-9">
+            <label for="no_conocia_procedimiento_matriculaField" class="col-md-4 form-label">No conocia los procedimiento de matricula</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="matricula" id="no_conocia_procedimiento_matriculaField1" value="1"> Si 
                 <input type="radio" name="matricula" id="no_conocia_procedimiento_matriculaField2" value="0"> No 
@@ -319,8 +319,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="no_cuento_con_los_documentosField" class="col-md-3 form-label">No cuento con los documentos</label>
-            <div class="col-md-9">
+            <label for="no_cuento_con_los_documentosField" class="col-md-4 form-label">No cuento con los documentos</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="documentos" id="no_cuento_con_los_documentosField1" value="1"> Si 
                 <input type="radio" name="documentos" id="no_cuento_con_los_documentosField2" value="0"> No 
@@ -328,8 +328,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="no_habia_vacantesField" class="col-md-3 form-label">No habia vacantes</label>
-            <div class="col-md-9">
+            <label for="no_habia_vacantesField" class="col-md-4 form-label">No habia vacantes</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="vacantes" id="no_habia_vacantesField1" value="1"> Si 
                 <input type="radio" name="vacantes" id="no_habia_vacantesField2" value="0"> No 
@@ -337,8 +337,8 @@ include("../administrador/config/connection.php");
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="otroField" class="col-md-3 form-label">Otro</label>
-            <div class="col-md-9">
+            <label for="otroField" class="col-md-4 form-label">Otro</label>
+            <div class="col-md-8">
               <label class="radio-inline">
                 <input type="radio" name="otro" id="otroField1" value="1"> Si 
                 <input type="radio" name="otro" id="otroField2" value="0"> No 

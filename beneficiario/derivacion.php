@@ -191,20 +191,20 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nombreField" class="col-md-3 form-label">Nombre Beneficiario</label>
-              <div class="col-md-9">
+              <label for="nombreField" class="col-md-4 form-label">Nombre Beneficiario</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="nombreField" name="name" disabled>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="numero_cedulaField" class="col-md-3 form-label">Número Cedula</label>
-              <div class="col-md-9">
+              <label for="numero_cedulaField" class="col-md-4 form-label">Número Cedula</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="numero_cedulaField" name="name" disabled>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="interesado_participar_nutricionField" class="col-md-3 form-label">Programa Nutrición ¿participara?</label>
-              <div class="col-md-9">
+              <label for="interesado_participar_nutricionField" class="col-md-4 form-label">Programa Nutrición ¿participara?</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="nutricion" id="interesado_participar_nutricionField1" value="1"> Si 
                   <input type="radio" name="nutricion" id="interesado_participar_nutricionField2" value="0"> No 
@@ -212,8 +212,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="interesado_participar_saludField" class="col-md-3 form-label">Programa Salud ¿participara?</label>
-              <div class="col-md-9">
+              <label for="interesado_participar_saludField" class="col-md-4 form-label">Programa Salud ¿participara?</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="salud" id="interesado_participar_saludField1" value="1"> Si 
                   <input type="radio" name="salud" id="interesado_participar_saludField2" value="0"> No 
@@ -221,8 +221,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>            
             <div class="mb-3 row">
-              <label for="interesado_participar_medios_vidaField" class="col-md-3 form-label">Programa Medios de Vida ¿participara?</label>
-              <div class="col-md-9">
+              <label for="interesado_participar_medios_vidaField" class="col-md-4 form-label">Programa Medios de Vida ¿participara?</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="vida" id="interesado_participar_medios_vidaField1" value="1"> Si 
                   <input type="radio" name="vida" id="interesado_participar_medios_vidaField2" value="0"> No 
@@ -231,14 +231,14 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             </div>            
 
             <div class="mb-3 row">
-              <label for="actividades_interesado_participarField" class="col-md-3 form-label">¿En cuál de las actividades estaria interesado?</label>
-              <div class="col-md-9">                
-                <textarea name="text" id="actividades_interesado_participarField" maxlength="250" rows="3" cols="70"></textarea>
+              <label for="actividades_interesado_participarField" class="col-md-4 form-label">¿En cuál de las actividades estaria interesado?</label>
+              <div class="col-md-8">                
+                <textarea name="text" id="actividades_interesado_participarField" maxlength="250" rows="3" cols="60"></textarea>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="interesado_entrenamiento_vocacionalField" class="col-md-3 form-label">Entrenamiento Vocacional</label>
-              <div class="col-md-9">
+              <label for="interesado_entrenamiento_vocacionalField" class="col-md-4 form-label">Entrenamiento Vocacional</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="vocacional" id="interesado_entrenamiento_vocacionalField1" value="1"> Si 
                   <input type="radio" name="vocacional" id="interesado_entrenamiento_vocacionalField2" value="0"> No 
@@ -246,8 +246,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="interesado_emprendimientoField" class="col-md-3 form-label">Smartphone</label>
-              <div class="col-md-9">
+              <label for="interesado_emprendimientoField" class="col-md-4 form-label">Smartphone</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="emprendimiento" id="interesado_emprendimientoField1" value="1"> Si 
                   <input type="radio" name="emprendimiento" id="interesado_emprendimientoField2" value="0"> No 

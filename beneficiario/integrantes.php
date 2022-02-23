@@ -59,7 +59,18 @@ include("../administrador/config/connection.php");
               <th>Parentesco</th>
               <th>Otro</th>
               <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>                            
+              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+              <th>Primer&nbsp;nombre</th>
+              <th>Segundo&nbsp;nombre</th>
+              <th>Primer&nbsp;apellido</th>
+              <th>Segundo&nbsp;apellido</th>
+              <th>Genero</th>
+              <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+              <th>Parentesco</th>
+              <th>Otro</th>
+              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+
               <th>Acción</th>
             </tr>
           </thead>
@@ -83,7 +94,7 @@ include("../administrador/config/connection.php");
             },
             "aoColumnDefs": [{
               "bSortable": false,
-              "aTargets": [43]
+              "aTargets": [53]
             },
             ]
           });
@@ -133,7 +144,16 @@ include("../administrador/config/connection.php");
       var otro_4 = $('#otro_4Field').val();      
       var tipo_identificacion_4 = $('#tipo_identificacion_4Field').val();
       var numero_identificacion_4 = $('#numero_identificacion_4Field').val();            
-
+      var nombre_5a = $('#nombre_5aField').val();
+      var nombre_5b = $('#nombre_5bField').val();
+      var apellido_5a = $('#apellido_5aField').val();
+      var apellido_5b = $('#apellido_5bField').val();
+      var genero_5 = $('#genero_5Field').val();
+      var fecha_nacimiento_5 = $('#fecha_nacimiento_5Field').val();
+      var relacion_5 = $('#relacion_5Field').val();
+      var otro_5 = $('#otro_5Field').val();      
+      var tipo_identificacion_5 = $('#tipo_identificacion_5Field').val();
+      var numero_identificacion_5 = $('#numero_identificacion_5Field').val();            
       var trid = $('#trid').val();
       var id = $('#id').val();           
 
@@ -188,6 +208,16 @@ include("../administrador/config/connection.php");
             otro_4: otro_4,
             tipo_identificacion_4: tipo_identificacion_4,
             numero_identificacion_4: numero_identificacion_4,
+            nombre_5a: nombre_5a,
+            nombre_5b: nombre_5b,
+            apellido_5a: apellido_5a,
+            apellido_5b: apellido_5b,
+            genero_5: genero_5,
+            fecha_nacimiento_5: fecha_nacimiento_5,
+            relacion_5: relacion_5,
+            otro_5: otro_5,
+            tipo_identificacion_5: tipo_identificacion_5,
+            numero_identificacion_5: numero_identificacion_5,
             id: id
           },
           success: function(data) {
@@ -201,6 +231,7 @@ include("../administrador/config/connection.php");
                 nombre_2a, nombre_2b, apellido_2a, apellido_2b, genero_2, fecha_nacimiento_2, relacion_2, otro_2, tipo_identificacion_2, numero_identificacion_2, 
                 nombre_3a, nombre_3b, apellido_3a, apellido_3b, genero_3, fecha_nacimiento_3, relacion_3, otro_3, tipo_identificacion_3, numero_identificacion_3, 
                 nombre_4a, nombre_4b, apellido_4a, apellido_4b, genero_4, fecha_nacimiento_4, relacion_4, otro_4, tipo_identificacion_4, numero_identificacion_4, 
+                nombre_5a, nombre_5b, apellido_5a, apellido_5b, genero_5, fecha_nacimiento_5, relacion_5, otro_5, tipo_identificacion_5, numero_identificacion_5, 
                 button]);
               $('#exampleModal').modal('hide');
             } else {
@@ -268,7 +299,17 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
           $('#relacion_4Field').val(json.relacion_4);
           $('#otro_4Field').val(json.otro_4);
           $('#tipo_identificacion_4Field').val(json.tipo_identificacion_4);
-          $('#numero_identificacion_4Field').val(json.numero_identificacion_4);                    
+          $('#numero_identificacion_4Field').val(json.numero_identificacion_4);
+          $('#nombre_5aField').val(json.nombre_5a);
+          $('#nombre_5bField').val(json.nombre_5b);
+          $('#apellido_5aField').val(json.apellido_5a);
+          $('#apellido_5bField').val(json.apellido_5b);
+          $('#genero_5Field').val(json.genero_5);
+          $('#fecha_nacimiento_5Field').val(json.fecha_nacimiento_5);
+          $('#relacion_5Field').val(json.relacion_5);
+          $('#otro_5Field').val(json.otro_5);
+          $('#tipo_identificacion_5Field').val(json.tipo_identificacion_5);
+          $('#numero_identificacion_5Field').val(json.numero_identificacion_5);
           $('#id').val(id);
           $('#trid').val(trid);
 
@@ -282,8 +323,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   <!-- Modal -->
   <!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"-->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <!--div class="modal-dialog" role="document"-->
-    <div class="modal-dialog modal-lg" role="document">
+    <!--div class="modal-dialog modal-lg" role="document"-->
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR DATOS INTEGRANTES</h5>
@@ -295,7 +336,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <input type="hidden" name="trid" id="trid" value="">
 
             <div class="row">
-              <div class="col-3">
+              <div class="col-4">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   <a class="nav-link active" id="integ1-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Familiar 1</a>
                   <a class="nav-link" id="integ2-tab" data-toggle="pill" href="#v-pills-integ2" role="tab" aria-controls="v-pills-integ2" aria-selected="false">Familiar 2</a>
@@ -306,189 +347,231 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
                   <a class="nav-link" id="integ7-tab" data-toggle="pill" href="#v-pills-integ7" role="tab" aria-controls="v-pills-integ7" aria-selected="false">Familiar 7</a>
                 </div>
               </div>
-              <div class="col-9">
+              <div class="col-8">
                 <div class="tab-content" id="v-pills-tabContent">
                   <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <label for="nombre_beneficiarioField" class="col-md-9 form-label">Nombre del Beneficiario</label>
-                    <div class="col-md-9">
+                    <label for="nombre_beneficiarioField" class="col-md-12 form-label">Nombre del Beneficiario</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_beneficiarioField" name="name" disabled>
                     </div>
-                    <label for="numero_cedulaField" class="col-md-9 form-label">Numero cedula</label>
-                    <div class="col-md-9">
+                    <label for="numero_cedulaField" class="col-md-12 form-label">Numero cedula</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="numero_cedulaField" name="cedula" maxlength="25" disabled>
                     </div>
-                    <label for="nombre_1aField" class="col-md-3 form-label">1er Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_1aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_1aField" name="nombre_1a" maxlength="50">
                     </div>
-                    <label for="nombre_1bField" class="col-md-3 form-label">2do Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_1bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_1bField" name="nombre_1b" maxlength="50">
                     </div> 
-                    <label for="apellido_1aField" class="col-md-3 form-label">1er Apelido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_1aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_1aField" name="ape1a" maxlength="50">
                     </div>
-                    <label for="apellido_1bField" class="col-md-3 form-label">2do Apellido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_1bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_1bField" name="ape1b" maxlength="50">
                     </div>
-                    <label for="genero_1Field" class="col-md-3 form-label">Genero</label>
-                    <div class="col-md-9">
+                    <label for="genero_1Field" class="col-md-12 form-label">Genero</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="genero_1Field" name="genero1" maxlength="50">
                     </div>
-                    <label for="fecha_nacimiento_1Field" class="col-md-3 form-label">Fecha de  nacimiento</label>
+                    <label for="fecha_nacimiento_1Field" class="col-md-9 form-label">Fecha de  nacimiento</label>
                     <div class="col-md-9">
                       <input id="fecha_nacimiento_1Field" type="date" name="fecha1" value="2017-06-01">
                     </div>
-                    <label for="relacion_1Field" class="col-md-3 form-label">Parentesco</label>
-                    <div class="col-md-9">
+                    <label for="relacion_1Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="relacion_1Field" name="relacion_1" maxlength="50">
                     </div>
-                    <label for="otro_1Field" class="col-md-3 form-label">Otro</label>
-                    <div class="col-md-9">
+                    <label for="otro_1Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="otro_1Field" name="otro_1" maxlength="50">
                     </div>
-                    <label for="tipo_identificacion_1Field" class="col-md-9 form-label">Tipo de identificación</label>
-                    <div class="col-md-9">
+                    <label for="tipo_identificacion_1Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="tipo_identificacion_1Field" name="numiden1" maxlength="25">
                     </div>
-                    <label for="numero_identificacion_1Field" class="col-md-9 form-label">Numero identificación</label>
-                    <div class="col-md-9">
+                    <label for="numero_identificacion_1Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="numero_identificacion_1Field" name="cedula1" maxlength="25">
                     </div>                    
                   </div>
 
                   <div class="tab-pane fade" id="v-pills-integ2" role="tabpanel" aria-labelledby="v-pills-integ2-tab">
-                    <label for="nombre_2aField" class="col-md-3 form-label">1er Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_2aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_2aField" name="nombre_2a" maxlength="50">
                     </div>
-                    <label for="nombre_2bField" class="col-md-3 form-label">2do Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_2bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_2bField" name="nombre_2b" maxlength="50">
                     </div> 
-                    <label for="apellido_2aField" class="col-md-3 form-label">1er Apelido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_2aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_2aField" name="ape2a" maxlength="50">
                     </div>
-                    <label for="apellido_2bField" class="col-md-3 form-label">2do Apellido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_2bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_2bField" name="ape2b" maxlength="50">
                     </div>
                     <label for="genero_2Field" class="col-md-3 form-label">Genero</label>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="genero_2Field" name="genero2" maxlength="50">
                     </div>
-                    <label for="fecha_nacimiento_2Field" class="col-md-3 form-label">Fecha de  nacimiento</label>
-                    <div class="col-md-9">
+                    <label for="fecha_nacimiento_2Field" class="col-md-12 form-label">Fecha de  nacimiento</label>
+                    <div class="col-md-12">
                       <input id="fecha_nacimiento_2Field" type="date" name="fecha2" value="2017-06-01">
                     </div>
-                    <label for="relacion_2Field" class="col-md-3 form-label">Parentesco</label>
-                    <div class="col-md-9">
+                    <label for="relacion_2Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="relacion_2Field" name="relacion_2" maxlength="50">
                     </div>
-                    <label for="otro_2Field" class="col-md-3 form-label">Otro</label>
-                    <div class="col-md-9">
+                    <label for="otro_2Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="otro_2Field" name="otro_2" maxlength="50">
                     </div>
-                    <label for="tipo_identificacion_2Field" class="col-md-9 form-label">Tipo de identificación</label>
-                    <div class="col-md-9">
+                    <label for="tipo_identificacion_2Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="tipo_identificacion_2Field" name="numiden2" maxlength="25">
                     </div>
-                    <label for="numero_identificacion_2Field" class="col-md-9 form-label">Numero identificación</label>
-                    <div class="col-md-9">
+                    <label for="numero_identificacion_2Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="numero_identificacion_2Field" name="cedula2" maxlength="25">
                     </div>          
                   </div>
 
                   <div class="tab-pane fade" id="v-pills-integ3" role="tabpanel" aria-labelledby="v-pills-integ3-tab">
-                    <label for="nombre_3aField" class="col-md-3 form-label">1er Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_3aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_3aField" name="nombre_3a" maxlength="50">
                     </div>
-                    <label for="nombre_3bField" class="col-md-3 form-label">2do Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_3bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_3bField" name="nombre_3b" maxlength="50">
                     </div> 
-                    <label for="apellido_3aField" class="col-md-3 form-label">1er Apelido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_3aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_3aField" name="ape3a" maxlength="50">
                     </div>
-                    <label for="apellido_3bField" class="col-md-3 form-label">2do Apellido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_3bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_3bField" name="ape3b" maxlength="50">
                     </div>
-                    <label for="genero_3Field" class="col-md-3 form-label">Genero</label>
-                    <div class="col-md-9">
+                    <label for="genero_3Field" class="col-md-12 form-label">Genero</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="genero_3Field" name="genero3" maxlength="50">
                     </div>
-                    <label for="fecha_nacimiento_3Field" class="col-md-3 form-label">Fecha de  nacimiento</label>
-                    <div class="col-md-9">
+                    <label for="fecha_nacimiento_3Field" class="col-md-12 form-label">Fecha de  nacimiento</label>
+                    <div class="col-md-12">
                       <input id="fecha_nacimiento_3Field" type="date" name="fecha3" value="2017-06-01">
                     </div>
-                    <label for="relacion_3Field" class="col-md-3 form-label">Parentesco</label>
-                    <div class="col-md-9">
+                    <label for="relacion_3Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="relacion_3Field" name="relacion_3" maxlength="50">
                     </div>
-                    <label for="otro_3Field" class="col-md-3 form-label">Otro</label>
-                    <div class="col-md-9">
+                    <label for="otro_3Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="otro_3Field" name="otro_3" maxlength="50">
                     </div>
-                    <label for="tipo_identificacion_3Field" class="col-md-9 form-label">Tipo de identificación</label>
-                    <div class="col-md-9">
+                    <label for="tipo_identificacion_3Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="tipo_identificacion_3Field" name="numiden3" maxlength="25">
                     </div>
-                    <label for="numero_identificacion_3Field" class="col-md-9 form-label">Numero identificación</label>
-                    <div class="col-md-9">
+                    <label for="numero_identificacion_3Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="numero_identificacion_3Field" name="cedula3" maxlength="25">
                     </div>     
                   </div>
 
                   <div class="tab-pane fade" id="v-pills-integ4" role="tabpanel" aria-labelledby="v-pills-integ4-tab">
-                    <label for="nombre_4aField" class="col-md-3 form-label">1er Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_4aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_4aField" name="nombre_4a" maxlength="50">
                     </div>
-                    <label for="nombre_4bField" class="col-md-3 form-label">2do Nombre</label>
-                    <div class="col-md-9">
+                    <label for="nombre_4bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="nombre_4bField" name="nombre_4b" maxlength="50">
                     </div> 
-                    <label for="apellido_4aField" class="col-md-3 form-label">1er Apelido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_4aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_4aField" name="ape4a" maxlength="50">
                     </div>
-                    <label for="apellido_4bField" class="col-md-3 form-label">2do Apellido</label>
-                    <div class="col-md-9">
+                    <label for="apellido_4bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="apellido_4bField" name="ape4b" maxlength="50">
                     </div>
-                    <label for="genero_4Field" class="col-md-3 form-label">Genero</label>
-                    <div class="col-md-9">
+                    <label for="genero_4Field" class="col-md-12 form-label">Genero</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="genero_4Field" name="genero4" maxlength="50">
                     </div>
-                    <label for="fecha_nacimiento_4Field" class="col-md-3 form-label">Fecha de  nacimiento</label>
-                    <div class="col-md-9">
+                    <label for="fecha_nacimiento_4Field" class="col-md-12 form-label">Fecha de  nacimiento</label>
+                    <div class="col-md-12">
                       <input id="fecha_nacimiento_4Field" type="date" name="fecha4" value="2017-06-01">
                     </div>
-                    <label for="relacion_4Field" class="col-md-3 form-label">Parentesco</label>
-                    <div class="col-md-9">
+                    <label for="relacion_4Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="relacion_4Field" name="relacion_4" maxlength="50">
                     </div>
-                    <label for="otro_4Field" class="col-md-3 form-label">Otro</label>
-                    <div class="col-md-9">
+                    <label for="otro_4Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="otro_4Field" name="otro_4" maxlength="50">
                     </div>
-                    <label for="tipo_identificacion_4Field" class="col-md-9 form-label">Tipo de identificación</label>
-                    <div class="col-md-9">
+                    <label for="tipo_identificacion_4Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="tipo_identificacion_4Field" name="numiden4" maxlength="25">
                     </div>
-                    <label for="numero_identificacion_4Field" class="col-md-9 form-label">Numero identificación</label>
-                    <div class="col-md-9">
+                    <label for="numero_identificacion_4Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
                       <input type="text" class="form-control" id="numero_identificacion_4Field" name="cedula4" maxlength="25">
                     </div>                         
                   </div>
 
-                  <div class="tab-pane fade" id="v-pills-integ5" role="tabpanel" aria-labelledby="v-pills-integ5-tab">integ 5</div>
+                  <div class="tab-pane fade" id="v-pills-integ5" role="tabpanel" aria-labelledby="v-pills-integ5-tab">
+                    <label for="nombre_5aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="nombre_5aField" name="nombre_5a" maxlength="50">
+                    </div>
+                    <label for="nombre_5bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="nombre_5bField" name="nombre_5b" maxlength="50">
+                    </div> 
+                    <label for="apellido_5aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="apellido_5aField" name="ape5a" maxlength="50">
+                    </div>
+                    <label for="apellido_5bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="apellido_5bField" name="ape5b" maxlength="50">
+                    </div>
+                    <label for="genero_5Field" class="col-md-12 form-label">Genero</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="genero_5Field" name="genero5" maxlength="50">
+                    </div>
+                    <label for="fecha_nacimiento_5Field" class="col-md-12 form-label">Fecha de  nacimiento</label>
+                    <div class="col-md-12">
+                      <input id="fecha_nacimiento_5Field" type="date" name="fecha5" value="2017-06-01">
+                    </div>
+                    <label for="relacion_5Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="relacion_5Field" name="relacion_5" maxlength="50">
+                    </div>
+                    <label for="otro_5Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="otro_5Field" name="otro_5" maxlength="50">
+                    </div>
+                    <label for="tipo_identificacion_5Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="tipo_identificacion_5Field" name="numiden5" maxlength="25">
+                    </div>
+                    <label for="numero_identificacion_5Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="numero_identificacion_5Field" name="cedula5" maxlength="25">
+                    </div>
+                  </div>
+
                   <div class="tab-pane fade" id="v-pills-integ6" role="tabpanel" aria-labelledby="v-pills-integ6-tab">imteg 6</div>
                   <div class="tab-pane fade" id="v-pills-integ7" role="tabpanel" aria-labelledby="v-pills-integ7-tab">integ 7</div>
                 </div>

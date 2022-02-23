@@ -40,16 +40,26 @@ $columns = array(
 	30 => 'otro_3',
 	31 => 'tipo_identificacion_3',
 	32 => 'numero_identificacion_3',	
-	33 => 'nombre_3a',
-	34 => 'nombre_3b',
-	35 => 'apellido_3a',
-	36 => 'apellido_3b',
-	37 => 'genero_3',
-	38 => 'fecha_nacimiento_3',
-	39 => 'relacion_3',
-	40 => 'otro_3',
-	41 => 'tipo_identificacion_3',
-	42 => 'numero_identificacion_3',		
+	33 => 'nombre_4a',
+	34 => 'nombre_4b',
+	35 => 'apellido_4a',
+	36 => 'apellido_4b',
+	37 => 'genero_4',
+	38 => 'fecha_nacimiento_4',
+	39 => 'relacion_4',
+	40 => 'otro_4',
+	41 => 'tipo_identificacion_4',
+	42 => 'numero_identificacion_4',
+	43 => 'nombre_5a',
+	44 => 'nombre_5b',
+	45 => 'apellido_5a',
+	46 => 'apellido_5b',
+	47 => 'genero_5',
+	48 => 'fecha_nacimiento_5',
+	49 => 'relacion_5',
+	50 => 'otro_5',
+	51 => 'tipo_identificacion_5',
+	52 => 'numero_identificacion_5',	
 );
 
 if(isset($_POST['search']['value']))
@@ -126,6 +136,16 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['otro_4'];
 	$sub_array[] = $row['tipo_identificacion_4'];
 	$sub_array[] = $row['numero_identificacion_4'];		
+	$sub_array[] = $row['nombre_5a'];
+	$sub_array[] = $row['nombre_5b'];
+	$sub_array[] = $row['apellido_5a'];
+	$sub_array[] = $row['apellido_5b'];
+	$sub_array[] = $row['genero_5'];
+	$sub_array[] = $row['fecha_nacimiento_5'];
+	$sub_array[] = $row['relacion_5'];
+	$sub_array[] = $row['otro_5'];
+	$sub_array[] = $row['tipo_identificacion_5'];
+	$sub_array[] = $row['numero_identificacion_5'];		
 
 	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;

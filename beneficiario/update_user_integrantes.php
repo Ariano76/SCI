@@ -42,10 +42,19 @@ $relacion_4 = $_POST['relacion_4'];
 $otro_4 = $_POST['otro_4'];
 $tipo_identificacion_4 = $_POST['tipo_identificacion_4'];
 $numero_identificacion_4 = $_POST['numero_identificacion_4'];
-
+$nombre_5a = $_POST['nombre_5a'];
+$nombre_5b = $_POST['nombre_5b'];
+$apellido_5a = $_POST['apellido_5a'];
+$apellido_5b = $_POST['apellido_5b'];
+$genero_5 = $_POST['genero_5'];
+$fecha_nacimiento_5 = $_POST['fecha_nacimiento_5'];
+$relacion_5 = $_POST['relacion_5'];
+$otro_5 = $_POST['otro_5'];
+$tipo_identificacion_5 = $_POST['tipo_identificacion_5'];
+$numero_identificacion_5 = $_POST['numero_identificacion_5'];
 $id = $_POST['id'];
 
-$sql = "UPDATE `integrantes` SET  `nombre_1a`= '$nombre_1a', `nombre_1b`='$nombre_1b', `apellido_1a`='$apellido_1a', `apellido_1b`='$apellido_1b', `genero_1`='$genero_1', `fecha_nacimiento_1`='$fecha_nacimiento_1', `relacion_1`='$relacion_1', `otro_1`='$otro_1', `tipo_identificacion_1`='$tipo_identificacion_1', `numero_identificacion_1`='$numero_identificacion_1', `nombre_2a`= '$nombre_2a', `nombre_2b`='$nombre_2b', `apellido_2a`='$apellido_2a', `apellido_2b`='$apellido_2b', `genero_2`='$genero_2', `fecha_nacimiento_2`='$fecha_nacimiento_2', `relacion_2`='$relacion_2', `otro_2`='$otro_2', `tipo_identificacion_2`='$tipo_identificacion_2', `numero_identificacion_2`='$numero_identificacion_2', `nombre_3a`= '$nombre_3a', `nombre_3b`='$nombre_3b', `apellido_3a`='$apellido_3a', `apellido_3b`='$apellido_3b', `genero_3`='$genero_3', `fecha_nacimiento_3`='$fecha_nacimiento_3', `relacion_3`='$relacion_3', `otro_3`='$otro_3', `tipo_identificacion_3`='$tipo_identificacion_3', `numero_identificacion_3`='$numero_identificacion_3', `nombre_4a`= '$nombre_4a', `nombre_4b`='$nombre_4b', `apellido_4a`='$apellido_4a', `apellido_4b`='$apellido_4b', `genero_4`='$genero_4', `fecha_nacimiento_4`='$fecha_nacimiento_4', `relacion_4`='$relacion_4', `otro_4`='$otro_4', `tipo_identificacion_4`='$tipo_identificacion_4', `numero_identificacion_4`='$numero_identificacion_4'
+$sql = "UPDATE `integrantes` SET  `nombre_1a`= '$nombre_1a', `nombre_1b`='$nombre_1b', `apellido_1a`='$apellido_1a', `apellido_1b`='$apellido_1b', `genero_1`='$genero_1', `fecha_nacimiento_1`='$fecha_nacimiento_1', `relacion_1`='$relacion_1', `otro_1`='$otro_1', `tipo_identificacion_1`='$tipo_identificacion_1', `numero_identificacion_1`='$numero_identificacion_1', `nombre_2a`= '$nombre_2a', `nombre_2b`='$nombre_2b', `apellido_2a`='$apellido_2a', `apellido_2b`='$apellido_2b', `genero_2`='$genero_2', `fecha_nacimiento_2`='$fecha_nacimiento_2', `relacion_2`='$relacion_2', `otro_2`='$otro_2', `tipo_identificacion_2`='$tipo_identificacion_2', `numero_identificacion_2`='$numero_identificacion_2', `nombre_3a`= '$nombre_3a', `nombre_3b`='$nombre_3b', `apellido_3a`='$apellido_3a', `apellido_3b`='$apellido_3b', `genero_3`='$genero_3', `fecha_nacimiento_3`='$fecha_nacimiento_3', `relacion_3`='$relacion_3', `otro_3`='$otro_3', `tipo_identificacion_3`='$tipo_identificacion_3', `numero_identificacion_3`='$numero_identificacion_3', `nombre_4a`= '$nombre_4a', `nombre_4b`='$nombre_4b', `apellido_4a`='$apellido_4a', `apellido_4b`='$apellido_4b', `genero_4`='$genero_4', `fecha_nacimiento_4`='$fecha_nacimiento_4', `relacion_4`='$relacion_4', `otro_4`='$otro_4', `tipo_identificacion_4`='$tipo_identificacion_4', `numero_identificacion_4`='$numero_identificacion_4', `nombre_5a`= '$nombre_5a', `nombre_5b`='$nombre_5b', `apellido_5a`='$apellido_5a', `apellido_5b`='$apellido_5b', `genero_5`='$genero_5', `fecha_nacimiento_5`='$fecha_nacimiento_5', `relacion_5`='$relacion_5', `otro_5`='$otro_5', `tipo_identificacion_5`='$tipo_identificacion_5', `numero_identificacion_5`='$numero_identificacion_5'
    WHERE id_beneficiario='$id' ";
 
 $query= mysqli_query($con,$sql);
