@@ -195,7 +195,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   <!-- Modal -->
   <!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"-->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <!--div class="modal-dialog" role="document"-->
+    <!--div class="modal-dialog modal-lg" role="document"-->
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -208,20 +208,20 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nombreField" class="col-md-3 form-label">Nombre Beneficiario</label>
-              <div class="col-md-9">
+              <label for="nombreField" class="col-md-5 form-label">Nombre Beneficiario</label>
+              <div class="col-md-7">
                 <input type="text" class="form-control" id="nombreField" name="name" disabled>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="numero_cedulaField" class="col-md-3 form-label">Número Cedula</label>
-              <div class="col-md-9">
+              <label for="numero_cedulaField" class="col-md-5 form-label">Número Cedula</label>
+              <div class="col-md-7">
                 <input type="text" class="form-control" id="numero_cedulaField" name="name" disabled>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="alguien_de_su_hogar_esta_embarazadaField" class="col-md-3 form-label">¿Alguien de su hogar esta embarazada?</label>
-              <div class="col-md-9">
+              <label for="alguien_de_su_hogar_esta_embarazadaField" class="col-md-5 form-label">¿Alguien de su hogar esta embarazada?</label>
+              <div class="col-md-7">
                 <label class="radio-inline">
                   <input type="radio" name="embarazada" id="alguien_de_su_hogar_esta_embarazadaField1" value="1"> Si 
                   <input type="radio" name="embarazada" id="alguien_de_su_hogar_esta_embarazadaField2" value="0"> No 
@@ -229,14 +229,14 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="tiempo_de_gestacionField" class="col-md-3 form-label">Tiempo de gestación</label>
-              <div class="col-md-9">
+              <label for="tiempo_de_gestacionField" class="col-md-5 form-label">Tiempo de gestación</label>
+              <div class="col-md-7">
                 <input type="text" class="form-control" id="tiempo_de_gestacionField" maxlength="250" name="name">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="lleva_su_control_en_centro_de_saludField" class="col-md-3 form-label">¿Lleva su control en centro de salud?</label>
-              <div class="col-md-9">
+              <label for="lleva_su_control_en_centro_de_saludField" class="col-md-5 form-label">¿Lleva su control en centro de salud?</label>
+              <div class="col-md-7">
                 <label class="radio-inline">
                   <input type="radio" name="salud" id="lleva_su_control_en_centro_de_saludField1" value="1"> Si 
                   <input type="radio" name="salud" id="lleva_su_control_en_centro_de_saludField2" value="0"> No 
@@ -244,15 +244,15 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="alguien_de_su_hogar_tiene_siguientes_condicionesField" class="col-md-3 form-label">¿Alguien de su hogar tiene siguientes condiciones?</label>
-              <div class="col-md-9">
+              <label for="alguien_de_su_hogar_tiene_siguientes_condicionesField" class="col-md-5 form-label">¿Alguien de su hogar tiene siguientes condiciones?</label>
+              <div class="col-md-7">
                 <input type="text" class="form-control" maxlength="250" id="alguien_de_su_hogar_tiene_siguientes_condicionesField" name="name">
               </div>
             </div>
 
             <div class="mb-3 row">
-              <label for="lactando_con_nn_menor_2_aniosField" class="col-md-3 form-label">Lactando con NN menor 2 años</label>
-              <div class="col-md-9">
+              <label for="lactando_con_nn_menor_2_aniosField" class="col-md-5 form-label">Lactando con NN menor 2 años</label>
+              <div class="col-md-7">
                 <label class="radio-inline">
                   <input type="radio" name="lactando" id="lactando_con_nn_menor_2_aniosField1" value="1"> Si 
                   <input type="radio" name="lactando" id="lactando_con_nn_menor_2_aniosField2" value="0"> No 
@@ -260,8 +260,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="no_lactando_con_nn_menor_2_aniosField" class="col-md-3 form-label">No lactando con NN menor 2 años</label>
-              <div class="col-md-9">
+              <label for="no_lactando_con_nn_menor_2_aniosField" class="col-md-5 form-label">No lactando con NN menor 2 años</label>
+              <div class="col-md-7">
                 <label class="radio-inline">
                   <input type="radio" name="nolactando" id="no_lactando_con_nn_menor_2_aniosField1" value="1"> Si 
                   <input type="radio" name="nolactando" id="no_lactando_con_nn_menor_2_aniosField2" value="0"> No 
@@ -270,8 +270,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             </div>
 
             <div class="mb-3 row">
-              <label for="madre_nn_2_a_5_aniosField" class="col-md-3 form-label">Madre NN de 2 a 5 años</label>
-              <div class="col-md-9">
+              <label for="madre_nn_2_a_5_aniosField" class="col-md-5 form-label">Madre NN de 2 a 5 años</label>
+              <div class="col-md-7">
                 <label class="radio-inline">
                   <input type="radio" name="madre" id="madre_nn_2_a_5_aniosField1" value="1"> Si 
                   <input type="radio" name="madre" id="madre_nn_2_a_5_aniosField2" value="0"> No 
@@ -279,8 +279,8 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="ningunoField" class="col-md-3 form-label">Ninguno</label>
-              <div class="col-md-9">
+              <label for="ningunoField" class="col-md-5 form-label">Ninguno</label>
+              <div class="col-md-7">
                 <label class="radio-inline">
                   <input type="radio" name="ninguno" id="ningunoField1" value="1"> Si 
                   <input type="radio" name="ninguno" id="ningunoField2" value="0"> No 
