@@ -9,9 +9,11 @@
 
 
 	<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-	<a class="btn btn-primary btn-sm|btn-lg" href="productos.php" role="button">Ver mantenimiento usuarios</a>
+	<a class="btn btn-primary btn-sm|btn-lg" href="<?php echo $url."/administrador/index.php"?>" role="button">Ingresar al sistema</a>
 </div>
-<div></div>
+<div>
+	&nbsp;
+</div>
 
 
 <?php include("template/pie.php"); ?>
