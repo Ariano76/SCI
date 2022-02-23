@@ -8,99 +8,115 @@ include("../administrador/config/connection.php");
 
 ?>
 
-<!--div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="row"-->
-      <h1 class="display-8">DATOS DE LOS INTEGRANTES</h1> 
+<h1 class="display-8">DATOS DE LOS INTEGRANTES</h1> 
 
-      <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
-          <thead class="text-center">
-            <tr>
-              <th>Codigo</th>
-              <th>Nombre&nbsp;del&nbsp;Beneficiario</th>
-              <th>Numero&nbsp;de&nbsp;cedula</th>
-              <th>Primer&nbsp;nombre</th>
-              <th>Segundo&nbsp;nombre</th>
-              <th>Primer&nbsp;apellido</th>
-              <th>Segundo&nbsp;apellido</th>
-              <th>Genero</th>
-              <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>Parentesco</th>
-              <th>Otro</th>
-              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Primer&nbsp;nombre</th>
-              <th>Segundo&nbsp;nombre</th>
-              <th>Primer&nbsp;apellido</th>
-              <th>Segundo&nbsp;apellido</th>
-              <th>Genero</th>
-              <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>Parentesco</th>
-              <th>Otro</th>
-              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Primer&nbsp;nombre</th>
-              <th>Segundo&nbsp;nombre</th>
-              <th>Primer&nbsp;apellido</th>
-              <th>Segundo&nbsp;apellido</th>
-              <th>Genero</th>
-              <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>Parentesco</th>
-              <th>Otro</th>
-              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>              
-              <th>Primer&nbsp;nombre</th>
-              <th>Segundo&nbsp;nombre</th>
-              <th>Primer&nbsp;apellido</th>
-              <th>Segundo&nbsp;apellido</th>
-              <th>Genero</th>
-              <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>Parentesco</th>
-              <th>Otro</th>
-              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Primer&nbsp;nombre</th>
-              <th>Segundo&nbsp;nombre</th>
-              <th>Primer&nbsp;apellido</th>
-              <th>Segundo&nbsp;apellido</th>
-              <th>Genero</th>
-              <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>Parentesco</th>
-              <th>Otro</th>
-              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+<div class="col-lg-12">
+  <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
+    <thead class="text-center">
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre&nbsp;del&nbsp;Beneficiario</th>
+        <th>Numero&nbsp;de&nbsp;cedula</th>
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>              
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Primer&nbsp;nombre</th>
+        <th>Segundo&nbsp;nombre</th>
+        <th>Primer&nbsp;apellido</th>
+        <th>Segundo&nbsp;apellido</th>
+        <th>Genero</th>
+        <th>Fecha&nbsp;de&nbsp;nacimiento</th>
+        <th>Parentesco</th>
+        <th>Otro</th>
+        <th>Tipo&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Numero&nbsp;de&nbsp;identificación&nbsp;</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+  </table>   
+</div>
 
-              <th>Acción</th>
-            </tr>
-          </thead>
-        </table>   
-      </div>
-
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $('#tablaUsuarios').DataTable({
-            "fnCreatedRow": function(nRow, aData, iDataIndex) {
-              $(nRow).attr('id', aData[0]);
-            },
-            scrollX: true,
-            'serverSide': 'true',
-            'processing': 'true',
-            'paging': 'true',
-            'order': [],
-            'ajax': {
-              'url': 'fetch_data_integrantes.php',
-              'type': 'post',
-            },
-            "aoColumnDefs": [{
-              "bSortable": false,
-              "aTargets": [53]
-            },
-            ]
-          });
-        });
-        $(document).on('submit', '#updateUser', function(e) {
-          e.preventDefault();
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#tablaUsuarios').DataTable({
+      "fnCreatedRow": function(nRow, aData, iDataIndex) {
+        $(nRow).attr('id', aData[0]);
+      },
+      scrollX: true,
+      'serverSide': 'true',
+      'processing': 'true',
+      'paging': 'true',
+      'order': [],
+      'ajax': {
+        'url': 'fetch_data_integrantes.php',
+        'type': 'post',
+      },
+      "aoColumnDefs": [{
+        "bSortable": false,
+        "aTargets": [73]
+      },
+      ]
+    });
+  }); 
+  $(document).on('submit', '#updateUser', function(e) {
+    e.preventDefault();
       //var tr = $(this).closest('tr');
       var nombre_beneficiario = $('#nombre_beneficiarioField').val();
       var numero_cedula = $('#numero_cedulaField').val();
@@ -154,6 +170,27 @@ include("../administrador/config/connection.php");
       var otro_5 = $('#otro_5Field').val();      
       var tipo_identificacion_5 = $('#tipo_identificacion_5Field').val();
       var numero_identificacion_5 = $('#numero_identificacion_5Field').val();            
+      var nombre_6a = $('#nombre_6aField').val();
+      var nombre_6b = $('#nombre_6bField').val();
+      var apellido_6a = $('#apellido_6aField').val();
+      var apellido_6b = $('#apellido_6bField').val();
+      var genero_6 = $('#genero_6Field').val();
+      var fecha_nacimiento_6 = $('#fecha_nacimiento_6Field').val();
+      var relacion_6 = $('#relacion_6Field').val();
+      var otro_6 = $('#otro_6Field').val();      
+      var tipo_identificacion_6 = $('#tipo_identificacion_6Field').val();
+      var numero_identificacion_6 = $('#numero_identificacion_6Field').val();            
+      var nombre_7a = $('#nombre_7aField').val();
+      var nombre_7b = $('#nombre_7bField').val();
+      var apellido_7a = $('#apellido_7aField').val();
+      var apellido_7b = $('#apellido_7bField').val();
+      var genero_7 = $('#genero_7Field').val();
+      var fecha_nacimiento_7 = $('#fecha_nacimiento_7Field').val();
+      var relacion_7 = $('#relacion_7Field').val();
+      var otro_7 = $('#otro_7Field').val();      
+      var tipo_identificacion_7 = $('#tipo_identificacion_7Field').val();
+      var numero_identificacion_7 = $('#numero_identificacion_7Field').val();
+
       var trid = $('#trid').val();
       var id = $('#id').val();           
 
@@ -218,6 +255,26 @@ include("../administrador/config/connection.php");
             otro_5: otro_5,
             tipo_identificacion_5: tipo_identificacion_5,
             numero_identificacion_5: numero_identificacion_5,
+            nombre_6a: nombre_6a,
+            nombre_6b: nombre_6b,
+            apellido_6a: apellido_6a,
+            apellido_6b: apellido_6b,
+            genero_6: genero_6,
+            fecha_nacimiento_6: fecha_nacimiento_6,
+            relacion_6: relacion_6,
+            otro_6: otro_6,
+            tipo_identificacion_6: tipo_identificacion_6,
+            numero_identificacion_6: numero_identificacion_6,
+            nombre_7a: nombre_7a,
+            nombre_7b: nombre_7b,
+            apellido_7a: apellido_7a,
+            apellido_7b: apellido_7b,
+            genero_7: genero_7,
+            fecha_nacimiento_7: fecha_nacimiento_7,
+            relacion_7: relacion_7,
+            otro_7: otro_7,
+            tipo_identificacion_7: tipo_identificacion_7,
+            numero_identificacion_7: numero_identificacion_7,
             id: id
           },
           success: function(data) {
@@ -232,6 +289,8 @@ include("../administrador/config/connection.php");
                 nombre_3a, nombre_3b, apellido_3a, apellido_3b, genero_3, fecha_nacimiento_3, relacion_3, otro_3, tipo_identificacion_3, numero_identificacion_3, 
                 nombre_4a, nombre_4b, apellido_4a, apellido_4b, genero_4, fecha_nacimiento_4, relacion_4, otro_4, tipo_identificacion_4, numero_identificacion_4, 
                 nombre_5a, nombre_5b, apellido_5a, apellido_5b, genero_5, fecha_nacimiento_5, relacion_5, otro_5, tipo_identificacion_5, numero_identificacion_5, 
+                nombre_6a, nombre_6b, apellido_6a, apellido_6b, genero_6, fecha_nacimiento_6, relacion_6, otro_6, tipo_identificacion_6, numero_identificacion_6,
+                nombre_7a, nombre_7b, apellido_7a, apellido_7b, genero_7, fecha_nacimiento_7, relacion_7, otro_7, tipo_identificacion_7, numero_identificacion_7,
                 button]);
               $('#exampleModal').modal('hide');
             } else {
@@ -310,6 +369,26 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
           $('#otro_5Field').val(json.otro_5);
           $('#tipo_identificacion_5Field').val(json.tipo_identificacion_5);
           $('#numero_identificacion_5Field').val(json.numero_identificacion_5);
+          $('#nombre_6aField').val(json.nombre_6a);
+          $('#nombre_6bField').val(json.nombre_6b);
+          $('#apellido_6aField').val(json.apellido_6a);
+          $('#apellido_6bField').val(json.apellido_6b);
+          $('#genero_6Field').val(json.genero_6);
+          $('#fecha_nacimiento_6Field').val(json.fecha_nacimiento_6);
+          $('#relacion_6Field').val(json.relacion_6);
+          $('#otro_6Field').val(json.otro_6);
+          $('#tipo_identificacion_6Field').val(json.tipo_identificacion_6);
+          $('#numero_identificacion_6Field').val(json.numero_identificacion_6);
+          $('#nombre_7aField').val(json.nombre_7a);
+          $('#nombre_7bField').val(json.nombre_7b);
+          $('#apellido_7aField').val(json.apellido_7a);
+          $('#apellido_7bField').val(json.apellido_7b);
+          $('#genero_7Field').val(json.genero_7);
+          $('#fecha_nacimiento_7Field').val(json.fecha_nacimiento_7);
+          $('#relacion_7Field').val(json.relacion_7);
+          $('#otro_7Field').val(json.otro_7);
+          $('#tipo_identificacion_7Field').val(json.tipo_identificacion_7);
+          $('#numero_identificacion_7Field').val(json.numero_identificacion_7);
           $('#id').val(id);
           $('#trid').val(trid);
 
@@ -572,8 +651,92 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
                     </div>
                   </div>
 
-                  <div class="tab-pane fade" id="v-pills-integ6" role="tabpanel" aria-labelledby="v-pills-integ6-tab">imteg 6</div>
-                  <div class="tab-pane fade" id="v-pills-integ7" role="tabpanel" aria-labelledby="v-pills-integ7-tab">integ 7</div>
+                  <div class="tab-pane fade" id="v-pills-integ6" role="tabpanel" aria-labelledby="v-pills-integ6-tab">
+                    <label for="nombre_6aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="nombre_6aField" name="nombre_6a" maxlength="50">
+                    </div>
+                    <label for="nombre_6bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="nombre_6bField" name="nombre_6b" maxlength="50">
+                    </div> 
+                    <label for="apellido_6aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="apellido_6aField" name="ape6a" maxlength="50">
+                    </div>
+                    <label for="apellido_6bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="apellido_6bField" name="ape6b" maxlength="50">
+                    </div>
+                    <label for="genero_6Field" class="col-md-12 form-label">Genero</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="genero_6Field" name="genero6" maxlength="50">
+                    </div>
+                    <label for="fecha_nacimiento_6Field" class="col-md-12 form-label">Fecha de  nacimiento</label>
+                    <div class="col-md-12">
+                      <input id="fecha_nacimiento_6Field" type="date" name="fecha6" value="2017-06-01">
+                    </div>
+                    <label for="relacion_6Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="relacion_6Field" name="relacion_6" maxlength="50">
+                    </div>
+                    <label for="otro_6Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="otro_6Field" name="otro_6" maxlength="50">
+                    </div>
+                    <label for="tipo_identificacion_6Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="tipo_identificacion_6Field" name="numiden6" maxlength="25">
+                    </div>
+                    <label for="numero_identificacion_6Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="numero_identificacion_6Field" name="cedula6" maxlength="25">
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="v-pills-integ7" role="tabpanel" aria-labelledby="v-pills-integ7-tab">
+                    <label for="nombre_7aField" class="col-md-12 form-label">1er Nombre</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="nombre_7aField" name="nombre_7a" maxlength="50">
+                    </div>
+                    <label for="nombre_7bField" class="col-md-12 form-label">2do Nombre</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="nombre_7bField" name="nombre_7b" maxlength="50">
+                    </div> 
+                    <label for="apellido_7aField" class="col-md-12 form-label">1er Apelido</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="apellido_7aField" name="ape7a" maxlength="50">
+                    </div>
+                    <label for="apellido_7bField" class="col-md-12 form-label">2do Apellido</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="apellido_7bField" name="ape7b" maxlength="50">
+                    </div>
+                    <label for="genero_7Field" class="col-md-12 form-label">Genero</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="genero_7Field" name="genero7" maxlength="50">
+                    </div>
+                    <label for="fecha_nacimiento_7Field" class="col-md-12 form-label">Fecha de  nacimiento</label>
+                    <div class="col-md-12">
+                      <input id="fecha_nacimiento_7Field" type="date" name="fecha7" value="2017-06-01">
+                    </div>
+                    <label for="relacion_7Field" class="col-md-12 form-label">Parentesco</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="relacion_7Field" name="relacion_7" maxlength="50">
+                    </div>
+                    <label for="otro_7Field" class="col-md-12 form-label">Otro</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="otro_7Field" name="otro_7" maxlength="50">
+                    </div>
+                    <label for="tipo_identificacion_7Field" class="col-md-12 form-label">Tipo de identificación</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="tipo_identificacion_7Field" name="numiden7" maxlength="25">
+                    </div>
+                    <label for="numero_identificacion_7Field" class="col-md-12 form-label">Numero identificación</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control" id="numero_identificacion_7Field" name="cedula7" maxlength="25">
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>            

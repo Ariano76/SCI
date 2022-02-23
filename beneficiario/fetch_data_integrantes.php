@@ -60,6 +60,26 @@ $columns = array(
 	50 => 'otro_5',
 	51 => 'tipo_identificacion_5',
 	52 => 'numero_identificacion_5',	
+	53 => 'nombre_6a',
+	54 => 'nombre_6b',
+	55 => 'apellido_6a',
+	56 => 'apellido_6b',
+	57 => 'genero_6',
+	58 => 'fecha_nacimiento_6',
+	59 => 'relacion_6',
+	60 => 'otro_6',
+	61 => 'tipo_identificacion_6',
+	62 => 'numero_identificacion_6',		
+	63 => 'nombre_7a',
+	64 => 'nombre_7b',
+	65 => 'apellido_7a',
+	66 => 'apellido_7b',
+	67 => 'genero_7',
+	68 => 'fecha_nacimiento_7',
+	69 => 'relacion_7',
+	70 => 'otro_7',
+	71 => 'tipo_identificacion_7',
+	72 => 'numero_identificacion_7',			
 );
 
 if(isset($_POST['search']['value']))
@@ -146,6 +166,26 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['otro_5'];
 	$sub_array[] = $row['tipo_identificacion_5'];
 	$sub_array[] = $row['numero_identificacion_5'];		
+	$sub_array[] = $row['nombre_6a'];
+	$sub_array[] = $row['nombre_6b'];
+	$sub_array[] = $row['apellido_6a'];
+	$sub_array[] = $row['apellido_6b'];
+	$sub_array[] = $row['genero_6'];
+	$sub_array[] = $row['fecha_nacimiento_6'];
+	$sub_array[] = $row['relacion_6'];
+	$sub_array[] = $row['otro_6'];
+	$sub_array[] = $row['tipo_identificacion_6'];
+	$sub_array[] = $row['numero_identificacion_6'];
+	$sub_array[] = $row['nombre_7a'];
+	$sub_array[] = $row['nombre_7b'];
+	$sub_array[] = $row['apellido_7a'];
+	$sub_array[] = $row['apellido_7b'];
+	$sub_array[] = $row['genero_7'];
+	$sub_array[] = $row['fecha_nacimiento_7'];
+	$sub_array[] = $row['relacion_7'];
+	$sub_array[] = $row['otro_7'];
+	$sub_array[] = $row['tipo_identificacion_7'];
+	$sub_array[] = $row['numero_identificacion_7'];	
 
 	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;
