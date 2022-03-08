@@ -35,6 +35,24 @@ DELIMITER ;
 
 select F_AGE('1976-03-08') as edad;
 
+DELIMITER $$ 
+DROP FUNCTION IF EXISTS F_SINO;
+    CREATE FUNCTION `F_SINO`(in_dob int) RETURNS varchar(2)
+        NO SQL
+    BEGIN
+       DECLARE resp varchar(2);		
+       IF (in_dob = 1) THEN
+          SET resp='SI';
+        ELSEIF (in_dob = 0) THEN
+          SET resp='NO';
+		ELSE
+          SET resp='NN';
+       END IF;       
+       RETURN(resp);
+    END $$
+DELIMITER ;
+
+select F_SINO(2) as Respuesta;
 /* CREATE VIEWS */
 
 drop view IF EXISTS vista_encuesta;
