@@ -93,7 +93,16 @@
   							</div>
   						</li-->
   						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>
-  						<a class="nav-item nav-link" href="<?php echo $url."/beneficiario/demo.html"?>">Nosotros</a>
+						<li>
+  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte a Sectores</a>
+  							<div class="dropdown-menu">
+  								<a class="dropdown-item" href="<?php echo $url."/repo_proteccion.php"?>">MERA Protección</a>
+  								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Salud</a>
+  								<div class="dropdown-divider"></div>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Nutrición</a>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Medios de Vida</a>
+  							</div>
+  						</li>		
   						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
   					</div>
   				</div>

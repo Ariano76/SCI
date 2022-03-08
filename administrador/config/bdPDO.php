@@ -140,7 +140,7 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function incidencia_Doc_Identidad($sp) {
+    public function select_repo($sp) {
         try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectDocIdentConIncidencias()';

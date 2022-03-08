@@ -9,7 +9,7 @@ require_once './administrador/config/bdPDO.php';
 $db = new TransactionSCI();
 $conn = $db->Connect();
 
-$usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
+$usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias");
 
 ?>
 
@@ -102,7 +102,7 @@ $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
         <?php
         if(isset($_POST['submit'])){
         //False unless proven otherwise.
-          $usuarios = $db->incidencia_Doc_Identidad("SP_SelectDocIdentConIncidencias");
+          $usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias");
 
           $agreedToTerms = false;
         //Make sure that a radio button input was actually submitted.
