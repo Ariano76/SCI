@@ -28,12 +28,16 @@ DROP FUNCTION IF EXISTS F_AGE;
           -- Yet to have a birthday this year
           SET l_age=DATE_FORMAT(NOW(  ),'%Y')-DATE_FORMAT(in_dob,'%Y')-1;
        END IF; */
-       SET l_age = (select TIMESTAMPDIFF(YEAR, in_dob, CURDATE()));
-       RETURN(l_age);
+       IF in_dob = '1900-01-01' THEN
+		return 0;
+	   ELSE
+		SET l_age = (select TIMESTAMPDIFF(YEAR, in_dob, CURDATE()));
+		RETURN(l_age);
+	   END IF; 
     END $$
 DELIMITER ;
 
-select F_AGE('1976-03-08') as edad;
+select F_AGE('1900-01-01') as edad;
 
 DELIMITER $$ 
 DROP FUNCTION IF EXISTS F_SINO;
