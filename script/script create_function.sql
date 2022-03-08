@@ -14,6 +14,29 @@ DELIMITER ;
 
 SELECT CheckPassword('PERCY','abc') as valor;
 
+
+DELIMITER $$ 
+DROP FUNCTION IF EXISTS F_AGE;
+    CREATE FUNCTION `F_AGE`(in_dob datetime) RETURNS int(11)
+        NO SQL
+    BEGIN
+       DECLARE l_age INT;
+       /*IF DATE_FORMAT(NOW(  ),'00-%m-%d') >= DATE_FORMAT(in_dob,'00-%m-%d') THEN
+          -- This person has had a birthday this year
+          SET l_age=DATE_FORMAT(NOW(  ),'%Y')-DATE_FORMAT(in_dob,'%Y');
+        ELSE
+          -- Yet to have a birthday this year
+          SET l_age=DATE_FORMAT(NOW(  ),'%Y')-DATE_FORMAT(in_dob,'%Y')-1;
+       END IF; */
+       SET l_age = (select TIMESTAMPDIFF(YEAR, in_dob, CURDATE()));
+       RETURN(l_age);
+    END $$
+DELIMITER ;
+
+select F_AGE('1976-03-08') as edad;
+
+/* CREATE VIEWS */
+
 drop view IF EXISTS vista_encuesta;
 CREATE VIEW `bd_bha_sci`.`vista_encuesta` AS
 	SELECT concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.fecha_encuesta, e.id_encuestador, e.nombre_encuestador, e.region_encuestador, e.como_realizo_encuesta, e.esta_de_acuerdo, e.id_beneficiario
