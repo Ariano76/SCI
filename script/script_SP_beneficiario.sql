@@ -317,7 +317,7 @@ DROP PROCEDURE IF EXISTS `SP_Select_Mera_Proteccion`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_Select_Mera_Proteccion`()
 BEGIN
-	SELECT b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.en_que_distrito, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, b.numero_cedula, b.fecha_caducidad_cedula, c.tiene_los_siguientes_medios_comunicacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, F_SINO(c.es_telefono_propio), c.como_accede_a_internet, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.alguien_de_su_hogar_tiene_siguientes_condiciones, F_SINO(e.viaja_con_menores_de_17_anios), F_SINO(e.todos_los_nna_estan_matriculados), e.que_dispositvo_utilizan_en_clases_virtuales, e.que_dificultades_tuvo_al_matricular_nna, s.algun_miembro_tiene_discapacidad, 
+	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.en_que_distrito, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, b.numero_cedula, b.fecha_caducidad_cedula, c.tiene_los_siguientes_medios_comunicacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, F_SINO(c.es_telefono_propio), c.como_accede_a_internet, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.alguien_de_su_hogar_tiene_siguientes_condiciones, F_SINO(e.viaja_con_menores_de_17_anios), F_SINO(e.todos_los_nna_estan_matriculados), e.que_dispositvo_utilizan_en_clases_virtuales, e.que_dificultades_tuvo_al_matricular_nna, s.algun_miembro_tiene_discapacidad, 
     i.nombre_1a, i.nombre_1b, i.apellido_1a, i.apellido_1b, i.genero_1, F_AGE(i.fecha_nacimiento_1) as Edad, concat(i.relacion_1,' ',i.otro_1) as Parentesco,
     i.nombre_2a, i.nombre_2b, i.apellido_2a, i.apellido_2b, i.genero_2, F_AGE(i.fecha_nacimiento_2) as Edad, concat(i.relacion_2,' ',i.otro_2) as Parentesco,
     i.nombre_3a, i.nombre_3b, i.apellido_3a, i.apellido_3b, i.genero_3, F_AGE(i.fecha_nacimiento_3) as Edad, concat(i.relacion_3,' ',i.otro_3) as Parentesco,
@@ -330,13 +330,38 @@ inner join nutricion n on b.id_beneficiario = n.id_beneficiario
 inner join educacion e on b.id_beneficiario = e.id_beneficiario
 inner join salud s on b.id_beneficiario = s.id_beneficiario 
 inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
+inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 ;
 END ;;
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_Select_Salud`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_Select_Salud`()
+BEGIN
+	SELECT enc.fecha_encuesta, enc.id_encuestador, enc.nombre_encuestador, b.region_beneficiario, b.se_instalara_en_esta_region, b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
+    b.numero_cedula, b.fecha_caducidad_cedula, b.tipo_identificacion, b.numero_identificacion, b.fecha_caducidad_identificacion, b.documentos_fisico_original, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, F_SINO(c.es_telefono_propio), c.como_accede_a_internet, c.cual_es_su_direccion, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.tiempo_de_gestacion, n.lleva_su_control_en_centro_de_salud, n.alguien_de_su_hogar_tiene_siguientes_condiciones, n.lactando_con_nn_menor_2_anios, n.no_lactando_con_nn_menor_2_anios, n.madre_nn_2_a_5_anios, n.ninguno, 
+    F_SINO(e.viaja_con_menores_de_17_anios), s.algun_miembro_tiene_discapacidad, s.algun_miembro_tiene_problemas_salud,     
+    i.nombre_1a, i.nombre_1b, i.apellido_1a, i.apellido_1b, i.genero_1, i.fecha_nacimiento_1, F_AGE(i.fecha_nacimiento_1) as Edad, concat(i.relacion_1,' ',i.otro_1) as Parentesco, i.tipo_identificacion_1, i.numero_identificacion_1, 
+    i.nombre_2a, i.nombre_2b, i.apellido_2a, i.apellido_2b, i.genero_2, i.fecha_nacimiento_2, F_AGE(i.fecha_nacimiento_2) as Edad, concat(i.relacion_2,' ',i.otro_2) as Parentesco, i.tipo_identificacion_2, i.numero_identificacion_2, 
+    i.nombre_3a, i.nombre_3b, i.apellido_3a, i.apellido_3b, i.genero_3, i.fecha_nacimiento_3, F_AGE(i.fecha_nacimiento_3) as Edad, concat(i.relacion_3,' ',i.otro_3) as Parentesco, i.tipo_identificacion_3, i.numero_identificacion_3, 
+    i.nombre_4a, i.nombre_4b, i.apellido_4a, i.apellido_4b, i.genero_4, i.fecha_nacimiento_4, F_AGE(i.fecha_nacimiento_4) as Edad, concat(i.relacion_4,' ',i.otro_4) as Parentesco, i.tipo_identificacion_4, i.numero_identificacion_4, 
+    i.nombre_5a, i.nombre_5b, i.apellido_5a, i.apellido_5b, i.genero_5, i.fecha_nacimiento_5, F_AGE(i.fecha_nacimiento_5) as Edad, concat(i.relacion_5,' ',i.otro_5) as Parentesco, i.tipo_identificacion_5, i.numero_identificacion_5, 
+    i.nombre_6a, i.nombre_6b, i.apellido_6a, i.apellido_6b, i.genero_6, i.fecha_nacimiento_6, F_AGE(i.fecha_nacimiento_6) as Edad, concat(i.relacion_6,' ',i.otro_6) as Parentesco, i.tipo_identificacion_6, i.numero_identificacion_6, 
+    i.nombre_7a, i.nombre_7b, i.apellido_7a, i.apellido_7b, i.genero_7, i.fecha_nacimiento_7, F_AGE(i.fecha_nacimiento_7) as Edad, concat(i.relacion_7,' ',i.otro_7) as Parentesco, i.tipo_identificacion_7, i.numero_identificacion_7,
+    s.derivacion_salud, dersec.interesado_participar_salud
+FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+inner join nutricion n on b.id_beneficiario = n.id_beneficiario
+inner join educacion e on b.id_beneficiario = e.id_beneficiario
+inner join salud s on b.id_beneficiario = s.id_beneficiario 
+inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
+inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
+inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
+;
+END ;;
+DELIMITER ;
 
-
-call SP_Select_Mera_Proteccion();
+call SP_Select_Salud();
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
