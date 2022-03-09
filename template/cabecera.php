@@ -100,7 +100,7 @@
   								<a class="dropdown-item" href="<?php echo $url."/repo_salud.php"?>">Salud</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/repo_nutricion.php"?>">Nutrición</a>
-  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Medios de Vida</a>
+  								<a class="dropdown-item" href="<?php echo $url."/repo_mdv.php"?>">Medios de Vida</a>
   							</div>
   						</li>		
   						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
