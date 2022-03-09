@@ -412,7 +412,7 @@ inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficia
 END ;;
 DELIMITER ;
 
-call SP_Select_Mera_Proteccion();
+call SP_Select_Salud();
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
