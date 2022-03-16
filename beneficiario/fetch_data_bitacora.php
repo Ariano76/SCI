@@ -8,7 +8,7 @@ $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(	
 	0 => 'nombre_beneficiario',
-	1 => 'id_beneficiario',
+	1 => 'numero_cedula',
 	2 => 'entidad',
 	3 => 'fecha',
 	4 => 'id_accion',	
@@ -18,7 +18,7 @@ if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE nombre_beneficiario like '%".$search_value."%'";
-	$sql .= " OR id_beneficiario like '%".$search_value."%'";
+	$sql .= " OR numero_cedula like '%".$search_value."%'";
 	$sql .= " OR entidad like '%".$search_value."%'";
 	$sql .= " OR fecha like '%".$search_value."%'";
 }
@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array = array();
 	$sub_array[] = $row['fecha'];	
 	$sub_array[] = $row['nombre_beneficiario'];
-	$sub_array[] = $row['id_beneficiario'];
+	$sub_array[] = $row['numero_cedula'];
 	$sub_array[] = $row['entidad'];
 	$sub_array[] = $row['id_accion'];
 	//$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
