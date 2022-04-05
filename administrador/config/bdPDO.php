@@ -456,12 +456,12 @@ private $DB_PASSWORD = ''; //database password
         try {               
             // calling stored procedure command
             $sql = "CALL SP_Usuario_Delete(".$id.",@total)";
-                    // prepare for execution of the stored procedure
+                // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
-                    // execute the stored procedure
+                // execute the stored procedure
             $stmt->execute();
             $stmt->closeCursor();
-                    // execute the second query to get customer's level
+                // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             if ($row) {
                 return $row !== false ? $row['resultado'] : null;
@@ -517,10 +517,6 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-
-
-
-
     public function validar_fecha_espanol($fecha){
         $valores = explode('-', $fecha);
         if(count($valores) == 3 && checkdate($valores[1], $valores[2], $valores[0])){
@@ -528,6 +524,38 @@ private $DB_PASSWORD = ''; //database password
         }
             return false;
     }
+
+/*****************
+ *  REPORTES
+ * ***************/
+
+
+    public function traer_datos_reporte() {
+        try {               
+            // calling stored procedure command
+            $arreglo = array();
+            $sql = "SELECT * FROM estados";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            
+
+
+            $stmt->execute();
+            $stmt->closeCursor();
+            // execute the second query to get customer's level
+            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
+                    //echo 'La operación se realizo satisfactoriamente';
+            return $arreglo;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
 
 	/**
      * close the database connection

@@ -12,3 +12,6 @@ FROM bd_bha_sci.beneficiario
 select region_beneficiario, genero, count(rango_edad) as total
 from total_beneficiarios group by region_beneficiario, genero
 order by region_beneficiario, genero;
+
+
+SELECT * FROM ESTADOS;

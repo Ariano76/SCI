@@ -412,7 +412,34 @@ inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficia
 END ;;
 DELIMITER ;
 
-call SP_Select_MDV();
+/*
+STORED PROCEDURE PARA LA GENERACION DE REPORTES
+*/
+
+DROP PROCEDURE IF EXISTS `SP_reporte_01`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_01`()
+BEGIN
+	drop table if exists total_beneficiarios ;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
+	(SELECT numero_identificacion, region_beneficiario, genero, F_AGE(fecha_nacimiento) as edad,
+	CASE WHEN F_AGE(fecha_nacimiento) > 17 and F_AGE(fecha_nacimiento) < 25 THEN 1
+	WHEN F_AGE(fecha_nacimiento) > 24 and F_AGE(fecha_nacimiento) < 50 THEN 2
+	WHEN F_AGE(fecha_nacimiento) > 49 THEN 3
+	ELSE 0
+	END AS rango_edad
+	FROM bd_bha_sci.beneficiario 
+	);
+    
+    select region_beneficiario, genero, count(rango_edad) as total
+	from total_beneficiarios group by region_beneficiario, genero
+	order by region_beneficiario, genero;
+
+END ;;
+DELIMITER ;
+
+
+call SP_reporte_01();
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;

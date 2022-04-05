@@ -1,15 +1,12 @@
 <?php include("../administrador/template/cabecera.php"); ?>
 
 <?php
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 //require_once './administrador/config/bd.php';
 require_once ('../administrador/config/bdPDO.php');
 
 $db_1 = new TransactionSCI();
 //$conn_1 = $db_1->Connect();
-
 //echo $insertId;
 
 require_once ('../vendor/autoload.php');
@@ -35,10 +32,9 @@ if (isset($_POST["import"])) {
 ?>
 
 <div class="col-md-12">
-
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reporte de Control
+      Reportes de Control
     </div>
     <div class="card-body">
       <form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
@@ -57,13 +53,36 @@ if (isset($_POST["import"])) {
         </div>
       </form>
     </div>
+    <div class="card-body">
+      <div class="row">
+        <button class="btn btn-primary" onclick="CargarDatosGraficoBar()">Grafico Bar
+        </div>
+        <canvas id="myChart" width="100" height="100">
+
+        </canvas>
+
+        <br>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class=card-text>
+      <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
+    </div>
   </div>
 </div>
-<div class="col-md-12">
-  <div class=card-text>
-    <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
-  </div>
-</div>
-</div>
+
+
+<script>
+  function CargarDatosGraficoBar(){
+    $.ajax({
+      url:'controlador_grafico.php',
+      type:'POST'
+    }).done(function(resp){
+      alert(resp);
+    })
+  }
+</script>
 
 <?php include("../administrador/template/pie.php"); ?>
