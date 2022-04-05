@@ -1,16 +1,16 @@
-<?php include("template/cabecera.php"); ?>
+<?php include("../template/cabecera.php"); ?>
 
 <?php
 
 //require_once './administrador/config/bd.php';
-require_once './administrador/config/bdPDO.php';
+require_once '../administrador/config/bdPDO.php';
 
 $db_1 = new TransactionSCI();
 //$conn_1 = $db_1->Connect();
 
 //echo $insertId;
 
-require_once ('./vendor/autoload.php');
+require_once ('../vendor/autoload.php');
 
 ?>
 
@@ -18,7 +18,7 @@ require_once ('./vendor/autoload.php');
 
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Cotejar nuevos beneficiarios en Base de Datos Historica
+      Reportes de control
     </div>
     <div class="card-body">
       <form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
@@ -44,4 +44,4 @@ require_once ('./vendor/autoload.php');
 </div>
 </div>
 
-<?php include("template/pie.php"); ?>
+<?php include("../template/pie.php"); ?>
