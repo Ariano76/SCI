@@ -53,11 +53,23 @@ if (!isset($_SESSION['usuario'])) {
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">	      
 				<a class="nav-item nav-link active" href="#">Administrador del sitio web</a>
-				<a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php" ?>">Inicio</a>				
-				<a class="nav-item nav-link" href="">Actualizar Constraseña</a>
-				<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/usuarios.php?id=null" ?>">Usuarios</a>
+				<a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php" ?>">Inicio</a>
+				<li>
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=null" ?>">Mantenimiento Usuarios</a>
+						<a class="dropdown-item" href="">Actualizar Constraseña</a>
+					</div>
+				</li>
 				<li>
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
+						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
+					</div>
+				</li>
+				<li>
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
 						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
