@@ -533,23 +533,21 @@ private $DB_PASSWORD = ''; //database password
     public function traer_datos_reporte() {
         try {               
             // calling stored procedure command
-            $arreglo = array();
-            $sql = "SELECT * FROM estados";
+            //$arreglo = array();
+            $sql = "call SP_reporte_00";
             // prepare for execution of the stored procedure
-            $stmt = $this->pdo->prepare($sql);                  
+            $stmt = $this->pdo->prepare($sql);
             // execute the stored procedure
-            
-
-
             $stmt->execute();
-            $stmt->closeCursor();
-            // execute the second query to get customer's level
-            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
-            if ($row) {
-                return $row !== false ? $row['resultado'] : null;
-            } 
-                    //echo 'La operación se realizo satisfactoriamente';
-            return $arreglo;
+            //$stmt->closeCursor();
+            //if ($sql){
+            //if ($result = $stmt->execute()){
+                //while($rows = $result->fetchAll(\PDO::FETCH_ASSOC)){
+                    $arreglo = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                //}
+               return $arreglo;
+           //}
+            //}
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }

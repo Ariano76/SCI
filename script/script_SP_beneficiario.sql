@@ -422,13 +422,14 @@ CREATE PROCEDURE `SP_reporte_01`()
 BEGIN
 	drop table if exists total_beneficiarios ;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
-	(SELECT numero_identificacion, region_beneficiario, genero, F_AGE(fecha_nacimiento) as edad,
-	CASE WHEN F_AGE(fecha_nacimiento) > 17 and F_AGE(fecha_nacimiento) < 25 THEN 1
-	WHEN F_AGE(fecha_nacimiento) > 24 and F_AGE(fecha_nacimiento) < 50 THEN 2
-	WHEN F_AGE(fecha_nacimiento) > 49 THEN 3
-	ELSE 0
-	END AS rango_edad
-	FROM bd_bha_sci.beneficiario 
+	(SELECT b.numero_identificacion, b.region_beneficiario, b.genero, F_AGE(b.fecha_nacimiento) as edad,
+		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
+		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
+		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3
+		ELSE 0
+		END AS rango_edad
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		where e.esta_de_acuerdo = 1
 	);
     
     select region_beneficiario, genero, count(rango_edad) as total

@@ -55,34 +55,28 @@ if (isset($_POST["import"])) {
     </div>
     <div class="card-body">
       <div class="row">
-        <button class="btn btn-primary" onclick="CargarDatosGraficoBar()">Grafico Bar
-        </div>
-        <canvas id="myChart" width="100" height="100">
-
-        </canvas>
-
-        <br>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CargarDatosGraficoBar()">Grafico Bar</button>  
+        </div>        
+        <div class="col-md-5">
+          <button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button>  
+        </div>   
       </div>
+      <canvas id="myChartV" width="100" height="100"></canvas>
+      <canvas id="myChartH" width="100" height="100"></canvas>
+      <br>
+    </div>
 
-    </div>
   </div>
-  <div class="col-md-12">
-    <div class=card-text>
-      <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
-    </div>
+</div>
+<div class="col-md-12">
+  <div class=card-text>
+    <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
   </div>
+</div>
 </div>
 
 
-<script>
-  function CargarDatosGraficoBar(){
-    $.ajax({
-      url:'controlador_grafico.php',
-      type:'POST'
-    }).done(function(resp){
-      alert(resp);
-    })
-  }
-</script>
+
 
 <?php include("../administrador/template/pie.php"); ?>
