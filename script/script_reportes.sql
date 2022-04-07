@@ -34,4 +34,16 @@ group by b.region_beneficiario ;
 END ;;
 DELIMITER ;
 
-call SP_reporte_00;
+call SP_reporte_01;
+
+/* QUERY PIVOT */
+SELECT
+  region_beneficiario,genero,
+  COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24',
+  COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+  COUNT(IF(rango_edad = 3, 1, NULL)) AS '+50'
+FROM
+  total_beneficiarios p
+GROUP BY
+  region_beneficiario,genero;
+

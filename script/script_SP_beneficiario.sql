@@ -432,14 +432,14 @@ BEGIN
 		where e.esta_de_acuerdo = 1
 	);
     
-    select region_beneficiario, genero, count(rango_edad) as total
-	from total_beneficiarios group by region_beneficiario, genero
-	order by region_beneficiario, genero;
+    select region_beneficiario, genero, rango_edad, count(rango_edad) as total
+	from total_beneficiarios group by region_beneficiario, genero, rango_edad
+	order by region_beneficiario, genero, rango_edad;
 
 END ;;
 DELIMITER ;
 
-
+select * from total_beneficiarios order by region_beneficiario, genero, edad;
 call SP_reporte_01();
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);

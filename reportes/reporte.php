@@ -55,15 +55,22 @@ if (isset($_POST["import"])) {
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="col-md-3">
-          <button class="btn btn-primary" onclick="CargarDatosGraficoBar()">Grafico Bar</button>  
+        <div class="col-md-6">
+          <!--button class="btn btn-primary" onclick="CargarDatosGraficoBar()">Grafico Bar</button-->  
+          <canvas id="myChartV" width="100" height="100"></canvas>
         </div>        
-        <div class="col-md-5">
-          <button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button>  
+        <div class="col-md-6">
+          <!--button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button--> 
+          <canvas id="myChartH" width="100" height="100"></canvas>
         </div>   
       </div>
-      <canvas id="myChartV" width="100" height="100"></canvas>
-      <canvas id="myChartH" width="100" height="100"></canvas>
+        <div class="col-md-6">
+          <!--button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button--> 
+          <canvas id="myChartPie" width="100" height="100"></canvas>
+        </div>   
+      </div>
+      
+      
       <br>
     </div>
 
