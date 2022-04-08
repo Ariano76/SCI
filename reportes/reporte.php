@@ -39,17 +39,29 @@ if (isset($_POST["import"])) {
     <div class="card-body">
       <form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="txtImagen">Este proceso realiza la migración de datos de nuevos beneficiarios del ambiente Stage a la tabla de Datos Históricos.</label>
+          <label for="txtImagen">En esta seccion podremos consultar los reportes de benficiarios por regiones.</label>
           <br>
           <br>
-          <label for="txtImagen">Este proceso borrará cualquier información existente en la tabla de Datos Históricos y la reemplazará con los nuevos datos.</label>
+          <label for="txtImagen">Seleccione una región.</label>
           <br>
           <br>
-          <label for="txtImagen">Verificar si realmente desea realizar este proceso ya que los datos eliminados no podrán ser recuperados.</label>
+          <select name="selecttam" id="departamento" class="form-control-lg">
+            <option value="" disabled selected>Seleccione una región</option>
+            <?php 
+              $datos = $db_1->traer_regiones();
+              foreach($datos as $value) { ?>
+              <option value="<?php echo $value['region']; ?>"><?php echo $value['region'];?></option>
+            <?php } ?>
+          </select>          
+          <br>     
         </div>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos Historicos</button>
+          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Consultar</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button 
+          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro()">Consultar</button>
         </div>
       </form>
     </div>
@@ -64,17 +76,21 @@ if (isset($_POST["import"])) {
           <canvas id="myChartH" width="100" height="100"></canvas>
         </div>   
       </div>
-        <div class="col-md-6">
-          <!--button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button--> 
-          <canvas id="myChartPie" width="100" height="100"></canvas>
-        </div>   
-      </div>
-      
-      
-      <br>
+      <div class="col-md-6">
+        <!--button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button--> 
+        <canvas id="myChartPie" width="100" height="100"></canvas>
+      </div>   
+      <div class="col-md-6">
+        <canvas id="myCharBarParam" width="100" height="100"></canvas>
+      </div>   
+
     </div>
 
+
+    <br>
   </div>
+
+</div>
 </div>
 <div class="col-md-12">
   <div class=card-text>
@@ -84,6 +100,231 @@ if (isset($_POST["import"])) {
 </div>
 
 
+<script>
 
+    let myChart;
+
+
+    CargarDatosGraficoBar();
+    CargarDatosGraficoBarHorizontal();
+    CargarDatosGraficoPie();    
+
+    function CargarDatosGraficoBar(){
+      $.ajax({
+        url:'controlador_grafico.php',
+        type:'POST'
+      }).done(function(resp){
+        var titulo = [];
+        var cantidad = [];
+        var colores = [];
+        var data = JSON.parse(resp);
+        for (var i = 0; i < data.length; i++) {
+          titulo.push(data[i]['region']);
+          cantidad.push(data[i]['total']);
+          colores.push(colorRGB());
+        }
+        pintarGrafico('bar',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myChartV')
+      })
+    }
+
+    function CargarDatosGraficoBarHorizontal(){
+      $.ajax({
+        url:'controlador_grafico.php',
+        type:'POST'
+      }).done(function(resp){
+        var titulo = [];
+        var cantidad = [];
+        var data = JSON.parse(resp);
+        for (var i = 0; i < data.length; i++) {
+          titulo.push(data[i]['region']);
+          cantidad.push(data[i]['total']);
+        }
+        pintarGrafico('bar',titulo,cantidad,0,'y','# de beneficiarios por regiones Horizontal','myChartH')
+      })
+    }   
+
+    function CargarDatosGraficoBarParametro(){
+      var region = $("#departamento").val();
+      $.ajax({
+        url:'controlador_grafico_parametro.php',
+        type:'POST',
+        data:{
+          dato_region:region
+        }
+      }).done(function(resp){
+        var titulo = [];
+        var cantidad = [];
+        var colores = [];
+        var data = JSON.parse(resp);
+        for (var i = 0; i < data.length; i++) {
+          titulo.push(data[i]['region']);
+          cantidad.push(data[i]['total']);
+          colores.push(colorRGB());
+        }
+        pintarGrafico('bar',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myCharBarParam')
+      })
+    }
+
+    function CargarDatosGraficoPie(){
+      $.ajax({
+        url:'controlador_grafico.php',
+        type:'POST'
+      }).done(function(resp){
+        var titulo = [];
+        var cantidad = [];
+        var colores = [];
+        var data = JSON.parse(resp);
+        for (var i = 0; i < data.length; i++) {
+          titulo.push(data[i]['region']);
+          cantidad.push(data[i]['total']);
+          colores.push(colorRGB());
+        }
+        //pintarGrafico('pie',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myChartPie')
+        const ctx = document.getElementById('myChartPie');
+        myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: titulo,
+            datasets: [{
+              label: 'Grafico Pie',
+              data: cantidad,
+              backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+              ]
+            }]
+          },
+          plugins: [ChartDataLabels]
+          /*ticks: {
+            callback: function(value, index, values) {
+              return '$' + value.toLocaleString();
+            }
+          }*/
+        });
+      })
+    }
+
+    function pintarGrafico(tipo,titulo,cantidad,colores,tipoAxis,encabezado,id){
+      const ctx = document.getElementById(id);
+      /* El bloque if solo se utilizara si queremos pintar varios graficos en la misma pagina. antes de dibujar un nuevo grafico, se valida si existe previamente, si es asi se elimina y se dibija el nuevo grafico.*/
+
+      /*if (myChart) {
+            myChart.destroy();
+          }*/
+          myChart = new Chart(ctx, {
+            type: tipo,
+            data: {
+              labels: titulo,
+              datasets: [
+              {
+                axis: tipoAxis,
+                label: 'Hombre',
+                data: cantidad,
+                backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                borderColor: ['rgba(54, 162, 235, 1)'],
+                /*backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],*/
+                borderWidth: 1,
+                stack: 'Stack 0',
+              },
+              {
+                axis: tipoAxis,
+                label: 'Mujer',
+                data: cantidad,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgba(255, 99, 132, 1)'],
+                /*backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],*/
+                borderWidth: 1,
+                stack: 'Stack 1',
+              },
+              {
+                axis: tipoAxis,
+                label: 'Mujer',
+                data: cantidad,
+                backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                borderColor: ['rgba(75, 192, 192, 1)'],
+                /*backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],*/
+                borderWidth: 1,
+                stack: 'Stack 2'
+              }
+              ]
+            },
+            plugins: [ChartDataLabels],
+            options: {
+              indexAxis: tipoAxis,
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        }
+
+        function generarNumero(numero){
+          return (Math.random()*numero).toFixed(0);
+        }
+
+        function colorRGB(){
+          var coolor = "("+generarNumero(255)+"," + generarNumero(255) + "," + generarNumero(255) +")";
+          return "rgb" + coolor;
+        }   
+    </script>
 
 <?php include("../administrador/template/pie.php"); ?>

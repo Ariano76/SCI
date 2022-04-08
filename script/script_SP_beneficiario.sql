@@ -415,10 +415,9 @@ DELIMITER ;
 /*
 STORED PROCEDURE PARA LA GENERACION DE REPORTES
 */
-
-DROP PROCEDURE IF EXISTS `SP_reporte_01`;
+DROP PROCEDURE IF EXISTS `SP_reporte_regiones`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_reporte_01`()
+CREATE PROCEDURE `SP_reporte_regiones`()
 BEGIN
 	drop table if exists total_beneficiarios ;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
@@ -432,15 +431,35 @@ BEGIN
 		where e.esta_de_acuerdo = 1
 	);
     
-    select region_beneficiario, genero, rango_edad, count(rango_edad) as total
-	from total_beneficiarios group by region_beneficiario, genero, rango_edad
-	order by region_beneficiario, genero, rango_edad;
+    select distinct(region_beneficiario) region
+    from total_beneficiarios order by region_beneficiario;
 
 END ;;
 DELIMITER ;
 
-select * from total_beneficiarios order by region_beneficiario, genero, edad;
-call SP_reporte_01();
+DROP PROCEDURE IF EXISTS `SP_reporte_01`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_01`()
+BEGIN
+    select region_beneficiario, genero, rango_edad, count(rango_edad) as total
+	from total_beneficiarios group by region_beneficiario, genero, rango_edad
+	order by region_beneficiario, genero, rango_edad;
+END ;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region`(In region VARCHAR(250))
+BEGIN
+    select region_beneficiario, genero, rango_edad, count(rango_edad) as total
+	from total_beneficiarios where region_beneficiario = region
+    group by region_beneficiario, genero, rango_edad    
+	order by region_beneficiario, genero, rango_edad;
+END ;;
+DELIMITER ;
+
+call SP_reporte_01_beneficiario_x_region('Lima');
+call SP_reporte_regiones();
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;

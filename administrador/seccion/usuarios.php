@@ -1,4 +1,8 @@
 <?php include("../template/cabecera.php") ?>
+<!-- bootbox code -->
+<script type="text/javascript" src="script/bootbox.min.js"></script>
+<script type="text/javascript" src="script/deleteRecords.js"></script>
+
 <?php 
 
 $txtID = (isset($_POST['txtID']))?$_POST['txtID']:"";

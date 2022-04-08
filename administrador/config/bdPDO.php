@@ -528,12 +528,26 @@ private $DB_PASSWORD = ''; //database password
 /*****************
  *  REPORTES
  * ***************/
+    public function traer_regiones() {
+        try {               
+            // calling stored procedure command
+            $sql = "call SP_reporte_regiones();";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $arreglo;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
 
     public function traer_datos_reporte() {
         try {               
             // calling stored procedure command
             //$arreglo = array();
-            $sql = "call SP_reporte_00";
+            $sql = "call SP_reporte_00()";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);
             // execute the stored procedure
@@ -552,6 +566,31 @@ private $DB_PASSWORD = ''; //database password
         }
         return null;
     }
+
+    public function traer_datos_reporte_parametro($region) {
+        try {               
+            // calling stored procedure command
+            //$arreglo = array();
+            $sql = "call SP_reporte_000(".$region.")";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);
+            // execute the stored procedure
+            $stmt->execute();
+            //$stmt->closeCursor();
+            //if ($sql){
+            //if ($result = $stmt->execute()){
+                //while($rows = $result->fetchAll(\PDO::FETCH_ASSOC)){
+                $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                //}
+               return $arreglo;
+           //}
+            //}
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
 
 
 	/**

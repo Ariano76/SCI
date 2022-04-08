@@ -34,7 +34,19 @@ group by b.region_beneficiario ;
 END ;;
 DELIMITER ;
 
-call SP_reporte_01;
+DROP PROCEDURE IF EXISTS `SP_reporte_000`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_000`(In region VARCHAR(250))
+BEGIN
+	SELECT b.region_beneficiario as region, count(b.id_beneficiario) as total
+FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		where e.esta_de_acuerdo = 1 and b.region_beneficiario = region
+group by b.region_beneficiario ;
+
+END ;;
+DELIMITER ;
+
+call SP_reporte_000('Lima');
 
 /* QUERY PIVOT */
 SELECT  region_beneficiario, genero,
@@ -44,3 +56,4 @@ SELECT  region_beneficiario, genero,
 FROM  total_beneficiarios p where region_beneficiario = 'Piura'
 GROUP BY  region_beneficiario, genero;
 
+select distinct(region_beneficiario) from total_beneficiarios order by region_beneficiario;
