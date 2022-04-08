@@ -529,7 +529,6 @@ private $DB_PASSWORD = ''; //database password
  *  REPORTES
  * ***************/
 
-
     public function traer_datos_reporte() {
         try {               
             // calling stored procedure command
@@ -543,7 +542,7 @@ private $DB_PASSWORD = ''; //database password
             //if ($sql){
             //if ($result = $stmt->execute()){
                 //while($rows = $result->fetchAll(\PDO::FETCH_ASSOC)){
-                    $arreglo = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 //}
                return $arreglo;
            //}
