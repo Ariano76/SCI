@@ -425,7 +425,7 @@ BEGIN
 		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3
-		ELSE 0
+		ELSE 4
 		END AS rango_edad
 		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 		where e.esta_de_acuerdo = 1
@@ -457,9 +457,22 @@ BEGIN
 	order by region_beneficiario, genero, rango_edad;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_01`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_01`(In region VARCHAR(250))
+BEGIN
+    SELECT  region_beneficiario, genero,  
+    COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+    COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
+    FROM  total_beneficiarios p where region_beneficiario = region 
+    GROUP BY  region_beneficiario, genero;
+END ;;
+DELIMITER ;
 
-call SP_reporte_01_beneficiario_x_region('Lima');
 call SP_reporte_regiones();
+call SP_reporte_01();
+call SP_reporte_01_beneficiario_x_region('Lambayeque');
+
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;

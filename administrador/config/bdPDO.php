@@ -571,20 +571,13 @@ private $DB_PASSWORD = ''; //database password
         try {               
             // calling stored procedure command
             //$arreglo = array();
-            $sql = "call SP_reporte_000(".$region.")";
+            $sql = "call SP_reporte_01_beneficiario_x_region_01('".$region."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);
             // execute the stored procedure
             $stmt->execute();
-            //$stmt->closeCursor();
-            //if ($sql){
-            //if ($result = $stmt->execute()){
-                //while($rows = $result->fetchAll(\PDO::FETCH_ASSOC)){
-                $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                //}
-               return $arreglo;
-           //}
-            //}
+            $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $arreglo;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }

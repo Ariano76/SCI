@@ -41,28 +41,13 @@ if (isset($_POST["import"])) {
         <div class="form-group">
           <label for="txtImagen">En esta seccion podremos consultar los reportes de benficiarios por regiones.</label>
           <br>
-          <br>
-          <label for="txtImagen">Seleccione una región.</label>
-          <br>
-          <br>
-          <select name="selecttam" id="departamento" class="form-control-lg">
-            <option value="" disabled selected>Seleccione una región</option>
-            <?php 
-              $datos = $db_1->traer_regiones();
-              foreach($datos as $value) { ?>
-              <option value="<?php echo $value['region']; ?>"><?php echo $value['region'];?></option>
-            <?php } ?>
-          </select>          
-          <br>     
+          
         </div>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Consultar</button>
         </div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro()">Consultar</button>
-        </div>
+
       </form>
     </div>
     <div class="card-body">
@@ -80,13 +65,36 @@ if (isset($_POST["import"])) {
         <!--button class="btn btn-primary" onclick="CargarDatosGraficoBarHorizontal()">Grafico Bar Horizontal</button--> 
         <canvas id="myChartPie" width="100" height="100"></canvas>
       </div>   
-      <div class="col-md-6">
-        <canvas id="myCharBarParam" width="100" height="100"></canvas>
-      </div>   
 
     </div>
 
-
+    <div class="card text-center">      
+      <div class="card-body">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <br>
+          <label for="txtImagen">Seleccione una región.</label>
+          <br>
+          <br>
+          <select name="selecttam" id="departamento" class="form-control-lg">
+            <option value="" disabled selected>Seleccione una región</option>
+            <?php 
+            $datos = $db_1->traer_regiones();
+            foreach($datos as $value) { ?>
+              <option value="<?php echo $value['region']; ?>"><?php echo $value['region'];?></option>
+            <?php } ?>
+          </select>          
+          <br>     
+       <div class="btn-group" role="group" aria-label="Basic example">
+          <button 
+          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro()">Consultar</button>
+        </div>
+      <div class="col-md-6">
+        <canvas id="myCharBarParam" width="100" height="100"></canvas>
+      </div>   
+    </div>
     <br>
   </div>
 
@@ -102,83 +110,83 @@ if (isset($_POST["import"])) {
 
 <script>
 
-    let myChart;
+  let myChart;
 
 
-    CargarDatosGraficoBar();
-    CargarDatosGraficoBarHorizontal();
-    CargarDatosGraficoPie();    
+  CargarDatosGraficoBar();
+  CargarDatosGraficoBarHorizontal();
+  CargarDatosGraficoPie();    
 
-    function CargarDatosGraficoBar(){
-      $.ajax({
-        url:'controlador_grafico.php',
-        type:'POST'
-      }).done(function(resp){
-        var titulo = [];
-        var cantidad = [];
-        var colores = [];
-        var data = JSON.parse(resp);
-        for (var i = 0; i < data.length; i++) {
-          titulo.push(data[i]['region']);
-          cantidad.push(data[i]['total']);
-          colores.push(colorRGB());
-        }
-        pintarGrafico('bar',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myChartV')
-      })
-    }
+  function CargarDatosGraficoBar(){
+    $.ajax({
+      url:'controlador_grafico.php',
+      type:'POST'
+    }).done(function(resp){
+      var titulo = [];
+      var cantidad = [];
+      var colores = [];
+      var data = JSON.parse(resp);
+      for (var i = 0; i < data.length; i++) {
+        titulo.push(data[i]['region']);
+        cantidad.push(data[i]['total']);
+        colores.push(colorRGB());
+      }
+      pintarGrafico('bar',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myChartV')
+    })
+  }
 
-    function CargarDatosGraficoBarHorizontal(){
-      $.ajax({
-        url:'controlador_grafico.php',
-        type:'POST'
-      }).done(function(resp){
-        var titulo = [];
-        var cantidad = [];
-        var data = JSON.parse(resp);
-        for (var i = 0; i < data.length; i++) {
-          titulo.push(data[i]['region']);
-          cantidad.push(data[i]['total']);
-        }
-        pintarGrafico('bar',titulo,cantidad,0,'y','# de beneficiarios por regiones Horizontal','myChartH')
-      })
-    }   
+  function CargarDatosGraficoBarHorizontal(){
+    $.ajax({
+      url:'controlador_grafico.php',
+      type:'POST'
+    }).done(function(resp){
+      var titulo = [];
+      var cantidad = [];
+      var data = JSON.parse(resp);
+      for (var i = 0; i < data.length; i++) {
+        titulo.push(data[i]['region']);
+        cantidad.push(data[i]['total']);
+      }
+      pintarGrafico('bar',titulo,cantidad,0,'y','# de beneficiarios por regiones Horizontal','myChartH')
+    })
+  }   
 
-    function CargarDatosGraficoBarParametro(){
-      var region = $("#departamento").val();
-      $.ajax({
-        url:'controlador_grafico_parametro.php',
-        type:'POST',
-        data:{
-          dato_region:region
-        }
-      }).done(function(resp){
-        var titulo = [];
-        var cantidad = [];
-        var colores = [];
-        var data = JSON.parse(resp);
-        for (var i = 0; i < data.length; i++) {
-          titulo.push(data[i]['region']);
-          cantidad.push(data[i]['total']);
-          colores.push(colorRGB());
-        }
-        pintarGrafico('bar',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myCharBarParam')
-      })
-    }
+  function CargarDatosGraficoBarParametro(){
+    var region = $("#departamento").val();
+    $.ajax({
+      url:'controlador_grafico_parametro.php',
+      type:'POST',
+      data:{
+        dato_region:region
+      }
+    }).done(function(resp){
+      var titulo = [];
+      var cantidad = [];
+      var colores = [];
+      var data = JSON.parse(resp);
+      for (var i = 0; i < data.length; i++) {
+        titulo.push(data[i]['region']);
+        cantidad.push(data[i]['total']);
+        colores.push(colorRGB());
+      }
+      pintarGrafico('bar',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myCharBarParam')
+    })
+  }
 
-    function CargarDatosGraficoPie(){
-      $.ajax({
-        url:'controlador_grafico.php',
-        type:'POST'
-      }).done(function(resp){
-        var titulo = [];
-        var cantidad = [];
-        var colores = [];
-        var data = JSON.parse(resp);
-        for (var i = 0; i < data.length; i++) {
-          titulo.push(data[i]['region']);
-          cantidad.push(data[i]['total']);
-          colores.push(colorRGB());
-        }
+  function CargarDatosGraficoPie(){
+    $.ajax({
+      url:'controlador_grafico.php',
+      type:'POST'
+    }).done(function(resp){
+      var titulo = [];
+      var cantidad = [];
+      var colores = [];
+      var data = JSON.parse(resp);
+      for (var i = 0; i < data.length; i++) {
+        titulo.push(data[i]['region']);
+        cantidad.push(data[i]['total']);
+        colores.push(colorRGB());
+      }
         //pintarGrafico('pie',titulo,cantidad,colores,'x','# de beneficiarios por regiones','myChartPie')
         const ctx = document.getElementById('myChartPie');
         myChart = new Chart(ctx, {
@@ -214,11 +222,11 @@ if (isset($_POST["import"])) {
           }*/
         });
       })
-    }
+  }
 
-    function pintarGrafico(tipo,titulo,cantidad,colores,tipoAxis,encabezado,id){
-      const ctx = document.getElementById(id);
-      /* El bloque if solo se utilizara si queremos pintar varios graficos en la misma pagina. antes de dibujar un nuevo grafico, se valida si existe previamente, si es asi se elimina y se dibija el nuevo grafico.*/
+  function pintarGrafico(tipo,titulo,cantidad,colores,tipoAxis,encabezado,id){
+    const ctx = document.getElementById(id);
+    /* El bloque if solo se utilizara si queremos pintar varios graficos en la misma pagina. antes de dibujar un nuevo grafico, se valida si existe previamente, si es asi se elimina y se dibija el nuevo grafico.*/
 
       /*if (myChart) {
             myChart.destroy();
@@ -234,22 +242,6 @@ if (isset($_POST["import"])) {
                 data: cantidad,
                 backgroundColor: ['rgba(54, 162, 235, 0.2)'],
                 borderColor: ['rgba(54, 162, 235, 1)'],
-                /*backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-                ],*/
                 borderWidth: 1,
                 stack: 'Stack 0',
               },
@@ -259,47 +251,15 @@ if (isset($_POST["import"])) {
                 data: cantidad,
                 backgroundColor: ['rgba(255, 99, 132, 0.2)'],
                 borderColor: ['rgba(255, 99, 132, 1)'],
-                /*backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-                ],*/
                 borderWidth: 1,
                 stack: 'Stack 1',
               },
               {
                 axis: tipoAxis,
-                label: 'Mujer',
+                label: 'Otro',
                 data: cantidad,
                 backgroundColor: ['rgba(75, 192, 192, 0.2)'],
                 borderColor: ['rgba(75, 192, 192, 1)'],
-                /*backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-                ],*/
                 borderWidth: 1,
                 stack: 'Stack 2'
               }
@@ -325,6 +285,6 @@ if (isset($_POST["import"])) {
           var coolor = "("+generarNumero(255)+"," + generarNumero(255) + "," + generarNumero(255) +")";
           return "rgb" + coolor;
         }   
-    </script>
+      </script>
 
-<?php include("../administrador/template/pie.php"); ?>
+      <?php include("../administrador/template/pie.php"); ?>

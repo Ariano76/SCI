@@ -46,14 +46,17 @@ group by b.region_beneficiario ;
 END ;;
 DELIMITER ;
 
+call SP_reporte_00();
 call SP_reporte_000('Lima');
+call SP_reporte_01_beneficiario_x_region_01('Lambayeque');
 
 /* QUERY PIVOT */
 SELECT  region_beneficiario, genero,
   COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24',
   COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
-  COUNT(IF(rango_edad = 3, 1, NULL)) AS '+50'
-FROM  total_beneficiarios p where region_beneficiario = 'Piura'
+  COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+',
+  COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
+FROM  total_beneficiarios p where region_beneficiario = 'Lambayeque'
 GROUP BY  region_beneficiario, genero;
 
 select distinct(region_beneficiario) from total_beneficiarios order by region_beneficiario;

@@ -68,7 +68,7 @@ if (!isset($_SESSION['usuario'])) {
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a>
-						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Reporte 001</a>
 					</div>
 				</li>
 				<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->
