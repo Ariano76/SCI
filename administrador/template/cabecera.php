@@ -70,6 +70,10 @@ if (!isset($_SESSION['usuario'])) {
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a>
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Reporte 001</a>
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Reporte 002</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Reporte 003</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Reporte 004</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Reporte 005</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Reporte 006</a>
 					</div>
 				</li>
 				<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->

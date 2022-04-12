@@ -16,14 +16,10 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control
+      Reportes de Control - Número de hogares con embarazadas por rango de edad y regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
-      <div class="form-group">
-        <label for="txtImagen">En esta seccion podremos consultar los reportes de hogares con  benficiarias embarazadas por rango de edad.</label>
-      </div>
-      <label for="txtImagen">Seleccione una región.</label>
       <div class="row">
         <div class="col-md-6">
           <select name="selecttam" id="departamento" class="form-control-lg">
@@ -150,7 +146,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Numero de Familias con Embarazadas por Rango de Edad'
+            text: 'Número de Familias con Embarazadas por Rango de Edad'
           },
         },
 

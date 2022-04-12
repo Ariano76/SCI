@@ -16,7 +16,7 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control - Número de beneficiarios por rango de edad y regiones
+      Reportes de Control - Número de hogares con miembros que tienen un ingreso por trabajos realizado por regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
@@ -33,7 +33,7 @@ $db_1 = new TransactionSCI();
         </div>
         <div class="col-md-6" aria-label="Basic example">
           <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_01_beneficiario_x_region_01')">Consultar</button>
+          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_06_obtienen_ingresos')">Consultar</button>
         </div>
       </div>
       <br>
@@ -74,24 +74,24 @@ $db_1 = new TransactionSCI();
     }).done(function(resp){
       var titulo = [];
       var cantidad_1 = [];
-      var cantidad_2 = [];
-      var cantidad_3 = [];
-      var cantidad_4 = [];
+      //var cantidad_2 = [];
+      //var cantidad_3 = [];
+      //var cantidad_4 = [];
       var colores = [];
       var data = JSON.parse(resp);
       for (var i = 0; i < data.length; i++) {
-        titulo.push(data[i]['genero']);
-        cantidad_1.push(data[i]['18-24']);
-        cantidad_2.push(data[i]['25-49']);
-        cantidad_3.push(data[i]['50+']);
-        cantidad_4.push(data[i]['<18']);
+        titulo.push(data[i]['cuantos_tienen_ingreso_por_trabajo']);
+        cantidad_1.push(data[i]['total']);
+        //cantidad_2.push(data[i]['25-49']);
+        //cantidad_3.push(data[i]['50+']);
+        //cantidad_4.push(data[i]['<18']);
         colores.push(colorRGB());
       }
-      pintarGrafico('bar',titulo,cantidad_1,cantidad_2,cantidad_3,cantidad_4,colores,'x','# de beneficiarios por regiones','myCharBarParam')
+      pintarGrafico('bar',titulo,cantidad_1,colores,'x','# de beneficiarios por regiones','myCharBarParam')
     })
   }
 
-  function pintarGrafico(tipo,titulo,c1,c2,c3,c4,colores,tipoAxis,encabezado,id){
+  function pintarGrafico(tipo,titulo,c1,colores,tipoAxis,encabezado,id){
     const ctx = document.getElementById(id);
     /* El bloque if solo se utilizara si queremos pintar varios graficos en la misma pagina. antes de dibujar un nuevo grafico, se valida si existe previamente, si es asi se elimina y se dibija el nuevo grafico.*/
 
@@ -105,13 +105,13 @@ $db_1 = new TransactionSCI();
         datasets: [
         {
           axis: tipoAxis,
-          label: '18-24',
+          label: 'Total',
           data: c1,
           backgroundColor: ['rgba(54, 162, 235, 0.2)'],
           borderColor: ['rgba(54, 162, 235, 1)'],
           borderWidth: 1,
           stack: 'Stack 0',
-        },
+        }/*,
         {
           axis: tipoAxis,
           label: '25-49',
@@ -138,7 +138,7 @@ $db_1 = new TransactionSCI();
           borderColor: ['rgba(255, 205, 86, 1)'],
           borderWidth: 1,
           stack: 'Stack 3'
-        }
+        }*/
         ]
       },
       plugins: [ChartDataLabels],
@@ -146,7 +146,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Número de Beneficiarios por Genero y Rango de Edad'
+            text: 'Número de Familias con miembros que obtienen ingresos económicos'
           },
         },
 

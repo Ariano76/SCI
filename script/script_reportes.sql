@@ -1,26 +1,3 @@
-drop table if exists total_beneficiarios ;
-CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
-(SELECT b.numero_identificacion, b.region_beneficiario, b.genero, F_AGE(b.fecha_nacimiento) as edad,
-CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
-WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
-WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3
-ELSE 0
-END AS rango_edad
-FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
-where e.esta_de_acuerdo = 1
-);
-select * from nutricion;
-select region_beneficiario, genero, count(rango_edad) as total
-from total_beneficiarios 
-group by region_beneficiario, genero
-order by region_beneficiario, genero;
-
-
-SELECT b.region_beneficiario as region, count(b.id_beneficiario) as total
-FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
-		where e.esta_de_acuerdo = 1
-group by b.region_beneficiario ;
-
 
 DROP PROCEDURE IF EXISTS `SP_reporte_00`;
 DELIMITER ;;
@@ -59,4 +36,10 @@ SELECT  region_beneficiario, genero,
 FROM  total_beneficiarios p where region_beneficiario = 'Lambayeque'
 GROUP BY  region_beneficiario, genero;
 
-select distinct(region_beneficiario) from total_beneficiarios order by region_beneficiario;
+SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,  
+    COUNT(c.cuantos_tienen_ingreso_por_trabajo) AS 'total'
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
+	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 
+	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo
+    order by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;

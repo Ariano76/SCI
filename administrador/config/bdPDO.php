@@ -567,6 +567,24 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
+    public function traer_datos_reporte_sin_parametro($SP) {
+        try {               
+            // calling stored procedure command
+            //$arreglo = array();
+            $sql = "CALL " .$SP. "()";
+            //$sql = "call SP_reporte_01_beneficiario_x_region_01('".$region."')";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);
+            // execute the stored procedure
+            $stmt->execute();
+            $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $arreglo;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
     public function traer_datos_reporte_parametro($SP, $region) {
         try {               
             // calling stored procedure command

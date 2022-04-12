@@ -16,7 +16,7 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control - Número de beneficiarios por rango de edad y regiones
+      Reportes de Control - Número de hogares con miembros que presentan alguna discapacidad por rango de edad y regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
@@ -33,7 +33,7 @@ $db_1 = new TransactionSCI();
         </div>
         <div class="col-md-6" aria-label="Basic example">
           <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_01_beneficiario_x_region_01')">Consultar</button>
+          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_03_discapacidad_x_region')">Consultar</button>
         </div>
       </div>
       <br>
@@ -80,7 +80,7 @@ $db_1 = new TransactionSCI();
       var colores = [];
       var data = JSON.parse(resp);
       for (var i = 0; i < data.length; i++) {
-        titulo.push(data[i]['genero']);
+        titulo.push(data[i]['algun_miembro_tiene_discapacidad']);
         cantidad_1.push(data[i]['18-24']);
         cantidad_2.push(data[i]['25-49']);
         cantidad_3.push(data[i]['50+']);
@@ -146,7 +146,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Número de Beneficiarios por Genero y Rango de Edad'
+            text: 'Número de Familias con Embarazadas por Rango de Edad'
           },
         },
 

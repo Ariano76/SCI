@@ -498,9 +498,63 @@ drop table if exists total_beneficiarias_embarazada ;
     FROM total_beneficiarias_embarazada p where region_beneficiario = region;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region`(In region VARCHAR(250))
+BEGIN
+drop table if exists total_beneficiarias_discapacidad;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_discapacidad AS 
+	(SELECT s.algun_miembro_tiene_discapacidad, b.region_beneficiario, b.genero, F_AGE(b.fecha_nacimiento) as edad,
+		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
+		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
+		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4 END AS rango_edad
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+        inner join salud s on b.id_beneficiario = s.id_beneficiario 
+        where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno'
+	);
+    SELECT algun_miembro_tiene_discapacidad,  
+    COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+    COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
+    FROM total_beneficiarias_discapacidad where region_beneficiario = region group by algun_miembro_tiene_discapacidad;
+END ;;
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_04_matriculados`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_04_matriculados`()
+BEGIN
+SELECT b.region_beneficiario, sum(ed.todos_los_nna_estan_matriculados) as total
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+        inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
+        where e.esta_de_acuerdo = 1 and ed.todos_los_nna_estan_matriculados = 1
+        group by b.region_beneficiario;
+END ;;
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_05_viajan_con_menores`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_05_viajan_con_menores`()
+BEGIN
+SELECT b.region_beneficiario, sum(ed.viaja_con_menores_de_17_anios) as total
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+        inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
+        where e.esta_de_acuerdo = 1 and ed.viaja_con_menores_de_17_anios = 1
+        group by b.region_beneficiario;
+END ;;
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos`(In region VARCHAR(250))
+BEGIN
+SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,  
+    COUNT(c.cuantos_tienen_ingreso_por_trabajo) AS 'total'
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
+	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 and b.region_beneficiario = region
+	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
+END ;;
+DELIMITER ;
 call SP_reporte_regiones();
-call SP_reporte_01();
-call SP_reporte_02_embarazadas_x_region('Piura');
+call SP_reporte_05_viajan_con_menores();
+call SP_reporte_06_obtienen_ingresos('Lima');
 
 
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
