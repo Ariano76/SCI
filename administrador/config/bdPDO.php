@@ -567,11 +567,12 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function traer_datos_reporte_parametro($region) {
+    public function traer_datos_reporte_parametro($SP, $region) {
         try {               
             // calling stored procedure command
             //$arreglo = array();
-            $sql = "call SP_reporte_01_beneficiario_x_region_01('".$region."')";
+            $sql = "CALL " .$SP. "('".$region."')";
+            //$sql = "call SP_reporte_01_beneficiario_x_region_01('".$region."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);
             // execute the stored procedure

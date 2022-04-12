@@ -9,7 +9,7 @@ END AS rango_edad
 FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 where e.esta_de_acuerdo = 1
 );
-
+select * from nutricion;
 select region_beneficiario, genero, count(rango_edad) as total
 from total_beneficiarios 
 group by region_beneficiario, genero
