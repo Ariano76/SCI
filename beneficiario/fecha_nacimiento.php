@@ -11,25 +11,20 @@ include("../administrador/config/connection.php");
 <!--div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="row"-->
-      <h1 class="display-8">DATOS PRINCIPALES DEL BENEFICIARIO </h1> 
+      <h1 class="display-8">INCONSISTENCIA EN LA FECHA DE NACIMIENTO</h1> 
 
       <div class="col-lg-12">
         <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
           <thead class="text-center">
             <tr>
               <th>Codigo</th>
-              <th>Nombre&nbsp;del&nbsp;Beneficiario</th>
+              <th>Cédula&nbsp;Beneficiario&nbsp;Principal</th>
               <th>Primer&nbsp;nombre</th>
-              <th>Segundo&nbsp;nombre</th>
-              <th>Primer&nbsp;apellido</th>
-              <th>Segundo&nbsp;apellido</th>
-              <th>Numero&nbsp;de&nbsp;cedula</th>
-              <th>Tipo&nbsp;de&nbsp;identificación&nbsp;alternativo</th>
-              <th>Numero&nbsp;de&nbsp;identificación&nbsp;alternativo</th>
-              <th>Cuál&nbsp;es&nbsp;su&nbsp;número&nbsp;de&nbsp;whatsapp</th>
-              <th>Cuál&nbsp;es&nbsp;su&nbsp;número&nbsp;de&nbsp;celular</th>
+              <th>Genero</th>
               <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>Acción</th>
+              <th>Edad</th>
+              <th>Relación</th>
+              <!--th>Acción</th-->
             </tr>
           </thead>
         </table>   
@@ -42,18 +37,18 @@ include("../administrador/config/connection.php");
             "fnCreatedRow": function(nRow, aData, iDataIndex) {
               $(nRow).attr('id', aData[0]);
             },
-            scrollX: true,
+            //scrollX: true,
             'serverSide': 'true',
             'processing': 'true',
             'paging': 'true',
             'order': [],
             'ajax': {
-              'url': 'fetch_data_general.php',
+              'url': 'fetch_data_fecha_nacimiento.php',
               'type': 'post',
             },
             "aoColumnDefs": [{
               "bSortable": false,
-              "aTargets": [12]
+              "aTargets": [6]
             },
             ]
           });
@@ -61,17 +56,12 @@ include("../administrador/config/connection.php");
         $(document).on('submit', '#updateUser', function(e) {
           e.preventDefault();
       //var tr = $(this).closest('tr');
-      var nombre_beneficiario = $('#nombre_beneficiarioField').val();
-      var primer_nombre = $('#primer_nombreField').val();
-      var segundo_nombre = $('#segundo_nombreField').val();
-      var primer_apellido = $('#primer_apellidoField').val();
-      var segundo_apellido = $('#segundo_apellidoField').val();
-      var numero_cedula = $('#numero_cedulaField').val();
-      var tipo_identificacion = $('#tipo_identificacionField').val();
-      var numero_identificacion = $('#numero_identificacionField').val();
-      var cual_es_su_numero_whatsapp = $('#cual_es_su_numero_whatsappField').val();      
-      var cual_es_su_numero_recibir_sms = $('#cual_es_su_numero_recibir_smsField').val();
+      var cedula_beneficiario_principal = $('#cedula_beneficiario_principalField').val();
+      var nombre = $('#nombreField').val();
+      var genero = $('#generoField').val();
       var fecha_nacimiento = $('#fecha_nacimientoField').val();
+      var edad = $('#edadField').val();
+      var relacion = $('#relacionField').val();
 
       var trid = $('#trid').val();
       var id = $('#id').val();           
@@ -82,20 +72,15 @@ include("../administrador/config/connection.php");
         //console.log("Valor seleccionado en RadioButton : " + cod);
         
         $.ajax({
-          url: "update_user_general.php",
+          url: "update_user_fecha_nacimiento.php",
           type: "post",
           data: {
-            nombre_beneficiario: nombre_beneficiario,
-            primer_nombre: primer_nombre,
-            segundo_nombre: segundo_nombre,
-            primer_apellido: primer_apellido,
-            segundo_apellido: segundo_apellido,
-            numero_cedula: numero_cedula,
-            tipo_identificacion: tipo_identificacion,
-            numero_identificacion: numero_identificacion,
-            cual_es_su_numero_whatsapp: cual_es_su_numero_whatsapp,
-            cual_es_su_numero_recibir_sms: cual_es_su_numero_recibir_sms,
+            cedula_beneficiario_principal: cedula_beneficiario_principal,
+            nombre: nombre,
+            genero: genero,
             fecha_nacimiento: fecha_nacimiento,
+            edad: edad,
+            relacion: relacion,
             id: id
           },
           success: function(data) {
@@ -105,7 +90,7 @@ include("../administrador/config/connection.php");
               table = $('#tablaUsuarios').DataTable();
               var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
               var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, button]);
+              row.row("[id='" + trid + "']").data([id, cedula_beneficiario_principal, nombre, genero, fecha_nacimiento, edad, relacion, button]);
               $('#exampleModal').modal('hide');
             } else {
               alert('failed');
@@ -124,24 +109,19 @@ include("../administrador/config/connection.php");
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "get_single_general.php",
+        url: "get_single_fecha_nacimiento.php",
         data: {
           id: id
         },
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
-          $('#nombre_beneficiarioField').val(json.nombre_beneficiario);
-          $('#primer_nombreField').val(json.primer_nombre);
-          $('#segundo_nombreField').val(json.segundo_nombre);
-          $('#primer_apellidoField').val(json.primer_apellido);
-          $('#segundo_apellidoField').val(json.segundo_apellido);
-          $('#numero_cedulaField').val(json.numero_cedula);
-          $('#tipo_identificacionField').val(json.tipo_identificacion);
-          $('#numero_identificacionField').val(json.numero_identificacion);
-          $('#cual_es_su_numero_whatsappField').val(json.cual_es_su_numero_whatsapp);
-          $('#cual_es_su_numero_recibir_smsField').val(json.cual_es_su_numero_recibir_sms);
+          $('#cedula_beneficiario_principalField').val(json.cedula_beneficiario_principal);
+          $('#nombreField').val(json.nombre);
+          $('#generoField').val(json.genero);
           $('#fecha_nacimientoField').val(json.fecha_nacimiento);
+          $('#edadField').val(json.edad);
+          $('#relacionField').val(json.relacion);
           
           $('#id').val(id);
           $('#trid').val(trid);

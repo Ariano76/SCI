@@ -72,6 +72,7 @@
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
   								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/fecha_nacimiento.php"?>">Inconsistencia fechas de nacimiento</a>
   							</div>
   						</li>					
   						<li>

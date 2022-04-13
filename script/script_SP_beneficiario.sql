@@ -412,6 +412,7 @@ inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficia
 END ;;
 DELIMITER ;
 
+
 /*
 STORED PROCEDURE PARA LA GENERACION DE REPORTES
 */
@@ -564,7 +565,8 @@ SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
 END ;;
 DELIMITER ;
-call SP_reporte_regiones();
+
+call SP_Select_inconsistencia_fecha_nacimiento();
 call SP_reporte_05_viajan_con_menores();
 call SP_reporte_07_miembros_en_familia('Lima');
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
@@ -580,52 +582,4 @@ INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_
 
 /* REINICIAR EL AUTO INCREMENTE DE LAS TABLAS */
 ALTER TABLE bd_bha_sci.beneficiario AUTO_INCREMENT = 1;
-
-/* consulta para obetner la lista de todos los integrantes */
-SELECT b.genero, b.fecha_nacimiento, 'Beneficiario' FROM bd_bha_sci.beneficiario b 
-inner join encuesta e on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_1a as nombre_pariente, i.genero_1 as genero, i.fecha_nacimiento_1 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_1) as edad, i.relacion_1 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_1 <> '' and F_AGE(i.fecha_nacimiento_1)<19 
-and i.fecha_nacimiento_1='1900-01-01' or i.fecha_nacimiento_1>CURDATE()
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_2a as nombre_pariente, i.genero_2 as genero, i.fecha_nacimiento_2 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_2) as edad, i.relacion_2 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_2 <> '' and F_AGE(i.fecha_nacimiento_2)<19 
-and i.fecha_nacimiento_2='1900-01-01' or i.fecha_nacimiento_2>CURDATE()
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_3a as nombre_pariente, i.genero_3 as genero, i.fecha_nacimiento_3 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_3) as edad, i.relacion_3 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_3 <> '' and F_AGE(i.fecha_nacimiento_3)<19 
-and i.fecha_nacimiento_3='1900-01-01' or i.fecha_nacimiento_3>CURDATE()
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_4a as nombre_pariente, i.genero_4 as genero, i.fecha_nacimiento_4 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_4) as edad, i.relacion_4 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_4 <> '' and F_AGE(i.fecha_nacimiento_4)<19 
-and i.fecha_nacimiento_4='1900-01-01' or i.fecha_nacimiento_4>CURDATE()
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_5a as nombre_pariente, i.genero_5 as genero, i.fecha_nacimiento_5 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_5) as edad, i.relacion_5 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_5 <> '' and F_AGE(i.fecha_nacimiento_5)<19 
-and i.fecha_nacimiento_5='1900-01-01' or i.fecha_nacimiento_5>CURDATE()
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_6a as nombre_pariente, i.genero_6 as genero, i.fecha_nacimiento_6 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_6) as edad, i.relacion_6 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_6 <> '' and F_AGE(i.fecha_nacimiento_6)<19 
-and i.fecha_nacimiento_6='1900-01-01' or i.fecha_nacimiento_6>CURDATE()
-union all
-SELECT b.numero_cedula as cedula_beneficiario_principal, i.nombre_7a as nombre_pariente, i.genero_7 as genero, i.fecha_nacimiento_7 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_7) as edad, i.relacion_7 as relacion
-FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
-inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7)<19 
-and i.fecha_nacimiento_7='1900-01-01' or i.fecha_nacimiento_7>CURDATE()
-
 
