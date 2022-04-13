@@ -74,6 +74,7 @@ if (!isset($_SESSION['usuario'])) {
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Reporte 004</a>
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Reporte 005</a>
 						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Reporte 006</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Reporte 007</a>
 					</div>
 				</li>
 				<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->

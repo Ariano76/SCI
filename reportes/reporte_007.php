@@ -16,7 +16,7 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control - Número de hogares con miembros que tienen un ingreso por trabajos realizado por regiones
+      Reportes de Control - Número de miembros en la familia que viven o viajan por regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
@@ -33,7 +33,7 @@ $db_1 = new TransactionSCI();
         </div>
         <div class="col-md-6" aria-label="Basic example">
           <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_06_obtienen_ingresos')">Consultar</button>
+          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_07_miembros_en_familia')">Consultar</button>
         </div>
       </div>
       <br>
@@ -77,7 +77,7 @@ $db_1 = new TransactionSCI();
       var colores = [];
       var data = JSON.parse(resp);
       for (var i = 0; i < data.length; i++) {
-        titulo.push(data[i]['cuantos_tienen_ingreso_por_trabajo']);
+        titulo.push(data[i]['cuantos_viven_o_viajan_con_usted']);
         cantidad_1.push(data[i]['total']);
         colores.push(colorRGB());
       }
@@ -113,7 +113,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Número de Familias con miembros que obtienen ingresos económicos'
+            text: 'Número de miembros que viven en el hogar'
           },
         },
 
