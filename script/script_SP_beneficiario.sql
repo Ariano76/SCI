@@ -565,10 +565,25 @@ SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_08_cantidad_menores`(In region VARCHAR(250))
+BEGIN
+drop table if exists total_menores;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_menores AS 
+	(select * from vista_cantidad_ninos);
+    SELECT genero, COUNT(IF(meses < 7,  1, NULL)) AS '0-6 meses', 
+    COUNT(IF(meses > 6 and meses < 25, 1, NULL)) AS '7-24 meses',
+    COUNT(IF(meses > 24 and meses < 49, 1, NULL)) AS '25-48 meses',
+    COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años',
+    COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años'
+    FROM total_menores where region_beneficiario = region group by genero;
+END ;;
+DELIMITER ;
 
 call SP_Select_inconsistencia_fecha_nacimiento();
 call SP_reporte_05_viajan_con_menores();
-call SP_reporte_07_miembros_en_familia('Lima');
+call SP_reporte_08_cantidad_menores('Lambayeque');
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
 select * from vista_general;

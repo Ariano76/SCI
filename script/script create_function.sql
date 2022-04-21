@@ -38,8 +38,8 @@ DROP FUNCTION IF EXISTS F_AGE;
 DELIMITER ;
 
 DELIMITER $$ 
-DROP FUNCTION IF EXISTS F_MESES;
-    CREATE FUNCTION `F_MESES`(in_dob datetime) RETURNS int(11)
+DROP FUNCTION IF EXISTS F_MES;
+    CREATE FUNCTION `F_MES`(in_dob datetime) RETURNS int(11)
         NO SQL
     BEGIN
        DECLARE l_age INT;      
@@ -192,56 +192,42 @@ CREATE VIEW `bd_bha_sci`.`vista_inconsistencia_fecha_nacimiento` AS
     
 drop view IF EXISTS vista_cantidad_ninos;
 CREATE VIEW `bd_bha_sci`.`vista_cantidad_ninos` AS
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_1a as nombre, 
-	i.genero_1 as genero, i.fecha_nacimiento_1 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_1) as edad, i.relacion_1 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_1a as nombre, i.genero_1 as genero, i.fecha_nacimiento_1 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_1) as edad, F_MES(i.fecha_nacimiento_1) as meses, i.relacion_1 as relacion	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_1 <> '' and F_AGE(i.fecha_nacimiento_1)<=18 
+	where e.esta_de_acuerdo = 1 and i.relacion_1 <> '' and F_AGE(i.fecha_nacimiento_1) <= 17 
 	and i.fecha_nacimiento_1 <> '1900-01-01' and i.fecha_nacimiento_1 < CURDATE()
 	union all
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_2a as nombre, 
-	i.genero_2 as genero, i.fecha_nacimiento_2 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_2) as edad, i.relacion_2 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_2a as nombre, i.genero_2 as genero, i.fecha_nacimiento_2 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_2) as edad, F_MES(i.fecha_nacimiento_2) as meses, i.relacion_2 as relacion	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_2 <> '' and F_AGE(i.fecha_nacimiento_2) <= 18
+	where e.esta_de_acuerdo = 1 and i.relacion_2 <> '' and F_AGE(i.fecha_nacimiento_2) <= 17
 	and i.fecha_nacimiento_2 <> '1900-01-01' and i.fecha_nacimiento_2 < CURDATE()
 	union all
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_3a as nombre, 
-	i.genero_3 as genero, i.fecha_nacimiento_3 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_3) as edad, i.relacion_3 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_3a as nombre, i.genero_3 as genero, i.fecha_nacimiento_3 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_3) as edad, F_MES(i.fecha_nacimiento_3) as meses, i.relacion_3 as relacion	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_3 <> '' and F_AGE(i.fecha_nacimiento_3) <= 18
+	where e.esta_de_acuerdo = 1 and i.relacion_3 <> '' and F_AGE(i.fecha_nacimiento_3) <= 17
 	and i.fecha_nacimiento_3 <> '1900-01-01' and i.fecha_nacimiento_3 < CURDATE()
 	union all
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_4a as nombre, 
-	i.genero_4 as genero, i.fecha_nacimiento_4 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_4) as edad, i.relacion_4 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_4a as nombre, i.genero_4 as genero, i.fecha_nacimiento_4 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_4) as edad, F_MES(i.fecha_nacimiento_4) as meses, i.relacion_4 as relacion	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_4 <> '' and F_AGE(i.fecha_nacimiento_4) <= 18
+	where e.esta_de_acuerdo = 1 and i.relacion_4 <> '' and F_AGE(i.fecha_nacimiento_4) <= 17
 	and i.fecha_nacimiento_4 <> '1900-01-01' and i.fecha_nacimiento_4 < CURDATE()
 	union all
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_5a as nombre, 
-	i.genero_5 as genero, i.fecha_nacimiento_5 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_5) as edad, i.relacion_5 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_5a as nombre, i.genero_5 as genero, i.fecha_nacimiento_5 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_5) as edad, F_MES(i.fecha_nacimiento_5) as meses, i.relacion_5 as relacion	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_5 <> '' and F_AGE(i.fecha_nacimiento_5) <= 18
+	where e.esta_de_acuerdo = 1 and i.relacion_5 <> '' and F_AGE(i.fecha_nacimiento_5) <= 17
 	and i.fecha_nacimiento_5 <> '1900-01-01' and i.fecha_nacimiento_5 < CURDATE()
 	union all
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_6a as nombre, 
-	i.genero_6 as genero, i.fecha_nacimiento_6 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_6) as edad, i.relacion_6 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_6a as nombre, i.genero_6 as genero, i.fecha_nacimiento_6 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_6) as edad, F_MES(i.fecha_nacimiento_6) as meses, i.relacion_6 as relacion FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_6 <> '' and F_AGE(i.fecha_nacimiento_6) <= 18 
+	where e.esta_de_acuerdo = 1 and i.relacion_6 <> '' and F_AGE(i.fecha_nacimiento_6) <= 17 
 	and i.fecha_nacimiento_6 <> '1900-01-01' and i.fecha_nacimiento_6 < CURDATE()
 	union all
-	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_7a as nombre, 
-	i.genero_7 as genero, i.fecha_nacimiento_7 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_7) as edad, i.relacion_7 as relacion
-	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
+	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_7a as nombre, i.genero_7 as genero, i.fecha_nacimiento_7 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_7) as edad, F_MES(i.fecha_nacimiento_7) as meses, i.relacion_7 as relacion	FROM bd_bha_sci.integrantes i inner join encuesta e on i.id_beneficiario = e.id_beneficiario 
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7) <= 18 
+	where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7) <= 17 
 	and i.fecha_nacimiento_7 <> '1900-01-01' and i.fecha_nacimiento_7 < CURDATE();
     
-select * from vista_cantidad_ninos limit 1;
+select * from vista_cantidad_ninos ;
 
 /* CREACION DE TRIGGERS */
 
