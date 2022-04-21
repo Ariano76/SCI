@@ -16,7 +16,7 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control - Número de infantes menores de 18 años por rango de edad y regiones
+      Reportes de Control - Número de infantes menores de 18 años por genero, rango de edad y regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->

@@ -16,7 +16,7 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control - Número de miembros en la familia que viven o viajan por regiones
+      Reportes de Control - Número de integrantes en cada hogar por regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
@@ -113,7 +113,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Número de miembros que viven en el hogar'
+            text: 'Número de integrantes que viven en el hogar'
           },
         },
 
