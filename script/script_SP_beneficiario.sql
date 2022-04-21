@@ -583,7 +583,7 @@ DELIMITER ;
 
 call SP_Select_inconsistencia_fecha_nacimiento();
 call SP_reporte_05_viajan_con_menores();
-call SP_reporte_08_cantidad_menores('Lambayeque');
+call SP_reporte_08_cantidad_menores('Arequipa');
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
 select * from vista_general;
