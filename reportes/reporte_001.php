@@ -31,9 +31,13 @@ $db_1 = new TransactionSCI();
             <?php } ?>
           </select>                
         </div>
-        <div class="col-md-6" aria-label="Basic example">
+        <div class="col-md-3" aria-label="Basic example">
           <button 
           class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_01_beneficiario_x_region_01')">Consultar</button>
+        </div>
+        <div class="col-md-3" aria-label="Basic example">
+          <button 
+          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_01_beneficiario_x_region_01')">Datos en Tabla</button>
         </div>
       </div>
       <br>
