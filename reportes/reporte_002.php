@@ -31,9 +31,13 @@ $db_1 = new TransactionSCI();
             <?php } ?>
           </select>                
         </div>
-        <div class="col-md-6" aria-label="Basic example">
+        <div class="col-md-3" aria-label="Basic example">
           <button 
           class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_02_embarazadas_x_region')">Consultar</button>
+        </div>
+        <div class="col-md-3" aria-label="Basic example">
+          <button 
+          class="btn btn-success btn-lg" onclick="CargarDatosTabla('SP_reporte_02_embarazadas_x_region_00')">Datos en Tabla</button>
         </div>
       </div>
       <br>
@@ -44,6 +48,11 @@ $db_1 = new TransactionSCI();
         </div>
         <div class="col-md-3">&nbsp;</div>
       </div>
+      <div class="row">
+        <div class="col-md-12" id="myDataTable">
+          <!--canvas id="myDataTable"></canvas-->
+        </div>        
+      </div>      
       <!--/form-->
     </div>
     <br>
@@ -51,16 +60,11 @@ $db_1 = new TransactionSCI();
 
 </div>
 </div>
-<div class="col-md-12">
-  <div class=card-text>
-    <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
-  </div>
-</div>
-</div>
 
 <script>
 
   let myChart;
+  let numSpan = 0;
   
   function CargarDatosGraficoBarParametro(storedprocedure){
     var region = $("#departamento").val();
@@ -91,6 +95,61 @@ $db_1 = new TransactionSCI();
     })
   }
 
+  function CargarDatosTabla(storedprocedure){    
+    //var region = $("#departamento").val();
+    $.ajax({
+      url:'controlador_grafico_sin_parametro.php',
+      type:'POST',
+      data:{
+        //dato_region:region,
+        dato_sp:storedprocedure
+      }
+    }).done(function(resp){
+      
+      var col = [];
+      var data = JSON.parse(resp);
+      var tableBody = document.getElementById("myDataTable");
+      for (var i = 0; i < data.length; i++) {
+        for (var key in data[i]) {
+          if (col.indexOf(key) === -1) {
+            col.push(key);
+          }
+        }
+      }
+       // CREATE DYNAMIC TABLE.
+      var table = document.createElement("table");
+      table.className = 'table table-striped table-bordered table-condensed';
+
+      // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+      var tr = table.insertRow(-1);                   // TABLE ROW.
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+          }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < data.length; i++) {
+            tr = table.insertRow(-1);
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = data[i][col[j]];
+            }
+        }
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("myDataTable");
+        //ctx = divContainer.getContext('2d');
+
+        //divContainer.innerHTML = "";
+        //divContainer.appendChild(table);
+        if( numSpan == 0 ){
+          divContainer.append(table);
+          numSpan += 1;
+        }
+        console.log(numSpan)
+    })
+  }
+  
   function pintarGrafico(tipo,titulo,c1,c2,c3,c4,colores,tipoAxis,encabezado,id){
     const ctx = document.getElementById(id);
     /* El bloque if solo se utilizara si queremos pintar varios graficos en la misma pagina. antes de dibujar un nuevo grafico, se valida si existe previamente, si es asi se elimina y se dibija el nuevo grafico.*/

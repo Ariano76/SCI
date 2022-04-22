@@ -478,6 +478,26 @@ drop table if exists total_beneficiarios ;
     FROM  total_beneficiarios p where region_beneficiario = region GROUP BY genero;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_00`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_00`()
+BEGIN
+drop table if exists total_beneficiarios ;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
+	(SELECT b.numero_identificacion, b.region_beneficiario, b.genero, F_AGE(b.fecha_nacimiento) as edad,
+		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
+		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
+		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
+		END AS rango_edad
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		where e.esta_de_acuerdo = 1
+	);
+    SELECT  region_beneficiario as region,genero,  
+    COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+    COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18', COUNT(IF(rango_edad <= 4, 1, NULL)) AS 'Total'
+    FROM  total_beneficiarios p GROUP BY region_beneficiario,genero;
+END ;;
+DELIMITER ;
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region`(In region VARCHAR(250))
@@ -499,6 +519,27 @@ drop table if exists total_beneficiarias_embarazada ;
     FROM total_beneficiarias_embarazada p where region_beneficiario = region;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region_00`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region_00`()
+BEGIN
+drop table if exists total_beneficiarias_embarazada ;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_embarazada AS 
+	(SELECT b.region_beneficiario, b.genero, F_AGE(b.fecha_nacimiento) as edad,
+		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
+		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
+		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
+		END AS rango_edad
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+        inner join nutricion n on b.id_beneficiario = n.id_beneficiario
+		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1
+	);
+    SELECT region_beneficiario as region, 
+    COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+    COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18', COUNT(IF(rango_edad <= 4, 1, NULL)) AS 'Total'
+    FROM total_beneficiarias_embarazada GROUP BY region_beneficiario;
+END ;;
+DELIMITER ;
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region`(In region VARCHAR(250))
@@ -517,6 +558,26 @@ drop table if exists total_beneficiarias_discapacidad;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
     FROM total_beneficiarias_discapacidad where region_beneficiario = region group by algun_miembro_tiene_discapacidad;
+END ;;
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region_00`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region_00`()
+BEGIN
+drop table if exists total_beneficiarias_discapacidad;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_discapacidad AS 
+	(SELECT s.algun_miembro_tiene_discapacidad, b.region_beneficiario, b.genero, F_AGE(b.fecha_nacimiento) as edad,
+		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
+		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
+		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4 END AS rango_edad
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+        inner join salud s on b.id_beneficiario = s.id_beneficiario 
+        where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno'
+	);
+    SELECT region_beneficiario as region, algun_miembro_tiene_discapacidad as problema,  
+    COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+    COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18', COUNT(IF(rango_edad <= 4, 1, NULL)) AS 'Total'
+    FROM total_beneficiarias_discapacidad group by region_beneficiario, algun_miembro_tiene_discapacidad order by region_beneficiario, algun_miembro_tiene_discapacidad;
 END ;;
 DELIMITER ;
 DROP PROCEDURE IF EXISTS `SP_reporte_04_matriculados`;
@@ -583,7 +644,8 @@ DELIMITER ;
 
 call SP_Select_inconsistencia_fecha_nacimiento();
 call SP_reporte_05_viajan_con_menores();
-call SP_reporte_08_cantidad_menores('Arequipa');
+call SP_reporte_03_discapacidad_x_region_00();
+call SP_reporte_02_embarazadas_x_region('Arequipa');
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
 select * from vista_general;
