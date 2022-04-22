@@ -32,12 +32,10 @@ $db_1 = new TransactionSCI();
           </select>                
         </div>
         <div class="col-md-3" aria-label="Basic example">
-          <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_03_discapacidad_x_region')">Consultar</button>
+          <button class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_03_discapacidad_x_region')">Graficar</button>
         </div>
         <div class="col-md-3" aria-label="Basic example">
-          <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosTabla('SP_reporte_03_discapacidad_x_region_00')">Datos en Tabla</button>
+          <button class="btn btn-success btn-lg" onclick="CargarDatosTabla('SP_reporte_03_discapacidad_x_region_00')">Datos en Tabla</button>
         </div>        
       </div>
       <br>
@@ -49,8 +47,9 @@ $db_1 = new TransactionSCI();
         <div class="col-md-3">&nbsp;</div>
       </div>
       <div class="row">
-        <div class="col-md-12" id="myDataTable">
-          <!--canvas id="myDataTable"></canvas-->
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8" id="myDataTable">
+        <div class="col-md-2">&nbsp;</div>
         </div>        
       </div>            
       <!--/form-->
@@ -105,7 +104,7 @@ $db_1 = new TransactionSCI();
         dato_sp:storedprocedure
       }
     }).done(function(resp){
-      
+
       var col = [];
       var data = JSON.parse(resp);
       var tableBody = document.getElementById("myDataTable");
@@ -117,12 +116,12 @@ $db_1 = new TransactionSCI();
         }
       }
        // CREATE DYNAMIC TABLE.
-      var table = document.createElement("table");
-      table.className = 'table table-striped table-bordered table-condensed';
+       var table = document.createElement("table");
+       table.className = 'table table-striped table-bordered table-condensed';
 
       // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
       var tr = table.insertRow(-1);                   // TABLE ROW.
-        for (var i = 0; i < col.length; i++) {
+      for (var i = 0; i < col.length; i++) {
             var th = document.createElement("th");      // TABLE HEADER.
             th.innerHTML = col[i];
             tr.appendChild(th);
@@ -130,11 +129,11 @@ $db_1 = new TransactionSCI();
 
         // ADD JSON DATA TO THE TABLE AS ROWS.
         for (var i = 0; i < data.length; i++) {
-            tr = table.insertRow(-1);
-            for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = data[i][col[j]];
-            }
+          tr = table.insertRow(-1);
+          for (var j = 0; j < col.length; j++) {
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = data[i][col[j]];
+          }
         }
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
         var divContainer = document.getElementById("myDataTable");
@@ -147,7 +146,7 @@ $db_1 = new TransactionSCI();
           numSpan += 1;
         }
         console.log(numSpan)
-    })
+      })
   }
   
   function pintarGrafico(tipo,titulo,c1,c2,c3,c4,colores,tipoAxis,encabezado,id){

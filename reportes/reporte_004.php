@@ -19,23 +19,6 @@ $db_1 = new TransactionSCI();
       Reportes de Control - Número de NNA matriculados en la escuela por regiones
     </div>
     <div class="card-body">
-      <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
-      <!--div class="row">
-        <div class="col-md-6">
-          <select name="selecttam" id="departamento" class="form-control-lg">
-            <option value="" disabled selected>Seleccione una región</option>
-            <?php 
-            $datos = $db_1->traer_regiones();
-            foreach($datos as $value) { ?>
-              <option value="<?php echo $value['region']; ?>"><?php echo $value['region'];?></option>
-            <?php } ?>
-          </select>                
-        </div>
-        <div class="col-md-6" aria-label="Basic example">
-          <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_04_matriculados')">Consultar</button>
-        </div>
-      </div-->
       <br>
       <div class="row">
         <div class="col-md-3">&nbsp;</div>
@@ -44,6 +27,14 @@ $db_1 = new TransactionSCI();
         </div>
         <div class="col-md-3">&nbsp;</div>
       </div>
+      <div class="row">
+        <div class="col-md-12">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">&nbsp;</div>
+        <div class="col-md-6" id="myDataTable"></div>
+        <div class="col-md-3">&nbsp;</div>
+      </div>                  
       <!--/form-->
     </div>
     <br>
@@ -61,8 +52,11 @@ $db_1 = new TransactionSCI();
 <script>
 
   let myChart;
+  let numSpan = 0;
   
   CargarDatosGraficoBarParametro('SP_reporte_04_matriculados')
+  CargarDatosTabla('SP_reporte_04_matriculados')
+
 
   function CargarDatosGraficoBarParametro(storedprocedure){    
     $.ajax({
@@ -77,12 +71,66 @@ $db_1 = new TransactionSCI();
       var colores = [];
       var data = JSON.parse(resp);
       for (var i = 0; i < data.length; i++) {
-        titulo.push(data[i]['region_beneficiario']);
+        titulo.push(data[i]['region']);
         cantidad_1.push(data[i]['total']);
         colores.push(colorRGB());
       }
       pintarGrafico('bar',titulo,cantidad_1,colores,'x','# de beneficiarios por regiones','myCharBarParam')
     })
+  }
+
+  function CargarDatosTabla(storedprocedure){    
+    //var region = $("#departamento").val();
+    $.ajax({
+      url:'controlador_grafico_sin_parametro.php',
+      type:'POST',
+      data:{
+        //dato_region:region,
+        dato_sp:storedprocedure
+      }
+    }).done(function(resp){
+
+      var col = [];
+      var data = JSON.parse(resp);
+      var tableBody = document.getElementById("myDataTable");
+      for (var i = 0; i < data.length; i++) {
+        for (var key in data[i]) {
+          if (col.indexOf(key) === -1) {
+            col.push(key);
+          }
+        }
+      }
+       // CREATE DYNAMIC TABLE.
+       var table = document.createElement("table");
+       table.className = 'table table-striped table-bordered table-condensed';
+
+      // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+      var tr = table.insertRow(-1);                   // TABLE ROW.
+      for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+          }
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < data.length; i++) {
+          tr = table.insertRow(-1);
+          for (var j = 0; j < col.length; j++) {
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = data[i][col[j]];
+          }
+        }
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("myDataTable");
+        //ctx = divContainer.getContext('2d');
+
+        //divContainer.innerHTML = "";
+        //divContainer.appendChild(table);
+        if( numSpan == 0 ){
+          divContainer.append(table);
+          numSpan += 1;
+        }
+        console.log(numSpan)
+      })
   }
 
   function pintarGrafico(tipo,titulo,c1,colores,tipoAxis,encabezado,id){

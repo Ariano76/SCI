@@ -584,7 +584,7 @@ DROP PROCEDURE IF EXISTS `SP_reporte_04_matriculados`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_04_matriculados`()
 BEGIN
-SELECT b.region_beneficiario, sum(ed.todos_los_nna_estan_matriculados) as total
+SELECT b.region_beneficiario as region, sum(ed.todos_los_nna_estan_matriculados) as total
 		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
         where e.esta_de_acuerdo = 1 and ed.todos_los_nna_estan_matriculados = 1
@@ -614,6 +614,17 @@ SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,
 	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos_00`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos_00`()
+BEGIN
+SELECT b.region_beneficiario as region,  
+    COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 2, 1, NULL)) AS '02',
+    COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 0, 1, NULL)) AS 'Total'
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 group by b.region_beneficiario order by b.region_beneficiario;
+END ;;
+DELIMITER ;
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_07_miembros_en_familia`(In region VARCHAR(250))
@@ -624,6 +635,17 @@ SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
+END ;;
+DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia_00`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_07_miembros_en_familia_00`()
+BEGIN
+SELECT b.region_beneficiario as region,  
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 2, 1, NULL)) AS '02',
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 0, 1, NULL)) AS 'Total'
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 group by b.region_beneficiario order by b.region_beneficiario;
 END ;;
 DELIMITER ;
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores`;
@@ -641,11 +663,25 @@ drop table if exists total_menores;
     FROM total_menores where region_beneficiario = region group by genero;
 END ;;
 DELIMITER ;
+DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores_00`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_reporte_08_cantidad_menores_00`()
+BEGIN
+drop table if exists total_menores;
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_menores AS 
+	(select * from vista_cantidad_ninos);
+    SELECT region_beneficiario as region, genero, COUNT(IF(meses < 7,  1, NULL)) AS '0-6 meses', 
+    COUNT(IF(meses > 6 and meses < 25, 1, NULL)) AS '7-24 meses', COUNT(IF(meses > 24 and meses < 49, 1, NULL)) AS '25-48 meses',
+    COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años', COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años',
+    COUNT(IF(meses > 0, 1, NULL)) AS 'total'
+    FROM total_menores group by region_beneficiario, genero order by region_beneficiario, genero;
+END ;;
+DELIMITER ;
 
 call SP_Select_inconsistencia_fecha_nacimiento();
-call SP_reporte_05_viajan_con_menores();
-call SP_reporte_03_discapacidad_x_region_00();
-call SP_reporte_02_embarazadas_x_region('Arequipa');
+call SP_reporte_04_matriculados();
+call SP_reporte_07_miembros_en_familia_00();
+call SP_reporte_08_cantidad_menores('Arequipa');
 call SP_Update_General('Oswaldo', 'Percy','Mogrovejo','Herrera','010203040506','libreta militar', '98765432','99901020304','99909080706','1976/04/13' ,1, @total);
 select @total as resultado;
 select * from vista_general;

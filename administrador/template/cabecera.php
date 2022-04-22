@@ -67,15 +67,15 @@ if (!isset($_SESSION['usuario'])) {
 				<li>
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Reporte 001</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Reporte 002</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Reporte 003</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Reporte 004</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Reporte 005</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Reporte 006</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Reporte 007</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Reporte 008</a>
+						<!--a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a-->
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
+						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
 					</div>
 				</li>
 				<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->

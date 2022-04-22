@@ -32,8 +32,7 @@ $db_1 = new TransactionSCI();
           </select>                
         </div>
         <div class="col-md-3" aria-label="Basic example">
-          <button 
-          class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_02_embarazadas_x_region')">Consultar</button>
+          <button class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_02_embarazadas_x_region')">Graficar</button>
         </div>
         <div class="col-md-3" aria-label="Basic example">
           <button 
@@ -49,8 +48,9 @@ $db_1 = new TransactionSCI();
         <div class="col-md-3">&nbsp;</div>
       </div>
       <div class="row">
-        <div class="col-md-12" id="myDataTable">
-          <!--canvas id="myDataTable"></canvas-->
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8" id="myDataTable">
+        <div class="col-md-2">&nbsp;</div>          
         </div>        
       </div>      
       <!--/form-->
