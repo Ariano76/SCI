@@ -458,6 +458,7 @@ BEGIN
 	order by region_beneficiario, genero, rango_edad;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_01`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_01`(In region VARCHAR(250))
@@ -478,6 +479,7 @@ drop table if exists total_beneficiarios ;
     FROM  total_beneficiarios p where region_beneficiario = region GROUP BY genero;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_00`()
@@ -498,6 +500,7 @@ drop table if exists total_beneficiarios ;
     FROM  total_beneficiarios p GROUP BY region_beneficiario,genero;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region`(In region VARCHAR(250))
@@ -519,6 +522,7 @@ drop table if exists total_beneficiarias_embarazada ;
     FROM total_beneficiarias_embarazada p where region_beneficiario = region;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region_00`()
@@ -540,6 +544,7 @@ drop table if exists total_beneficiarias_embarazada ;
     FROM total_beneficiarias_embarazada GROUP BY region_beneficiario;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region`(In region VARCHAR(250))
@@ -560,6 +565,7 @@ drop table if exists total_beneficiarias_discapacidad;
     FROM total_beneficiarias_discapacidad where region_beneficiario = region group by algun_miembro_tiene_discapacidad;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region_00`()
@@ -580,6 +586,7 @@ drop table if exists total_beneficiarias_discapacidad;
     FROM total_beneficiarias_discapacidad group by region_beneficiario, algun_miembro_tiene_discapacidad order by region_beneficiario, algun_miembro_tiene_discapacidad;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_04_matriculados`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_04_matriculados`()
@@ -602,6 +609,7 @@ SELECT b.region_beneficiario, sum(ed.viaja_con_menores_de_17_anios) as total
         group by b.region_beneficiario;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos`(In region VARCHAR(250))
@@ -614,6 +622,7 @@ SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,
 	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos_00`()
@@ -625,6 +634,7 @@ SELECT b.region_beneficiario as region,
     where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 group by b.region_beneficiario order by b.region_beneficiario;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_07_miembros_en_familia`(In region VARCHAR(250))
@@ -637,6 +647,7 @@ SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_07_miembros_en_familia_00`()
@@ -648,6 +659,7 @@ SELECT b.region_beneficiario as region,
     where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 group by b.region_beneficiario order by b.region_beneficiario;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_08_cantidad_menores`(In region VARCHAR(250))
@@ -663,6 +675,7 @@ drop table if exists total_menores;
     FROM total_menores where region_beneficiario = region group by genero;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores_00`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_08_cantidad_menores_00`()

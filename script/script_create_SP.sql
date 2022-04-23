@@ -888,6 +888,31 @@ BEGIN
 END ;;
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_Usuario_Reset_Password`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_Usuario_Reset_Password`(in usuario varchar(50), in pass varchar(50), OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
+	SET @clave = password(pass);
+    update bd_bha_sci.usuarios 
+    set contrasenia = @clave where nombre_usuario = usuario;
+    SET success = 1;
+    COMMIT;
+END ;;
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_Usuario_Delete`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_Usuario_Delete`(in iduser int, OUT success INT)
@@ -998,12 +1023,15 @@ SET @total = 3;
 call SP_Usuario_Update_Password(13,'qwerty', @total);
 select @total;
 
+SET @total = 0;
+call SP_Usuario_Reset_Password('sdfsdf','123456',@total);
+select @total;
+
 SET @total = 3;
 call SP_Usuario_Delete(4, @total);
 select @total;
 
 insert into bd_bha_sci.usuarios(nombre_usuario, contrasenia, id_rol, id_estado) values ('a','xxx', 3, 1);
-
 insert into roles(nombre_rol) values('Administrador');
 insert into roles(nombre_rol) values('Analista');
 

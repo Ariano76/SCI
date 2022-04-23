@@ -84,7 +84,7 @@ elseif($id == 0){
 
 				<div class="form-group">
 					<label for="txtNombre">Usuario:</label>
-					<input required type="text" class="form-control" value="<?php echo $txtNombre; ?>" name="txtNombre" id="txtNombre" placeholder="Nombre del usuario">			
+					<input required type="text" class="form-control" value="<?php echo $txtNombre; ?>" name="txtNombre" id="txtNombre" placeholder="Nombre del usuario">
 				</div>
 
 				<div class="form-group">
@@ -147,18 +147,16 @@ elseif($id == 0){
 						<form method="POST"> 
 							<input type="hidden" name="txtID" value="<?php echo $usuario['id_usuario'];?>" />
 							<input type="hidden" name="txtNomRol" value="<?php echo $usuario['nombre_rol'];?>" />
-							<input type="hidden" name="txtAdd" value="OK" />
+							<input type="hidden" name="txtAdd" value="OK"/>
 							<input type="submit" name="accion" value="seleccionar" class="btn btn-primary btn-sm" />
-
 						</form>
 					</td>
 				</tr>
 				<?php 
-			} 
+				}
 			?>
 		</tbody>
 	</table>
-
 </div>
 
 
