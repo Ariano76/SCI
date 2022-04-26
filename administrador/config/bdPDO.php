@@ -498,7 +498,7 @@ private $DB_PASSWORD = ''; //database password
     public function reset_password($usu,$clave) {
         try {               
             // calling stored procedure command
-            $sql = "CALL SP_Usuario_Reset_Password(".$usu.",".$clave.",@total)";
+            $sql = "CALL SP_Usuario_Reset_Password('".$usu."','".$clave."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);
             // execute the stored procedure

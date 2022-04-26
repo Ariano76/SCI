@@ -905,10 +905,15 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	SET @clave = password(pass);
-    update bd_bha_sci.usuarios 
-    set contrasenia = @clave where nombre_usuario = usuario;
-    SET success = 1;
+    set @codigo = 0;
+    select @codigo := id_usuario from bd_bha_sci.usuarios where nombre_usuario = usuario;
+    
+    if @codigo>0 then
+    	SET @clave = password(pass);
+		update bd_bha_sci.usuarios 
+		set contrasenia = @clave where id_usuario = @codigo;
+		SET success = 1;
+	end if;
     COMMIT;
 END ;;
 DELIMITER ;
@@ -1024,7 +1029,7 @@ call SP_Usuario_Update_Password(13,'qwerty', @total);
 select @total;
 
 SET @total = 0;
-call SP_Usuario_Reset_Password('sdfsdf','123456',@total);
+call SP_Usuario_Reset_Password('percy','123',@total);
 select @total;
 
 SET @total = 3;

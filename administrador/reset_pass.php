@@ -5,9 +5,10 @@ session_start();
 if ($_POST) {
 	require_once './config/bdPDO.php';
 	$db = new TransactionSCI();
-//$conn_1 = $db->Connect();
 	
 	$codigo = $db->reset_password($_POST['usuario_'], $_POST['contrasenia']);
+	$console = $_POST['usuario_'];
+	echo "<script>console.log('Console: " . $console . "' );</script>";	
 	//if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
 		//$_SESSION['usuario'] = 'ok';
 		//$_SESSION['nombreUsuario'] = 'Percy';
@@ -54,7 +55,7 @@ if ($_POST) {
 
 							<?php
 							if (isset($mensaje)) { ?>
-								<div class="alert alert-danger" role="alert">
+								<div class="alert alert-success" role="alert">
 									<?php echo $mensaje; ?>
 								</div>
 							<?php }
