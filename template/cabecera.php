@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Sistema SCI</title>
 	
 	<!--link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -17,8 +17,8 @@
   	<!--script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
   	</script-->
 
-	<!-- libreria para utilizar iconos en nuestras paginas  -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">  	
+  	<!-- libreria para utilizar iconos en nuestras paginas  -->
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">  	
 
   	<!-- tabla reportes -->
   	<style>
@@ -94,7 +94,7 @@
   							</div>
   						</li-->
   						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>
-						<li>
+  						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte a Sectores</a>
   							<div class="dropdown-menu">
   								<a class="dropdown-item" href="<?php echo $url."/repo_proteccion.php"?>">MERA Protección</a>

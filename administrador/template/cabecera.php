@@ -41,46 +41,49 @@ if (!isset($_SESSION['usuario'])) {
 
 	<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 
-	<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Save The Children</a>		
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">	      
-				<a class="nav-item nav-link active" href="#">Administrador del sitio web</a>
-				<a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php" ?>">Inicio</a>
-				<li>
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=null" ?>">Mantenimiento Usuarios</a>
-						<a class="dropdown-item" href="">Actualizar Constraseña</a>
-					</div>
-				</li>
-				<li>
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
-						<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
-					</div>
-				</li>
-				<li>
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
-					<div class="dropdown-menu">
-						<!--a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a-->
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
-						<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
-					</div>
-				</li>
-				<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->
-				<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
-				<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>	      
+	<!--nav class="navbar navbar-expand-md navbar-dark bg-primary"-->
+	<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
+		<div class="container-fluid">		
+			<a class="navbar-brand" href="#"></a>
+			<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">	      
+					<!--a class="nav-item nav-link active" href="#">Administrador del sitio web</a-->
+					<a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php" ?>">Inicio</a>
+					<li>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=null" ?>">Mantenimiento Usuarios</a>	
+						</div>
+					</li>
+					<li>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
+							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
+						</div>
+					</li>
+					<li>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
+						<div class="dropdown-menu">
+							<!--a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a-->
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
+							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
+						</div>
+					</li>
+					<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->
+					<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
+					<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>	      
+				</div>
 			</div>
 		</div>
 	</nav>

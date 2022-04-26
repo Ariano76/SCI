@@ -8,7 +8,7 @@ if ($_POST) {
 	
 	$codigo = $db->reset_password($_POST['usuario_'], $_POST['contrasenia']);
 	$console = $_POST['usuario_'];
-	echo "<script>console.log('Console: " . $console . "' );</script>";	
+	//echo "<script>console.log('Console: " . $console . "' );</script>";	
 	//if (($_POST['usuario'] == 'Percy') && ($_POST['contrasenia'] == '123')) {
 		//$_SESSION['usuario'] = 'ok';
 		//$_SESSION['nombreUsuario'] = 'Percy';
@@ -54,13 +54,25 @@ if ($_POST) {
 						<div class="card-body">
 
 							<?php
-							if (isset($mensaje)) { ?>
+							/*if (isset($mensaje)) { ?>
 								<div class="alert alert-success" role="alert">
 									<?php echo $mensaje; ?>
 								</div>
-							<?php }
+							<?php }*/
+							if (isset($mensaje)) { 
+								if ($codigo>0) { ?>
+									<div class="alert alert-success" role="alert">
+										<?php echo $mensaje; ?>
+									</div>
+								<?php }
+								else { ?>
+									<div class="alert alert-danger" role="alert">
+										<?php echo $mensaje; ?>
+									</div>
+								<?php }
+							}
 							?>
-							
+
 							<form method="POST">
 								<div class="form-group">
 									<label>Usuario</label>
