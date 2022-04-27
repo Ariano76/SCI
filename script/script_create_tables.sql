@@ -1,20 +1,7 @@
 USE bd_bha_sci;
 
--- ELIMINANDO LOS FOREIG KEY
-
-ALTER TABLE comunicacion DROP FOREIGN KEY R_22 ;
-ALTER TABLE derivacion_sectores DROP FOREIGN KEY R_20 ;
-ALTER TABLE educacion DROP FOREIGN KEY R_21;
-ALTER TABLE encuesta DROP FOREIGN KEY R_19 ;
-ALTER TABLE Integrantes DROP FOREIGN KEY R_23 ;
-ALTER TABLE nutricion DROP FOREIGN KEY R_24 ;
-ALTER TABLE salud DROP FOREIGN KEY R_25 ;
-ALTER TABLE estatus DROP FOREIGN KEY R_37 ;
-ALTER TABLE estatus DROP FOREIGN KEY R_38 ;
-ALTER TABLE usuarios DROP FOREIGN KEY R_39 ;
-ALTER TABLE usuarios DROP CONSTRAINT UC_usuarios ;
-ALTER TABLE acciones DROP FOREIGN KEY R_40 ;
-ALTER TABLE acciones DROP FOREIGN KEY R_41 ;
+-- ELIMINAR FOREIGN KEY Y CONSTRAINS
+call DropFK();
 
 -- ELIMINAR TABLAS EXISTENTES
 DROP TABLE if exists encuesta;
@@ -509,7 +496,6 @@ ALTER TABLE stage_00 ADD PRIMARY KEY (id_stage);
 ALTER TABLE stage_00 MODIFY id_stage INT NOT NULL AUTO_INCREMENT;
 
 
-
 /*********************************
 -- CREACION DE LLAVES FORANEAS 
 *********************************/
@@ -528,6 +514,13 @@ ALTER TABLE usuarios ADD CONSTRAINT UC_usuarios UNIQUE (nombre_usuario);
 ALTER TABLE acciones ADD FOREIGN KEY R_40 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE acciones ADD FOREIGN KEY R_41 (id_entidad) REFERENCES entidades (id_entidad);
 
+/*********************************
+-- INSERTANDO DATOS BASICOS
+*********************************/
+insert into roles(nombre_rol) values('Administrador');
+insert into roles(nombre_rol) values('Analista');
 
 insert into estados (estado) values('VALIDO'),('INVALIDO'),('EN ESPERA');
 
+call SP_Usuario_Insert('Percy', 'PERCY@gmail.com', '123456', 1, 1, @total);
+select @total;
