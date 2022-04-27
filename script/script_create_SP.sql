@@ -1009,6 +1009,22 @@ BEGIN
 END ;;
 DELIMITER ;
 
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS `DropFK` ;;
+CREATE PROCEDURE `DropFK`()
+BEGIN
+IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
+WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_22') THEN
+	ALTER TABLE `comunicacion` DROP FOREIGN KEY `R_22`; 
+END IF;
+END;;
+DELIMITER ;
+
+call DropFK();
+
+
+
+
 SET @total = 9;
 call SP_Migrar_Data_Historica(@total);
 select @total;
