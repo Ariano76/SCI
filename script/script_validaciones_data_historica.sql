@@ -24,14 +24,8 @@ UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(num
 /*ACTUALIZAR DOBLE ESPACIOS EN BLANCO */
 UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '');
 
-UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de Extranjeria' WHERE tipo_documento = 'Carnet de extranjería';
-UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de Extranjeria' WHERE tipo_documento = 'Carnet de Extranjería';
-UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de refugio' WHERE tipo_documento = 'Carnet de Solicitante de Refugio';
-
 UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = REGEXP_REPLACE(tipo_documento, '[0-9]', '');
 
-/*remover todos los espacios en blanco de una columna*/
-UPDATE bd_bha_sci.stage_data_historica SET nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) ;
 /* ++++++++++++++++++++++++++++++++++ */
 truncate table bd_bha_sci.stage_00;
 
@@ -71,4 +65,3 @@ SELECT @total;
 call SP_UpdateNewLineReturnLine(@total);
 SELECT @total;
 
-select chr(10);

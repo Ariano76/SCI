@@ -44,7 +44,7 @@
   					<div class="navbar-nav">
   						<a class="nav-item nav-link active" href="<?php echo $url."/index.php"?>">Inicio</a>
   						<li>
-  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Beneficiarios</a>
+  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actualizar datos Beneficiarios</a>
   							<div class="dropdown-menu">
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/general.php" ?>">Datos Generales</a>
   								<div class="dropdown-divider"></div>
@@ -93,7 +93,6 @@
   								<a class="dropdown-item" href="validacionDH.php">Nuevos Beneficiarios</a>
   							</div>
   						</li-->
-  						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte a Sectores</a>
   							<div class="dropdown-menu">
@@ -104,6 +103,7 @@
   								<a class="dropdown-item" href="<?php echo $url."/repo_mdv.php"?>">Medios de Vida</a>
   							</div>
   						</li>		
+  						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>  						
   						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
   					</div>
   				</div>

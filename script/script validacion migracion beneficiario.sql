@@ -1,11 +1,4 @@
 SELECT * FROM bd_bha_sci.stage_00 limit 1;
-
-SELECT dato_80 FROM bd_bha_sci.stage_00 where DATO_80 REGEXP(dato_80, UNHEX('C2A0'),'');
-SELECT dato_80 FROM bd_bha_sci.stage_00 where DATO_80 REGEXP('[^\xA,\xD,\x20-\x7e]+') ORDER BY DATO_80;
-SELECT dato_80 FROM bd_bha_sci.stage_00 where DATO_80 REGEXP('[^\x20-\x7e]+') ORDER BY DATO_80;
-SELECT dato_80 FROM bd_bha_sci.stage_00 where DATO_80 REGEXP('[^:space:]') ORDER BY DATO_80;
-SELECT dato_80 FROM bd_bha_sci.stage_00 where DATO_80 REGEXP('[^\xA0]+','');
-
 /* PARA VER LA CONFIGURACION DE LAS VARIABLES*/
 SHOW VARIABLES LIKE 'sql_mode';
 select version();

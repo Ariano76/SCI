@@ -279,53 +279,12 @@ if (isset($_POST["import"])) {
     $d69 = (empty($usuario[133])) ? null : $usuario[133];
     $d70 = (empty($usuario[134])) ? null : $usuario[134];    
 
-    //echo $d01." ',' ".$d02." ',' ".$d03." ',' ".$d04." ',' ".$d05." ',' ".$d06." ',' ".$d07." ',' ".$d08." ',' ".$d09." ',' ".$d10." ',' ".$d11." ',' ".$d12." ',' ".$d13." ',' ".$d14." ',' ".$d15." ',' ".$d16." ',' ".$d17." ',' ".$d18." ',' ".$d19." ',' ".$d20." ',' ".$d21." ',' ".$d22." ',' ".$d23." ',' ".$d24." ',' ".$d25." ',' ".$d26." ',' ".$d27." ',' ".$d28." ',' ".$d29." ',' ".$d30." ',' ".$d31." ',' ".$d32." ',' ".$d33." ',' ".$d34." ',' ".$d35." ',' ".$d36." ',' ".$d37." ',' ".$d38." ',' ".$d39." ',' ".$d40." ',' ".$d41." ',' ".$d42." ',' ".$d43." ',' ".$d44." ',' ".$d45." ',' ".$d46." ',' ".$d47." ',' ".$d48." ',' ".$d49." ',' ".$d50." ',' ".$d51." ',' ".$d52." ',' ".$d53." ',' ".$d54." ',' ".$d55." ',' ".$d56." ',' ".$d57." ',' ".$d58." ',' ".$d59." ',' ".$d60." ',' ".$d61." ',' ".$d62." ',' ".$d63." ',' ".$d64." ',' ".$d65." ',' ".$d66." ',' ".$d67." ',' ".$d68." ',' ".$d69." ',' ".$d70." ', ".$xCod. "<br>" ;    
-
-
     $db_1->Insert_integrantes($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $d13, $d14, $d15, $d16, $d17, $d18, $d19, $d20, $d21, $d22, $d23, $d24, $d25, $d26, $d27, $d28, $d29, $d30, $d31, $d32, $d33, $d34, $d35, $d36, $d37, $d38, $d39, $d40, $d41, $d42, $d43, $d44, $d45, $d46, $d47, $d48, $d49, $d50, $d51, $d52, $d53, $d54, $d55, $d56, $d57, $d58, $d59, $d60, $d61, $d62, $d63, $d64, $d65, $d66, $d67, $d68, $d69, $d70, $xCod); 
   
-
-
   }
 
-/*
-  $usuarios = $db_1->resultado_cotejo($timestamp1);
+  $_delete = $db_1->limpiarTabla("SP_LimpiarTablaStage");
 
-  $spreadsheet = new Spreadsheet();
-  $sheet = $spreadsheet->getActiveSheet();
-  $sheet->setTitle("Users");
-  $sheet->setCellValue("A1", "ID_BUSQUEDA");
-  $sheet->setCellValue("B1", "Id_Cotejo");
-  $sheet->setCellValue("C1", "Id_Caso");
-  $sheet->setCellValue("D1", "Id_Resultado");
-  $sheet->setCellValue("E1", "Tipo_Busqueda");
-  $sheet->setCellValue("F1", "nombre_1");
-  $sheet->setCellValue("G1", "nombre_2");
-  $sheet->setCellValue("H1", "apellido_1");
-  $sheet->setCellValue("I1", "apellido_2");
-  $sheet->setCellValue("J1", "Tipo_Documento");
-  $sheet->setCellValue("K1", "Numero_Documento");
-  $sheet->setCellValue("L1", "Proyecto");
-  $i = 2;
-  foreach($usuarios as $usuario) {
-    $sheet->setCellValue("A".$i, $usuario[0]);
-    $sheet->setCellValue("B".$i, $usuario[1]);
-    $sheet->setCellValue("C".$i, $usuario[2]);
-    $sheet->setCellValue("D".$i, $usuario[3]);
-    $sheet->setCellValue("E".$i, $usuario[4]);
-    $sheet->setCellValue("F".$i, $usuario[5]);
-    $sheet->setCellValue("G".$i, $usuario[6]);
-    $sheet->setCellValue("H".$i, $usuario[7]);
-    $sheet->setCellValue("I".$i, $usuario[8]);
-    $sheet->setCellValue("J".$i, $usuario[9]);
-    $sheet->setCellValue("K".$i, $usuario[10]);
-    $sheet->setCellValue("L".$i, $usuario[11]);
-    $i++;
-  }
-  $writer = new Xlsx($spreadsheet);
-  $writer->save("Resultado Cotejar Usuarios en Data Historica_" . $timestamp1 . ".xlsx");
-  
-*/
 
   $var=true;
   if (!empty($var)) {        
