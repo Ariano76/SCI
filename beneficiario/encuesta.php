@@ -180,7 +180,7 @@ include("../administrador/config/connection.php");
             <div class="mb-3 row">
               <label for="fecha_encuestaField" class="col-md-3 form-label">Fecha Encuesta</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="fecha_encuestaField" name="email">
+                <input type="date" class="form-control" id="fecha_encuestaField" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">

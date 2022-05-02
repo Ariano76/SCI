@@ -1,4 +1,4 @@
-<?php include("template/cabecera.php"); ?>
+<?php include("administrador/template/cabecera.php"); ?>
 
 <?php
 use Phppot\DataSource;
@@ -531,4 +531,4 @@ if (isset($_POST["import"])) {
 </div>
 
 
-<?php include("template/pie.php"); ?>
+<?php include("administrador/template/pie.php"); ?>

@@ -1,4 +1,4 @@
-<?php include("template/cabecera.php"); 
+<?php include("administrador/template/cabecera.php"); 
 
 require "vendor/autoload.php";
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -130,4 +130,4 @@ $usuarios = $db->select_repo("SP_SelectDHDocIdentConIncidencias");
         }
         ?>
 
-        <?php include("template/pie.php"); ?>
+        <?php include("administrador/template/pie.php"); ?>

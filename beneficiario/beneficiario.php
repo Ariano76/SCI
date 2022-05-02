@@ -219,7 +219,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   <!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"-->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <!--div class="modal-dialog modal-lg" role="document"-->
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR DATOS BENEFICIARIO</h5>
@@ -231,44 +231,44 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="primer_nombreField" class="col-md-3 form-label">1er Nombre</label>
-              <div class="col-md-9">
+              <label for="primer_nombreField" class="col-md-4 form-label">1er Nombre</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="primer_nombreField" name="name">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="segundo_nombreField" class="col-md-3 form-label">2do Nombre</label>
-              <div class="col-md-9">
+              <label for="segundo_nombreField" class="col-md-4 form-label">2do Nombre</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="segundo_nombreField" name="email">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="primer_apellidoField" class="col-md-3 form-label">1er Apelido</label>
-              <div class="col-md-9">
+              <label for="primer_apellidoField" class="col-md-4 form-label">1er Apelido</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="primer_apellidoField" name="mobile">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="segundo_apellidoField" class="col-md-3 form-label">2do Apellido</label>
-              <div class="col-md-9">
+              <label for="segundo_apellidoField" class="col-md-4 form-label">2do Apellido</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="segundo_apellidoField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="region_beneficiarioField" class="col-md-3 form-label">Region Beneficiario</label>
-              <div class="col-md-9">
+              <label for="region_beneficiarioField" class="col-md-4 form-label">Region Beneficiario</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="region_beneficiarioField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="otra_regionField" class="col-md-3 form-label">Otra region</label>
-              <div class="col-md-9">
+              <label for="otra_regionField" class="col-md-4 form-label">Otra region</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="otra_regionField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="se_instalara_en_esta_regionField" class="col-md-3 form-label">Se instalara en esta region?</label>
-              <div class="col-md-9">
+              <label for="se_instalara_en_esta_regionField" class="col-md-4 form-label">Se instalara en esta region?</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="region" id="se_instalara_en_esta_regionField1" value="1"> Si 
                   <input type="radio" name="region" id="se_instalara_en_esta_regionField2" value="0"> No 
@@ -276,57 +276,57 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="en_que_provinciaField" class="col-md-3 form-label">En que provincia</label>
-              <div class="col-md-9">
+              <label for="en_que_provinciaField" class="col-md-4 form-label">En que provincia</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="en_que_provinciaField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="transit_settleField" class="col-md-3 form-label">En transito</label>
-              <div class="col-md-9">
+              <label for="transit_settleField" class="col-md-4 form-label">En transito</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="transit_settleField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="en_que_otro_caso_1Field" class="col-md-3 form-label">Otro caso</label>
-              <div class="col-md-9">
+              <label for="en_que_otro_caso_1Field" class="col-md-4 form-label">Otro caso</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="en_que_otro_caso_1Field" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="en_que_distritoField" class="col-md-3 form-label">En que distrito</label>
-              <div class="col-md-9">
+              <label for="en_que_distritoField" class="col-md-4 form-label">En que distrito</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="en_que_distritoField" name="City">
               </div>
             </div>            
             <div class="mb-3 row">
-              <label for="en_que_otro_caso_2Field" class="col-md-3 form-label">Otro caso</label>
-              <div class="col-md-9">
+              <label for="en_que_otro_caso_2Field" class="col-md-4 form-label">Otro caso</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="en_que_otro_caso_2Field" name="City">
               </div>
             </div>            
             <div class="mb-3 row">
-              <label for="en_que_otro_caso_3Field" class="col-md-3 form-label">Que otro distrito</label>
-              <div class="col-md-9">
+              <label for="en_que_otro_caso_3Field" class="col-md-4 form-label">Que otro distrito</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="en_que_otro_caso_3Field" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="generoField" class="col-md-3 form-label">Genero</label>
-              <div class="col-md-9">
+              <label for="generoField" class="col-md-4 form-label">Genero</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="generoField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="fecha_nacimientoField" class="col-md-3 form-label">Fecha nacimiento</label>
-              <div class="col-md-9">
+              <label for="fecha_nacimientoField" class="col-md-4 form-label">Fecha nacimiento</label>
+              <div class="col-md-8">
                 <!--input type="text" class="form-control" id="fecha_nacimientoField" name="City"-->
                 <input id="fecha_nacimientoField" type="date" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="tiene_carne_extranjeriaField" class="col-md-3 form-label">Tiene carnet extranjeria</label>
-              <div class="col-md-9">
+              <label for="tiene_carne_extranjeriaField" class="col-md-4 form-label">Tiene carnet extranjeria</label>
+              <div class="col-md-8">
                 <label class="radio-inline">
                   <input type="radio" name="carne" id="tiene_carne_extranjeriaField1" value="1"> Si 
                   <input type="radio" name="carne" id="tiene_carne_extranjeriaField2" value="0"> No 
@@ -335,40 +335,40 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="numero_cedulaField" class="col-md-3 form-label">Numero cedula</label>
-              <div class="col-md-9">
+              <label for="numero_cedulaField" class="col-md-4 form-label">Numero cedula</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="numero_cedulaField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="fecha_caducidad_cedulaField" class="col-md-3 form-label">Fecha caducidad cedula</label>
-              <div class="col-md-9">
+              <label for="fecha_caducidad_cedulaField" class="col-md-4 form-label">Fecha caducidad cedula</label>
+              <div class="col-md-8">
                 <!--input type="text" class="form-control" id="fecha_caducidad_cedulaField" name="City"-->
                 <input id="fecha_caducidad_cedulaField" type="date" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="tipo_identificacionField" class="col-md-3 form-label">Tipo identificación</label>
-              <div class="col-md-9">
+              <label for="tipo_identificacionField" class="col-md-4 form-label">Tipo identificación</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="tipo_identificacionField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="numero_identificacionField" class="col-md-3 form-label">Numero identificación</label>
-              <div class="col-md-9">
+              <label for="numero_identificacionField" class="col-md-4 form-label">Numero identificación</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="numero_identificacionField" name="City">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="fecha_caducidad_identificacionField" class="col-md-3 form-label">Fecha Caducidad</label>
-              <div class="col-md-9">
+              <label for="fecha_caducidad_identificacionField" class="col-md-4 form-label">Fecha Caducidad</label>
+              <div class="col-md-8">
                 <!--input type="text" class="form-control" id="fecha_caducidad_identificacionField" name="City"-->
                 <input id="fecha_caducidad_identificacionField" type="date" name="fecha">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="documentos_fisico_originalField" class="col-md-3 form-label">Cual de los documentos es físico y original</label>
-              <div class="col-md-9">
+              <label for="documentos_fisico_originalField" class="col-md-4 form-label">Cual de los documentos es físico y original</label>
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="documentos_fisico_originalField" name="City">
               </div>
             </div>

@@ -1,4 +1,4 @@
-<?php include("template/cabecera.php"); 
+<?php include("administrador/template/cabecera.php"); 
 
 //use TransactionSCI;
 require_once './administrador/config/bdPDO.php';
@@ -63,4 +63,4 @@ $conn = $db->Connect();
 
   ?>
 
-  <?php include("template/pie.php"); ?>
+  <?php include("administrador/template/pie.php"); ?>

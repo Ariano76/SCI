@@ -60,6 +60,27 @@ if (!isset($_SESSION['usuario'])) {
 						</div>
 					</li>
 					<li>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
+							<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Validación</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
+							<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
+
+						</div>
+					</li>
+					<li>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Beneficiarios</a>
+							<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Validación</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
+							<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
+						</div>
+					</li>			
+					<li>
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>

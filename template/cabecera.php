@@ -62,9 +62,11 @@
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/estatus.php"?>">Estatus</a>
   								<div class="dropdown-divider"></div>
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/bitacora.php"?>">Bitacora</a>
+  								<div class="dropdown-divider"></div>
+  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/fecha_nacimiento.php"?>">Inconsistencia fechas de nacimiento</a>  								
   							</div>
   						</li>
-  						<li>
+  						<!--li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
   							<div class="dropdown-menu">
   								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
@@ -84,7 +86,7 @@
   								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
   								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
   							</div>
-  						</li>					
+  						</li-->					
   						<a class="nav-item nav-link" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios</a>
   						<!--li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
