@@ -585,4 +585,5 @@ insert into entidades (nombre) values('beneficiario'),('comunicacion'),('derivac
 
 call SP_Usuario_Insert('Percy', 'PERCY@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 1, 1, @total);
+call SP_Usuario_Insert('Ricardo', 'Ricardo@gmail.com', '123456', 1, 1, @total);
 select @total;

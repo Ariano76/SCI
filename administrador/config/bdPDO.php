@@ -118,10 +118,10 @@ private $DB_PASSWORD = ''; //database password
     	return null;
     }
 
-    public function limpiarDataKobo($sp) {
+    public function limpiarDataKobo($sp,$usuario) {
         try {               
             // calling stored procedure command
-            $sql = "CALL " . $sp . "(@total)";            
+            $sql = "CALL " . $sp . "('".$usuario."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
@@ -140,11 +140,11 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function select_repo($sp) {
+    public function select_repo($sp,$usuario) {
         try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectDocIdentConIncidencias()';
-            $sql = "CALL " . $sp . "()";
+            $sql = "CALL " . $sp . "('".$usuario."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
@@ -159,11 +159,11 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function incidencia_Nombres($sp) {
+    public function incidencia_Nombres($sp,$usuario) {
         try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectNombresConDigitos()';
-            $sql = "CALL " . $sp . "()";
+            $sql = "CALL " . $sp . "('".$usuario."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
@@ -445,7 +445,7 @@ private $DB_PASSWORD = ''; //database password
                 return $row !== false ? $row['resultado'] : null;
             } 
             //echo 'La operación se realizo satisfactoriamente';
-            return true;
+            //return true;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }

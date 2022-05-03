@@ -53,7 +53,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDobleEspacioBlanco`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDobleEspacioBlanco`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDobleEspacioBlanco`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -77,7 +77,8 @@ BEGIN
         dato_35 = REGEXP_REPLACE(dato_35, '\\s', ''), dato_74 = REGEXP_REPLACE(dato_74, '\\s', ''), 
         dato_84 = REGEXP_REPLACE(dato_84, '\\s', ''), dato_94 = REGEXP_REPLACE(dato_94, '\\s', ''), 
         dato_104 = REGEXP_REPLACE(dato_104, '\\s', ''), dato_114 = REGEXP_REPLACE(dato_114, '\\s', ''), 
-        dato_124 = REGEXP_REPLACE(dato_124, '\\s', ''), dato_134 = REGEXP_REPLACE(dato_134, '\\s', '');
+        dato_124 = REGEXP_REPLACE(dato_124, '\\s', ''), dato_134 = REGEXP_REPLACE(dato_134, '\\s', '')
+        where dato_145=usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -85,7 +86,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateTab`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateTab`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateTab`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -142,7 +143,8 @@ BEGIN
 	dato_134 = REGEXP_REPLACE(dato_134, '\t', ''), dato_135 = REGEXP_REPLACE(dato_135, '\t', ''), dato_136 = REGEXP_REPLACE(dato_136, '\t', ''), 
 	dato_137 = REGEXP_REPLACE(dato_137, '\t', ''), dato_138 = REGEXP_REPLACE(dato_138, '\t', ''), dato_139 = REGEXP_REPLACE(dato_139, '\t', ''), 
 	dato_140 = REGEXP_REPLACE(dato_140, '\t', ''), dato_141 = REGEXP_REPLACE(dato_141, '\t', ''), dato_142 = REGEXP_REPLACE(dato_142, '\t', ''),
-    dato_143 = REGEXP_REPLACE(dato_143, '\t', ''), dato_144 = REGEXP_REPLACE(dato_144, '\t', '');
+    dato_143 = REGEXP_REPLACE(dato_143, '\t', ''), dato_144 = REGEXP_REPLACE(dato_144, '\t', '')
+    where dato_145 = usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -150,7 +152,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateSaltoLinea`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateSaltoLinea`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateSaltoLinea`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -185,7 +187,8 @@ BEGIN
     dato_115 = replace(dato_115, '\\n', ''), dato_116 = replace(dato_116, '\\n', ''), dato_117 = replace(dato_117, '\\n', ''),
     dato_118 = replace(dato_118, '\\n', ''), 
     dato_125 = replace(dato_125, '\\n', ''), dato_126 = replace(dato_126, '\\n', ''), dato_127 = replace(dato_127, '\\n', ''),
-    dato_128 = replace(dato_128, '\\n', '')  ;
+    dato_128 = replace(dato_128, '\\n', '')  
+    where dato_145=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -194,7 +197,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateNewLineReturnLine`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateNewLineReturnLine`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateNewLineReturnLine`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -211,7 +214,8 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-    UPDATE bd_bha_sci.stage_00 SET dato_01 = REGEXP_REPLACE(dato_01, '[\\n]', ''), dato_02 = REGEXP_REPLACE(dato_02, '[\\n]', ''), dato_03 = REGEXP_REPLACE(dato_03, '[\\n]', ''), dato_04 = REGEXP_REPLACE(dato_04, '[\\n]', ''), dato_05 = REGEXP_REPLACE(dato_05, '[\\n]', ''), dato_06 = REGEXP_REPLACE(dato_06, '[\\n]', ''), dato_07 = REGEXP_REPLACE(dato_07, '[\\n]', ''), dato_08 = REGEXP_REPLACE(dato_08, '[\\n]', ''), dato_09 = REGEXP_REPLACE(dato_09, '[\\n]', ''), dato_10 = REGEXP_REPLACE(dato_10, '[\\n]', ''), dato_11 = REGEXP_REPLACE(dato_11, '[\\n]', ''), dato_12 = REGEXP_REPLACE(dato_12, '[\\n]', ''), dato_13 = REGEXP_REPLACE(dato_13, '[\\n]', ''), dato_14 = REGEXP_REPLACE(dato_14, '[\\n]', ''), dato_15 = REGEXP_REPLACE(dato_15, '[\\n]', ''), dato_16 = REGEXP_REPLACE(dato_16, '[\\n]', ''), dato_17 = REGEXP_REPLACE(dato_17, '[\\n]', ''), dato_18 = REGEXP_REPLACE(dato_18, '[\\n]', ''), dato_19 = REGEXP_REPLACE(dato_19, '[\\n]', ''), dato_20 = REGEXP_REPLACE(dato_20, '[\\n]', ''), dato_21 = REGEXP_REPLACE(dato_21, '[\\n]', ''), dato_22 = REGEXP_REPLACE(dato_22, '[\\n]', ''), dato_23 = REGEXP_REPLACE(dato_23, '[\\n]', ''), dato_24 = REGEXP_REPLACE(dato_24, '[\\n]', ''), dato_25 = REGEXP_REPLACE(dato_25, '[\\n]', ''), dato_26 = REGEXP_REPLACE(dato_26, '[\\n]', ''), dato_27 = REGEXP_REPLACE(dato_27, '[\\n]', ''), dato_28 = REGEXP_REPLACE(dato_28, '[\\n]', ''), dato_29 = REGEXP_REPLACE(dato_29, '[\\n]', ''), dato_30 = REGEXP_REPLACE(dato_30, '[\\n]', ''), dato_31 = REGEXP_REPLACE(dato_31, '[\\n]', ''), dato_32 = REGEXP_REPLACE(dato_32, '[\\n]', ''), dato_33 = REGEXP_REPLACE(dato_33, '[\\n]', ''), dato_34 = REGEXP_REPLACE(dato_34, '[\\n]', ''), dato_35 = REGEXP_REPLACE(dato_35, '[\\n]', ''), dato_36 = REGEXP_REPLACE(dato_36, '[\\n]', ''), dato_37 = REGEXP_REPLACE(dato_37, '[\\n]', ''), dato_38 = REGEXP_REPLACE(dato_38, '[\\n]', ''), dato_39 = REGEXP_REPLACE(dato_39, '[\\n]', ''), dato_40 = REGEXP_REPLACE(dato_40, '[\\n]', ''), dato_41 = REGEXP_REPLACE(dato_41, '[\\n]', ''), dato_42 = REGEXP_REPLACE(dato_42, '[\\n]', ''), dato_43 = REGEXP_REPLACE(dato_43, '[\\n]', ''), dato_44 = REGEXP_REPLACE(dato_44, '[\\n]', ''), dato_45 = REGEXP_REPLACE(dato_45, '[\\n]', ''), dato_46 = REGEXP_REPLACE(dato_46, '[\\n]', ''), dato_47 = REGEXP_REPLACE(dato_47, '[\\n]', ''), dato_48 = REGEXP_REPLACE(dato_48, '[\\n]', ''), dato_49 = REGEXP_REPLACE(dato_49, '[\\n]', ''), dato_50 = REGEXP_REPLACE(dato_50, '[\\n]', ''), dato_51 = REGEXP_REPLACE(dato_51, '[\\n]', ''), dato_52 = REGEXP_REPLACE(dato_52, '[\\n]', ''), dato_53 = REGEXP_REPLACE(dato_53, '[\\n]', ''), dato_54 = REGEXP_REPLACE(dato_54, '[\\n]', ''), dato_55 = REGEXP_REPLACE(dato_55, '[\\n]', ''), dato_56 = REGEXP_REPLACE(dato_56, '[\\n]', ''), dato_57 = REGEXP_REPLACE(dato_57, '[\\n]', ''), dato_58 = REGEXP_REPLACE(dato_58, '[\\n]', ''), dato_59 = REGEXP_REPLACE(dato_59, '[\\n]', ''), dato_60 = REGEXP_REPLACE(dato_60, '[\\n]', ''), dato_61 = REGEXP_REPLACE(dato_61, '[\\n]', ''), dato_62 = REGEXP_REPLACE(dato_62, '[\\n]', ''), dato_63 = REGEXP_REPLACE(dato_63, '[\\n]', ''), dato_64 = REGEXP_REPLACE(dato_64, '[\\n]', ''), dato_65 = REGEXP_REPLACE(dato_65, '[\\n]', ''), dato_66 = REGEXP_REPLACE(dato_66, '[\\n]', ''), dato_67 = REGEXP_REPLACE(dato_67, '[\\n]', ''), dato_68 = REGEXP_REPLACE(dato_68, '[\\n]', ''), dato_69 = REGEXP_REPLACE(dato_69, '[\\n]', ''), dato_70 = REGEXP_REPLACE(dato_70, '[\\n]', ''), dato_71 = REGEXP_REPLACE(dato_71, '[\\n]', ''), dato_72 = REGEXP_REPLACE(dato_72, '[\\n]', ''), dato_73 = REGEXP_REPLACE(dato_73, '[\\n]', ''), dato_74 = REGEXP_REPLACE(dato_74, '[\\n]', ''), dato_75 = REGEXP_REPLACE(dato_75, '[\\n]', ''), dato_76 = REGEXP_REPLACE(dato_76, '[\\n]', ''), dato_77 = REGEXP_REPLACE(dato_77, '[\\n]', ''), dato_78 = REGEXP_REPLACE(dato_78, '[\\n]', ''), dato_79 = REGEXP_REPLACE(dato_79, '[\\n]', ''), dato_80 = REGEXP_REPLACE(dato_80, '[\\n]', ''), dato_81 = REGEXP_REPLACE(dato_81, '[\\n]', ''), dato_82 = REGEXP_REPLACE(dato_82, '[\\n]', ''), dato_83 = REGEXP_REPLACE(dato_83, '[\\n]', ''), dato_84 = REGEXP_REPLACE(dato_84, '[\\n]', ''), dato_85 = REGEXP_REPLACE(dato_85, '[\\n]', ''), dato_86 = REGEXP_REPLACE(dato_86, '[\\n]', ''), dato_87 = REGEXP_REPLACE(dato_87, '[\\n]', ''), dato_88 = REGEXP_REPLACE(dato_88, '[\\n]', ''), dato_89 = REGEXP_REPLACE(dato_89, '[\\n]', ''), dato_90 = REGEXP_REPLACE(dato_90, '[\\n]', ''), dato_91 = REGEXP_REPLACE(dato_91, '[\\n]', ''), dato_92 = REGEXP_REPLACE(dato_92, '[\\n]', ''), dato_93 = REGEXP_REPLACE(dato_93, '[\\n]', ''), dato_94 = REGEXP_REPLACE(dato_94, '[\\n]', ''), dato_95 = REGEXP_REPLACE(dato_95, '[\\n]', ''), dato_96 = REGEXP_REPLACE(dato_96, '[\\n]', ''), dato_97 = REGEXP_REPLACE(dato_97, '[\\n]', ''), dato_98 = REGEXP_REPLACE(dato_98, '[\\n]', ''), dato_99 = REGEXP_REPLACE(dato_99, '[\\n]', ''), dato_100 = REGEXP_REPLACE(dato_100, '[\\n]', ''), dato_101 = REGEXP_REPLACE(dato_101, '[\\n]', ''), dato_102 = REGEXP_REPLACE(dato_102, '[\\n]', ''), dato_103 = REGEXP_REPLACE(dato_103, '[\\n]', ''), dato_104 = REGEXP_REPLACE(dato_104, '[\\n]', ''), dato_105 = REGEXP_REPLACE(dato_105, '[\\n]', ''), dato_106 = REGEXP_REPLACE(dato_106, '[\\n]', ''), dato_107 = REGEXP_REPLACE(dato_107, '[\\n]', ''), dato_108 = REGEXP_REPLACE(dato_108, '[\\n]', ''), dato_109 = REGEXP_REPLACE(dato_109, '[\\n]', ''), dato_110 = REGEXP_REPLACE(dato_110, '[\\n]', ''), dato_111 = REGEXP_REPLACE(dato_111, '[\\n]', ''), dato_112 = REGEXP_REPLACE(dato_112, '[\\n]', ''), dato_113 = REGEXP_REPLACE(dato_113, '[\\n]', ''), dato_114 = REGEXP_REPLACE(dato_114, '[\\n]', ''), dato_115 = REGEXP_REPLACE(dato_115, '[\\n]', ''), dato_116 = REGEXP_REPLACE(dato_116, '[\\n]', ''), dato_117 = REGEXP_REPLACE(dato_117, '[\\n]', ''), dato_118 = REGEXP_REPLACE(dato_118, '[\\n]', ''), dato_119 = REGEXP_REPLACE(dato_119, '[\\n]', ''), dato_120 = REGEXP_REPLACE(dato_120, '[\\n]', ''), dato_121 = REGEXP_REPLACE(dato_121, '[\\n]', ''), dato_122 = REGEXP_REPLACE(dato_122, '[\\n]', ''), dato_123 = REGEXP_REPLACE(dato_123, '[\\n]', ''), dato_124 = REGEXP_REPLACE(dato_124, '[\\n]', ''), dato_125 = REGEXP_REPLACE(dato_125, '[\\n]', ''), dato_126 = REGEXP_REPLACE(dato_126, '[\\n]', ''), dato_127 = REGEXP_REPLACE(dato_127, '[\\n]', ''), dato_128 = REGEXP_REPLACE(dato_128, '[\\n]', ''), dato_129 = REGEXP_REPLACE(dato_129, '[\\n]', ''), dato_130 = REGEXP_REPLACE(dato_130, '[\\n]', ''), dato_131 = REGEXP_REPLACE(dato_131, '[\\n]', ''), dato_132 = REGEXP_REPLACE(dato_132, '[\\n]', ''), dato_133 = REGEXP_REPLACE(dato_133, '[\\n]', ''), dato_134 = REGEXP_REPLACE(dato_134, '[\\n]', ''), dato_135 = REGEXP_REPLACE(dato_135, '[\\n]', ''), dato_136 = REGEXP_REPLACE(dato_136, '[\\n]', ''), dato_137 = REGEXP_REPLACE(dato_137, '[\\n]', ''), dato_138 = REGEXP_REPLACE(dato_138, '[\\n]', ''), dato_139 = REGEXP_REPLACE(dato_139, '[\\n]', ''), dato_140 = REGEXP_REPLACE(dato_140, '[\\n]', ''), dato_141 = REGEXP_REPLACE(dato_141, '[\\n]', ''), dato_142 = REGEXP_REPLACE(dato_142, '[\\n]', ''), dato_143 = REGEXP_REPLACE(dato_143, '[\\n]', ''), dato_144 = REGEXP_REPLACE(dato_144, '[\\n]', '');
+    UPDATE bd_bha_sci.stage_00 SET dato_01 = REGEXP_REPLACE(dato_01, '[\\n]', ''), dato_02 = REGEXP_REPLACE(dato_02, '[\\n]', ''), dato_03 = REGEXP_REPLACE(dato_03, '[\\n]', ''), dato_04 = REGEXP_REPLACE(dato_04, '[\\n]', ''), dato_05 = REGEXP_REPLACE(dato_05, '[\\n]', ''), dato_06 = REGEXP_REPLACE(dato_06, '[\\n]', ''), dato_07 = REGEXP_REPLACE(dato_07, '[\\n]', ''), dato_08 = REGEXP_REPLACE(dato_08, '[\\n]', ''), dato_09 = REGEXP_REPLACE(dato_09, '[\\n]', ''), dato_10 = REGEXP_REPLACE(dato_10, '[\\n]', ''), dato_11 = REGEXP_REPLACE(dato_11, '[\\n]', ''), dato_12 = REGEXP_REPLACE(dato_12, '[\\n]', ''), dato_13 = REGEXP_REPLACE(dato_13, '[\\n]', ''), dato_14 = REGEXP_REPLACE(dato_14, '[\\n]', ''), dato_15 = REGEXP_REPLACE(dato_15, '[\\n]', ''), dato_16 = REGEXP_REPLACE(dato_16, '[\\n]', ''), dato_17 = REGEXP_REPLACE(dato_17, '[\\n]', ''), dato_18 = REGEXP_REPLACE(dato_18, '[\\n]', ''), dato_19 = REGEXP_REPLACE(dato_19, '[\\n]', ''), dato_20 = REGEXP_REPLACE(dato_20, '[\\n]', ''), dato_21 = REGEXP_REPLACE(dato_21, '[\\n]', ''), dato_22 = REGEXP_REPLACE(dato_22, '[\\n]', ''), dato_23 = REGEXP_REPLACE(dato_23, '[\\n]', ''), dato_24 = REGEXP_REPLACE(dato_24, '[\\n]', ''), dato_25 = REGEXP_REPLACE(dato_25, '[\\n]', ''), dato_26 = REGEXP_REPLACE(dato_26, '[\\n]', ''), dato_27 = REGEXP_REPLACE(dato_27, '[\\n]', ''), dato_28 = REGEXP_REPLACE(dato_28, '[\\n]', ''), dato_29 = REGEXP_REPLACE(dato_29, '[\\n]', ''), dato_30 = REGEXP_REPLACE(dato_30, '[\\n]', ''), dato_31 = REGEXP_REPLACE(dato_31, '[\\n]', ''), dato_32 = REGEXP_REPLACE(dato_32, '[\\n]', ''), dato_33 = REGEXP_REPLACE(dato_33, '[\\n]', ''), dato_34 = REGEXP_REPLACE(dato_34, '[\\n]', ''), dato_35 = REGEXP_REPLACE(dato_35, '[\\n]', ''), dato_36 = REGEXP_REPLACE(dato_36, '[\\n]', ''), dato_37 = REGEXP_REPLACE(dato_37, '[\\n]', ''), dato_38 = REGEXP_REPLACE(dato_38, '[\\n]', ''), dato_39 = REGEXP_REPLACE(dato_39, '[\\n]', ''), dato_40 = REGEXP_REPLACE(dato_40, '[\\n]', ''), dato_41 = REGEXP_REPLACE(dato_41, '[\\n]', ''), dato_42 = REGEXP_REPLACE(dato_42, '[\\n]', ''), dato_43 = REGEXP_REPLACE(dato_43, '[\\n]', ''), dato_44 = REGEXP_REPLACE(dato_44, '[\\n]', ''), dato_45 = REGEXP_REPLACE(dato_45, '[\\n]', ''), dato_46 = REGEXP_REPLACE(dato_46, '[\\n]', ''), dato_47 = REGEXP_REPLACE(dato_47, '[\\n]', ''), dato_48 = REGEXP_REPLACE(dato_48, '[\\n]', ''), dato_49 = REGEXP_REPLACE(dato_49, '[\\n]', ''), dato_50 = REGEXP_REPLACE(dato_50, '[\\n]', ''), dato_51 = REGEXP_REPLACE(dato_51, '[\\n]', ''), dato_52 = REGEXP_REPLACE(dato_52, '[\\n]', ''), dato_53 = REGEXP_REPLACE(dato_53, '[\\n]', ''), dato_54 = REGEXP_REPLACE(dato_54, '[\\n]', ''), dato_55 = REGEXP_REPLACE(dato_55, '[\\n]', ''), dato_56 = REGEXP_REPLACE(dato_56, '[\\n]', ''), dato_57 = REGEXP_REPLACE(dato_57, '[\\n]', ''), dato_58 = REGEXP_REPLACE(dato_58, '[\\n]', ''), dato_59 = REGEXP_REPLACE(dato_59, '[\\n]', ''), dato_60 = REGEXP_REPLACE(dato_60, '[\\n]', ''), dato_61 = REGEXP_REPLACE(dato_61, '[\\n]', ''), dato_62 = REGEXP_REPLACE(dato_62, '[\\n]', ''), dato_63 = REGEXP_REPLACE(dato_63, '[\\n]', ''), dato_64 = REGEXP_REPLACE(dato_64, '[\\n]', ''), dato_65 = REGEXP_REPLACE(dato_65, '[\\n]', ''), dato_66 = REGEXP_REPLACE(dato_66, '[\\n]', ''), dato_67 = REGEXP_REPLACE(dato_67, '[\\n]', ''), dato_68 = REGEXP_REPLACE(dato_68, '[\\n]', ''), dato_69 = REGEXP_REPLACE(dato_69, '[\\n]', ''), dato_70 = REGEXP_REPLACE(dato_70, '[\\n]', ''), dato_71 = REGEXP_REPLACE(dato_71, '[\\n]', ''), dato_72 = REGEXP_REPLACE(dato_72, '[\\n]', ''), dato_73 = REGEXP_REPLACE(dato_73, '[\\n]', ''), dato_74 = REGEXP_REPLACE(dato_74, '[\\n]', ''), dato_75 = REGEXP_REPLACE(dato_75, '[\\n]', ''), dato_76 = REGEXP_REPLACE(dato_76, '[\\n]', ''), dato_77 = REGEXP_REPLACE(dato_77, '[\\n]', ''), dato_78 = REGEXP_REPLACE(dato_78, '[\\n]', ''), dato_79 = REGEXP_REPLACE(dato_79, '[\\n]', ''), dato_80 = REGEXP_REPLACE(dato_80, '[\\n]', ''), dato_81 = REGEXP_REPLACE(dato_81, '[\\n]', ''), dato_82 = REGEXP_REPLACE(dato_82, '[\\n]', ''), dato_83 = REGEXP_REPLACE(dato_83, '[\\n]', ''), dato_84 = REGEXP_REPLACE(dato_84, '[\\n]', ''), dato_85 = REGEXP_REPLACE(dato_85, '[\\n]', ''), dato_86 = REGEXP_REPLACE(dato_86, '[\\n]', ''), dato_87 = REGEXP_REPLACE(dato_87, '[\\n]', ''), dato_88 = REGEXP_REPLACE(dato_88, '[\\n]', ''), dato_89 = REGEXP_REPLACE(dato_89, '[\\n]', ''), dato_90 = REGEXP_REPLACE(dato_90, '[\\n]', ''), dato_91 = REGEXP_REPLACE(dato_91, '[\\n]', ''), dato_92 = REGEXP_REPLACE(dato_92, '[\\n]', ''), dato_93 = REGEXP_REPLACE(dato_93, '[\\n]', ''), dato_94 = REGEXP_REPLACE(dato_94, '[\\n]', ''), dato_95 = REGEXP_REPLACE(dato_95, '[\\n]', ''), dato_96 = REGEXP_REPLACE(dato_96, '[\\n]', ''), dato_97 = REGEXP_REPLACE(dato_97, '[\\n]', ''), dato_98 = REGEXP_REPLACE(dato_98, '[\\n]', ''), dato_99 = REGEXP_REPLACE(dato_99, '[\\n]', ''), dato_100 = REGEXP_REPLACE(dato_100, '[\\n]', ''), dato_101 = REGEXP_REPLACE(dato_101, '[\\n]', ''), dato_102 = REGEXP_REPLACE(dato_102, '[\\n]', ''), dato_103 = REGEXP_REPLACE(dato_103, '[\\n]', ''), dato_104 = REGEXP_REPLACE(dato_104, '[\\n]', ''), dato_105 = REGEXP_REPLACE(dato_105, '[\\n]', ''), dato_106 = REGEXP_REPLACE(dato_106, '[\\n]', ''), dato_107 = REGEXP_REPLACE(dato_107, '[\\n]', ''), dato_108 = REGEXP_REPLACE(dato_108, '[\\n]', ''), dato_109 = REGEXP_REPLACE(dato_109, '[\\n]', ''), dato_110 = REGEXP_REPLACE(dato_110, '[\\n]', ''), dato_111 = REGEXP_REPLACE(dato_111, '[\\n]', ''), dato_112 = REGEXP_REPLACE(dato_112, '[\\n]', ''), dato_113 = REGEXP_REPLACE(dato_113, '[\\n]', ''), dato_114 = REGEXP_REPLACE(dato_114, '[\\n]', ''), dato_115 = REGEXP_REPLACE(dato_115, '[\\n]', ''), dato_116 = REGEXP_REPLACE(dato_116, '[\\n]', ''), dato_117 = REGEXP_REPLACE(dato_117, '[\\n]', ''), dato_118 = REGEXP_REPLACE(dato_118, '[\\n]', ''), dato_119 = REGEXP_REPLACE(dato_119, '[\\n]', ''), dato_120 = REGEXP_REPLACE(dato_120, '[\\n]', ''), dato_121 = REGEXP_REPLACE(dato_121, '[\\n]', ''), dato_122 = REGEXP_REPLACE(dato_122, '[\\n]', ''), dato_123 = REGEXP_REPLACE(dato_123, '[\\n]', ''), dato_124 = REGEXP_REPLACE(dato_124, '[\\n]', ''), dato_125 = REGEXP_REPLACE(dato_125, '[\\n]', ''), dato_126 = REGEXP_REPLACE(dato_126, '[\\n]', ''), dato_127 = REGEXP_REPLACE(dato_127, '[\\n]', ''), dato_128 = REGEXP_REPLACE(dato_128, '[\\n]', ''), dato_129 = REGEXP_REPLACE(dato_129, '[\\n]', ''), dato_130 = REGEXP_REPLACE(dato_130, '[\\n]', ''), dato_131 = REGEXP_REPLACE(dato_131, '[\\n]', ''), dato_132 = REGEXP_REPLACE(dato_132, '[\\n]', ''), dato_133 = REGEXP_REPLACE(dato_133, '[\\n]', ''), dato_134 = REGEXP_REPLACE(dato_134, '[\\n]', ''), dato_135 = REGEXP_REPLACE(dato_135, '[\\n]', ''), dato_136 = REGEXP_REPLACE(dato_136, '[\\n]', ''), dato_137 = REGEXP_REPLACE(dato_137, '[\\n]', ''), dato_138 = REGEXP_REPLACE(dato_138, '[\\n]', ''), dato_139 = REGEXP_REPLACE(dato_139, '[\\n]', ''), dato_140 = REGEXP_REPLACE(dato_140, '[\\n]', ''), dato_141 = REGEXP_REPLACE(dato_141, '[\\n]', ''), dato_142 = REGEXP_REPLACE(dato_142, '[\\n]', ''), dato_143 = REGEXP_REPLACE(dato_143, '[\\n]', ''), dato_144 = REGEXP_REPLACE(dato_144, '[\\n]', '')
+    where dato_145=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -220,7 +224,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateLetrasPuntoGuion`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateLetrasPuntoGuion`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateLetrasPuntoGuion`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -243,7 +247,8 @@ BEGIN
 	DATO_94 = REGEXP_REPLACE(DATO_94, '[A-Za-z._-]', ''), DATO_84 = REGEXP_REPLACE(DATO_84, '[A-Za-z._-]', ''),
 	DATO_74 = REGEXP_REPLACE(DATO_74, '[A-Za-z._-]', ''), DATO_35 = REGEXP_REPLACE(DATO_35, '[A-Za-z._-]', ''),
 	DATO_34 = REGEXP_REPLACE(DATO_34, '[A-Za-z._-]', ''), DATO_26 = REGEXP_REPLACE(DATO_26, '[A-Za-z._-]', ''),
-	DATO_23 = REGEXP_REPLACE(DATO_23, '[A-Za-z._-]', ''), DATO_02 = REGEXP_REPLACE(DATO_02, '[A-Za-z._-]', '');
+	DATO_23 = REGEXP_REPLACE(DATO_23, '[A-Za-z._-]', ''), DATO_02 = REGEXP_REPLACE(DATO_02, '[A-Za-z._-]', '')
+    where dato_145=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -251,7 +256,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateAscii`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateAscii`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateAscii`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -341,7 +346,8 @@ BEGIN
     dato_137=replace(dato_137, UNHEX('C2A0'),  ''), dato_138=replace(dato_138, UNHEX('C2A0'),  ''), 
     dato_139=replace(dato_139, UNHEX('C2A0'),  ''), dato_140=replace(dato_140, UNHEX('C2A0'),  ''), 
     dato_141=replace(dato_141, UNHEX('C2A0'),  ''), dato_142=replace(dato_142, UNHEX('C2A0'),  ''), 
-    dato_143=replace(dato_143, UNHEX('C2A0'),  ''), dato_144=replace(dato_144, UNHEX('C2A0'),  '');
+    dato_143=replace(dato_143, UNHEX('C2A0'),  ''), dato_144=replace(dato_144, UNHEX('C2A0'),  '')
+    where dato_145=usuario;
 
     SET success = 1;
     COMMIT;
@@ -350,7 +356,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateBackSlash`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateBackSlash`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateBackSlash`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -371,7 +377,8 @@ BEGIN
 	SET DATO_134 = REPLACE(DATO_134, '\\', ''), DATO_124 = REPLACE(DATO_124, '\\', ''), DATO_114 = REPLACE(DATO_114, '\\', ''), 
     DATO_104 = REPLACE(DATO_104, '\\', ''),	DATO_94 = REPLACE(DATO_94, '\\', ''), DATO_84 = REPLACE(DATO_84, '\\', ''),
 	DATO_74 = REPLACE(DATO_74, '\\', ''), DATO_35 = REPLACE(DATO_35, '\\', ''),	DATO_34 = REPLACE(DATO_34, '\\', ''), 
-    DATO_26 = REPLACE(DATO_26, '\\', ''), DATO_23 = REPLACE(DATO_23, '\\', ''), DATO_02 = REPLACE(DATO_02, '\\', '');
+    DATO_26 = REPLACE(DATO_26, '\\', ''), DATO_23 = REPLACE(DATO_23, '\\', ''), DATO_02 = REPLACE(DATO_02, '\\', '')
+    where dato_145=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -379,7 +386,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateTrim`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateTrim`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateTrim`(in usuario varchar(50), OUT success INT)
 BEGIN
 DECLARE exit handler for sqlexception
 	BEGIN
@@ -424,7 +431,8 @@ DECLARE exit handler for sqlexception
 	dato_125=TRIM(dato_125), dato_126=TRIM(dato_126), dato_127=TRIM(dato_127), dato_128=TRIM(dato_128), dato_129=TRIM(dato_129), 
 	dato_130=TRIM(dato_130), dato_131=TRIM(dato_131), dato_132=TRIM(dato_132), dato_133=TRIM(dato_133), dato_134=TRIM(dato_134), 
 	dato_135=TRIM(dato_135), dato_136=TRIM(dato_136), dato_137=TRIM(dato_137), dato_138=TRIM(dato_138), dato_139=TRIM(dato_139), 
-	dato_140=TRIM(dato_140), dato_141=TRIM(dato_141), dato_142=TRIM(dato_142), dato_143=TRIM(dato_143), dato_144=TRIM(dato_144);
+	dato_140=TRIM(dato_140), dato_141=TRIM(dato_141), dato_142=TRIM(dato_142), dato_143=TRIM(dato_143), dato_144=TRIM(dato_144)
+    where dato_145=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -432,7 +440,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateRecodificarSiNo`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateRecodificarSiNo`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateRecodificarSiNo`(in usuario varchar(50), OUT success INT)
 BEGIN
 DECLARE exit handler for sqlexception
 	BEGIN
@@ -449,30 +457,30 @@ DECLARE exit handler for sqlexception
 	END;
  
 	START TRANSACTION;
-    UPDATE bd_bha_sci.stage_00 SET dato_06 = 0 WHERE dato_06 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_06 = 1 WHERE dato_06 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_09 = 0 WHERE dato_09 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_09 = 1 WHERE dato_09 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_22 = 0 WHERE dato_22 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_22 = 1 WHERE dato_22 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_37 = 0 WHERE dato_37 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_37 = 1 WHERE dato_37 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_40 = 0 WHERE dato_40 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_40 = 1 WHERE dato_40 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_43 = 0 WHERE dato_43 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_43 = 1 WHERE dato_43 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_45 = 0 WHERE dato_45 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_45 = 1 WHERE dato_45 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_51 = 0 WHERE dato_51 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_51 = 1 WHERE dato_51 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_52 = 0 WHERE dato_52 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_52 = 1 WHERE dato_52 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_137 = 0 WHERE dato_137 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_137 = 1 WHERE dato_137 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_138 = 0 WHERE dato_138 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_138 = 1 WHERE dato_138 = 'Si';
-	UPDATE bd_bha_sci.stage_00 SET dato_139 = 0 WHERE dato_139 = 'No';
-	UPDATE bd_bha_sci.stage_00 SET dato_139 = 1 WHERE dato_139 = 'Si';
+    UPDATE bd_bha_sci.stage_00 SET dato_06 = 0 WHERE dato_06 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_06 = 1 WHERE dato_06 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_09 = 0 WHERE dato_09 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_09 = 1 WHERE dato_09 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_22 = 0 WHERE dato_22 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_22 = 1 WHERE dato_22 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_37 = 0 WHERE dato_37 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_37 = 1 WHERE dato_37 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_40 = 0 WHERE dato_40 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_40 = 1 WHERE dato_40 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_43 = 0 WHERE dato_43 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_43 = 1 WHERE dato_43 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_45 = 0 WHERE dato_45 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_45 = 1 WHERE dato_45 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_51 = 0 WHERE dato_51 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_51 = 1 WHERE dato_51 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_52 = 0 WHERE dato_52 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_52 = 1 WHERE dato_52 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_137 = 0 WHERE dato_137 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_137 = 1 WHERE dato_137 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_138 = 0 WHERE dato_138 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_138 = 1 WHERE dato_138 = 'Si' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_139 = 0 WHERE dato_139 = 'No' and dato_145 = usuario;
+	UPDATE bd_bha_sci.stage_00 SET dato_139 = 1 WHERE dato_139 = 'Si' and dato_145 = usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -480,7 +488,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateInfoTransito`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateInfoTransito`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateInfoTransito`(in usuario varchar(50), OUT success INT)
 BEGIN
 DECLARE exit handler for sqlexception
 	BEGIN
@@ -497,16 +505,16 @@ DECLARE exit handler for sqlexception
 	END;
  
 	START TRANSACTION;
-    UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Transito' WHERE dato_11 = 'transit' or dato_11 = 'transito' or dato_11 = 'Tránsito';
-	UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Estadia' WHERE dato_11 = 'Estadía' or dato_11 = 'estadia' or dato_11 = 'settlement';
-	UPDATE bd_bha_sci.stage_00 SET dato_26 = null WHERE dato_26 = 'Ninguno' ;
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO VALIDO' WHERE dato_143 = 'valido' or dato_143 = 'Registro válido' or dato_143 = 'Registro Válido' or dato_143 = 'VÁLIDO' or dato_143 = 'REGISTRO VÁLIDO' or dato_143 = 'Registro valido' or dato_143 = 'Registro Valido' or dato_143 = 'registro valido';
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO INVALIDO' WHERE dato_143 = 'Registro inválido' or dato_143 = 'REGISTRO INVÁLIDO' or dato_143 = 'Registro Inválido' or dato_143 = 'Registro invalido';
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO EN ESPERA' WHERE dato_143 = 'REG. EN ESPERA' or dato_143 = 'Registro en espera';
+    UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Transito' WHERE dato_145=usuario or (dato_11 = 'transit' or dato_11 = 'transito' or dato_11 = 'Tránsito');
+	UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Estadia' WHERE dato_145=usuario or (dato_11 = 'Estadía' or dato_11 = 'estadia' or dato_11 = 'settlement');
+	UPDATE bd_bha_sci.stage_00 SET dato_26 = null WHERE dato_145=usuario and dato_26 = 'Ninguno' ;
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO VALIDO' WHERE dato_145=usuario or (dato_143 = 'valido' or dato_143 = 'Registro válido' or dato_143 = 'Registro Válido' or dato_143 = 'VÁLIDO' or dato_143 = 'REGISTRO VÁLIDO' or dato_143 = 'Registro valido' or dato_143 = 'Registro Valido' or dato_143 = 'registro valido');
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO INVALIDO' WHERE dato_145=usuario or (dato_143 = 'Registro inválido' or dato_143 = 'REGISTRO INVÁLIDO' or dato_143 = 'Registro Inválido' or dato_143 = 'Registro invalido');
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO EN ESPERA' WHERE dato_145=usuario or (dato_143 = 'REG. EN ESPERA' or dato_143 = 'Registro en espera');
     
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 1 WHERE dato_143 = 'REGISTRO VALIDO';
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 2 WHERE dato_143 = 'REGISTRO INVALIDO';
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 3 WHERE dato_143 = 'REGISTRO EN ESPERA';
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 1 WHERE dato_145=usuario and dato_143 = 'REGISTRO VALIDO';
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 2 WHERE dato_145=usuario and dato_143 = 'REGISTRO INVALIDO';
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 3 WHERE dato_145=usuario and dato_143 = 'REGISTRO EN ESPERA';
 	/*SELECT ROW_COUNT() AS 'Affected rows';*/
     SET success = 1;
     COMMIT;
@@ -515,24 +523,24 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectDocIdentConIncidencias`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_SelectDocIdentConIncidencias`()
+CREATE PROCEDURE `SP_SelectDocIdentConIncidencias`(in usuario varchar(50))
 BEGIN	    
     SELECT ID_STAGE,DATO_02, DATO_23, DATO_26,DATO_34,DATO_35 ,DATO_74 ,DATO_84,DATO_94,DATO_104,DATO_114,DATO_124,DATO_134 
-FROM bd_bha_sci.stage_00 where DATO_02 REGEXP '.*[^0-9].*' OR DATO_23 REGEXP '.*[^0-9].*' OR DATO_26 REGEXP '.*[^0-9].*' 
+FROM bd_bha_sci.stage_00 where dato_145=usuario and (DATO_02 REGEXP '.*[^0-9].*' OR DATO_23 REGEXP '.*[^0-9].*' OR DATO_26 REGEXP '.*[^0-9].*' 
 OR DATO_34 REGEXP '.*[^0-9].*' OR DATO_35 REGEXP '.*[^0-9].*' OR DATO_74 REGEXP '.*[^0-9].*' OR DATO_84 REGEXP '.*[^0-9].*' 
 OR DATO_94 REGEXP '.*[^0-9].*' OR DATO_104 REGEXP '.*[^0-9].*' OR DATO_114 REGEXP '.*[^0-9].*' OR DATO_124 REGEXP '.*[^0-9].*' 
-OR DATO_134 REGEXP '.*[^0-9].*';
+OR DATO_134 REGEXP '.*[^0-9].*');
 END ;;
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectNombresConDigitos`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_SelectNombresConDigitos`()
+CREATE PROCEDURE `SP_SelectNombresConDigitos`(in usuario varchar(50))
 BEGIN	    
     SELECT ID_STAGE, DATO_03, DATO_16, DATO_17, DATO_18, DATO_19, DATO_65, DATO_66, DATO_67, DATO_68, DATO_75, DATO_76, DATO_77, DATO_78, DATO_85,
 DATO_86, DATO_87, DATO_88, DATO_95, DATO_96, DATO_97, DATO_98, DATO_105, DATO_106, DATO_107, DATO_108, DATO_115, DATO_116, DATO_117, 
 DATO_118, DATO_125, DATO_126, DATO_127, DATO_128
-FROM bd_bha_sci.stage_00 where DATO_03 REGEXP '[[:digit:]]' OR DATO_16 REGEXP '[[:digit:]]' OR DATO_17 REGEXP '[[:digit:]]' OR
+FROM bd_bha_sci.stage_00 where dato_145=usuario and (DATO_03 REGEXP '[[:digit:]]' OR DATO_16 REGEXP '[[:digit:]]' OR DATO_17 REGEXP '[[:digit:]]' OR
 DATO_18 REGEXP '[[:digit:]]' OR DATO_19 REGEXP '[[:digit:]]' OR DATO_65 REGEXP '[[:digit:]]' OR DATO_66 REGEXP '[[:digit:]]' OR
 DATO_67 REGEXP '[[:digit:]]' OR DATO_68 REGEXP '[[:digit:]]' OR DATO_75 REGEXP '[[:digit:]]' OR DATO_76 REGEXP '[[:digit:]]' OR
 DATO_77 REGEXP '[[:digit:]]' OR DATO_78 REGEXP '[[:digit:]]' OR DATO_85 REGEXP '[[:digit:]]' OR DATO_86 REGEXP '[[:digit:]]' OR 
@@ -540,10 +548,10 @@ DATO_87 REGEXP '[[:digit:]]' OR DATO_88 REGEXP '[[:digit:]]' OR DATO_95 REGEXP '
 DATO_97 REGEXP '[[:digit:]]' OR DATO_98 REGEXP '[[:digit:]]' OR DATO_105 REGEXP '[[:digit:]]' OR DATO_106 REGEXP '[[:digit:]]' OR
 DATO_107 REGEXP '[[:digit:]]' OR DATO_108 REGEXP '[[:digit:]]' OR DATO_115 REGEXP '[[:digit:]]' OR DATO_116 REGEXP '[[:digit:]]' OR
 DATO_117 REGEXP '[[:digit:]]' OR DATO_118 REGEXP '[[:digit:]]' OR DATO_125 REGEXP '[[:digit:]]' OR DATO_126 REGEXP '[[:digit:]]' OR
-DATO_127 REGEXP '[[:digit:]]' OR DATO_128 REGEXP '[[:digit:]]'; 
+DATO_127 REGEXP '[[:digit:]]' OR DATO_128 REGEXP '[[:digit:]]'); 
 END ;;
 DELIMITER ;
-
+call SP_SelectNombresConDigitos('salvador');
 DROP PROCEDURE IF EXISTS `SP_SelectNumeroIdentificacionConIncidencias`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_SelectNumeroIdentificacionConIncidencias`(OUT _total INT)

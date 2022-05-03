@@ -44,18 +44,16 @@ $conn = $db->Connect();
       }
     }
 */
-    $cod_00 = $db->limpiarDataKobo("SP_UpdateAscii");
-    $cod_01 = $db->limpiarDataKobo("SP_UpdateDobleEspacioBlanco");
-    $cod_02 = $db->limpiarDataKobo("SP_UpdateTab");
-    $cod_03 = $db->limpiarDataKobo("SP_UpdateSaltoLinea");
-    $cod_04 = $db->limpiarDataKobo("SP_UpdateLetrasPuntoGuion");
-    $cod_05 = $db->limpiarDataKobo("SP_UpdateBackSlash");
-    $cod_00 = $db->limpiarDataKobo("SP_UpdateNewLineReturnLine");
-    $cod_06 = $db->limpiarDataKobo("SP_UpdateTrim");
-    $cod_07 = $db->limpiarDataKobo("SP_UpdateRecodificarSiNo");
-    $cod_08 = $db->limpiarDataKobo("SP_UpdateInfoTransito");
-    
-    
+    $cod_00 = $db->limpiarDataKobo("SP_UpdateAscii",$nombreUsuario);
+    $cod_01 = $db->limpiarDataKobo("SP_UpdateDobleEspacioBlanco",$nombreUsuario);
+    $cod_02 = $db->limpiarDataKobo("SP_UpdateTab",$nombreUsuario);
+    $cod_03 = $db->limpiarDataKobo("SP_UpdateSaltoLinea",$nombreUsuario);
+    $cod_04 = $db->limpiarDataKobo("SP_UpdateLetrasPuntoGuion",$nombreUsuario);
+    $cod_05 = $db->limpiarDataKobo("SP_UpdateBackSlash",$nombreUsuario);
+    $cod_00 = $db->limpiarDataKobo("SP_UpdateNewLineReturnLine",$nombreUsuario);
+    $cod_06 = $db->limpiarDataKobo("SP_UpdateTrim",$nombreUsuario);
+    $cod_07 = $db->limpiarDataKobo("SP_UpdateRecodificarSiNo",$nombreUsuario);
+    $cod_08 = $db->limpiarDataKobo("SP_UpdateInfoTransito",$nombreUsuario);
 
     echo 'Todos los procesos finalizarón satisfactoriamente.';
 

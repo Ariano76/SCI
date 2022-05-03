@@ -1,6 +1,9 @@
 <?php include("../template/cabecera.php")?>
+
+<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script-->
 <script type="text/javascript" src="script/bootbox.min.js"></script>
 <script type="text/javascript" src="script/deleteRecords.js"></script>
+
 <?php
 $txtID = (isset($_POST['txtID']))?$_POST['txtID']:"";
 $txtNombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
@@ -22,14 +25,15 @@ switch ($accion) {
 	case "agregar":
 	$result = $db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);
 	//header("Location:usuarios.php?id=$result");
-	echo "<script> window.location.href='usuarios.php?id=".$result.";</script>";
+	echo "<script> console.log('valor devuelto: ".$result."')</script>";
+	echo "<script> window.location.href='usuarios.php?id=".$result."';</script>";
 	break;
 
 	case "modificar":
 	//$usuario = $db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
 	$db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
 	//header("Location:usuarios.php?id=null");
-	echo "<script> window.location.href='usuarios.php?id=null';</script>";
+	echo "<script> window.location.href='usuarios.php?id=3';</script>";
 	break;
 
 	case "cancelar":
@@ -59,8 +63,11 @@ $usuarios = $db_1->select_usuarios();
 if($id == 1){
 	echo "<script>bootbox.alert('El usuario se creo satisfactoriamente.');</script>";
 }
+elseif($id == 3){
+	echo "<script>bootbox.alert('El usuario se actualizo satisfactoriamente.');</script>";
+}
 elseif($id == 0){
-	echo "<script>bootbox.alert('Hubo un error al momento de crear el usuario. Revise!');</script>";
+	echo "<script>bootbox.alert('Hubo un error al momento de crear el usuario. Intente de nuevo.');</script>";
 }
 ?>
 
