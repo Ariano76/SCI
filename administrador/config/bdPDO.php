@@ -96,10 +96,10 @@ private $DB_PASSWORD = ''; //database password
     }
 
 
-    public function limpiarStage($sp) {
+    public function limpiarStage($sp,$usuario) {
     	try {
             // calling stored procedure command
-    		$sql = "CALL " . $sp . "(@total)";
+    		$sql = "CALL " . $sp . "('".$usuario."',@total)";
     		// prepare for execution of the stored procedure
     		$stmt = $this->pdo->prepare($sql);
     		// execute the stored procedure

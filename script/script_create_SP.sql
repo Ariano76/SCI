@@ -2,7 +2,7 @@
 
 DROP PROCEDURE IF EXISTS `SP_LimpiarTablaStage`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_LimpiarTablaStage`(OUT success INT)
+CREATE PROCEDURE `SP_LimpiarTablaStage`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -19,7 +19,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-		truncate table bd_bha_sci.stage_00;
+		delete from bd_bha_sci.stage_00 where dato_145 = usuario;
         SET success = 1;
     COMMIT;
 END ;;

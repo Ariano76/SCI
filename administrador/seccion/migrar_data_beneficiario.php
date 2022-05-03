@@ -19,7 +19,7 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
   // recupera todos los registros de tabla STAGE_00
-  $usuarios = $db_1->select_beneficiarios("SP_Select_stage_00");
+  $usuarios = $db_1->select_beneficiarios("SP_Select_stage_00",$nombreUsuario);
 
   foreach($usuarios as $usuario) {
     $d01 = (empty($usuario[7])) ? null : $usuario[7];
@@ -283,8 +283,7 @@ if (isset($_POST["import"])) {
   
   }
 
-  $_delete = $db_1->limpiarTabla("SP_LimpiarTablaStage");
-
+  $_delete = $db_1->limpiarTabla("SP_LimpiarTablaStage",$nombreUsuario);
 
   $var=true;
   if (!empty($var)) {        

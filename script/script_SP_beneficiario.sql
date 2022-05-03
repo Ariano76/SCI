@@ -262,13 +262,11 @@ BEGIN
 END ;;
 DELIMITER ;
 
-
-
 DROP PROCEDURE IF EXISTS `SP_Select_stage_00`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_Select_stage_00`()
+CREATE PROCEDURE `SP_Select_stage_00`(In usuario VARCHAR(250))
 BEGIN
-	SELECT * FROM stage_00;
+	SELECT * FROM stage_00 where dato_145 = usuario;
 END ;;
 DELIMITER ;
 

@@ -36,11 +36,11 @@ private $DB_PASSWORD = ''; //database password
        }
    }
 
-    public function select_beneficiarios($query) {
+    public function select_beneficiarios($query, $usuario) {
         try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectNombresConDigitos()';
-            $sql = "CALL " .$query. "()";
+            $sql = "CALL " .$query. "('".$usuario."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
@@ -199,10 +199,10 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function limpiarTabla($tabla) {
+    public function limpiarTabla($tabla,$usuario) {
         try {
             // calling stored procedure command
-            $sql = "CALL " . $tabla . "(@total)";
+            $sql = "CALL " . $tabla . "('".$usuario."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);
             // execute the stored procedure
