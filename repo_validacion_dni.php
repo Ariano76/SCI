@@ -20,7 +20,7 @@ $usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias");
       <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
 
       <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table-striped table-bordered" style="width:100%">
+        <table id="tablaUsuarios" class="table table-striped table-bordered" style="width:100%">
           <thead class="text-center">
             <tr>
               <th colspan="2">Encuesta</th>

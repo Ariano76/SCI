@@ -89,10 +89,8 @@ $(document).ready(function(){
   // Delete 
   $('.delete_employee').click(function(){
   	var el = this;
-
     // Delete id
     var deleteid = $(this).attr('data-emp-id');
-
     // Confirm box
     bootbox.confirm("¿ Esta seguro de que desea eliminar el usuario ? ", function(result) {
     	if(result){
@@ -117,13 +115,10 @@ $(document).ready(function(){
  });
 });
 
-
   $('.update_pass').click(function(){
   	var el = this;
-
     // Delete id
     var deleteid = $(this).attr('data-emp-id');
-
     // Confirm box
     bootbox.prompt({
     	title: "<i class='fas fa-edit'></i> Actualizar Contraseña !",

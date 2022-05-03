@@ -25,17 +25,23 @@ if (!isset($_SESSION['usuario'])) {
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
 	<!-- JS dependencies -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+	<!-- DataTables CSS -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
 	<!-- Bootstrap 4 dependency -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script-->
 
 	<!-- libreria para utilizar iconos en nuestras paginas  -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-
+	<!-- tabla reportes -->
+	<style>
+		table.dataTable thead {background: linear-gradient(to right, #0575E6, #0575E6);
+			color:white;}
+	</style>
 </head>
 <body>
 
@@ -100,10 +106,9 @@ if (!isset($_SESSION['usuario'])) {
 							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
 							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
 						</div>
-					</li>
-					<!--a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/productos.php" ?>">Libros</a-->
+					</li>					
 					<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
-					<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>	      
+					<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
 				</div>
 			</div>
 		</div>

@@ -149,7 +149,7 @@ include("../administrador/config/connection.php");
           //console.log("cual_es_su_numero_whatsapp :" + json.cual_es_su_numero_whatsapp);
           //console.log("cual_es_su_numero_recibir_sms :" + json.cual_es_su_numero_recibir_sms);
         }        
-      })
+      });
     });
 
   </script>

@@ -1,10 +1,7 @@
-<?php include("../template/cabecera.php") ?>
-<!-- bootbox code -->
+<?php include("../template/cabecera.php")?>
 <script type="text/javascript" src="script/bootbox.min.js"></script>
 <script type="text/javascript" src="script/deleteRecords.js"></script>
-
-<?php 
-
+<?php
 $txtID = (isset($_POST['txtID']))?$_POST['txtID']:"";
 $txtNombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:"";
 $txtCorreo = (isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
@@ -22,20 +19,22 @@ if ($optRoles == "Administrador") {
 }
 
 switch ($accion) {
-
 	case "agregar":
 	$result = $db_1->insert_usuario($txtNombre, $txtCorreo, $nuevorol, 1);
-	header("Location:usuarios.php?id=$result");
+	//header("Location:usuarios.php?id=$result");
+	echo "<script> window.location.href='usuarios.php?id=".$result.";</script>";
 	break;
 
 	case "modificar":
 	//$usuario = $db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
 	$db_1->update_usuario($txtID, $txtNombre, $txtCorreo, $nuevorol, 1);	
-	header("Location:usuarios.php?id=null");
+	//header("Location:usuarios.php?id=null");
+	echo "<script> window.location.href='usuarios.php?id=null';</script>";
 	break;
 
 	case "cancelar":
-	header("Location:usuarios.php?id=null");
+	//header("Location:usuarios.php",true);
+	echo "<script> window.location.href='usuarios.php?id=null';</script>";
 	break;
 
 	case "seleccionar":
@@ -49,15 +48,13 @@ switch ($accion) {
 	break;
 
 	case "borrar":
-	header("Location:usuarios.php?id=null");
+	//header("Location:administrador/seccion/usuarios.php?id=null");
+	echo "<script> window.location.href='usuarios.php?id=null';</script>";
 	break;
 }
-
 // OBTENER LISTA DE USUARIOS
 $usuarios = $db_1->select_usuarios();
-
 ?>
-
 <?php
 if($id == 1){
 	echo "<script>bootbox.alert('El usuario se creo satisfactoriamente.');</script>";
@@ -99,11 +96,13 @@ elseif($id == 0){
 						<option value="Analista"<?=$txtNomRol == 'Analista' ? ' selected="selected"' : '';?>>Analista</option>
 					</select>
 				</div>
-
-				<div class="btn-group" role="group" aria-label="Basic example" >
-					<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-sm">Agregar</button>
-					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":"";?> value="modificar" class="btn btn-warning btn-sm">Modificar</button>
-					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":"";?> value="cancelar" class="btn btn-info btn-sm">Cancelar</button>
+				<div>
+					<span class="label label-default">&nbsp;</span>
+				</div>
+				<div class="btn-group-sm" role="group" aria-label="Basic example" >
+					<button type="submit" name="accion" <?php echo($accion=="seleccionar")?"disabled":""; ?> value="agregar" class="btn btn-success btn-sm">AGREGAR</button>
+					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":"";?> value="modificar" class="btn btn-warning btn-sm">MODIFICAR</button>
+					<button type="submit" name="accion" <?php echo($accion!=="seleccionar")?"disabled":"";?> value="cancelar" class="btn btn-info btn-sm">CANCELAR</button>
 				</div>
 			</form>
 		</div>

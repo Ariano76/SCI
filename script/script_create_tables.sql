@@ -514,6 +514,65 @@ ALTER TABLE usuarios ADD CONSTRAINT UC_usuarios UNIQUE (nombre_usuario);
 ALTER TABLE acciones ADD FOREIGN KEY R_40 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE acciones ADD FOREIGN KEY R_41 (id_entidad) REFERENCES entidades (id_entidad);
 
+/* CREACION DE TRIGGERS */
+
+drop trigger if exists logAcciones_1;
+delimiter //
+create trigger logAcciones_1 after update on beneficiario
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (1, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_2;
+delimiter //
+create trigger logAcciones_2 after update on comunicacion
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (2, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_3;
+delimiter //
+create trigger logAcciones_3 after update on derivacion_sectores
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (3, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_4;
+delimiter //
+create trigger logAcciones_4 after update on educacion
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (4, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_5;
+delimiter //
+create trigger logAcciones_5 after update on encuesta
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (5, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_6;
+delimiter //
+create trigger logAcciones_6 after update on integrantes
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (6, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_7;
+delimiter //
+create trigger logAcciones_7 after update on nutricion
+for each row begin
+  insert into acciones(id_enbeneficiariotidad, id_beneficiario) value (7, NEW.id_beneficiario);
+end//
+delimiter ;
+drop trigger if exists logAcciones_8;
+delimiter //
+create trigger logAcciones_8 after update on salud
+for each row begin
+  insert into acciones(id_entidad, id_beneficiario) value (8, NEW.id_beneficiario);
+end//
+delimiter ;
+
 /*********************************
 -- INSERTANDO DATOS BASICOS
 *********************************/
@@ -521,6 +580,8 @@ insert into roles(nombre_rol) values('Administrador');
 insert into roles(nombre_rol) values('Analista');
 
 insert into estados (estado) values('VALIDO'),('INVALIDO'),('EN ESPERA');
+insert into entidades (nombre) values('beneficiario'),('comunicacion'),('derivacion_sectores'),('educacion'),('encuesta'),('integrantes'),('nutricion'),('salud');
 
 call SP_Usuario_Insert('Percy', 'PERCY@gmail.com', '123456', 1, 1, @total);
+call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 1, 1, @total);
 select @total;

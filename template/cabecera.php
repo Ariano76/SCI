@@ -7,7 +7,6 @@
 	
 	<!--link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 	
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -66,35 +65,7 @@
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/fecha_nacimiento.php"?>">Inconsistencia fechas de nacimiento</a>  								
   							</div>
   						</li>
-  						<!--li>
-  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
-  							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
-  								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Validación</a>
-  								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
-  								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
-  								<a class="dropdown-item" href="<?php echo $url."/beneficiario/fecha_nacimiento.php"?>">Inconsistencia fechas de nacimiento</a>
-  							</div>
-  						</li>					
-  						<li>
-  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
-  							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Beneficiarios</a>
-  								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Validación</a>
-  								<div class="dropdown-divider"></div>
-  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
-  								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
-  							</div>
-  						</li-->					
   						<a class="nav-item nav-link" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios</a>
-  						<!--li>
-  							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar datos validados</a>
-  							<div class="dropdown-menu">
-  								<a class="dropdown-item" href="upload_datahistorica.php">Datos Historicos</a>
-  								<a class="dropdown-item" href="validacionDH.php">Nuevos Beneficiarios</a>
-  							</div>
-  						</li-->
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte a Sectores</a>
   							<div class="dropdown-menu">
@@ -105,7 +76,7 @@
   								<a class="dropdown-item" href="<?php echo $url."/repo_mdv.php"?>">Medios de Vida</a>
   							</div>
   						</li>		
-  						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>  						
+  						<a class="nav-item nav-link" href="<?php echo $url."/administrador/index.php"?>" tabindex="-1" aria-disabled="true">Administrador</a>
   						<!--a class="nav-item nav-link" href="productos.php">Productos</a-->
   					</div>
   				</div>
