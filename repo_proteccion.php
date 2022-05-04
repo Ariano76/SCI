@@ -18,7 +18,7 @@ if (isset($_POST["import"])) {
 
   //$db_1->cotejo($timestamp1);
 
-  $usuarios = $db_1->select_repo("SP_Select_Mera_Proteccion");
+  $usuarios = $db_1->select_repo_all("SP_Select_Mera_Proteccion");
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();

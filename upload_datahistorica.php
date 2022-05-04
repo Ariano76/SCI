@@ -38,7 +38,7 @@ if (isset($_POST["import"])) {
     $spreadSheetAry = $excelSheet->toArray();
     $sheetCount = count($spreadSheetAry);
 
-    $insertId = $db_1->limpiarStage("SP_LimpiarTablaStageDataHistorica");
+    $insertId = $db_1->limpiarStage("SP_LimpiarTablaStageDataHistorica",$nombreUsuario);
 
     for ($i = 0; $i <= $sheetCount; $i ++) {
         $dato_01 = "";
@@ -68,16 +68,16 @@ if (isset($_POST["import"])) {
       
       if (
         ! empty($dato_01) || ! empty($dato_02) || ! empty($dato_03) || ! empty($dato_04) || ! empty($dato_05) || ! empty($dato_06) || ! empty($dato_07) || ! empty($dato_08) ) {
-        $query = "insert into stage_data_historica(nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia) values(?, ?, ?, ?, ?, ?, ?, ?)";
-        $paramType = "ssssssss";
-        $paramArray = array($dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08);
+        $query = "insert into stage_data_historica(nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, nom_usuario) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $paramType = "sssssssss";
+        $paramArray = array($dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08, $nombreUsuario);
         $insertId = $db->insert($query, $paramType, $paramArray);
                 // $query = "insert into tbl_info(name,description) values('" . $name . "','" . $description . "')";
                 // $result = mysqli_query($conn, $query);
 
         if (! empty($insertId)) {        
           $type = "success";
-          $message = "Datos importados desde Excel a la Base de Datos Historica:". ' ' .$insertId ." registros.";
+          $message = "Datos importados de Excel a la Base de Datos Historica: ". $i+1 ." registros.";
         } else {
           $type = "error";
           $message = "Problemas al importar los datos de Excel. Intente de nuevo";
@@ -119,6 +119,5 @@ if (isset($_POST["import"])) {
       </div>
   </div>
 </div>
-
 
 <?php include("administrador/template/pie.php"); ?>

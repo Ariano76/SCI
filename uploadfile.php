@@ -43,10 +43,10 @@ if (isset($_POST["import"])) {
     for ($i = 0; $i <= $sheetCount; $i ++) {
         $dato_01 = "";
         if (isset($spreadSheetAry[$i][0])) {
-        $dato_01  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]); }
+            $dato_01  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]); }
         $dato_02 = "";
         if (isset($spreadSheetAry[$i][1])) {
-        $dato_02  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][1]); }
+            $dato_02  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][1]); }
         $dato_03 = "";
         if (isset($spreadSheetAry[$i][2])) {
             $dato_03  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][2]); }

@@ -27,7 +27,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_LimpiarTablaStageDataHistorica`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_LimpiarTablaStageDataHistorica`(OUT success INT)
+CREATE PROCEDURE `SP_LimpiarTablaStageDataHistorica`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN
@@ -44,11 +44,13 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-		truncate table bd_bha_sci.stage_data_historica;
+		delete from bd_bha_sci.stage_data_historica where nom_usuario = usuario;
         SET success = 1;
     COMMIT;
 END ;;
 DELIMITER ;
+call SP_LimpiarTablaStageDataHistorica('Percy',@total);
+select  @total;
 
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDobleEspacioBlanco`;
