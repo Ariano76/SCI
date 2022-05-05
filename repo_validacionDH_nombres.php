@@ -9,7 +9,7 @@ require_once './administrador/config/bdPDO.php';
 $db = new TransactionSCI();
 $conn = $db->Connect();
 
-$usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos");
+$usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos",$nombreUsuario);
 
 ?>
 
@@ -87,7 +87,7 @@ $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos");
         <?php
         if(isset($_POST['submit'])){
         //False unless proven otherwise.
-          $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos");
+          $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos",$nombreUsuario);
 
           $agreedToTerms = false;
         //Make sure that a radio button input was actually submitted.

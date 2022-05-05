@@ -199,10 +199,10 @@ private $DB_PASSWORD = ''; //database password
 
 // STORED PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
 
-    public function update_stored_procedure_DH($sp) {
+    public function update_stored_procedure_DH($sp,$usuario) {
         try {               
             // calling stored procedure command
-            $sql = "CALL " . $sp . "(@total)";
+            $sql = "CALL " . $sp . "('".$usuario."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
@@ -216,7 +216,8 @@ private $DB_PASSWORD = ''; //database password
             //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
-            die("Error ocurrido:" . $e->getMessage());
+            //die("Error ocurrido: " . $e->getMessage());
+            return false;
         }
         return null;
     }

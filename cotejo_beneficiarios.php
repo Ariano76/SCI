@@ -1,4 +1,4 @@
-<?php include("template/cabecera.php"); ?>
+<?php include("administrador/template/cabecera.php"); ?>
 
 <?php
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -102,4 +102,4 @@ if (isset($_POST["import"])) {
 </div>
 </div>
 
-<?php include("template/pie.php"); ?>
+<?php include("administrador/template/pie.php"); ?>

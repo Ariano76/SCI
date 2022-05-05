@@ -589,26 +589,26 @@ TABLA DATA HISTORICA
 
 DROP PROCEDURE IF EXISTS `SP_SelectDHDocIdentConIncidencias`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_SelectDHDocIdentConIncidencias`()
+CREATE PROCEDURE `SP_SelectDHDocIdentConIncidencias`(in usuario varchar(50))
 BEGIN	    
     SELECT id_stage_dh, concat_ws(' ', nombre_1, nombre_2, apellido_1, apellido_2) as nombre, tipo_documento, numero_documento 
-FROM bd_bha_sci.stage_data_historica where numero_documento REGEXP '.*[^0-9].*' ;
+FROM bd_bha_sci.stage_data_historica where numero_documento REGEXP '.*[^0-9].*' and nom_usuario=usuario;
 END ;;
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectDHNombresConDigitos`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_SelectDHNombresConDigitos`()
+CREATE PROCEDURE `SP_SelectDHNombresConDigitos`(in usuario varchar(50))
 BEGIN	    
     SELECT id_stage_dh, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, proyecto
-FROM bd_bha_sci.stage_data_historica where nombre_1 REGEXP '[[:digit:]]' OR nombre_2 REGEXP '[[:digit:]]' OR apellido_1 REGEXP '[[:digit:]]' OR apellido_2 REGEXP '[[:digit:]]' OR tipo_documento REGEXP '[[:digit:]]' ;
+FROM bd_bha_sci.stage_data_historica where nom_usuario=usuario and (nombre_1 REGEXP '[[:digit:]]' OR nombre_2 REGEXP '[[:digit:]]' OR apellido_1 REGEXP '[[:digit:]]' OR apellido_2 REGEXP '[[:digit:]]' OR tipo_documento REGEXP '[[:digit:]]');
 END ;;
 DELIMITER ;
 
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSaltoLinea`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHSaltoLinea`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHSaltoLinea`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -623,7 +623,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-		UPDATE bd_bha_sci.stage_data_historica SET nombre_1 = REGEXP_REPLACE(nombre_1, '\\n', ''), nombre_2 = REGEXP_REPLACE(nombre_2, '\\n', ''), apellido_1 = REGEXP_REPLACE(apellido_1, '\\n', ''), apellido_2 = REGEXP_REPLACE(apellido_2, '\\n', ''), tipo_documento = REGEXP_REPLACE(tipo_documento, '\\n', ''), numero_documento = REGEXP_REPLACE(numero_documento, '\\n', '') ;
+		UPDATE bd_bha_sci.stage_data_historica SET nombre_1 = REGEXP_REPLACE(nombre_1, '\\n', ''), nombre_2 = REGEXP_REPLACE(nombre_2, '\\n', ''), apellido_1 = REGEXP_REPLACE(apellido_1, '\\n', ''), apellido_2 = REGEXP_REPLACE(apellido_2, '\\n', ''), tipo_documento = REGEXP_REPLACE(tipo_documento, '\\n', ''), numero_documento = REGEXP_REPLACE(numero_documento, '\\n', '') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -631,7 +631,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHBackSlash`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHBackSlash`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHBackSlash`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -646,7 +646,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-		UPDATE bd_bha_sci.stage_data_historica SET nombre_1 = REPLACE(nombre_1, '\\', ''), nombre_2 = REPLACE(nombre_2, '\\', ''), apellido_1 = REPLACE(apellido_1, '\\', ''), apellido_2 = REPLACE(apellido_2, '\\', ''), tipo_documento = REPLACE(tipo_documento, '\\', ''), numero_documento = REPLACE(numero_documento, '\\', ''), proyecto = REPLACE(proyecto, '\\', '');
+		UPDATE bd_bha_sci.stage_data_historica SET nombre_1 = REPLACE(nombre_1, '\\', ''), nombre_2 = REPLACE(nombre_2, '\\', ''), apellido_1 = REPLACE(apellido_1, '\\', ''), apellido_2 = REPLACE(apellido_2, '\\', ''), tipo_documento = REPLACE(tipo_documento, '\\', ''), numero_documento = REPLACE(numero_documento, '\\', ''), proyecto = REPLACE(proyecto, '\\', '') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -654,7 +654,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSoloAlfanumericos`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHSoloAlfanumericos`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHSoloAlfanumericos`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -669,7 +669,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '[^[:alnum:]]+', ' '), tipo_documento = REGEXP_REPLACE(tipo_documento, '[^[:alnum:]]+', ' ');
+	UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '[^[:alnum:]]+', ' '), tipo_documento = REGEXP_REPLACE(tipo_documento, '[^[:alnum:]]+', ' ') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -677,7 +677,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHLimpiarCaracteres_acentos`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHLimpiarCaracteres_acentos`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHLimpiarCaracteres_acentos`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -692,7 +692,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '[A-Za-z]', ''), numero_documento = REGEXP_REPLACE(numero_documento, '[áéíóú]', '');
+	UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '[A-Za-z]', ''), numero_documento = REGEXP_REPLACE(numero_documento, '[áéíóú]', '') WHERE nom_usuario = usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -700,7 +700,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHLimpiarDobleEspacioBlanco`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHLimpiarDobleEspacioBlanco`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHLimpiarDobleEspacioBlanco`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -715,7 +715,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '');
+	UPDATE bd_bha_sci.stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -723,7 +723,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHTipoDocumento`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHTipoDocumento`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHTipoDocumento`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -738,9 +738,9 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de Extranjeria' WHERE tipo_documento = 'Carnet de extranjería';
-	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de Extranjeria' WHERE tipo_documento = 'Carnet de Extranjería';
-	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de refugio' WHERE tipo_documento = 'Carnet de Solicitante de Refugio';
+	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de Extranjeria' WHERE tipo_documento = 'Carnet de extranjería' and nom_usuario = usuario;
+	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de Extranjeria' WHERE tipo_documento = 'Carnet de Extranjería' and nom_usuario = usuario;
+	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = 'Carnet de refugio' WHERE tipo_documento = 'Carnet de Solicitante de Refugio' and nom_usuario = usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -748,7 +748,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSoloTextoTipoDocumento`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHSoloTextoTipoDocumento`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHSoloTextoTipoDocumento`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -763,7 +763,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = REGEXP_REPLACE(tipo_documento, '[0-9]', '');
+	UPDATE bd_bha_sci.stage_data_historica SET tipo_documento = REGEXP_REPLACE(tipo_documento, '[0-9]', '') WHERE nom_usuario=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -771,7 +771,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHTrim`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_UpdateDHTrim`(OUT success INT)
+CREATE PROCEDURE `SP_UpdateDHTrim`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -786,7 +786,7 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE bd_bha_sci.stage_data_historica SET nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) ;
+	UPDATE bd_bha_sci.stage_data_historica SET nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) WHERE nom_usuario = usuario;
     SET success = 1;
     COMMIT;
 END ;;

@@ -33,39 +33,44 @@ $conn = $db->Connect();
     </form>
 
   </div>
-
+  
   <?php
   if(isset($_POST['submit'])){
 
-/*    if(!empty($_POST['opciones'])) {
-
-      foreach($_POST['opciones'] as $value){
-        echo "Chosen colour : ".$value.'<br/>';
-      }
-    }
-*/
-
-    $cod_03 = $db->update_stored_procedure_DH("SP_UpdateDHSaltoLinea");
+    $cod_03 = $db->update_stored_procedure_DH("SP_UpdateDHSaltoLinea",$nombreUsuario);
     //echo $insertId;
-    $cod_04 = $db->update_stored_procedure_DH("SP_UpdateDHBackSlash");
+    $cod_04 = $db->update_stored_procedure_DH("SP_UpdateDHBackSlash",$nombreUsuario);
     //echo $insertId;
-    $cod_05 = $db->update_stored_procedure_DH("SP_UpdateDHSoloAlfanumericos");
+    $cod_05 = $db->update_stored_procedure_DH("SP_UpdateDHSoloAlfanumericos",$nombreUsuario);
     //echo $insertId;    
-    $cod_06 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarCaracteres_acentos");
+    $cod_06 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarCaracteres_acentos",$nombreUsuario);
     //echo $insertId;
-    $cod_07 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarDobleEspacioBlanco");
+    $cod_07 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarDobleEspacioBlanco",$nombreUsuario);
     //echo $insertId;
-    $cod_08 = $db->update_stored_procedure_DH("SP_UpdateDHTipoDocumento");
-    $cod_09 = $db->update_stored_procedure_DH("SP_UpdateDHSoloTextoTipoDocumento");
-    $cod_10 = $db->update_stored_procedure_DH("SP_UpdateDHTrim");
+    $cod_08 = $db->update_stored_procedure_DH("SP_UpdateDHTipoDocumento",$nombreUsuario);
+    $cod_09 = $db->update_stored_procedure_DH("SP_UpdateDHSoloTextoTipoDocumento",$nombreUsuario);
+    $cod_10 = $db->update_stored_procedure_DH("SP_UpdateDHTrim",$nombreUsuario);
     //echo $insertId;
 
-
-
-    echo 'Todos los procesos finalizarón satisfactoriamente.';
-
-
+    if ($cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1 && $cod_10 == 1 ) {
+      $type = "success";
+      $message = "Todos los procesos finalizarón satisfactoriamente.";
+    }else{
+      $type = "error";
+      $message = "Problemas al ejecutar los procesos de validacón. Intente de nuevo.";
+    }    
   }
   ?>
+  
+  <div class="col-md-12">
+    <div class=card-text>&nbsp;</div>
+  </div>
+  <div class="col-md-12">
+    <div class=card-text>
+      <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($message)) { echo $message; } ?>
+    </div>
+  </div>
+</div>
 
-  <?php include("administrador/template/pie.php"); ?>
+<?php include("administrador/template/pie.php"); ?>
+
