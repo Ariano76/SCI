@@ -48,15 +48,14 @@ if (!isset($_SESSION['usuario'])) {
 		<!--nav class="navbar navbar-expand-md navbar-dark bg-primary"-->
 		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
 			<div class="container-fluid">		
-				<a class="navbar-brand" href="#"></a>
-				<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<a class="navbar-brand" href="<?php echo $url."/administrador/inicio.php" ?>">
+					<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					</a>
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-					<div class="navbar-nav">	      
-						<!--a class="nav-item nav-link active" href="#">Administrador del sitio web</a-->
-						<a class="nav-item nav-link" href="<?php echo $url."/administrador/inicio.php" ?>">Inicio</a>
+					<div class="navbar-nav">
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
 							<div class="dropdown-menu">

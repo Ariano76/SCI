@@ -65,7 +65,6 @@
   								<a class="dropdown-item" href="<?php echo $url."/beneficiario/fecha_nacimiento.php"?>">Inconsistencia fechas de nacimiento</a>  								
   							</div>
   						</li>
-  						<a class="nav-item nav-link" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios</a>
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reporte a Sectores</a>
   							<div class="dropdown-menu">

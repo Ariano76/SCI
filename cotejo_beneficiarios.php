@@ -19,7 +19,7 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
-  $db_1->cotejo($timestamp1);
+  $db_1->cotejo($timestamp1,$nombreUsuario);
 
   $usuarios = $db_1->resultado_cotejo($timestamp1);
 

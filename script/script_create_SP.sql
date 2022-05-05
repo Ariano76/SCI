@@ -798,10 +798,10 @@ PROCESO COTEJO DE RESULTADO CON DATA HISTORICA
 */
 DROP PROCEDURE IF EXISTS `SP_SelectCotejo`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_SelectCotejo`()
+CREATE PROCEDURE `SP_SelectCotejo`(in usuario varchar(50))
 BEGIN	    
     SELECT nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia
-	FROM bd_bha_sci.stage_data_historica ; 
+	FROM bd_bha_sci.stage_data_historica WHERE nom_usuario=usuario; 
 END ;;
 DELIMITER ;
 

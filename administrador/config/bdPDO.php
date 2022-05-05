@@ -223,15 +223,14 @@ private $DB_PASSWORD = ''; //database password
     }
 
 // FUNCION PARA MIGRAR LOS DATOS A PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
-
-    public function cotejo($idBusqueda) {
+    public function cotejo($idBusqueda,$usuario) {
         $cadena=null;
         $tipo;
         try {
             $array = array();
             $contPrinc = 1;
             $contSecund = 1;
-            $sql = 'CALL SP_SelectCotejo()';
+            $sql = "CALL SP_SelectCotejo('".$usuario."')";
             // call the stored procedure
             $q = $this->pdo->prepare($sql);            
             $q->execute();
