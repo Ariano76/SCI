@@ -56,6 +56,9 @@ if (isset($_POST["import"])) {
     $sheet->setCellValue("M".$i, $usuario[12]);
     $i++;
   }
+
+  $db_1->delete_resultado_cotejo($timestamp1);
+  
   $writer = new Xlsx($spreadsheet);
   $writer->save("Resultado Cotejar Usuarios en Data Historica_" . $timestamp1 . ".xlsx");
   $var=true;

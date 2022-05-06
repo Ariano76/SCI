@@ -247,7 +247,7 @@ private $DB_PASSWORD = ''; //database password
                     }
                 }
                 // GUARDANDO EL CASO DE BUSQUEDA
-                $nulo = 0;
+                $nulo = "Dato Fuente";
                 $tipo = "Nombre";
                 $sql1 = 'CALL SP_InsertResultadoCotejo(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia )';
                 // prepare for execution of the stored procedure
@@ -268,7 +268,7 @@ private $DB_PASSWORD = ''; //database password
                 // execute the stored procedure
                 $stmt->execute();
                 $stmt->closeCursor();
-                // REALIZANDO LA BUSQUEDA FULLTEXT 
+                // REALIZANDO LA BUSQUEDA FULLTEXT POR NOMBRE
                 $sql = "SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, MATCH(beneficiario,numero_documento) AGAINST('".$cadena."') as relevancia FROM DATA_HISTORICA WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                 // call the stored procedure
                 $q = $this->pdo->prepare($sql);            
@@ -365,6 +365,23 @@ private $DB_PASSWORD = ''; //database password
             $data=$stmt->fetchAll();            
             $stmt->closeCursor();
             return $data;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+            return null;
+    }
+
+    public function delete_resultado_cotejo($id) {
+        try {               
+            // calling stored procedure command
+            $sql = "CALL SP_DeleteResultadoCotejo(".$id.")";
+                // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+                // execute the stored procedure
+            $stmt->execute();
+            $stmt->closeCursor();
+                // execute the second query to get customer's level
+            return true;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
@@ -536,10 +553,10 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }    
 
-    public function migrar_data_historica() {
+    public function migrar_data_historica($usuario) {
         try {               
             // calling stored procedure command
-            $sql = "CALL SP_Migrar_Data_Historica(@total)";
+            $sql = "CALL SP_Migrar_Data_Historica('".$usuario."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure

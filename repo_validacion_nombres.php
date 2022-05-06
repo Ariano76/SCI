@@ -17,7 +17,7 @@ $usuarios = $db->incidencia_Nombres("SP_SelectNombresConDigitos",$nombreUsuario)
 <!--p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p-->    
 
 <div class="col-lg-12">
-  <table id="tablaUsers" class="table-striped table-bordered" style="width:100%">
+  <table id="tablaUsers" class="table table-striped table-bordered table-condensed small nowrap" style="width:100%">
     <thead class="text-center">
       <tr>
         <th colspan="2">Encuesta</th>

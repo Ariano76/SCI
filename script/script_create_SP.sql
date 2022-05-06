@@ -824,6 +824,14 @@ BEGIN
 END ;;
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_DeleteResultadoCotejo`;
+DELIMITER ;;
+CREATE PROCEDURE `SP_DeleteResultadoCotejo`(in codigo int)
+BEGIN	    
+    delete from bd_bha_sci.resultado_cotejo_datos_historicos where id_busqueda = codigo; 
+END ;;
+DELIMITER ;
+
 -- CREACION DE USUARIOS
 DROP PROCEDURE IF EXISTS `SP_Usuario_Insert`;
 DELIMITER ;;
@@ -997,7 +1005,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_Data_Historica`;
 DELIMITER ;;
-CREATE PROCEDURE `SP_Migrar_Data_Historica`(OUT success INT)
+CREATE PROCEDURE `SP_Migrar_Data_Historica`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -1012,9 +1020,8 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-    truncate table data_historica;
-    INSERT INTO data_historica (nombre_1, nombre_2, apellido_1, apellido_2, beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, fecha) SELECT nombre_1, nombre_2, apellido_1, apellido_2, concat_ws(' ', nombre_1, nombre_2, apellido_1, apellido_2) as beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, curdate() from stage_data_historica;
-    truncate table stage_data_historica;
+    INSERT INTO data_historica (nombre_1, nombre_2, apellido_1, apellido_2, beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, fecha) SELECT nombre_1, nombre_2, apellido_1, apellido_2, concat_ws(' ', nombre_1, nombre_2, apellido_1, apellido_2) as beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, curdate() from stage_data_historica WHERE nom_usuario=usuario;
+    delete from stage_data_historica where nom_usuario=usuario;
     SET success = 1;
     COMMIT;
 END ;;
