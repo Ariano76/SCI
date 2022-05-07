@@ -91,8 +91,8 @@ if (!isset($_SESSION['usuario'])) {
 								<div class="dropdown-menu-lg-left"> 
 									<a class="dropdown-item active" href="">Migrar Datos Validados</a>
 									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
 									<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
-									<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>									
 								</div>
 							</div>
 						</li>

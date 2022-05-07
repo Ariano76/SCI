@@ -507,12 +507,12 @@ DECLARE exit handler for sqlexception
 	END;
  
 	START TRANSACTION;
-    UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Transito' WHERE dato_145=usuario or (dato_11 = 'transit' or dato_11 = 'transito' or dato_11 = 'Tránsito');
-	UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Estadia' WHERE dato_145=usuario or (dato_11 = 'Estadía' or dato_11 = 'estadia' or dato_11 = 'settlement');
-	UPDATE bd_bha_sci.stage_00 SET dato_26 = null WHERE dato_145=usuario and dato_26 = 'Ninguno' ;
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO VALIDO' WHERE dato_145=usuario or (dato_143 = 'valido' or dato_143 = 'Registro válido' or dato_143 = 'Registro Válido' or dato_143 = 'VÁLIDO' or dato_143 = 'REGISTRO VÁLIDO' or dato_143 = 'Registro valido' or dato_143 = 'Registro Valido' or dato_143 = 'registro valido');
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO INVALIDO' WHERE dato_145=usuario or (dato_143 = 'Registro inválido' or dato_143 = 'REGISTRO INVÁLIDO' or dato_143 = 'Registro Inválido' or dato_143 = 'Registro invalido');
-    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO EN ESPERA' WHERE dato_145=usuario or (dato_143 = 'REG. EN ESPERA' or dato_143 = 'Registro en espera');
+    UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Transito' WHERE dato_145=usuario AND (dato_11 = 'transit' or dato_11 = 'transito' or dato_11 = 'Tránsito');
+	UPDATE bd_bha_sci.stage_00 SET dato_11 = 'Estadia' WHERE dato_145=usuario AND (dato_11 = 'Estadía' or dato_11 = 'estadia' or dato_11 = 'settlement');
+	UPDATE bd_bha_sci.stage_00 SET dato_26 = null WHERE dato_145=usuario AND dato_26 = 'Ninguno' ;
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO VALIDO' WHERE dato_145=usuario AND (dato_143 = 'valido' or dato_143 = 'Registro válido' or dato_143 = 'Registro Válido' or dato_143 = 'VÁLIDO' or dato_143 = 'REGISTRO VÁLIDO' or dato_143 = 'Registro valido' or dato_143 = 'Registro Valido' or dato_143 = 'registro valido');
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO INVALIDO' WHERE dato_145=usuario AND (dato_143 = 'Registro inválido' or dato_143 = 'REGISTRO INVÁLIDO' or dato_143 = 'Registro Inválido' or dato_143 = 'Registro invalido');
+    UPDATE bd_bha_sci.stage_00 SET dato_143 = 'REGISTRO EN ESPERA' WHERE dato_145=usuario AND (dato_143 = 'REG. EN ESPERA' or dato_143 = 'Registro en espera');
     
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 1 WHERE dato_145=usuario and dato_143 = 'REGISTRO VALIDO';
     UPDATE bd_bha_sci.stage_00 SET dato_143 = 2 WHERE dato_145=usuario and dato_143 = 'REGISTRO INVALIDO';
