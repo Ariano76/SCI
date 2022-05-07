@@ -2,6 +2,7 @@ USE bd_bha_sci;
 
 -- ELIMINAR FOREIGN KEY Y CONSTRAINS
 call DropFK();
+call DropViews();
 
 -- ELIMINAR TABLAS EXISTENTES
 DROP TABLE if exists encuesta;

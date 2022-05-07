@@ -1,5 +1,13 @@
-		</div>
+<div class="col-md-12">
+	<div class="card-text">&nbsp;</div>
+	<div class="card-info">
+		<div class="success alert alert-success role=success">Usuario conectado: <?php echo($nombreUsuario) ?>
 	</div>
+</div>
+</div>
+
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
 	================================================== -->

@@ -226,10 +226,14 @@ CREATE VIEW `bd_bha_sci`.`vista_cantidad_ninos` AS
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7) <= 17 
 	and i.fecha_nacimiento_7 <> '1900-01-01' and i.fecha_nacimiento_7 < CURDATE();
-    
+
+/* PRUEBAS */
 select * from vista_cantidad_ninos ;
-
-
+-- LISTAR TODAS LAS VISTAS DE LA BD
+SHOW FULL TABLES IN bd_bha_sci WHERE TABLE_TYPE LIKE 'VIEW';
+SELECT * FROM information_schema.`TABLES` WHERE TABLE_TYPE LIKE 'VIEW' AND TABLE_SCHEMA LIKE 'bd_bha_sci';
+-- LISTAR TODAS LAS TABLAS DE LA BD
+SELECT TABLE_NAME FROM information_schema.`TABLES` WHERE TABLE_TYPE LIKE 'BASE TABLE' AND TABLE_SCHEMA LIKE 'database_name';
 
 
     

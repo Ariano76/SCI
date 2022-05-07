@@ -596,6 +596,7 @@ SELECT b.region_beneficiario as region, sum(ed.todos_los_nna_estan_matriculados)
         group by b.region_beneficiario;
 END ;;
 DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_reporte_05_viajan_con_menores`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_05_viajan_con_menores`()

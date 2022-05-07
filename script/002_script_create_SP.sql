@@ -553,7 +553,7 @@ DATO_117 REGEXP '[[:digit:]]' OR DATO_118 REGEXP '[[:digit:]]' OR DATO_125 REGEX
 DATO_127 REGEXP '[[:digit:]]' OR DATO_128 REGEXP '[[:digit:]]'); 
 END ;;
 DELIMITER ;
-call SP_SelectNombresConDigitos('salvador');
+
 DROP PROCEDURE IF EXISTS `SP_SelectNumeroIdentificacionConIncidencias`;
 DELIMITER ;;
 CREATE PROCEDURE `SP_SelectNumeroIdentificacionConIncidencias`(OUT _total INT)
@@ -1071,6 +1071,48 @@ END IF;
 IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
 WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_41') THEN	ALTER TABLE `acciones` DROP FOREIGN KEY `R_41`; 
 END IF;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `DropViews` ;
+DELIMITER ;;
+CREATE PROCEDURE `DropViews`()
+-- ELIMINANDO TODAS LAS VISTAS EXISTENTES EN LA BD
+BEGIN
+	SET FOREIGN_KEY_CHECKS = 0;
+	SET GROUP_CONCAT_MAX_LEN=32768;
+	SET @views = NULL;
+	SELECT GROUP_CONCAT('`', TABLE_NAME, '`') INTO @views
+	  FROM information_schema.views
+	  WHERE table_schema = (SELECT DATABASE());
+	SELECT IFNULL(@views,'dummy') INTO @views;
+
+	SET @views = CONCAT('DROP VIEW IF EXISTS ', @views);
+	PREPARE stmt FROM @views;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+	SET FOREIGN_KEY_CHECKS = 1;
+END;;
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `DropTables` ;
+DELIMITER ;;
+CREATE PROCEDURE `DropTables`()
+-- ELIMINANDO TODAS LAS TABLAS EXISTENTES EN LA BD
+BEGIN
+	SET FOREIGN_KEY_CHECKS = 0;
+	SET GROUP_CONCAT_MAX_LEN=32768;
+	SET @tables = NULL;
+	SELECT GROUP_CONCAT('`', table_name, '`') INTO @tables
+	  FROM information_schema.tables
+	  WHERE table_schema = (SELECT DATABASE());
+	SELECT IFNULL(@tables,'dummy') INTO @tables;
+
+	SET @tables = CONCAT('DROP TABLE IF EXISTS ', @tables);
+	PREPARE stmt FROM @tables;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+	SET FOREIGN_KEY_CHECKS = 1;
 END;;
 DELIMITER ;
 
