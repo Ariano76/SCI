@@ -595,3 +595,6 @@ CREATE USER 'consulta'@'localhost' IDENTIFIED BY '123';
 GRANT ALL PRIVILEGES ON * . * TO 'consulta'@'localhost';
 FLUSH PRIVILEGES;
 
+SET @clave = password('123');
+select @clave;
+insert into usuarios(nombre_usuario, correo, contrasenia, id_rol, id_estado) values ('Salvador', 'PERCY@gmail.com', @clave, 1, 1);
