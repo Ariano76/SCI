@@ -57,7 +57,7 @@ $conn = $db->Connect();
       $message = "Todos los procesos finalizarón satisfactoriamente.";
     }else{
       $type = "error";
-      $message = "Problemas al ejecutar los procesos de validacón. Intente de nuevo.";
+      $message = "Problemas al ejecutar los procesos de validacón. Intente de nuevo.". $cod_03 ."-". $cod_04 ."-". $cod_05 ."-". $cod_06 ."-". $cod_07 ."-". $cod_08 ."-". $cod_09 ."-". $cod_10;
     }    
   }
   ?>

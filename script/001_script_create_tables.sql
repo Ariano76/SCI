@@ -507,7 +507,7 @@ ALTER TABLE comunicacion ADD FOREIGN KEY R_22 (id_beneficiario) REFERENCES benef
 ALTER TABLE derivacion_sectores ADD FOREIGN KEY R_20 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE educacion ADD FOREIGN KEY R_21 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE encuesta ADD FOREIGN KEY R_19 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
-ALTER TABLE Integrantes ADD FOREIGN KEY R_23 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
+ALTER TABLE integrantes ADD FOREIGN KEY R_23 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE nutricion ADD FOREIGN KEY R_24 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE salud ADD FOREIGN KEY R_25 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
 ALTER TABLE estatus ADD FOREIGN KEY R_37 (id_beneficiario) REFERENCES beneficiario (id_beneficiario);
@@ -589,3 +589,9 @@ call SP_Usuario_Insert('Percy', 'PERCY@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Ricardo', 'Ricardo@gmail.com', '123456', 1, 1, @total);
 select @total;
+
+/** creando usuario en BD **/
+CREATE USER 'consulta'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON * . * TO 'consulta'@'localhost';
+FLUSH PRIVILEGES;
+

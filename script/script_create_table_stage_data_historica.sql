@@ -24,3 +24,9 @@ SHOW TABLE STATUS where name like 'data_historica';
 SHOW VARIABLES LIKE "%VERSION%";
 show tables;
 DESCRIBE DATA_HISTORICA;
+
+/*** REPARANDO INDEICES DE TABLAS ***/
+SELECT * FROM mysql.global_priv;
+CHECK TABLE mysql.global_priv;
+REPAIR TABLE mysql.global_priv;
+
