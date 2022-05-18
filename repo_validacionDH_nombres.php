@@ -7,7 +7,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 require_once './administrador/config/bdPDO.php';
 
 $db = new TransactionSCI();
-$conn = $db->Connect();
 
 $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos",$nombreUsuario);
 
@@ -67,9 +66,10 @@ $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos",$nombreUsuari
     <h4 class="card-title">Exportar datos</h4>
   </div>
 
-  <form method="post" action="">
+  <form action="repo_validacionDH_nombres_001.php" method="post" action="">
     <div class="float-right">  
-      <input type="radio" checked="checked" name="export_type" value="Excel"> Excel            
+      <input type="radio" checked="checked" name="export_type" value="Excel"> Excel
+      <input type="hidden" name="txtUsuario" value="<?php echo $nombreUsuario;?>" />
             <!--input type="radio" name="export_type" value="csv"> CSV
               <button type="submit" name="import" class="btn btn-primary">Export</button-->
             </div> 
@@ -82,65 +82,5 @@ $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos",$nombreUsuari
 
         </div>
         <br>
-
-
-        <?php
-        if(isset($_POST['submit'])){
-        //False unless proven otherwise.
-          $usuarios = $db->incidencia_Nombres("SP_SelectDHNombresConDigitos",$nombreUsuario);
-
-          $agreedToTerms = false;
-        //Make sure that a radio button input was actually submitted.
-          if(isset($_POST['export_type'])){
-        //An array containing the radio input values that are allowed
-            $allowedAnswers = array('Excel', 'csv');
-        //The radio button value that the user sent us.
-            $chosenAnswer = $_POST['export_type'];
-        //Make sure that the value is in our array of allowed values.
-            if(in_array($chosenAnswer, $allowedAnswers)){
-            //Check to see if the user ticked yes.
-              if(strcasecmp($chosenAnswer, 'Excel') == 0){
-                //Set our variable to TRUE because they agreed.
-                $spreadsheet = new Spreadsheet();
-                $sheet = $spreadsheet->getActiveSheet();
-                $sheet->setTitle("Users");
-                $sheet->setCellValue("A1", "ID");
-                $sheet->setCellValue("B1", "1er Nombre");
-                $sheet->setCellValue("C1", "2do Nombre");
-                $sheet->setCellValue("D1", "1er Apellido");
-                $sheet->setCellValue("E1", "2do Apellido");
-                $sheet->setCellValue("F1", "Tipo documento");
-                $sheet->setCellValue("G1", "Proyecto");
-                $i = 2;
-                foreach($usuarios as $usuario) {
-                  $sheet->setCellValue("A".$i, $usuario[0]);
-                  $sheet->setCellValue("B".$i, $usuario[1]);
-                  $sheet->setCellValue("C".$i, $usuario[2]);
-                  $sheet->setCellValue("D".$i, $usuario[3]);
-                  $sheet->setCellValue("E".$i, $usuario[4]);
-                  $sheet->setCellValue("F".$i, $usuario[5]);
-                  $sheet->setCellValue("G".$i, $usuario[6]);
-                  $i++;
-                }
-                $writer = new Xlsx($spreadsheet);
-                $writer->save("Usuarios data historica con incidencias en nombres.xlsx");
-                $agreedToTerms = true;
-              }
-            }
-          }
-
-        //If the user agreed
-          if($agreedToTerms){
-        //Process the form, etc.          
-            echo '<div class="card-body">
-            <h4 class="card-title">Los datos se exportarón en formato Excel satisfactoriamente</h4>
-            </div>';
-          }else{
-            echo '<div class="card-body">
-            <h4 class="card-title">Los datos se exportarón en formato CSV satisfactoriamente</h4>
-            </div>';
-          }
-        }
-        ?>
 
         <?php include("administrador/template/pie.php"); ?>
