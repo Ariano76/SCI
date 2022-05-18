@@ -1,7 +1,7 @@
 <?php
+
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-
 //require_once './administrador/config/bd.php';
 require_once './administrador/config/bdPDO.php';
 
@@ -13,9 +13,7 @@ if (isset($_POST["import"])) {
   $type = "OK";
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
-
   //$db_1->cotejo($timestamp1);
-
   $usuarios = $db_1->select_repo_all("SP_Select_Salud");
 
   $spreadsheet = new Spreadsheet();
