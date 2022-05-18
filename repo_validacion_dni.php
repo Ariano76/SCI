@@ -7,7 +7,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 require_once './administrador/config/bdPDO.php';
 
 $db = new TransactionSCI();
-$conn = $db->Connect();
 
 $usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias",$nombreUsuario);
 
@@ -84,33 +83,17 @@ $usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias",$nombreUsuario);
 
         <form action="repo_validacion_dni_001.php" method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
           <div class="float-right">  
-            <input type="radio" checked="checked" name="export_type" value="Excel"> Excel            
+            <input type="radio" checked="checked" name="export_type" value="Excel"> Excel
+            <input type="hidden" name="txtUsuario" value="<?php echo $nombreUsuario;?>" />
             <!--input type="radio" name="export_type" value="csv"> CSV
               <button type="submit" name="import" class="btn btn-primary">Export</button-->
             </div> 
 
             <br>
             <!--input type="submit" value="Procesar registros" name="submit" -->
-            <button type="submit" id="submit" name="submit" value="Submit" class="btn btn-success btn-lg">Exportar archivo</button>
+            <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Exportar archivo</button>
           </form>
         </div>
         <br>
-
-
-        <!--?php
-        if(isset($_POST['submit'])){
-          //If the user agreed
-          if($agreedToTerms){
-            //Process the form, etc.          
-            echo '<div class="card-body">
-            <h4 class="card-title">Los datos se exportarón en formato Excel satisfactoriamente</h4>
-            </div>';
-          }else{
-            echo '<div class="card-body">
-            <h4 class="card-title">Los datos se exportarón en formato CSV satisfactoriamente</h4>
-            </div>';
-          }
-        }
-        ?-->
 
         <?php include("administrador/template/pie.php"); ?>

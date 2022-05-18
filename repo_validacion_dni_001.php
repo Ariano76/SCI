@@ -5,15 +5,18 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 require_once './administrador/config/bdPDO.php';
 
 $db = new TransactionSCI();
-
+//$conn = $db->Connect();
+//require "vendor/autoload.php";
 require_once ('./vendor/autoload.php');
 
-if(isset($_POST['submit'])){
+if(isset($_POST['import'])){
   //False unless proven otherwise.
+  $user = $_POST['txtUsuario'];
+
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
-  $usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias",$nombreUsuario);
+  $usuarios = $db->select_repo("SP_SelectDocIdentConIncidencias",$user);
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
@@ -31,6 +34,7 @@ if(isset($_POST['submit'])){
   $sheet->setCellValue("K1", "Documento Integ.5");
   $sheet->setCellValue("L1", "Documento Integ.6");
   $sheet->setCellValue("M1", "Documento Integ.7");
+
   $i = 2;
   foreach($usuarios as $usuario) {
     $sheet->setCellValue("A".$i, $usuario[0]);
@@ -49,6 +53,7 @@ if(isset($_POST['submit'])){
 
     $i++;
   }
+
   $writer = new Xlsx($spreadsheet);
   $fileName = "Reporte_incidencias_en_documento_" . $timestamp1 . ".xlsx";
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -57,6 +62,6 @@ if(isset($_POST['submit'])){
 
   $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
   $writer->save('php://output');  
-
 }
+
 ?>
