@@ -39,6 +39,7 @@ if (isset($_POST["import"])) {
     $sheetCount = count($spreadSheetAry);
 
     $insertId = $db_1->limpiarStage("SP_LimpiarTablaStage",$nombreUsuario);
+    $conta=0;
 
     for ($i = 0; $i <= $sheetCount; $i ++) {
         $dato_01 = "";
@@ -482,18 +483,18 @@ if (isset($_POST["import"])) {
           $dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08, $dato_09, $dato_10, $dato_11, $dato_12, $dato_13, $dato_14, $dato_15, $dato_16, $dato_17, $dato_18, $dato_19, $dato_20, $dato_21, $dato_22, $dato_23, $dato_24, $dato_25, $dato_26, $dato_27, $dato_28, $dato_29, $dato_30, $dato_31, $dato_32, $dato_33, $dato_34, $dato_35, $dato_36, $dato_37, $dato_38, $dato_39, $dato_40, $dato_41, $dato_42, $dato_43, $dato_44, $dato_45, $dato_46, $dato_47, $dato_48, $dato_49, $dato_50, $dato_51, $dato_52, $dato_53, $dato_54, $dato_55, $dato_56, $dato_57, $dato_58, $dato_59, $dato_60, $dato_61, $dato_62, $dato_63, $dato_64, $dato_65, $dato_66, $dato_67, $dato_68, $dato_69, $dato_70, $dato_71, $dato_72, $dato_73, $dato_74, $dato_75, $dato_76, $dato_77, $dato_78, $dato_79, $dato_80, $dato_81, $dato_82, $dato_83, $dato_84, $dato_85, $dato_86, $dato_87, $dato_88, $dato_89, $dato_90, $dato_91, $dato_92, $dato_93, $dato_94, $dato_95, $dato_96, $dato_97, $dato_98, $dato_99, $dato_100, $dato_101, $dato_102, $dato_103, $dato_104, $dato_105, $dato_106, $dato_107, $dato_108, $dato_109, $dato_110, $dato_111, $dato_112, $dato_113, $dato_114, $dato_115, $dato_116, $dato_117, $dato_118, $dato_119, $dato_120, $dato_121, $dato_122, $dato_123, $dato_124, $dato_125, $dato_126, $dato_127, $dato_128, $dato_129, $dato_130, $dato_131, $dato_132, $dato_133, $dato_134, $dato_135, $dato_136, $dato_137, $dato_138, $dato_139, $dato_140, $dato_141, $dato_142, $dato_143, $dato_144, $nombreUsuario
         );
         $insertId = $db->insert($query, $paramType, $paramArray);
-                // $query = "insert into tbl_info(name,description) values('" . $name . "','" . $description . "')";
-                // $result = mysqli_query($conn, $query);
+        $conta++;
 
         if (! empty($insertId)) {        
           $type = "success";
-          $message = "Datos importados de Excel a la Base de Datos: ". $i+1 ." registros.";
+          $message = "Datos importados de Excel a la Base de Datos: ". $conta+1 ." registros.";
         } else {
           $type = "error";
           $message = "Problemas al importar los datos de Excel. Intente de nuevo";
         }
       }
     }
+
   } else {
     $type = "error";
     $message = "El tipo de archivo seleccionado es invalido. Solo puede subir archivos de Excel.";
