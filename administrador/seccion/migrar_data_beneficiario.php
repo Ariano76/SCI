@@ -24,18 +24,18 @@ if (isset($_POST["import"])) {
   foreach($usuarios as $usuario) {
     $d01 = (empty($usuario[7])) ? null : $usuario[7];
     $d02 = (empty($usuario[8])) ? null : $usuario[8];
-    $d03 = ($usuario[9] == '') ? null : $usuario[9];
-    $d04 = ($usuario[10] == '') ? null : $usuario[10];
-    $d05 = ($usuario[11] == '') ? null : $usuario[11];
-    $d06 = ($usuario[12] == '') ? null : $usuario[12];
-    $d07 = ($usuario[13] == '') ? null : $usuario[13];
-    $d08 = ($usuario[14] == '') ? null : $usuario[14];
-    $d09 = ($usuario[15] == '') ? null : $usuario[15];
-    $d10 = ($usuario[16] == '') ? null : $usuario[16];
-    $d11 = ($usuario[17] == '') ? null : $usuario[17];
-    $d12 = ($usuario[18] == '') ? null : $usuario[18];
-    $d13 = ($usuario[19] == '') ? null : $usuario[19];
-    $d14 = ($usuario[20] == '') ? null : $usuario[20];
+    $d03 = (empty($usuario[9])) ? null : $usuario[9];
+    $d04 = (empty($usuario[10])) ? null : $usuario[10];
+    $d05 = (empty($usuario[11])) ? null : $usuario[11];
+    $d06 = (empty($usuario[12])) ? null : $usuario[12];
+    $d07 = (empty($usuario[13])) ? null : $usuario[13];
+    $d08 = (empty($usuario[14])) ? null : $usuario[14];
+    $d09 = (empty($usuario[15])) ? null : $usuario[15];
+    $d10 = (empty($usuario[16])) ? null : $usuario[16];
+    $d11 = (empty($usuario[17])) ? null : $usuario[17];
+    $d12 = (empty($usuario[18])) ? null : $usuario[18];
+    $d13 = (empty($usuario[19])) ? null : $usuario[19];
+    $d14 = (empty($usuario[20])) ? null : $usuario[20];
     if (empty($usuario[21])) {
       $d15 = '1900/01/01';
       }else{
@@ -44,8 +44,8 @@ if (isset($_POST["import"])) {
       }
     //$d15 = ($db_1->validar_fecha_espanol($usuario[21]) == true) ? $usuario[21] : NULL ;
 
-    $d16 = ($usuario[22] == '') ? null : $usuario[22];
-    $d17 = ($usuario[23] == '') ? null : $usuario[23];
+    $d16 = (empty($usuario[22])) ? null : $usuario[22];
+    $d17 = (empty($usuario[23])) ? null : $usuario[23];
     //$d18 = ($db_1->validar_fecha_espanol($usuario[24]) == true) ? $usuario[24] : NULL ;
     if (empty($usuario[24])) {
       $d18 = '1900/01/01';
@@ -53,8 +53,8 @@ if (isset($_POST["import"])) {
         $x = $db_1->validar_fecha_espanol($usuario[24]);
           $d18 = ($x) ?  $usuario[24] : '1900/01/01';
       }
-    $d19 = ($usuario[25] == '') ? null : $usuario[25];
-    $d20 = ($usuario[26] == '') ? null : $usuario[26];
+    $d19 = (empty($usuario[25])) ? null : $usuario[25];
+    $d20 = (empty($usuario[26])) ? null : $usuario[26];
     //$d21 = ($db_1->validar_fecha_espanol($usuario[27]) == true) ?  $usuario[27] : NULL ;
     if (empty($usuario[27])) {
       $d21 = '1900/01/01';
@@ -62,7 +62,7 @@ if (isset($_POST["import"])) {
         $x = $db_1->validar_fecha_espanol($usuario[27]);
           $d21 = ($x) ?  $usuario[27] : '1900/01/01';
       }
-    $d22 = ($usuario[28] == '') ? null : $usuario[28];    
+    $d22 = (empty($usuario[28])) ? null : $usuario[28];    
 
     $xCod = $db_1->Insert_beneficiario($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $d13, $d14, $d15, $d16, $d17, $d18, $d19, $d20, $d21, $d22); 
     //echo $xCod."<br>";    
