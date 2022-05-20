@@ -116,7 +116,7 @@ if (isset($_POST["import"])) {
 
     $db_1->Insert_nutricion($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $xCod); 
 
-// RUTINA PARA INSERTAR REGISTROS EN TABLA EDUCACION
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA EDUCACION
 
     $d01 = (empty($usuario[51])) ? null : $usuario[51];
     $d02 = (empty($usuario[52])) ? null : $usuario[52];
@@ -132,7 +132,7 @@ if (isset($_POST["import"])) {
     $d12 = (empty($usuario[62])) ? null : $usuario[62];
 
     $db_1->Insert_educacion($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $xCod); 
-// RUTINA PARA INSERTAR REGISTROS EN TABLA SALUD
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA SALUD
 
     $d01 = (empty($usuario[63])) ? null : $usuario[63];
     $d02 = (empty($usuario[64])) ? null : $usuario[64];
@@ -141,7 +141,7 @@ if (isset($_POST["import"])) {
 
     $db_1->Insert_salud($d01, $d02, $d03, $d04, $xCod); 
 
-// RUTINA PARA INSERTAR REGISTROS EN TABLA derivacion_sectores
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA derivacion_sectores
 
     $d01 = (empty($usuario[137])) ? null : $usuario[137];
     $d02 = (empty($usuario[138])) ? null : $usuario[138];
@@ -152,14 +152,14 @@ if (isset($_POST["import"])) {
 
     $db_1->Insert_derivacion_sectores($d01, $d02, $d03, $d04, $d05, $d06, $xCod); 
 
-// RUTINA PARA INSERTAR REGISTROS EN TABLA estatus
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA estatus
 
     $d01 = (empty($usuario[144])) ? null : $usuario[144];
     $d02 = (empty($usuario[143])) ? null : $usuario[143];    
     
     $db_1->Insert_estatus($d01, $d02, $xCod);     
 
-// RUTINA PARA INSERTAR REGISTROS EN TABLA INTEGRANTES
+    // RUTINA PARA INSERTAR REGISTROS EN TABLA INTEGRANTES
     // INTEGRANTE 01
     $d01 = (empty($usuario[65])) ? null : $usuario[65];
     $d02 = (empty($usuario[66])) ? null : $usuario[66];

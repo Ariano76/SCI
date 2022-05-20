@@ -13,7 +13,6 @@ DROP TABLE if exists nutricion;
 DROP TABLE if exists comunicacion;
 DROP TABLE if exists integrantes;
 DROP TABLE if exists estatus;
-DROP TABLE if exists beneficiario;
 DROP TABLE if exists estados;
 DROP TABLE if exists usuarios;
 DROP TABLE if exists roles;
@@ -23,6 +22,7 @@ DROP TABLE if exists beneficiario;
 DROP TABLE if exists stage_data_historica;
 DROP TABLE if exists data_historica;
 DROP TABLE if exists resultado_cotejo_datos_historicos;
+DROP TABLE if exists beneficiario;
 DROP TABLE if exists stage_00;
 
 -- CREACION DE TABLAS
@@ -520,60 +520,45 @@ ALTER TABLE acciones ADD FOREIGN KEY R_41 (id_entidad) REFERENCES entidades (id_
 /* CREACION DE TRIGGERS */
 
 drop trigger if exists logAcciones_1;
-delimiter //
 create trigger logAcciones_1 after update on beneficiario
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (1, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_2;
-delimiter //
 create trigger logAcciones_2 after update on comunicacion
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (2, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_3;
-delimiter //
 create trigger logAcciones_3 after update on derivacion_sectores
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (3, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_4;
-delimiter //
+delimiter ;
 create trigger logAcciones_4 after update on educacion
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (4, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_5;
-delimiter //
 create trigger logAcciones_5 after update on encuesta
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (5, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_6;
-delimiter //
 create trigger logAcciones_6 after update on integrantes
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (6, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_7;
-delimiter //
 create trigger logAcciones_7 after update on nutricion
-for each row begin
+for each row 
   insert into acciones(id_enbeneficiariotidad, id_beneficiario) value (7, NEW.id_beneficiario);
-end//
 delimiter ;
 drop trigger if exists logAcciones_8;
-delimiter //
 create trigger logAcciones_8 after update on salud
-for each row begin
+for each row 
   insert into acciones(id_entidad, id_beneficiario) value (8, NEW.id_beneficiario);
-end//
 delimiter ;
 
 /*********************************
