@@ -51,18 +51,18 @@ BEGIN
 	START TRANSACTION;
 		UPDATE stage_00 
 		SET
-        dato_02 = user_regex_replace('\\s+', '', dato_02), 
-        dato_23 = user_regex_replace('\\s+', '', dato_23), 
-        dato_26 = user_regex_replace('\\s+', '', dato_26), 
-        dato_34 = user_regex_replace('\\s+', '', dato_34), 
-        dato_35 = user_regex_replace('\\s+', '', dato_35), 
-        dato_74 = user_regex_replace('\\s+', '', dato_74), 
-        dato_84 = user_regex_replace('\\s+', '', dato_84),  
-        dato_94 = user_regex_replace('\\s+', '', dato_94), 
-        dato_104 = user_regex_replace('\\s+', '', dato_104), 
-        dato_114 = user_regex_replace('\\s+', '', dato_114), 
-        dato_124 = user_regex_replace('\\s+', '', dato_124), 
-        dato_134 = user_regex_replace('\\s+', '', dato_134)
+dato_02 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_02, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''),
+dato_23 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_23, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_26 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_26, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_34 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_34, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_35 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_35, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_74 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_74, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_84 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_84, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_94 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_94, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_104 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_104, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_114 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_114, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_124 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_124, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
+dato_134 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_134, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), '')
         where dato_145=usuario;
         SET success = 1;
     COMMIT;

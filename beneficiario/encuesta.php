@@ -74,10 +74,10 @@ include("../administrador/config/connection.php");
       var trid = $('#trid').val();
       var id = $('#id').val();           
 
-      if (nombre != '' && fecha_encuesta != '' && id_encuestador != '' && nombre_encuestador != '' && region_encuestador != '' && como_realizo_encuesta != '' && esta_de_acuerdo != '') {
-
-        console.log("esta_de_acuerdo : " + esta_de_acuerdo);
-        console.log("Valor seleccionado en RadioButton : " + cod);
+/*      if (nombre != '' && fecha_encuesta != '' && id_encuestador != '' && nombre_encuestador != '' && region_encuestador != '' && como_realizo_encuesta != '' && esta_de_acuerdo != '') {
+*/
+        //console.log("esta_de_acuerdo : " + esta_de_acuerdo);
+        //console.log("Valor seleccionado en RadioButton : " + cod);
         
         $.ajax({
           url: "update_user_encuesta.php",
@@ -107,13 +107,10 @@ include("../administrador/config/connection.php");
             }
           }
         });
-      } else {
-        alert('Fill all the required fields');
-      }
     });
-        $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
-          var table = $('#tablaUsuarios').DataTable();
-          var trid = $(this).closest('tr').attr('id');
+    $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
+      var table = $('#tablaUsuarios').DataTable();
+      var trid = $(this).closest('tr').attr('id');
       // console.log(selectedRow);
       var id = $(this).data('id');
       $('#exampleModal').modal('show');
@@ -137,7 +134,7 @@ include("../administrador/config/connection.php");
           $('#id').val(id);
           $('#trid').val(trid);
 
-          console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
+          //console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
 
           if (json.esta_de_acuerdo == "1") {
             $('#exampleModal').find(':radio[name=acepto][value="1"]').prop('checked', true);
@@ -151,7 +148,7 @@ include("../administrador/config/connection.php");
 
   </script>
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <!--div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"-->
     <div class="modal-dialog" role="document">
     <!--div class="modal-dialog modal-lg" role="document"-->

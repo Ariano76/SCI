@@ -24,7 +24,7 @@ if (isset($_POST["import"])) {
   foreach($usuarios as $usuario) {
     $d01 = (empty($usuario[7])) ? null : $usuario[7];
     $d02 = (empty($usuario[8])) ? null : $usuario[8];
-    $d03 = (empty($usuario[9])) ? null : $usuario[9];
+    $d03 = (empty($usuario[9])) ? 0 : $usuario[9];
     $d04 = (empty($usuario[10])) ? null : $usuario[10];
     $d05 = (empty($usuario[11])) ? null : $usuario[11];
     $d06 = (empty($usuario[12])) ? null : $usuario[12];
@@ -44,7 +44,7 @@ if (isset($_POST["import"])) {
       }
     //$d15 = ($db_1->validar_fecha_espanol($usuario[21]) == true) ? $usuario[21] : NULL ;
 
-    $d16 = (empty($usuario[22])) ? null : $usuario[22];
+    $d16 = (empty($usuario[22])) ? 0 : $usuario[22];
     $d17 = (empty($usuario[23])) ? null : $usuario[23];
     //$d18 = ($db_1->validar_fecha_espanol($usuario[24]) == true) ? $usuario[24] : NULL ;
     if (empty($usuario[24])) {
@@ -76,28 +76,28 @@ if (isset($_POST["import"])) {
         $x = $db_1->validar_fecha_espanol($usuario[1]);
           $d01 = ($x) ?  $usuario[1] : '1900/01/01';
       }
-    $d02 = (empty($usuario[2])) ? NULL : $usuario[2];
+    $d02 = (empty($usuario[2])) ? 0 : $usuario[2];
     $d03 = (empty($usuario[3])) ? NULL : $usuario[3];
     $d04 = (empty($usuario[4])) ? NULL : $usuario[4];
     $d05 = (empty($usuario[5])) ? NULL : $usuario[5];
-    $d06 = (empty($usuario[6])) ? NULL : $usuario[6];
+    $d06 = (empty($usuario[6])) ? 0 : $usuario[6];
 
     $db_1->Insert_encuesta($d01, $d02, $d03, $d04, $d05, $d06, $xCod); 
 
     // RUTINA PARA INSERTAR REGISTROS EN TABLA COMUNICACION
 
     $d01 = (empty($usuario[29])) ? null : $usuario[29];
-    $d02 = (empty($usuario[30])) ? null : $usuario[30];
-    $d03 = (empty($usuario[31])) ? null : $usuario[31];
-    $d04 = (empty($usuario[32])) ? null : $usuario[32];
-    $d05 = (empty($usuario[33])) ? null : $usuario[33];
+    $d02 = (empty($usuario[30])) ? 0 : $usuario[30];
+    $d03 = (empty($usuario[31])) ? 0 : $usuario[31];
+    $d04 = (empty($usuario[32])) ? 0 : $usuario[32];
+    $d05 = (empty($usuario[33])) ? 0 : $usuario[33];
     $d06 = (empty($usuario[34])) ? null : $usuario[34];
     $d07 = (empty($usuario[35])) ? null : $usuario[35];
     $d08 = (empty($usuario[36])) ? null : $usuario[36];
-    $d09 = (empty($usuario[37])) ? null : $usuario[37];
+    $d09 = (empty($usuario[37])) ? 0 : $usuario[37];
     $d10 = (empty($usuario[38])) ? null : $usuario[38];
     $d11 = (empty($usuario[39])) ? null : $usuario[39];
-    $d12 = (empty($usuario[40])) ? null : $usuario[40];
+    $d12 = (empty($usuario[40])) ? 0 : $usuario[40];
     $d13 = (empty($usuario[41])) ? null : $usuario[41];
     $d14 = (empty($usuario[42])) ? null : $usuario[42];
 
@@ -105,31 +105,31 @@ if (isset($_POST["import"])) {
 
     // RUTINA PARA INSERTAR REGISTROS EN TABLA NUTRICION
 
-    $d01 = (empty($usuario[43])) ? null : $usuario[43];
+    $d01 = (empty($usuario[43])) ? 0 : $usuario[43];
     $d02 = (empty($usuario[44])) ? null : $usuario[44];
-    $d03 = (empty($usuario[45])) ? null : $usuario[45];
+    $d03 = (empty($usuario[45])) ? 0 : $usuario[45];
     $d04 = (empty($usuario[46])) ? null : $usuario[46];
-    $d05 = (empty($usuario[47])) ? null : $usuario[47];
-    $d06 = (empty($usuario[48])) ? null : $usuario[48];
-    $d07 = (empty($usuario[49])) ? null : $usuario[49];
-    $d08 = (empty($usuario[50])) ? null : $usuario[50];
+    $d05 = (empty($usuario[47])) ? 0 : $usuario[47];
+    $d06 = (empty($usuario[48])) ? 0 : $usuario[48];
+    $d07 = (empty($usuario[49])) ? 0 : $usuario[49];
+    $d08 = (empty($usuario[50])) ? 0 : $usuario[50];
 
     $db_1->Insert_nutricion($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $xCod); 
 
     // RUTINA PARA INSERTAR REGISTROS EN TABLA EDUCACION
 
-    $d01 = (empty($usuario[51])) ? null : $usuario[51];
-    $d02 = (empty($usuario[52])) ? null : $usuario[52];
+    $d01 = (empty($usuario[51])) ? 0 : $usuario[51];
+    $d02 = (empty($usuario[52])) ? 0 : $usuario[52];
     $d03 = (empty($usuario[53])) ? null : $usuario[53];
-    $d04 = (empty($usuario[54])) ? null : $usuario[54];
-    $d05 = (empty($usuario[55])) ? null : $usuario[55];
-    $d06 = (empty($usuario[56])) ? null : $usuario[56];
-    $d07 = (empty($usuario[57])) ? null : $usuario[57];
+    $d04 = (empty($usuario[54])) ? 0 : $usuario[54];
+    $d05 = (empty($usuario[55])) ? 0 : $usuario[55];
+    $d06 = (empty($usuario[56])) ? 0 : $usuario[56];
+    $d07 = (empty($usuario[57])) ? 0 : $usuario[57];
     $d08 = (empty($usuario[58])) ? null : $usuario[58];
-    $d09 = (empty($usuario[59])) ? null : $usuario[59];
-    $d10 = (empty($usuario[60])) ? null : $usuario[60];
-    $d11 = (empty($usuario[61])) ? null : $usuario[61];
-    $d12 = (empty($usuario[62])) ? null : $usuario[62];
+    $d09 = (empty($usuario[59])) ? 0 : $usuario[59];
+    $d10 = (empty($usuario[60])) ? 0 : $usuario[60];
+    $d11 = (empty($usuario[61])) ? 0 : $usuario[61];
+    $d12 = (empty($usuario[62])) ? 0 : $usuario[62];
 
     $db_1->Insert_educacion($d01, $d02, $d03, $d04, $d05, $d06, $d07, $d08, $d09, $d10, $d11, $d12, $xCod); 
     // RUTINA PARA INSERTAR REGISTROS EN TABLA SALUD
@@ -143,12 +143,12 @@ if (isset($_POST["import"])) {
 
     // RUTINA PARA INSERTAR REGISTROS EN TABLA derivacion_sectores
 
-    $d01 = (empty($usuario[137])) ? null : $usuario[137];
-    $d02 = (empty($usuario[138])) ? null : $usuario[138];
-    $d03 = (empty($usuario[139])) ? null : $usuario[139];
+    $d01 = (empty($usuario[137])) ? 0 : $usuario[137];
+    $d02 = (empty($usuario[138])) ? 0 : $usuario[138];
+    $d03 = (empty($usuario[139])) ? 0 : $usuario[139];
     $d04 = (empty($usuario[140])) ? null : $usuario[140];
-    $d05 = (empty($usuario[141])) ? null : $usuario[141];
-    $d06 = (empty($usuario[142])) ? null : $usuario[142];
+    $d05 = (empty($usuario[141])) ? 0 : $usuario[141];
+    $d06 = (empty($usuario[142])) ? 0 : $usuario[142];
 
     $db_1->Insert_derivacion_sectores($d01, $d02, $d03, $d04, $d05, $d06, $xCod); 
 

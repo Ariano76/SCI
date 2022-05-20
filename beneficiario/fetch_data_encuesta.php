@@ -1,7 +1,7 @@
 <?php include("../administrador/config/connection.php");
 
 $output= array();
-$sql = "SELECT * FROM vista_encuesta ";
+$sql = "SELECT * FROM vista_encuesta";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
