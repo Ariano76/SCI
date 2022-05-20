@@ -51,7 +51,7 @@ CREATE TABLE beneficiario
 	numero_identificacion VARCHAR(25) NULL,
 	fecha_caducidad_identificacion DATE NULL ,
 	documentos_fisico_original VARCHAR(250) NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;  
 
 ALTER TABLE beneficiario ADD PRIMARY KEY (id_beneficiario);
 ALTER TABLE beneficiario MODIFY id_beneficiario INT NOT NULL AUTO_INCREMENT ;
