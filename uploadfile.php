@@ -487,7 +487,7 @@ if (isset($_POST["import"])) {
 
         if (! empty($insertId)) {        
           $type = "success";
-          $message = "Datos importados de Excel a la Base de Datos: ". $conta+1 ." registros.";
+          $message = "Datos importados de Excel a la Base de Datos: ".$conta." registros.";
         } else {
           $type = "error";
           $message = "Problemas al importar los datos de Excel. Intente de nuevo";

@@ -51,7 +51,7 @@ CREATE TABLE beneficiario
 	numero_identificacion VARCHAR(25) NULL,
 	fecha_caducidad_identificacion DATE NULL ,
 	documentos_fisico_original VARCHAR(250) NULL
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE beneficiario ADD PRIMARY KEY (id_beneficiario);
 ALTER TABLE beneficiario MODIFY id_beneficiario INT NOT NULL AUTO_INCREMENT ;
@@ -73,7 +73,7 @@ CREATE TABLE comunicacion
 	cuantos_viven_o_viajan_con_usted VARCHAR(250) NULL,
 	cuantos_tienen_ingreso_por_trabajo VARCHAR(250) NULL,
 	id_beneficiario      INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE comunicacion ADD PRIMARY KEY (id_comunicacion);
 ALTER TABLE comunicacion MODIFY id_comunicacion INT NOT NULL AUTO_INCREMENT ;
@@ -87,7 +87,7 @@ CREATE TABLE derivacion_sectores
 	interesado_entrenamiento_vocacional boolean NULL,
 	interesado_emprendimiento boolean NULL,
 	id_beneficiario INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE derivacion_sectores ADD PRIMARY KEY (id_derivacion);
 ALTER TABLE derivacion_sectores MODIFY id_derivacion INT NOT NULL AUTO_INCREMENT ;
@@ -107,7 +107,7 @@ CREATE TABLE educacion
 	no_habia_vacantes    boolean NULL,
 	otro                 boolean NULL,
 	id_beneficiario      INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE educacion ADD PRIMARY KEY (id_educacion);
 ALTER TABLE educacion MODIFY id_educacion INT NOT NULL AUTO_INCREMENT ;
@@ -121,7 +121,7 @@ CREATE TABLE encuesta
 	como_realizo_encuesta VARCHAR(100) NULL,
 	esta_de_acuerdo      boolean NULL,
 	id_beneficiario      INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE encuesta ADD PRIMARY KEY (id_encuesta);
 ALTER TABLE encuesta MODIFY id_encuesta INT NOT NULL AUTO_INCREMENT ;
@@ -199,7 +199,7 @@ CREATE TABLE integrantes
 	tipo_identificacion_7 VARCHAR(250) NULL,
 	numero_identificacion_7 VARCHAR(25) NULL,
 	id_beneficiario      INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE integrantes ADD PRIMARY KEY (id_integrantes);
 ALTER TABLE integrantes MODIFY id_integrantes INT NOT NULL AUTO_INCREMENT ;
@@ -215,19 +215,19 @@ CREATE TABLE nutricion
 	madre_nn_2_a_5_anios boolean NULL,
 	ninguno              boolean NULL,
 	id_beneficiario      INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE nutricion ADD PRIMARY KEY (id_nutricion);
 ALTER TABLE nutricion MODIFY id_nutricion INT NOT NULL AUTO_INCREMENT ;
 
 CREATE TABLE salud
 (	id_salud             INTEGER NOT NULL,
-	algun_miembro_tiene_discapacidad VARCHAR(250) NULL,
-	algun_miembro_tiene_problemas_salud VARCHAR(250) NULL,
-	derivacion_salud     VARCHAR(250) NULL,
-	derivacion_proteccion VARCHAR(250) NULL,
+	algun_miembro_tiene_discapacidad VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
+	algun_miembro_tiene_problemas_salud VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
+	derivacion_salud     VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
+	derivacion_proteccion VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
 	id_beneficiario      INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE salud ADD PRIMARY KEY (id_salud);
 ALTER TABLE salud MODIFY id_salud INT NOT NULL AUTO_INCREMENT ;
@@ -235,7 +235,7 @@ ALTER TABLE salud MODIFY id_salud INT NOT NULL AUTO_INCREMENT ;
 CREATE TABLE estados
 (	id_estado            INTEGER NOT NULL,
 	estado               VARCHAR(100) NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE estados ADD PRIMARY KEY (id_estado);
 ALTER TABLE estados MODIFY id_estado INT NOT NULL AUTO_INCREMENT ;
@@ -245,7 +245,7 @@ CREATE TABLE estatus
 	observaciones        VARCHAR(250) NULL,
 	id_beneficiario      INTEGER NULL,
 	id_estado            INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE estatus ADD PRIMARY KEY (id_estatus);
 ALTER TABLE estatus MODIFY id_estatus INT NOT NULL AUTO_INCREMENT ;
@@ -257,7 +257,7 @@ CREATE TABLE usuarios
 	contrasenia	    VARCHAR(50) NULL,
     id_rol          INTEGER NULL,
 	id_estado       INTEGER NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE usuarios ADD PRIMARY KEY (id_usuario);
 ALTER TABLE usuarios MODIFY id_usuario INT NOT NULL AUTO_INCREMENT ;
@@ -265,7 +265,7 @@ ALTER TABLE usuarios MODIFY id_usuario INT NOT NULL AUTO_INCREMENT ;
 CREATE TABLE roles
 (	id_rol           INTEGER NOT NULL,
 	nombre_rol        VARCHAR(50) NULL
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
 
 ALTER TABLE roles ADD PRIMARY KEY (id_rol);
 ALTER TABLE roles MODIFY id_rol INT NOT NULL AUTO_INCREMENT ;
@@ -275,14 +275,16 @@ CREATE TABLE acciones
 	id_entidad			INTEGER NOT NULL,
     id_beneficiario	INTEGER NOT NULL,
     fecha 		DATETIME NULL DEFAULT CURRENT_TIMESTAMP
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
+
 ALTER TABLE acciones ADD PRIMARY KEY (id_accion);
 ALTER TABLE acciones MODIFY id_accion INT NOT NULL AUTO_INCREMENT ;
 
 CREATE TABLE entidades
 (	id_entidad	INTEGER NOT NULL,
 	nombre		VARCHAR(50) NULL    
-) DEFAULT CHARSET=utf8 COLLATE=latin1_spanish_ci;  
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;  
+
 ALTER TABLE entidades ADD PRIMARY KEY (id_entidad);
 ALTER TABLE entidades MODIFY id_entidad INT NOT NULL AUTO_INCREMENT ;
 
@@ -303,7 +305,6 @@ CREATE TABLE stage_data_historica (
 ALTER TABLE stage_data_historica ADD PRIMARY KEY (id_stage_dh);
 ALTER TABLE stage_data_historica MODIFY id_stage_dh INT NOT NULL AUTO_INCREMENT;
 
-
 CREATE TABLE data_historica
 (	id_dh      INTEGER NOT NULL,
     nombre_1   TEXT NULL,
@@ -321,7 +322,6 @@ CREATE TABLE data_historica
 ALTER TABLE data_historica ADD PRIMARY KEY (id_dh);
 ALTER TABLE data_historica MODIFY id_dh INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE data_historica ADD FULLTEXT idxFullText (beneficiario, numero_documento);
-
 
 CREATE TABLE resultado_cotejo_datos_historicos
 (	id_busqueda      INTEGER NOT NULL,
@@ -341,7 +341,6 @@ CREATE TABLE resultado_cotejo_datos_historicos
 /* AL UTILIZAR UTF8 Y UTO8_BIN PODEMOS DISTINGUIR ENTRE TILDES Y NO TILDES */
 ALTER TABLE resultado_cotejo_datos_historicos ADD PRIMARY KEY (id_cotejo);
 ALTER TABLE resultado_cotejo_datos_historicos MODIFY id_cotejo INT NOT NULL AUTO_INCREMENT;
-
 
 
 CREATE TABLE stage_00

@@ -39,6 +39,7 @@ if (isset($_POST["import"])) {
     $sheetCount = count($spreadSheetAry);
 
     $insertId = $db_1->limpiarStage("SP_LimpiarTablaStageDataHistorica",$nombreUsuario);
+    $conta=0;
 
     for ($i = 0; $i <= $sheetCount; $i ++) {
         $dato_01 = "";
@@ -72,12 +73,11 @@ if (isset($_POST["import"])) {
         $paramType = "sssssssss";
         $paramArray = array($dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08, $nombreUsuario);
         $insertId = $db->insert($query, $paramType, $paramArray);
-                // $query = "insert into tbl_info(name,description) values('" . $name . "','" . $description . "')";
-                // $result = mysqli_query($conn, $query);
+        $conta++;
 
         if (! empty($insertId)) {        
           $type = "success";
-          $message = "Datos importados de Excel a la Base de Datos Historica: ". $i+1 ." registros.";
+          $message = "Datos importados de Excel a Base de Datos Historica: ".$conta." registros.";
         } else {
           $type = "error";
           $message = "Problemas al importar los datos de Excel. Intente de nuevo";
