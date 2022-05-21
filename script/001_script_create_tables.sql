@@ -552,7 +552,7 @@ delimiter ;
 drop trigger if exists logAcciones_7;
 create trigger logAcciones_7 after update on nutricion
 for each row 
-  insert into acciones(id_enbeneficiariotidad, id_beneficiario) value (7, NEW.id_beneficiario);
+  insert into acciones(id_entidad, id_beneficiario) value (7, NEW.id_beneficiario);
 delimiter ;
 drop trigger if exists logAcciones_8;
 create trigger logAcciones_8 after update on salud
