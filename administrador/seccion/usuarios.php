@@ -11,7 +11,7 @@ $txtCorreo = (isset($_POST['txtCorreo']))?$_POST['txtCorreo']:"";
 $txtNomRol = (isset($_POST['txtNomRol']))?$_POST['txtNomRol']:"";
 $optRoles = (isset($_POST['optRoles']))?$_POST['optRoles']:"";
 $accion = (isset($_POST['accion']))?$_POST['accion']:"";
-$id = $_GET['id'];
+$id = isset($_GET['id']) ? $_GET['id'] : "";
 
 require_once '../config/bdPDO.php';
 $db_1 = new TransactionSCI();
@@ -38,7 +38,7 @@ switch ($accion) {
 
 	case "cancelar":
 	//header("Location:usuarios.php",true);
-	echo "<script> window.location.href='usuarios.php?id=null';</script>";
+	echo "<script> window.location.href='usuarios.php?id=4';</script>";
 	break;
 
 	case "seleccionar":

@@ -59,7 +59,7 @@ if (!isset($_SESSION['usuario'])) {
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=null" ?>">Mantenimiento Usuarios</a>	
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=4" ?>">Mantenimiento Usuarios</a>	
 							</div>
 						</li>
 						<li>
