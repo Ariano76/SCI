@@ -36,23 +36,18 @@ $conn = $db->Connect();
   
   <?php
   if(isset($_POST['submit'])){
+    $cod_01 = $db->limpiar_DH("SP_UpdateChar",$nombreUsuario);
+    /*$cod_03 = $db->limpiar_DH("SP_UpdateDHSaltoLinea",$nombreUsuario);
+    $cod_04 = $db->limpiar_DH("SP_UpdateDHBackSlash",$nombreUsuario);
+    $cod_05 = $db->limpiar_DH("SP_UpdateDHSoloAlfanumericos",$nombreUsuario);
+    $cod_06 = $db->limpiar_DH("SP_UpdateDHLimpiarCaracteres_acentos",$nombreUsuario);
+    $cod_07 = $db->limpiar_DH("SP_UpdateDHLimpiarDobleEspacioBlanco",$nombreUsuario);
+    $cod_08 = $db->limpiar_DH("SP_UpdateDHTipoDocumento",$nombreUsuario);
+    $cod_09 = $db->limpiar_DH("SP_UpdateDHSoloTextoTipoDocumento",$nombreUsuario);
+    $cod_10 = $db->limpiar_DH("SP_UpdateDHTrim",$nombreUsuario);*/
 
-    $cod_03 = $db->update_stored_procedure_DH("SP_UpdateDHSaltoLinea",$nombreUsuario);
-    //echo $insertId;
-    $cod_04 = $db->update_stored_procedure_DH("SP_UpdateDHBackSlash",$nombreUsuario);
-    //echo $insertId;
-    $cod_05 = $db->update_stored_procedure_DH("SP_UpdateDHSoloAlfanumericos",$nombreUsuario);
-    //echo $insertId;    
-    $cod_06 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarCaracteres_acentos",$nombreUsuario);
-    //echo $insertId;
-    $cod_07 = $db->update_stored_procedure_DH("SP_UpdateDHLimpiarDobleEspacioBlanco",$nombreUsuario);
-    //echo $insertId;
-    $cod_08 = $db->update_stored_procedure_DH("SP_UpdateDHTipoDocumento",$nombreUsuario);
-    $cod_09 = $db->update_stored_procedure_DH("SP_UpdateDHSoloTextoTipoDocumento",$nombreUsuario);
-    $cod_10 = $db->update_stored_procedure_DH("SP_UpdateDHTrim",$nombreUsuario);
-    //echo $insertId;
-
-    if ($cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1 && $cod_10 == 1 ) {
+    /*if ($cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1 && $cod_10 == 1 ) {*/
+    if ($cod_01 == 1 ) {
       $type = "success";
       $message = "Todos los procesos finalizarón satisfactoriamente.";
     }else{

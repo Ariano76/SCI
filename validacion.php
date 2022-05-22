@@ -36,6 +36,7 @@ $conn = $db->Connect();
 
   <?php
   if(isset($_POST['submit'])){
+    
     $cod_00 = $db->limpiarDataKobo("SP_UpdateAscii",$nombreUsuario);
     $cod_01 = $db->limpiarDataKobo("SP_UpdateDobleEspacioBlanco",$nombreUsuario);
     $cod_02 = $db->limpiarDataKobo("SP_UpdateTab",$nombreUsuario);

@@ -199,7 +199,7 @@ private $DB_PASSWORD = ''; //database password
 
 // STORED PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
 
-    public function update_stored_procedure_DH($sp,$usuario) {
+    public function limpiar_DH($sp,$usuario) {
         try {               
             // calling stored procedure command
             $sql = "CALL " . $sp . "('".$usuario."',@total)";

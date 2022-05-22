@@ -34,6 +34,12 @@ BEGIN
 		SET success = 0;
 	ROLLBACK;
 	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
     
     START TRANSACTION;
 	INSERT INTO encuesta(fecha_encuesta, id_encuestador, nombre_encuestador, region_encuestador, como_realizo_encuesta, esta_de_acuerdo, id_beneficiario)
@@ -58,6 +64,12 @@ DECLARE exit handler for sqlexception
 		SET success = 0;
 	ROLLBACK;
 	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
  
 	START TRANSACTION;
 	INSERT INTO comunicacion(tiene_los_siguientes_medios_comunicacion, celular_basico, smartphone, laptop, ninguno, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms, cual_numero_usa_con_frecuencia, es_telefono_propio, como_accede_a_internet, cual_es_su_direccion, vive_o_viaja_con_otros_familiares, cuantos_viven_o_viajan_con_usted, cuantos_tienen_ingreso_por_trabajo, id_beneficiario)
@@ -78,6 +90,12 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
 	ROLLBACK;
 	END;
  
@@ -104,6 +122,12 @@ BEGIN
 	ROLLBACK;
 	END;
    
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
+ 
 	START TRANSACTION;
 	INSERT INTO educacion(viaja_con_menores_de_17_anios, todos_los_nna_estan_matriculados, que_dispositvo_utilizan_en_clases_virtuales, celular_basico, smartphone, laptop, ninguno, que_dificultades_tuvo_al_matricular_nna, no_conocia_procedimiento_matricula, no_cuento_con_los_documentos, no_habia_vacantes, otro, id_beneficiario)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13);    
@@ -125,6 +149,12 @@ BEGIN
 	ROLLBACK;
 	END;
    
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
+	ROLLBACK;
+	END;
+ 
 	START TRANSACTION;
 	INSERT INTO salud(algun_miembro_tiene_discapacidad, algun_miembro_tiene_problemas_salud, derivacion_salud, derivacion_proteccion, id_beneficiario)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05);    
@@ -144,6 +174,12 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
 	ROLLBACK;
 	END;
  
@@ -171,6 +207,12 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
 	ROLLBACK;
 	END;
  
@@ -203,6 +245,12 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
 	ROLLBACK;
 	END;
  
@@ -242,6 +290,12 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
+	ROLLBACK;
+	END;
+   
+	DECLARE exit handler for sqlwarning
+	BEGIN     -- WARNING
+		SET success = -1;
 	ROLLBACK;
 	END;
     
@@ -372,7 +426,7 @@ BEGIN
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3
 		ELSE 4
 		END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 		where e.esta_de_acuerdo = 1
 	);
     
@@ -414,7 +468,7 @@ drop table if exists total_beneficiarios ;
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
 		END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 		where e.esta_de_acuerdo = 1
 	);
     SELECT  genero,  
@@ -435,7 +489,7 @@ drop table if exists total_beneficiarios ;
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
 		END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 		where e.esta_de_acuerdo = 1
 	);
     SELECT  region_beneficiario as region,genero,  
@@ -456,7 +510,7 @@ drop table if exists total_beneficiarias_embarazada ;
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
 		END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join nutricion n on b.id_beneficiario = n.id_beneficiario
 		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1
 	);
@@ -478,7 +532,7 @@ drop table if exists total_beneficiarias_embarazada ;
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
 		END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join nutricion n on b.id_beneficiario = n.id_beneficiario
 		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1
 	);
@@ -499,7 +553,7 @@ drop table if exists total_beneficiarias_discapacidad;
 		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4 END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join salud s on b.id_beneficiario = s.id_beneficiario 
         where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno'
 	);
@@ -520,7 +574,7 @@ drop table if exists total_beneficiarias_discapacidad;
 		CASE WHEN F_AGE(b.fecha_nacimiento) > 17 and F_AGE(b.fecha_nacimiento) < 25 THEN 1
 		WHEN F_AGE(b.fecha_nacimiento) > 24 and F_AGE(b.fecha_nacimiento) < 50 THEN 2
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4 END AS rango_edad
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join salud s on b.id_beneficiario = s.id_beneficiario 
         where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno'
 	);
@@ -536,7 +590,7 @@ DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_04_matriculados`()
 BEGIN
 SELECT b.region_beneficiario as region, sum(ed.todos_los_nna_estan_matriculados) as total
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
         where e.esta_de_acuerdo = 1 and ed.todos_los_nna_estan_matriculados = 1
         group by b.region_beneficiario;
@@ -548,7 +602,7 @@ DELIMITER ;;
 CREATE PROCEDURE `SP_reporte_05_viajan_con_menores`()
 BEGIN
 SELECT b.region_beneficiario, sum(ed.viaja_con_menores_de_17_anios) as total
-		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+		FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
         where e.esta_de_acuerdo = 1 and ed.viaja_con_menores_de_17_anios = 1
         group by b.region_beneficiario;
@@ -561,7 +615,7 @@ CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos`(In region VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,  
     COUNT(c.cuantos_tienen_ingreso_por_trabajo) AS 'total'
-    FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 and b.region_beneficiario = region
 	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
@@ -575,7 +629,7 @@ BEGIN
 SELECT b.region_beneficiario as region,  
     COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 2, 1, NULL)) AS '02',
     COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 0, 1, NULL)) AS 'Total'
-    FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
     where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 group by b.region_beneficiario order by b.region_beneficiario;
 END ;;
 DELIMITER ;
@@ -586,7 +640,7 @@ CREATE PROCEDURE `SP_reporte_07_miembros_en_familia`(In region VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,  
     COUNT(c.cuantos_viven_o_viajan_con_usted) AS 'total'
-    FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
@@ -600,7 +654,7 @@ BEGIN
 SELECT b.region_beneficiario as region,  
     COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 2, 1, NULL)) AS '02',
     COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 0, 1, NULL)) AS 'Total'
-    FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
     where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 group by b.region_beneficiario order by b.region_beneficiario;
 END ;;
 DELIMITER ;
@@ -636,6 +690,8 @@ drop table if exists total_menores;
 END ;;
 DELIMITER ;
 
+/*** PROBANDO LOS STORED PROCEDURE ***/
+
 call SP_Select_inconsistencia_fecha_nacimiento();
 call SP_reporte_04_matriculados();
 call SP_reporte_07_miembros_en_familia_00();
@@ -652,5 +708,5 @@ INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_
     VALUES ('Arequipa', NULL, '1', 'Arequipa', 'Estadia', NULL, 'Cerro Colorado', NULL, NULL, 'LUISIANDRI', 'CAROLINA', NULL, NULL, 'Mujer', '1992-12-30', NULL, '20189895', '2026-04-30', NULL, NULL, NULL, 'Primero');    
 
 /* REINICIAR EL AUTO INCREMENTE DE LAS TABLAS */
-ALTER TABLE beneficiario AUTO_INCREMENT = 1;
+ALTER TABLE bd_bha_sci.beneficiario AUTO_INCREMENT = 1;
 
