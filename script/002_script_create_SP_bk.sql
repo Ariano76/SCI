@@ -787,11 +787,17 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-		UPDATE stage_data_historica SET nombre_1 = REGEXP_REPLACE(nombre_1, '\\n', ''), nombre_2 = REGEXP_REPLACE(nombre_2, '\\n', ''), apellido_1 = REGEXP_REPLACE(apellido_1, '\\n', ''), apellido_2 = REGEXP_REPLACE(apellido_2, '\\n', ''), tipo_documento = REGEXP_REPLACE(tipo_documento, '\\n', ''), numero_documento = REGEXP_REPLACE(numero_documento, '\\n', '') WHERE nom_usuario=usuario;
+		UPDATE stage_data_historica SET 
+        nombre_1 = REPLACE(nombre_1, '\n', ''), nombre_2 = REPLACE(nombre_2, '\n', ''), 
+		apellido_1 = REPLACE(apellido_1, '\n', ''), apellido_2 = REPLACE(apellido_2, '\n', ''), 
+		tipo_documento = REPLACE(tipo_documento, '\n', ''), numero_documento = REPLACE(numero_documento, '\n', '') 
+        WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END ;;
 DELIMITER ;
+
+
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHBackSlash`;
 DELIMITER ;;
@@ -821,8 +827,11 @@ BEGIN
 	END;
 
 	START TRANSACTION;
-	UPDATE stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '[^[:alnum:]]+', ' '), tipo_documento = REGEXP_REPLACE(tipo_documento, '[^[:alnum:]]+', ' ') WHERE nom_usuario=usuario;
-        SET success = 1;
+	UPDATE stage_data_historica SET 
+    numero_documento = user_regex_replace('[^[:alnum:]]+', '', numero_documento), 
+    tipo_documento = user_regex_replace('[^[:alnum:]]+', '', tipo_documento) 
+    WHERE nom_usuario=usuario;
+	SET success = 1;
     COMMIT;
 END ;;
 DELIMITER ;
