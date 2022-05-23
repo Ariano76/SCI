@@ -800,7 +800,12 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-		UPDATE stage_data_historica SET nombre_1 = REPLACE(nombre_1, '\\', ''), nombre_2 = REPLACE(nombre_2, '\\', ''), apellido_1 = REPLACE(apellido_1, '\\', ''), apellido_2 = REPLACE(apellido_2, '\\', ''), tipo_documento = REPLACE(tipo_documento, '\\', ''), numero_documento = REPLACE(numero_documento, '\\', ''), proyecto = REPLACE(proyecto, '\\', '') WHERE nom_usuario=usuario;
+		UPDATE stage_data_historica SET 
+        nombre_1 = REPLACE(nombre_1, '\\', ''), nombre_2 = REPLACE(nombre_2, '\\', ''), 
+        apellido_1 = REPLACE(apellido_1, '\\', ''), apellido_2 = REPLACE(apellido_2, '\\', ''), 
+        tipo_documento = REPLACE(tipo_documento, '\\', ''), numero_documento = REPLACE(numero_documento, '\\', ''), 
+        proyecto = REPLACE(proyecto, '\\', '') 
+        WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END |
@@ -858,7 +863,16 @@ BEGIN
  
 	START TRANSACTION;
 	UPDATE stage_data_historica SET 
-    numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario;
+    /* numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario; 
+    nombre_1 = user_regex_replace('\\s', '', nombre_1) -- reemplaza los espacios en blanco.
+    */
+    numero_documento = user_regex_replace('\\s', '', numero_documento),
+    nombre_1 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', nombre_1),
+    nombre_2 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', nombre_2),
+    apellido_1 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', apellido_1),
+    apellido_2 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', apellido_2),
+    tipo_documento = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', tipo_documento)
+    WHERE nom_usuario=usuario; 
         SET success = 1;
     COMMIT;
 END |
@@ -913,7 +927,9 @@ BEGIN
  
 	START TRANSACTION;
 	UPDATE stage_data_historica SET 
-    nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) WHERE nom_usuario = usuario;
+    nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), 
+    tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) 
+    WHERE nom_usuario = usuario;
     SET success = 1;
     COMMIT;
 END |

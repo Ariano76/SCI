@@ -38,22 +38,22 @@ $conn = $db->Connect();
   if(isset($_POST['submit'])){
     $cod_01 = $db->limpiar_DH("SP_UpdateDHSaltoLinea",$nombreUsuario);
     $cod_02 = $db->limpiar_DH("SP_UpdateChar",$nombreUsuario);
-    $cod_05 = $db->limpiar_DH("SP_UpdateDHSoloAlfanumericos",$nombreUsuario);
-    $cod_06 = $db->limpiar_DH("SP_UpdateDHLimpiarCaracteres_acentos",$nombreUsuario);
-    $cod_09 = $db->limpiar_DH("SP_UpdateDHSoloTextoTipoDocumento",$nombreUsuario);
-    /*
-    $cod_04 = $db->limpiar_DH("SP_UpdateDHBackSlash",$nombreUsuario);    
+    $cod_03 = $db->limpiar_DH("SP_UpdateDHSoloAlfanumericos",$nombreUsuario);
+    $cod_04 = $db->limpiar_DH("SP_UpdateDHLimpiarCaracteres_acentos",$nombreUsuario);
+    $cod_05 = $db->limpiar_DH("SP_UpdateDHSoloTextoTipoDocumento",$nombreUsuario);
+    $cod_06 = $db->limpiar_DH("SP_UpdateDHBackSlash",$nombreUsuario);
     $cod_07 = $db->limpiar_DH("SP_UpdateDHLimpiarDobleEspacioBlanco",$nombreUsuario);
     $cod_08 = $db->limpiar_DH("SP_UpdateDHTipoDocumento",$nombreUsuario);
-    $cod_10 = $db->limpiar_DH("SP_UpdateDHTrim",$nombreUsuario);*/
+    $cod_09 = $db->limpiar_DH("SP_UpdateDHTrim",$nombreUsuario);
+    
 
     /*if ($cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1 && $cod_10 == 1 ) {*/
-    if ($cod_01 == 1 && $cod_02 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_09 == 1) {
+    if ($cod_01 == 1 && $cod_02 == 1 && $cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1  ) {
       $type = "success";
       $message = "Todos los procesos finalizarón satisfactoriamente.";
     }else{
       $type = "error";
-      $message = "Problemas al ejecutar los procesos de validacón. Intente de nuevo.". $cod_01 ."-". $cod_02 ."-". $cod_05 ."-". $cod_06 ."-". $cod_09;
+      $message = "Problemas al ejecutar los procesos de validacón. Intente de nuevo.". $cod_01 ."-". $cod_02 ."-". $cod_03 ."-". $cod_04 ."-". $cod_05 ."-". $cod_06 ."-". $cod_07 ."-". $cod_08 ."-". $cod_09;
     }    
   }
   ?>
