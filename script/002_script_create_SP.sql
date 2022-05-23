@@ -781,15 +781,12 @@ BEGIN
 		SET success = 0;
 	ROLLBACK;
 	END;
- 
+  
 	START TRANSACTION;
 		UPDATE stage_data_historica SET 
-        nombre_1 = REPLACE(nombre_1, '\n', ''), 
-        nombre_2 = REPLACE(nombre_2, '\n', ''), 
-		apellido_1 = REPLACE(apellido_1, '\n', ''), 
-        apellido_2 = REPLACE(apellido_2, '\n', ''), 
-		tipo_documento = REPLACE(tipo_documento, '\n', ''),
-        numero_documento = REPLACE(numero_documento, '\n', '') 
+        nombre_1 = REPLACE(nombre_1, '\\n', ''),  nombre_2 = REPLACE(nombre_2, '\\n', ''), 
+		apellido_1 = REPLACE(apellido_1, '\\n', ''), apellido_2 = REPLACE(apellido_2, '\\n', ''), 
+		tipo_documento = REPLACE(tipo_documento, '\\n', ''), numero_documento = REPLACE(numero_documento, '\\n', '') 
         WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
@@ -822,11 +819,11 @@ BEGIN
 		SET success = 0;
 	ROLLBACK;
 	END;
-
+	-- [^[:alnum:]] coincide con culaquier caracter que no sea una letra o un numero
 	START TRANSACTION;
 	UPDATE stage_data_historica SET 
-    numero_documento = user_regex_replace('[^[:alnum:]]+', '', numero_documento), 
-    tipo_documento = user_regex_replace('[^[:alnum:]]+', '', tipo_documento) 
+    numero_documento = user_regex_replace('[^[:alnum:]]+', '', numero_documento)
+    -- tipo_documento = user_regex_replace('[^[:alnum:]]+', '', tipo_documento) 
     WHERE nom_usuario=usuario;
 	SET success = 1;
     COMMIT;
@@ -844,7 +841,10 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '[A-Za-z]', ''), numero_documento = REGEXP_REPLACE(numero_documento, '[áéíóú]', '') WHERE nom_usuario = usuario;
+	UPDATE stage_data_historica SET 
+    numero_documento = user_regex_replace('[A-Za-z]', '', numero_documento), 
+    numero_documento = user_regex_replace('[áéíóú]', '', numero_documento) 
+    WHERE nom_usuario = usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -861,7 +861,8 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE stage_data_historica SET numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario;
+	UPDATE stage_data_historica SET 
+    numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
 END ;;
@@ -897,7 +898,8 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE stage_data_historica SET tipo_documento = REGEXP_REPLACE(tipo_documento, '[0-9]', '') WHERE nom_usuario=usuario;
+	UPDATE stage_data_historica SET 
+    tipo_documento = user_regex_replace('[0-9]', '', tipo_documento) WHERE nom_usuario=usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -914,7 +916,8 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE stage_data_historica SET nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) WHERE nom_usuario = usuario;
+	UPDATE stage_data_historica SET 
+    nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) WHERE nom_usuario = usuario;
     SET success = 1;
     COMMIT;
 END ;;
@@ -930,16 +933,16 @@ BEGIN
 		SET success = 0;
 	ROLLBACK;
 	END;
- 
+	-- CHAR(10)=LF New Line), CHAR(13)=CR retorno de carro), CHAR(9)=TAB), CHAR(160)=á),CHAR(32)=espacio en blanco
 	START TRANSACTION;
 		UPDATE stage_data_historica 
 		SET
-nombre_1 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''),
-nombre_2 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
-apellido_1 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(apellido_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
-apellido_2 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(apellido_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
-tipo_documento = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(tipo_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), ''), 
-numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),CHAR(32), '')
+nombre_1 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
+nombre_2 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
+apellido_1 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
+apellido_2 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
+tipo_documento = REPLACE(REPLACE(REPLACE(REPLACE(tipo_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
+numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), '')
         where nom_usuario=usuario;
         SET success = 1;
     COMMIT;
