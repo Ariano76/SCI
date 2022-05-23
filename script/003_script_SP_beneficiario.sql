@@ -1,5 +1,5 @@
 DROP PROCEDURE IF EXISTS `SP_Insert_beneficiario`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_beneficiario`(
 	In dato_01  VARCHAR(250), In dato_02 VARCHAR(250) , In dato_03 boolean ,	
     In dato_04 VARCHAR(250) , In dato_05 VARCHAR(250) ,
@@ -18,11 +18,11 @@ BEGIN
 	INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_region, en_que_provincia, transit_settle, en_que_otro_caso_1, en_que_distrito, en_que_otro_caso_2, en_que_otro_caso_3, primer_nombre, segundo_nombre, primer_apellido,segundo_apellido, genero, fecha_nacimiento, tiene_carne_extranjeria, numero_cedula, fecha_caducidad_cedula, tipo_identificacion, numero_identificacion, fecha_caducidad_identificacion, documentos_fisico_original)
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13,dato_14, dato_15, dato_16, dato_17, dato_18, dato_19, dato_20, dato_21, dato_22);    
     SET success := last_insert_id();
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_encuesta`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_encuesta`(OUT success INT,
 	In dato_01 date, In dato_02 int , In dato_03 VARCHAR(250) ,	
     In dato_04 VARCHAR(100) , In dato_05 VARCHAR(100) ,	In dato_06 boolean , 
@@ -40,11 +40,11 @@ BEGIN
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_comunicacion`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_comunicacion`(OUT success INT,
 	In dato_01 VARCHAR(250), In dato_02 boolean , In dato_03 boolean ,	
     In dato_04 boolean , In dato_05 boolean , In dato_06 VARCHAR(250) , 
@@ -64,11 +64,11 @@ DECLARE exit handler for sqlexception
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13, dato_14, dato_15);    
     SET success = 1;
     COMMIT;   
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_nutricion`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_nutricion`(OUT success INT,
 	In dato_01 boolean, In dato_02 VARCHAR(250) , In dato_03 boolean ,	
     In dato_04 VARCHAR(250) , In dato_05 boolean , In dato_06 boolean , 
@@ -86,11 +86,11 @@ BEGIN
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_educacion`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_educacion`(OUT success INT,
 	In dato_01 boolean, In dato_02 boolean , In dato_03 VARCHAR(250) ,	
     In dato_04 boolean , In dato_05 boolean , In dato_06 boolean , 
@@ -109,11 +109,11 @@ BEGIN
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_salud`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_salud`(OUT success INT,
 	In dato_01 VARCHAR(250), In dato_02 VARCHAR(250) , In dato_03 VARCHAR(250) ,	
     In dato_04 VARCHAR(250) , In dato_05 int 
@@ -130,12 +130,12 @@ BEGIN
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 
 DROP PROCEDURE IF EXISTS `SP_Insert_derivacion_sectores`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_derivacion_sectores`(OUT success INT,
 	In dato_01 boolean, In dato_02 boolean , In dato_03 boolean ,	
     In dato_04 VARCHAR(250) , In dato_05 boolean , In dato_06 boolean , In dato_07 int 
@@ -152,12 +152,12 @@ BEGIN
     VALUES (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 
 DROP PROCEDURE IF EXISTS `SP_Insert_integrantes`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_integrantes`(OUT success INT,
 	In dato_01 VARCHAR(250), In dato_02 VARCHAR(250), In dato_03 VARCHAR(250), In dato_04 VARCHAR(250), In dato_05 VARCHAR(250), In dato_06 date, In dato_07 VARCHAR(250), In dato_08 VARCHAR(250), In dato_09 VARCHAR(250), dato_10 VARCHAR(25),
     In dato_11 VARCHAR(250), In dato_12 VARCHAR(250), In dato_13 VARCHAR(250), In dato_14 VARCHAR(250), In dato_15 VARCHAR(250), In dato_16 date, In dato_17 VARCHAR(250), In dato_18 VARCHAR(250), In dato_19 VARCHAR(250), dato_20 VARCHAR(25),
@@ -192,11 +192,11 @@ BEGIN
     dato_61, dato_62, dato_63, dato_64, dato_65, dato_66, dato_67, dato_68, dato_69, dato_70, dato_71);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Insert_estatus`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Insert_estatus`(OUT success INT, In dato_01 VARCHAR(250), In dato_02 int, In dato_03 int
 )
 BEGIN
@@ -211,28 +211,28 @@ BEGIN
     VALUES (dato_01, dato_02, dato_03);    
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_stage_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Select_stage_00`(In usuario VARCHAR(250))
 BEGIN
 	SELECT * FROM stage_00 where dato_145 = usuario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_encuesta`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Select_encuesta`()
 BEGIN
 	SELECT concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, /*e.fecha_encuesta, e.id_encuestador, e.nombre_encuestador, e.region_encuestador, e.como_realizo_encuesta, e.esta_de_acuerdo, */ e.id_beneficiario
     FROM encuesta e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Update_General`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Update_General`(
 	In dato_01 VARCHAR(250), In dato_02 VARCHAR(250), In dato_03 VARCHAR(250), In dato_04 VARCHAR(250), 
     In dato_05 VARCHAR(25), In dato_06 VARCHAR(250), In dato_07 VARCHAR(25), In dato_08 VARCHAR(250), 
@@ -254,11 +254,11 @@ BEGIN
     WHERE id_beneficiario=dato_11;        
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Mera_Proteccion`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Select_Mera_Proteccion`()
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.en_que_distrito, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, b.numero_cedula, b.fecha_caducidad_cedula, c.tiene_los_siguientes_medios_comunicacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, F_SINO(c.es_telefono_propio), c.como_accede_a_internet, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.alguien_de_su_hogar_tiene_siguientes_condiciones, F_SINO(e.viaja_con_menores_de_17_anios), F_SINO(e.todos_los_nna_estan_matriculados), e.que_dispositvo_utilizan_en_clases_virtuales, e.que_dificultades_tuvo_al_matricular_nna, s.algun_miembro_tiene_discapacidad, 
@@ -276,11 +276,11 @@ inner join salud s on b.id_beneficiario = s.id_beneficiario
 inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 ;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Salud`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Select_Salud`()
 BEGIN
 	SELECT enc.fecha_encuesta, enc.id_encuestador, enc.nombre_encuestador, b.region_beneficiario, F_SINO(b.se_instalara_en_esta_region), b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
@@ -302,11 +302,11 @@ inner join integrantes i on b.id_beneficiario = i.id_beneficiario
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
 ;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Nutricion`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Select_Nutricion`()
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.en_que_distrito, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
@@ -327,11 +327,11 @@ inner join integrantes i on b.id_beneficiario = i.id_beneficiario
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
 ;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_MDV`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Select_MDV`()
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.en_que_distrito, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
@@ -353,15 +353,12 @@ inner join integrantes i on b.id_beneficiario = i.id_beneficiario
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
 ;
-END ;;
+END |
 DELIMITER ;
 
-
-/*
-STORED PROCEDURE PARA LA GENERACION DE REPORTES
-*/
+/* STORED PROCEDURE PARA LA GENERACION DE REPORTES */
 DROP PROCEDURE IF EXISTS `SP_reporte_regiones`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_regiones`()
 BEGIN
 	drop table if exists total_beneficiarios ;
@@ -379,32 +376,32 @@ BEGIN
     select distinct(region_beneficiario) region
     from total_beneficiarios order by region_beneficiario;
 
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_01`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_01`()
 BEGIN
     select region_beneficiario, genero, rango_edad, count(rango_edad) as total
 	from total_beneficiarios group by region_beneficiario, genero, rango_edad
 	order by region_beneficiario, genero, rango_edad;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region`(In region VARCHAR(250))
 BEGIN
     select region_beneficiario, genero, rango_edad, count(rango_edad) as total
 	from total_beneficiarios where region_beneficiario = region
     group by region_beneficiario, genero, rango_edad    
 	order by region_beneficiario, genero, rango_edad;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_01`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_01`(In region VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarios ;
@@ -421,11 +418,11 @@ drop table if exists total_beneficiarios ;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
     FROM  total_beneficiarios p where region_beneficiario = region GROUP BY genero;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_00`()
 BEGIN
 drop table if exists total_beneficiarios ;
@@ -442,11 +439,11 @@ drop table if exists total_beneficiarios ;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18', COUNT(IF(rango_edad <= 4, 1, NULL)) AS 'Total'
     FROM  total_beneficiarios p GROUP BY region_beneficiario,genero;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region`(In region VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarias_embarazada ;
@@ -464,11 +461,11 @@ drop table if exists total_beneficiarias_embarazada ;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
     FROM total_beneficiarias_embarazada p where region_beneficiario = region;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region_00`()
 BEGIN
 drop table if exists total_beneficiarias_embarazada ;
@@ -486,11 +483,11 @@ drop table if exists total_beneficiarias_embarazada ;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18', COUNT(IF(rango_edad <= 4, 1, NULL)) AS 'Total'
     FROM total_beneficiarias_embarazada GROUP BY region_beneficiario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region`(In region VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarias_discapacidad;
@@ -507,11 +504,11 @@ drop table if exists total_beneficiarias_discapacidad;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
     FROM total_beneficiarias_discapacidad where region_beneficiario = region group by algun_miembro_tiene_discapacidad;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region_00`()
 BEGIN
 drop table if exists total_beneficiarias_discapacidad;
@@ -528,11 +525,11 @@ drop table if exists total_beneficiarias_discapacidad;
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
     COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+', COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18', COUNT(IF(rango_edad <= 4, 1, NULL)) AS 'Total'
     FROM total_beneficiarias_discapacidad group by region_beneficiario, algun_miembro_tiene_discapacidad order by region_beneficiario, algun_miembro_tiene_discapacidad;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_04_matriculados`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_04_matriculados`()
 BEGIN
 SELECT b.region_beneficiario as region, sum(ed.todos_los_nna_estan_matriculados) as total
@@ -540,11 +537,11 @@ SELECT b.region_beneficiario as region, sum(ed.todos_los_nna_estan_matriculados)
         inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
         where e.esta_de_acuerdo = 1 and ed.todos_los_nna_estan_matriculados = 1
         group by b.region_beneficiario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_05_viajan_con_menores`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_05_viajan_con_menores`()
 BEGIN
 SELECT b.region_beneficiario, sum(ed.viaja_con_menores_de_17_anios) as total
@@ -552,11 +549,11 @@ SELECT b.region_beneficiario, sum(ed.viaja_con_menores_de_17_anios) as total
         inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
         where e.esta_de_acuerdo = 1 and ed.viaja_con_menores_de_17_anios = 1
         group by b.region_beneficiario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos`(In region VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,  
@@ -565,11 +562,11 @@ SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 and b.region_beneficiario = region
 	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos_00`()
 BEGIN
 SELECT b.region_beneficiario as region,  
@@ -577,11 +574,11 @@ SELECT b.region_beneficiario as region,
     COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 0, 1, NULL)) AS 'Total'
     FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
     where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 group by b.region_beneficiario order by b.region_beneficiario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_07_miembros_en_familia`(In region VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,  
@@ -590,11 +587,11 @@ SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_07_miembros_en_familia_00`()
 BEGIN
 SELECT b.region_beneficiario as region,  
@@ -602,11 +599,11 @@ SELECT b.region_beneficiario as region,
     COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 0, 1, NULL)) AS 'Total'
     FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
     where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 group by b.region_beneficiario order by b.region_beneficiario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_08_cantidad_menores`(In region VARCHAR(250))
 BEGIN
 drop table if exists total_menores;
@@ -618,11 +615,11 @@ drop table if exists total_menores;
     COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años',
     COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años'
     FROM total_menores where region_beneficiario = region group by genero;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores_00`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_reporte_08_cantidad_menores_00`()
 BEGIN
 drop table if exists total_menores;
@@ -633,8 +630,52 @@ drop table if exists total_menores;
     COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años', COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años',
     COUNT(IF(meses > 0, 1, NULL)) AS 'total'
     FROM total_menores group by region_beneficiario, genero order by region_beneficiario, genero;
-END ;;
+END |
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_reporte_00`;
+DELIMITER |
+CREATE PROCEDURE `SP_reporte_00`()
+BEGIN
+	SELECT b.region_beneficiario as region, count(b.id_beneficiario) as total
+	FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+	where e.esta_de_acuerdo = 1 group by b.region_beneficiario ;
+END |
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_reporte_000`;
+DELIMITER |
+CREATE PROCEDURE `SP_reporte_000`(In region VARCHAR(250))
+BEGIN
+	SELECT b.region_beneficiario as region, count(b.id_beneficiario) as total
+	FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region group by b.region_beneficiario ;
+END |
+DELIMITER ;
+
+/* VALIDACIONES */
+
+call SP_reporte_00();
+call SP_reporte_000('Lima');
+call SP_reporte_01_beneficiario_x_region_01('Lambayeque');
+
+/* QUERY PIVOT */
+SELECT  region_beneficiario, genero,
+  COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24',
+  COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
+  COUNT(IF(rango_edad = 3, 1, NULL)) AS '50+',
+  COUNT(IF(rango_edad = 4, 1, NULL)) AS '<18'
+FROM  total_beneficiarios p where region_beneficiario = 'Lambayeque'
+GROUP BY  region_beneficiario, genero;
+
+SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,  
+    COUNT(c.cuantos_tienen_ingreso_por_trabajo) AS 'total'
+    FROM bd_bha_sci.beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
+	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 
+	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo
+    order by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
+
 
 call SP_Select_inconsistencia_fecha_nacimiento();
 call SP_reporte_04_matriculados();

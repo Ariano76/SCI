@@ -1,7 +1,6 @@
 /* CREACION DE STORE PROCEDUE */
-
 DROP PROCEDURE IF EXISTS `SP_LimpiarTablaStage`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_LimpiarTablaStage`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -15,11 +14,11 @@ BEGIN
 		delete from stage_00 where dato_145 = usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_LimpiarTablaStageDataHistorica`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_LimpiarTablaStageDataHistorica`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -33,11 +32,11 @@ BEGIN
 		delete from stage_data_historica where nom_usuario = usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDobleEspacioBlanco`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDobleEspacioBlanco`(in usuario varchar(50), OUT success INT)
 BEGIN
 	/* ELIMINAMOS EL DOBLE ESPACIO EN BLANCO*/
@@ -66,11 +65,11 @@ dato_134 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dato_134, CHAR(10), ''), CHAR
         where dato_145=usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateTab`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateTab`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -228,11 +227,11 @@ dato_144 = user_regex_replace('\t','', dato_144)
     where dato_145 = usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateSaltoLinea`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateSaltoLinea`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -269,12 +268,12 @@ BEGIN
     where dato_145=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 
 DROP PROCEDURE IF EXISTS `SP_UpdateNewLineReturnLine`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateNewLineReturnLine`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -286,158 +285,157 @@ BEGIN
    
 	START TRANSACTION;
     UPDATE stage_00 SET 
-dato_01 = replace(dato_01,`\r\n`,''), dato_02 = replace(dato_02,`\r\n`,''), 
-dato_03 = replace(dato_03,`\r\n`,''), 
-dato_04 = replace(dato_04,`\r\n`,''), 
-dato_05 = replace(dato_05,`\r\n`,''), 
-dato_06 = replace(dato_06,`\r\n`,''), 
-dato_07 = replace(dato_07,`\r\n`,''), 
-dato_08 = replace(dato_08,`\r\n`,''), 
-dato_09 = replace(dato_09,`\r\n`,''), 
-dato_10 = replace(dato_10,`\r\n`,''), 
-dato_11 = replace(dato_11,`\r\n`,''), 
-dato_12 = replace(dato_12,`\r\n`,''), 
-dato_13 = replace(dato_13,`\r\n`,''), 
-dato_14 = replace(dato_14,`\r\n`,''), 
-dato_15 = replace(dato_15,`\r\n`,''), 
-dato_16 = replace(dato_16,`\r\n`,''), 
-dato_17 = replace(dato_17,`\r\n`,''), 
-dato_18 = replace(dato_18,`\r\n`,''), 
-dato_19 = replace(dato_19,`\r\n`,''), 
-dato_20 = replace(dato_20,`\r\n`,''), 
-dato_21 = replace(dato_21,`\r\n`,''), 
-dato_22 = replace(dato_22,`\r\n`,''), 
-dato_23 = replace(dato_23,`\r\n`,''), 
-dato_24 = replace(dato_24,`\r\n`,''), 
-dato_25 = replace(dato_25,`\r\n`,''), 
-dato_26 = replace(dato_26,`\r\n`,''), 
-dato_27 = replace(dato_27,`\r\n`,''), 
-dato_28 = replace(dato_28,`\r\n`,''), 
-dato_29 = replace(dato_29,`\r\n`,''), 
-dato_30 = replace(dato_30,`\r\n`,''), 
-dato_31 = replace(dato_31,`\r\n`,''), 
-dato_32 = replace(dato_32,`\r\n`,''), 
-dato_33 = replace(dato_33,`\r\n`,''), 
-dato_34 = replace(dato_34,`\r\n`,''), 
-dato_35 = replace(dato_35,`\r\n`,''), 
-dato_36 = replace(dato_36,`\r\n`,''), 
-dato_37 = replace(dato_37,`\r\n`,''), 
-dato_38 = replace(dato_38,`\r\n`,''), 
-dato_39 = replace(dato_39,`\r\n`,''), 
-dato_40 = replace(dato_40,`\r\n`,''), 
-dato_41 = replace(dato_41,`\r\n`,''), 
-dato_42 = replace(dato_42,`\r\n`,''), 
-dato_43 = replace(dato_43,`\r\n`,''), 
-dato_44 = replace(dato_44,`\r\n`,''), 
-dato_45 = replace(dato_45,`\r\n`,''), 
-dato_46 = replace(dato_46,`\r\n`,''), 
-dato_47 = replace(dato_47,`\r\n`,''), 
-dato_48 = replace(dato_48,`\r\n`,''), 
-dato_49 = replace(dato_49,`\r\n`,''), 
-dato_50 = replace(dato_50,`\r\n`,''), 
-dato_51 = replace(dato_51,`\r\n`,''), 
-dato_52 = replace(dato_52,`\r\n`,''), 
-dato_53 = replace(dato_53,`\r\n`,''), 
-dato_54 = replace(dato_54,`\r\n`,''), 
-dato_55 = replace(dato_55,`\r\n`,''), 
-dato_56 = replace(dato_56,`\r\n`,''), 
-dato_57 = replace(dato_57,`\r\n`,''), 
-dato_58 = replace(dato_58,`\r\n`,''), 
-dato_59 = replace(dato_59,`\r\n`,''), 
-dato_60 = replace(dato_60,`\r\n`,''), 
-dato_61 = replace(dato_61,`\r\n`,''), 
-dato_62 = replace(dato_62,`\r\n`,''), 
-dato_63 = replace(dato_63,`\r\n`,''), 
-dato_64 = replace(dato_64,`\r\n`,''), 
-dato_65 = replace(dato_65,`\r\n`,''), 
-dato_66 = replace(dato_66,`\r\n`,''), 
-dato_67 = replace(dato_67,`\r\n`,''), 
-dato_68 = replace(dato_68,`\r\n`,''), 
-dato_69 = replace(dato_69,`\r\n`,''), 
-dato_70 = replace(dato_70,`\r\n`,''), 
-dato_71 = replace(dato_71,`\r\n`,''), 
-dato_72 = replace(dato_72,`\r\n`,''), 
-dato_73 = replace(dato_73,`\r\n`,''), 
-dato_74 = replace(dato_74,`\r\n`,''), 
-dato_75 = replace(dato_75,`\r\n`,''), 
-dato_76 = replace(dato_76,`\r\n`,''), 
-dato_77 = replace(dato_77,`\r\n`,''), 
-dato_78 = replace(dato_78,`\r\n`,''), 
-dato_79 = replace(dato_79,`\r\n`,''), 
-dato_80 = replace(dato_80,`\r\n`,''), 
-dato_81 = replace(dato_81,`\r\n`,''), 
-dato_82 = replace(dato_82,`\r\n`,''), 
-dato_83 = replace(dato_83,`\r\n`,''), 
-dato_84 = replace(dato_84,`\r\n`,''), 
-dato_85 = replace(dato_85,`\r\n`,''), 
-dato_86 = replace(dato_86,`\r\n`,''), 
-dato_87 = replace(dato_87,`\r\n`,''), 
-dato_88 = replace(dato_88,`\r\n`,''), 
-dato_89 = replace(dato_89,`\r\n`,''), 
-dato_90 = replace(dato_90,`\r\n`,''), 
-dato_91 = replace(dato_91,`\r\n`,''), 
-dato_92 = replace(dato_92,`\r\n`,''), 
-dato_93 = replace(dato_93,`\r\n`,''), 
-dato_94 = replace(dato_94,`\r\n`,''), 
-dato_95 = replace(dato_95,`\r\n`,''), 
-dato_96 = replace(dato_96,`\r\n`,''), 
-dato_97 = replace(dato_97,`\r\n`,''), 
-dato_98 = replace(dato_98,`\r\n`,''), 
-dato_99 = replace(dato_99,`\r\n`,''), 
-dato_100 = replace(dato_100,`\r\n`,''), 
-dato_101 = replace(dato_101,`\r\n`,''), 
-dato_102 = replace(dato_102,`\r\n`,''), 
-dato_103 = replace(dato_103,`\r\n`,''), 
-dato_104 = replace(dato_104,`\r\n`,''), 
-dato_105 = replace(dato_105,`\r\n`,''), 
-dato_106 = replace(dato_106,`\r\n`,''), 
-dato_107 = replace(dato_107,`\r\n`,''), 
-dato_108 = replace(dato_108,`\r\n`,''), 
-dato_109 = replace(dato_109,`\r\n`,''), 
-dato_110 = replace(dato_110,`\r\n`,''), 
-dato_111 = replace(dato_111,`\r\n`,''), 
-dato_112 = replace(dato_112,`\r\n`,''), 
-dato_113 = replace(dato_113,`\r\n`,''), 
-dato_114 = replace(dato_114,`\r\n`,''), 
-dato_115 = replace(dato_115,`\r\n`,''), 
-dato_116 = replace(dato_116,`\r\n`,''), 
-dato_117 = replace(dato_117,`\r\n`,''), 
-dato_118 = replace(dato_118,`\r\n`,''), 
-dato_119 = replace(dato_119,`\r\n`,''), 
-dato_120 = replace(dato_120,`\r\n`,''), 
-dato_121 = replace(dato_121,`\r\n`,''), 
-dato_122 = replace(dato_122,`\r\n`,''), 
-dato_123 = replace(dato_123,`\r\n`,''), 
-dato_124 = replace(dato_124,`\r\n`,''), 
-dato_125 = replace(dato_125,`\r\n`,''), 
-dato_126 = replace(dato_126,`\r\n`,''), 
-dato_127 = replace(dato_127,`\r\n`,''), 
-dato_128 = replace(dato_128,`\r\n`,''), 
-dato_129 = replace(dato_129,`\r\n`,''), 
-dato_130 = replace(dato_130,`\r\n`,''), 
-dato_131 = replace(dato_131,`\r\n`,''), 
-dato_132 = replace(dato_132,`\r\n`,''), 
-dato_133 = replace(dato_133,`\r\n`,''), 
-dato_134 = replace(dato_134,`\r\n`,''), 
-dato_135 = replace(dato_135,`\r\n`,''), 
-dato_136 = replace(dato_136,`\r\n`,''), 
-dato_137 = replace(dato_137,`\r\n`,''), 
-dato_138 = replace(dato_138,`\r\n`,''), 
-dato_139 = replace(dato_139,`\r\n`,''), 
-dato_140 = replace(dato_140,`\r\n`,''), 
-dato_141 = replace(dato_141,`\r\n`,''), 
-dato_142 = replace(dato_142,`\r\n`,''), 
-dato_143 = replace(dato_143,`\r\n`,''), 
-dato_144 = replace(dato_144,`\r\n`,'')
+dato_01 = replace(dato_01,'\r\n',''), dato_02 = replace(dato_02,'\r\n',''), 
+dato_03 = replace(dato_03,'\r\n',''), 
+dato_04 = replace(dato_04,'\r\n',''), 
+dato_05 = replace(dato_05,'\r\n',''), 
+dato_06 = replace(dato_06,'\r\n',''), 
+dato_07 = replace(dato_07,'\r\n',''), 
+dato_08 = replace(dato_08,'\r\n',''), 
+dato_09 = replace(dato_09,'\r\n',''), 
+dato_10 = replace(dato_10,'\r\n',''), 
+dato_11 = replace(dato_11,'\r\n',''), 
+dato_12 = replace(dato_12,'\r\n',''), 
+dato_13 = replace(dato_13,'\r\n',''), 
+dato_14 = replace(dato_14,'\r\n',''), 
+dato_15 = replace(dato_15,'\r\n',''), 
+dato_16 = replace(dato_16,'\r\n',''), 
+dato_17 = replace(dato_17,'\r\n',''), 
+dato_18 = replace(dato_18,'\r\n',''), 
+dato_19 = replace(dato_19,'\r\n',''), 
+dato_20 = replace(dato_20,'\r\n',''), 
+dato_21 = replace(dato_21,'\r\n',''), 
+dato_22 = replace(dato_22,'\r\n',''), 
+dato_23 = replace(dato_23,'\r\n',''), 
+dato_24 = replace(dato_24,'\r\n',''), 
+dato_25 = replace(dato_25,'\r\n',''), 
+dato_26 = replace(dato_26,'\r\n',''), 
+dato_27 = replace(dato_27,'\r\n',''), 
+dato_28 = replace(dato_28,'\r\n',''), 
+dato_29 = replace(dato_29,'\r\n',''), 
+dato_30 = replace(dato_30,'\r\n',''), 
+dato_31 = replace(dato_31,'\r\n',''), 
+dato_32 = replace(dato_32,'\r\n',''), 
+dato_33 = replace(dato_33,'\r\n',''), 
+dato_34 = replace(dato_34,'\r\n',''), 
+dato_35 = replace(dato_35,'\r\n',''), 
+dato_36 = replace(dato_36,'\r\n',''), 
+dato_37 = replace(dato_37,'\r\n',''), 
+dato_38 = replace(dato_38,'\r\n',''), 
+dato_39 = replace(dato_39,'\r\n',''), 
+dato_40 = replace(dato_40,'\r\n',''), 
+dato_41 = replace(dato_41,'\r\n',''), 
+dato_42 = replace(dato_42,'\r\n',''), 
+dato_43 = replace(dato_43,'\r\n',''), 
+dato_44 = replace(dato_44,'\r\n',''), 
+dato_45 = replace(dato_45,'\r\n',''), 
+dato_46 = replace(dato_46,'\r\n',''), 
+dato_47 = replace(dato_47,'\r\n',''), 
+dato_48 = replace(dato_48,'\r\n',''), 
+dato_49 = replace(dato_49,'\r\n',''), 
+dato_50 = replace(dato_50,'\r\n',''), 
+dato_51 = replace(dato_51,'\r\n',''), 
+dato_52 = replace(dato_52,'\r\n',''), 
+dato_53 = replace(dato_53,'\r\n',''), 
+dato_54 = replace(dato_54,'\r\n',''), 
+dato_55 = replace(dato_55,'\r\n',''), 
+dato_56 = replace(dato_56,'\r\n',''), 
+dato_57 = replace(dato_57,'\r\n',''), 
+dato_58 = replace(dato_58,'\r\n',''), 
+dato_59 = replace(dato_59,'\r\n',''), 
+dato_60 = replace(dato_60,'\r\n',''), 
+dato_61 = replace(dato_61,'\r\n',''), 
+dato_62 = replace(dato_62,'\r\n',''), 
+dato_63 = replace(dato_63,'\r\n',''), 
+dato_64 = replace(dato_64,'\r\n',''), 
+dato_65 = replace(dato_65,'\r\n',''), 
+dato_66 = replace(dato_66,'\r\n',''), 
+dato_67 = replace(dato_67,'\r\n',''), 
+dato_68 = replace(dato_68,'\r\n',''), 
+dato_69 = replace(dato_69,'\r\n',''), 
+dato_70 = replace(dato_70,'\r\n',''), 
+dato_71 = replace(dato_71,'\r\n',''), 
+dato_72 = replace(dato_72,'\r\n',''), 
+dato_73 = replace(dato_73,'\r\n',''), 
+dato_74 = replace(dato_74,'\r\n',''), 
+dato_75 = replace(dato_75,'\r\n',''), 
+dato_76 = replace(dato_76,'\r\n',''), 
+dato_77 = replace(dato_77,'\r\n',''), 
+dato_78 = replace(dato_78,'\r\n',''), 
+dato_79 = replace(dato_79,'\r\n',''), 
+dato_80 = replace(dato_80,'\r\n',''), 
+dato_81 = replace(dato_81,'\r\n',''), 
+dato_82 = replace(dato_82,'\r\n',''), 
+dato_83 = replace(dato_83,'\r\n',''), 
+dato_84 = replace(dato_84,'\r\n',''), 
+dato_85 = replace(dato_85,'\r\n',''), 
+dato_86 = replace(dato_86,'\r\n',''), 
+dato_87 = replace(dato_87,'\r\n',''), 
+dato_88 = replace(dato_88,'\r\n',''), 
+dato_89 = replace(dato_89,'\r\n',''), 
+dato_90 = replace(dato_90,'\r\n',''), 
+dato_91 = replace(dato_91,'\r\n',''), 
+dato_92 = replace(dato_92,'\r\n',''), 
+dato_93 = replace(dato_93,'\r\n',''), 
+dato_94 = replace(dato_94,'\r\n',''), 
+dato_95 = replace(dato_95,'\r\n',''), 
+dato_96 = replace(dato_96,'\r\n',''), 
+dato_97 = replace(dato_97,'\r\n',''), 
+dato_98 = replace(dato_98,'\r\n',''), 
+dato_99 = replace(dato_99,'\r\n',''), 
+dato_100 = replace(dato_100,'\r\n',''), 
+dato_101 = replace(dato_101,'\r\n',''), 
+dato_102 = replace(dato_102,'\r\n',''), 
+dato_103 = replace(dato_103,'\r\n',''), 
+dato_104 = replace(dato_104,'\r\n',''), 
+dato_105 = replace(dato_105,'\r\n',''), 
+dato_106 = replace(dato_106,'\r\n',''), 
+dato_107 = replace(dato_107,'\r\n',''), 
+dato_108 = replace(dato_108,'\r\n',''), 
+dato_109 = replace(dato_109,'\r\n',''), 
+dato_110 = replace(dato_110,'\r\n',''), 
+dato_111 = replace(dato_111,'\r\n',''), 
+dato_112 = replace(dato_112,'\r\n',''), 
+dato_113 = replace(dato_113,'\r\n',''), 
+dato_114 = replace(dato_114,'\r\n',''), 
+dato_115 = replace(dato_115,'\r\n',''), 
+dato_116 = replace(dato_116,'\r\n',''), 
+dato_117 = replace(dato_117,'\r\n',''), 
+dato_118 = replace(dato_118,'\r\n',''), 
+dato_119 = replace(dato_119,'\r\n',''), 
+dato_120 = replace(dato_120,'\r\n',''), 
+dato_121 = replace(dato_121,'\r\n',''), 
+dato_122 = replace(dato_122,'\r\n',''), 
+dato_123 = replace(dato_123,'\r\n',''), 
+dato_124 = replace(dato_124,'\r\n',''), 
+dato_125 = replace(dato_125,'\r\n',''), 
+dato_126 = replace(dato_126,'\r\n',''), 
+dato_127 = replace(dato_127,'\r\n',''), 
+dato_128 = replace(dato_128,'\r\n',''), 
+dato_129 = replace(dato_129,'\r\n',''), 
+dato_130 = replace(dato_130,'\r\n',''), 
+dato_131 = replace(dato_131,'\r\n',''), 
+dato_132 = replace(dato_132,'\r\n',''), 
+dato_133 = replace(dato_133,'\r\n',''), 
+dato_134 = replace(dato_134,'\r\n',''), 
+dato_135 = replace(dato_135,'\r\n',''), 
+dato_136 = replace(dato_136,'\r\n',''), 
+dato_137 = replace(dato_137,'\r\n',''), 
+dato_138 = replace(dato_138,'\r\n',''), 
+dato_139 = replace(dato_139,'\r\n',''), 
+dato_140 = replace(dato_140,'\r\n',''), 
+dato_141 = replace(dato_141,'\r\n',''), 
+dato_142 = replace(dato_142,'\r\n',''), 
+dato_143 = replace(dato_143,'\r\n',''), 
+dato_144 = replace(dato_144,'\r\n','')
     where dato_145=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS `SP_UpdateLetrasPuntoGuion`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateLetrasPuntoGuion`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -458,11 +456,11 @@ BEGIN
     where dato_145=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateAscii`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateAscii`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -551,11 +549,11 @@ BEGIN
 
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateBackSlash`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateBackSlash`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -574,11 +572,11 @@ BEGIN
     where dato_145=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateTrim`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateTrim`(in usuario varchar(50), OUT success INT)
 BEGIN
 DECLARE exit handler for sqlexception
@@ -621,11 +619,11 @@ DECLARE exit handler for sqlexception
     where dato_145=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateRecodificarSiNo`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateRecodificarSiNo`(in usuario varchar(50), OUT success INT)
 BEGIN
 DECLARE exit handler for sqlexception
@@ -662,11 +660,11 @@ DECLARE exit handler for sqlexception
 	UPDATE stage_00 SET dato_139 = 1 WHERE dato_139 = 'Si' and dato_145 = usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateInfoTransito`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateInfoTransito`(in usuario varchar(50), OUT success INT)
 BEGIN
 DECLARE exit handler for sqlexception
@@ -690,11 +688,11 @@ DECLARE exit handler for sqlexception
 	/*SELECT ROW_COUNT() AS 'Affected rows';*/
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectDocIdentConIncidencias`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectDocIdentConIncidencias`(in usuario varchar(50))
 BEGIN	    
     SELECT ID_STAGE,DATO_02, DATO_23, DATO_26,DATO_34,DATO_35 ,DATO_74 ,DATO_84,DATO_94,DATO_104,DATO_114,DATO_124,DATO_134 
@@ -702,11 +700,11 @@ FROM stage_00 where dato_145=usuario and (DATO_02 REGEXP '.*[^0-9].*' OR DATO_23
 OR DATO_34 REGEXP '.*[^0-9].*' OR DATO_35 REGEXP '.*[^0-9].*' OR DATO_74 REGEXP '.*[^0-9].*' OR DATO_84 REGEXP '.*[^0-9].*' 
 OR DATO_94 REGEXP '.*[^0-9].*' OR DATO_104 REGEXP '.*[^0-9].*' OR DATO_114 REGEXP '.*[^0-9].*' OR DATO_124 REGEXP '.*[^0-9].*' 
 OR DATO_134 REGEXP '.*[^0-9].*');
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectNombresConDigitos`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectNombresConDigitos`(in usuario varchar(50))
 BEGIN	    
     SELECT ID_STAGE, DATO_03, DATO_16, DATO_17, DATO_18, DATO_19, DATO_65, DATO_66, DATO_67, DATO_68, DATO_75, DATO_76, DATO_77, DATO_78, DATO_85,
@@ -721,11 +719,11 @@ DATO_97 REGEXP '[[:digit:]]' OR DATO_98 REGEXP '[[:digit:]]' OR DATO_105 REGEXP 
 DATO_107 REGEXP '[[:digit:]]' OR DATO_108 REGEXP '[[:digit:]]' OR DATO_115 REGEXP '[[:digit:]]' OR DATO_116 REGEXP '[[:digit:]]' OR
 DATO_117 REGEXP '[[:digit:]]' OR DATO_118 REGEXP '[[:digit:]]' OR DATO_125 REGEXP '[[:digit:]]' OR DATO_126 REGEXP '[[:digit:]]' OR
 DATO_127 REGEXP '[[:digit:]]' OR DATO_128 REGEXP '[[:digit:]]'); 
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectNumeroIdentificacionConIncidencias`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectNumeroIdentificacionConIncidencias`(OUT _total INT)
 BEGIN	    
     SELECT SQL_CALC_FOUND_ROWS  ID_STAGE,DATO_02, DATO_23, DATO_26,DATO_34,DATO_35 ,DATO_74 ,DATO_84,DATO_94,DATO_104,DATO_114,DATO_124,DATO_134 
@@ -734,11 +732,11 @@ BEGIN
 	OR DATO_94 REGEXP '.*[^0-9].*' OR DATO_104 REGEXP '.*[^0-9].*' OR DATO_114 REGEXP '.*[^0-9].*' OR DATO_124 REGEXP '.*[^0-9].*' 
 	OR DATO_134 REGEXP '.*[^0-9].*';
 	SET _total = FOUND_ROWS();    
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectNumeroIdentificacionConIncidencias_1`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectNumeroIdentificacionConIncidencias_1`()
 BEGIN	    
     SELECT SQL_CALC_FOUND_ROWS  ID_STAGE,DATO_02, DATO_23, DATO_26,DATO_34,DATO_35 ,DATO_74 ,DATO_84,DATO_94,DATO_104,DATO_114,DATO_124,DATO_134 
@@ -747,33 +745,31 @@ BEGIN
 	OR DATO_94 REGEXP '.*[^0-9].*' OR DATO_104 REGEXP '.*[^0-9].*' OR DATO_114 REGEXP '.*[^0-9].*' OR DATO_124 REGEXP '.*[^0-9].*' 
 	OR DATO_134 REGEXP '.*[^0-9].*';
 	SELECT ROW_COUNT() AS 'Affected rows';    
-END ;;
+END |
 DELIMITER ;
-
-
 
 /* CREACION DE STORED PROCEDURE TABLA DATA HISTORICA	 */
 
 DROP PROCEDURE IF EXISTS `SP_SelectDHDocIdentConIncidencias`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectDHDocIdentConIncidencias`(in usuario varchar(50))
 BEGIN	    
     SELECT id_stage_dh, concat_ws(' ', nombre_1, nombre_2, apellido_1, apellido_2) as nombre, tipo_documento, numero_documento 
 FROM stage_data_historica where numero_documento REGEXP '.*[^0-9].*' and nom_usuario=usuario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectDHNombresConDigitos`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectDHNombresConDigitos`(in usuario varchar(50))
 BEGIN	    
     SELECT id_stage_dh, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, proyecto
 FROM stage_data_historica where nom_usuario=usuario and (nombre_1 REGEXP '[[:digit:]]' OR nombre_2 REGEXP '[[:digit:]]' OR apellido_1 REGEXP '[[:digit:]]' OR apellido_2 REGEXP '[[:digit:]]' OR tipo_documento REGEXP '[[:digit:]]');
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSaltoLinea`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHSaltoLinea`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -790,11 +786,11 @@ BEGIN
         WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHBackSlash`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHBackSlash`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -807,11 +803,11 @@ BEGIN
 		UPDATE stage_data_historica SET nombre_1 = REPLACE(nombre_1, '\\', ''), nombre_2 = REPLACE(nombre_2, '\\', ''), apellido_1 = REPLACE(apellido_1, '\\', ''), apellido_2 = REPLACE(apellido_2, '\\', ''), tipo_documento = REPLACE(tipo_documento, '\\', ''), numero_documento = REPLACE(numero_documento, '\\', ''), proyecto = REPLACE(proyecto, '\\', '') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSoloAlfanumericos`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHSoloAlfanumericos`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -827,11 +823,11 @@ BEGIN
     WHERE nom_usuario=usuario;
 	SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHLimpiarCaracteres_acentos`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHLimpiarCaracteres_acentos`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -847,11 +843,11 @@ BEGIN
     WHERE nom_usuario = usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHLimpiarDobleEspacioBlanco`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHLimpiarDobleEspacioBlanco`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -865,11 +861,11 @@ BEGIN
     numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHTipoDocumento`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHTipoDocumento`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -884,11 +880,11 @@ BEGIN
 	UPDATE stage_data_historica SET tipo_documento = 'Carnet de refugio' WHERE tipo_documento = 'Carnet de Solicitante de Refugio' and nom_usuario = usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSoloTextoTipoDocumento`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHSoloTextoTipoDocumento`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -902,11 +898,11 @@ BEGIN
     tipo_documento = user_regex_replace('[0-9]', '', tipo_documento) WHERE nom_usuario=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateDHTrim`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHTrim`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -920,11 +916,11 @@ BEGIN
     nombre_1=TRIM(nombre_1), nombre_2=TRIM(nombre_2), apellido_1=TRIM(apellido_1), apellido_2=TRIM(apellido_2), tipo_documento=TRIM(tipo_documento), numero_documento=TRIM(numero_documento), proyecto=TRIM(proyecto) WHERE nom_usuario = usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_UpdateChar`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_UpdateChar`(in usuario varchar(50), OUT success INT)
 BEGIN
 	/* ELIMINAMOS EL DOBLE ESPACIO EN BLANCO*/
@@ -933,7 +929,7 @@ BEGIN
 		SET success = 0;
 	ROLLBACK;
 	END;
-	-- CHAR(10)=LF New Line), CHAR(13)=CR retorno de carro), CHAR(9)=TAB), CHAR(160)=á),CHAR(32)=espacio en blanco
+	/* CHAR(10)=LF New Line), CHAR(13)=CR retorno de carro), CHAR(9)=TAB), CHAR(160)=á),CHAR(32)=espacio en blanco */
 	START TRANSACTION;
 		UPDATE stage_data_historica 
 		SET
@@ -946,51 +942,51 @@ numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), '
         where nom_usuario=usuario;
         SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 
 /* CREACION DE STORED PROCEDURE PROCESO COTEJO DE RESULTADO CON DATA HISTORICA
 */
 DROP PROCEDURE IF EXISTS `SP_SelectCotejo`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejo`(in usuario varchar(50))
 BEGIN	    
     SELECT nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia
 	FROM stage_data_historica WHERE nom_usuario=usuario; 
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_InsertResultadoCotejo`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_InsertResultadoCotejo`(  In id_busqueda int, In id_caso int, In id_result int, In tipo_busqueda text,
     In nomb_1 text, In nomb_2 text, In ape_1 text, In ape_2 text, In tipo_doc text, In numero_doc text, In proyecto text, In cod_familia text
 )
 BEGIN
     insert into resultado_cotejo_datos_historicos (id_busqueda, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia)
     values (id_busqueda, id_caso, id_result, tipo_busqueda, nomb_1, nomb_2, ape_1, ape_2, tipo_doc, numero_doc, proyecto, cod_familia); 
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_SelectResultadoCotejo`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_SelectResultadoCotejo`(in codigo int)
 BEGIN	    
     SELECT id_busqueda, id_cotejo, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia FROM resultado_cotejo_datos_historicos where id_busqueda = codigo order by id_busqueda, id_caso, tipo_busqueda, apellido_1, apellido_2, nombre_1; 
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_DeleteResultadoCotejo`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_DeleteResultadoCotejo`(in codigo int)
 BEGIN	    
     delete from resultado_cotejo_datos_historicos where id_busqueda = codigo; 
-END ;;
+END |
 DELIMITER ;
 
--- CREACION DE USUARIOS
+/* CREACION DE USUARIOS */
 DROP PROCEDURE IF EXISTS `SP_Usuario_Insert`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Insert`(in nombre varchar(50), in email varchar(100), in pass varchar(50), in idrol int, in idestado int, OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1004,11 +1000,11 @@ BEGIN
     insert into usuarios(nombre_usuario, correo, contrasenia, id_rol, id_estado) values (nombre, email, @clave, idrol, idestado);
     SET success = 1;
     COMMIT;
-END;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Usuario_Update`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Update`(in iduser int, in nombre varchar(50), in email varchar(100), in idrol int, in idestado int, OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1023,11 +1019,11 @@ BEGIN
     where id_usuario = iduser;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Usuario_Update_Password`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Update_Password`(in iduser int, in pass varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1042,11 +1038,11 @@ BEGIN
     set contrasenia = @clave where id_usuario = iduser;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Usuario_Reset_Password`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Reset_Password`(in usuario varchar(50), in pass varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1066,11 +1062,11 @@ BEGIN
 		SET success = 1;
 	end if;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Usuario_Delete`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Delete`(in iduser int, OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1083,11 +1079,11 @@ BEGIN
     delete from usuarios where id_usuario = iduser;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Login_validar`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Login_validar`(in usuario varchar(50), in pass varchar(100), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1100,31 +1096,31 @@ BEGIN
     SET @clave = password(pass);
     SELECT id_usuario into success FROM usuarios where nombre_usuario = usuario and contrasenia = @clave;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Usuarios_Select`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuarios_Select`()
 BEGIN	    
     SELECT A1.id_usuario, A1.nombre_usuario, A1.correo, A1.id_rol, A2.nombre_rol
 	FROM usuarios AS A1 INNER JOIN roles AS A2 ON A1.id_rol = A2.id_rol 
     ORDER BY A1.nombre_usuario;
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Usuario_Select`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Select`(in id int)
 BEGIN	    
     SELECT A1.id_usuario, A1.nombre_usuario, A1.correo, A1.id_rol, A2.nombre_rol
 	FROM usuarios AS a1 INNER JOIN roles AS A2 ON A1.id_rol = A2.id_rol
     WHERE A1.id_usuario = id; 
-END ;;
+END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_Data_Historica`;
-DELIMITER ;;
+DELIMITER |
 CREATE PROCEDURE `SP_Migrar_Data_Historica`(in usuario varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
@@ -1138,9 +1134,12 @@ BEGIN
     delete from stage_data_historica where nom_usuario=usuario;
     SET success = 1;
     COMMIT;
-END ;;
+END |
 DELIMITER ;
 
+
+
+/* 
 DROP PROCEDURE IF EXISTS `DropFK` ;
 DELIMITER ;;
 CREATE PROCEDURE `DropFK`()
@@ -1177,7 +1176,7 @@ IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
 WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_39') THEN	ALTER TABLE `usuarios` DROP FOREIGN KEY `R_39`; 
 END IF;
 IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'UC_usuarios') THEN	ALTER TABLE `usuarios` DROP CONSTRAINT `UC_usuarios`; 
+WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'UC_usuarios') THEN ALTER TABLE `usuarios` DROP CONSTRAINT `UC_usuarios`; 
 END IF;
 IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
 WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_40') THEN	ALTER TABLE `acciones` DROP FOREIGN KEY `R_40`; 
@@ -1187,6 +1186,8 @@ WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_41') THEN	ALTER TA
 END IF;
 END;;
 DELIMITER ;
+
+*/
 
 DROP PROCEDURE IF EXISTS `DropViews` ;
 DELIMITER ;;
