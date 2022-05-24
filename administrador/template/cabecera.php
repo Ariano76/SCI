@@ -86,7 +86,7 @@ if (!isset($_SESSION['usuario'])) {
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cotejar datos</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_bk.php"?>">Cotejar Beneficiarios</a>
 								<div class="dropdown-divider"></div>
 								<div class="dropdown-menu-lg-left"> 
 									<a class="dropdown-item active" href="">Migrar Datos Validados</a>
