@@ -10,7 +10,7 @@ if ($_POST) {
 
 	if($codigo >= 1){
 		$_SESSION['usuario'] = 'ok';
-		$_SESSION['nombreUsuario'] = $_POST['usuario'];		
+		$_SESSION['nombreUsuario'] = strtolower($_POST['usuario']);		
 		//$_SESSION['xxx'] = $codigo;
 		header('Location:inicio.php');	
 	} else {

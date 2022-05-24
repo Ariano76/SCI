@@ -211,7 +211,7 @@ private $DB_PASSWORD = ''; //database password
              // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             if ($row) {
-                return $row !== false ? $row['resultado'] : null;
+                return $row['resultado'] == 1 ? 1 : 0;
             } 
             //echo 'La operación se realizo satisfactoriamente';
             return true;

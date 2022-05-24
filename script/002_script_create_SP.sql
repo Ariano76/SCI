@@ -862,10 +862,10 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-	UPDATE stage_data_historica SET 
     /* numero_documento = REGEXP_REPLACE(numero_documento, '\\s', '') WHERE nom_usuario=usuario; 
     nombre_1 = user_regex_replace('\\s', '', nombre_1) -- reemplaza los espacios en blanco.
     */
+	UPDATE stage_data_historica SET 
     numero_documento = user_regex_replace('\\s', '', numero_documento),
     nombre_1 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', nombre_1),
     nombre_2 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', nombre_2),
@@ -873,7 +873,7 @@ BEGIN
     apellido_2 = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', apellido_2),
     tipo_documento = user_regex_replace('[!"#$%&()*+,\-./:;<=>?@[\\\]^_`{|}~]', '', tipo_documento)
     WHERE nom_usuario=usuario; 
-        SET success = 1;
+	SET success = 1;
     COMMIT;
 END |
 DELIMITER ;
@@ -943,21 +943,21 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
-	ROLLBACK;
+		ROLLBACK;
 	END;
-	/* CHAR(10)=LF New Line), CHAR(13)=CR retorno de carro), CHAR(9)=TAB), CHAR(160)=á),CHAR(32)=espacio en blanco */
+	/* CHAR(10)=LF New Line), CHAR(13)=CR retorno de carro), CHAR(9)=TAB), CHAR(160)=á),
+    CHAR(32) y CHAR(160) SON espacioS en blanco */
 	START TRANSACTION;
-		UPDATE stage_data_historica 
-		SET
-nombre_1 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
-nombre_2 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
-apellido_1 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
-apellido_2 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
-tipo_documento = REPLACE(REPLACE(REPLACE(REPLACE(tipo_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), ''),
-numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(160), '')
-        where nom_usuario=usuario;
-        SET success = 1;
+	UPDATE stage_data_historica SET
+	nombre_1 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
+	nombre_2 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
+	apellido_1 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
+	apellido_2 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
+	tipo_documento = REPLACE(REPLACE(REPLACE(REPLACE(tipo_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
+	numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), '')
+	where nom_usuario=usuario;
     COMMIT;
+    SET success = 1;
 END |
 DELIMITER ;
 
@@ -1146,7 +1146,8 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-    INSERT INTO data_historica (nombre_1, nombre_2, apellido_1, apellido_2, beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, fecha) SELECT nombre_1, nombre_2, apellido_1, apellido_2, concat_ws(' ', nombre_1, nombre_2, apellido_1, apellido_2) as beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, curdate() from stage_data_historica WHERE nom_usuario=usuario;
+    INSERT INTO data_historica (nombre_1, nombre_2, apellido_1, apellido_2, beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, fecha) SELECT nombre_1, nombre_2, apellido_1, apellido_2, concat_ws(' ', nombre_1, nombre_2, apellido_1, apellido_2) as beneficiario, tipo_documento, numero_documento, proyecto, cod_familia, curdate() 
+    from stage_data_historica WHERE nom_usuario=usuario;
     delete from stage_data_historica where nom_usuario=usuario;
     SET success = 1;
     COMMIT;
