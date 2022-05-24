@@ -949,12 +949,17 @@ BEGIN
     CHAR(32) y CHAR(160) SON espacioS en blanco */
 	START TRANSACTION;
 	UPDATE stage_data_historica SET
-	nombre_1 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
-	nombre_2 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
-	apellido_1 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
-	apellido_2 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
-	tipo_documento = REPLACE(REPLACE(REPLACE(REPLACE(tipo_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), ''),
-	numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(63), '')
+	nombre_1 = REPLACE(convert(nombre_1 USING ASCII),'?','') ,
+    nombre_1 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(196), ''),
+    nombre_2 = REPLACE(convert(nombre_2 USING ASCII),'?','') ,
+	nombre_2 = REPLACE(REPLACE(REPLACE(REPLACE(nombre_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(196), ''),
+    apellido_1 = REPLACE(convert(apellido_1 USING ASCII),'?','') ,
+	apellido_1 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_1, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(196), ''),
+	apellido_2 = REPLACE(convert(apellido_2 USING ASCII),'?','') ,
+    apellido_2 = REPLACE(REPLACE(REPLACE(REPLACE(apellido_2, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(196), ''),
+    tipo_documento = REPLACE(convert(tipo_documento USING ASCII),'?','') ,
+	tipo_documento = REPLACE(REPLACE(REPLACE(REPLACE(tipo_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(196), ''),
+	numero_documento = REPLACE(REPLACE(REPLACE(REPLACE(numero_documento, CHAR(10), ''), CHAR(13), ''), CHAR(9), ''), CHAR(196), '')
 	where nom_usuario=usuario;
     COMMIT;
     SET success = 1;
