@@ -266,9 +266,9 @@ BEGIN
 	START TRANSACTION;
 	UPDATE stage_data_historica SET 
     nombre_1 = user_regex_replace('\t','', nombre_1), nombre_2 = user_regex_replace('\t','', nombre_2), 
-	apellido_1 = user_regex_replace('\t','', apellido_1), apellido_2 = user_regex_replace('\t','', apellido_2), 
-	tipo_documento = user_regex_replace('\t','', tipo_documento), numero_documento = user_regex_replace('\t','', numero_documento), 
-	proyecto = user_regex_replace('\t','', proyecto), cod_familia = user_regex_replace('\t','', cod_familia)
+apellido_1 = user_regex_replace('\t','', apellido_1), 
+apellido_2 = user_regex_replace('\t','', apellido_2), 
+tipo_documento = user_regex_replace('\t','', tipo_documento)
     where nom_usuario = usuario;
     SET success = 1;
     COMMIT;
