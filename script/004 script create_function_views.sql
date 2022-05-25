@@ -94,6 +94,41 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP FUNCTION IF EXISTS `udf_strip_alphanum`;
+DELIMITER |
+CREATE FUNCTION `udf_strip_alphanum`(as_arg VARCHAR(2000)
+) RETURNS varchar(2000) CHARSET latin1
+    DETERMINISTIC
+BEGIN
+-- #############################################################################
+-- Purpose: return string contains only specified set of characters
+-- other characters removed
+-- #############################################################################
+   DECLARE ls_char CHAR(1)        DEFAULT '';
+   DECLARE ls_ret  VARCHAR(2000)  DEFAULT '';
+   DECLARE _i      INT            DEFAULT 0;
+   DECLARE _len    INT            DEFAULT 0;
+   SET _len := CHAR_LENGTH(as_arg);
+   -- early exit for zero length or null
+   IF _len IS NULL OR _len = 0 THEN
+      RETURN as_arg;
+   END IF;
+   -- safety net for input string over 2000 character limit:
+   IF _len > 2000 THEN
+      SET _len := 2000;
+   END IF;
+   WHILE _i < _len DO
+      SET _i := _i + 1;
+      SET ls_char := SUBSTRING(as_arg,_i,1);
+      IF INSTR('0123456789abcdefghijklmñnopqrstuvwxyzABCDEFGHIJKLMÑNOPQRSTUVWXYZáéíóúÁÉÍÓÚ_',ls_char) THEN
+         SET ls_ret := CONCAT(ls_ret,ls_char);
+      END IF;
+   END WHILE;
+   RETURN ls_ret;
+END |
+DELIMITER ;
+
+
 /* CREATE VIEWS */
 
 drop view IF EXISTS vista_encuesta;
