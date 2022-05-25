@@ -13,7 +13,7 @@ if (isset($_POST["import"])) {
   $type = "OK";
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
-
+  //echo "<script>console.log('Console: " . $timestamp1 . "' );</script>"; 
   $db_1->cotejo($timestamp1,$nombreUsuario);
 
   $usuarios = $db_1->resultado_cotejo($timestamp1);
@@ -52,7 +52,7 @@ if (isset($_POST["import"])) {
     $i++;
   }
 
-  $db_1->delete_resultado_cotejo($timestamp1);
+  //$db_1->delete_resultado_cotejo($timestamp1);
 
   $writer = new Xlsx($spreadsheet);
   $fileName = "Resultado_Cotejar_Usuarios_en_Data_Historica_" . $timestamp1 . ".xlsx";

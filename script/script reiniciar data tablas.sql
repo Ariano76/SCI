@@ -56,8 +56,8 @@ SELECT * FROM DATA_HISTORICA WHERE MATCH(nombre_1, nombre_2, apellido_1, apellid
 AGAINST('ISABELLA MONTILLA');
 
 SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto,
-MATCH(nombre_1, nombre_2, apellido_1, apellido_2, numero_documento) AGAINST('CARIS* +ALEXANDER* +PEREZ* +DELPINO*') as relevancia
-FROM DATA_HISTORICA WHERE MATCH(nombre_1, nombre_2, apellido_1, apellido_2, numero_documento) AGAINST('ISABELLA MONTILLA') ;
+MATCH(beneficiario, numero_documento) AGAINST('CARIS* +ALEXANDER* +PEREZ* +DELPINO*') as relevancia
+FROM data_historica WHERE MATCH(beneficiario, numero_documento) AGAINST('CARIS* +ALEXANDER* +PEREZ* +DELPINO*' IN BOOLEAN MODE);
 
 SELECT ID_DH, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto,
 MATCH(beneficiario, numero_documento) AGAINST('15707926') as relevancia
