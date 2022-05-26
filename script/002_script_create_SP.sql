@@ -1260,7 +1260,7 @@ DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Select`(in id int)
 BEGIN	    
     SELECT A1.id_usuario, A1.nombre_usuario, A1.correo, A1.id_rol, A2.nombre_rol
-	FROM usuarios AS a1 INNER JOIN roles AS A2 ON A1.id_rol = A2.id_rol
+	FROM usuarios AS A1 INNER JOIN roles AS A2 ON A1.id_rol = A2.id_rol
     WHERE A1.id_usuario = id; 
 END |
 DELIMITER ;
