@@ -52,7 +52,7 @@ if (isset($_POST["import"])) {
     $i++;
   }
 
-  //$db_1->delete_resultado_cotejo($timestamp1);
+  $db_1->delete_resultado_cotejo($timestamp1);
 
   $writer = new Xlsx($spreadsheet);
   $fileName = "Resultado_Cotejar_Usuarios_Data_Historica_" . $timestamp1 . ".xlsx";
