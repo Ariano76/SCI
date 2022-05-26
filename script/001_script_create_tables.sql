@@ -18,7 +18,6 @@ DROP TABLE if exists usuarios;
 DROP TABLE if exists roles;
 DROP TABLE if exists acciones;
 DROP TABLE if exists entidades;
-DROP TABLE if exists beneficiario;
 DROP TABLE if exists stage_data_historica;
 DROP TABLE if exists data_historica;
 DROP TABLE if exists resultado_cotejo_datos_historicos;
