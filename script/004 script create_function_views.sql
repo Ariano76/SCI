@@ -128,6 +128,42 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP FUNCTION IF EXISTS `udf_remove_alpha`;
+DELIMITER |
+CREATE FUNCTION `udf_remove_alpha`(inputPhoneNumber VARCHAR(1000))
+  RETURNS VARCHAR(1000)
+  CHARSET latin1
+DETERMINISTIC
+  BEGIN
+-- #############################################################################
+-- Purpose: function removes non numeric characters from input
+-- return only the numbers in the string
+-- #############################################################################
+    DECLARE inputLenght INT DEFAULT 0;
+    -- var for our iteration 
+    DECLARE counter INT DEFAULT 1;
+    -- if null is passed, we still return an tempty string
+    DECLARE sanitizedText VARCHAR(1000) DEFAULT '';
+    -- holder of each character during the iteration
+    DECLARE oneChar VARCHAR(1) DEFAULT '';
+    -- we'll process only if it is not null.
+    IF NOT ISNULL(inputPhoneNumber)
+    THEN
+      SET inputLenght = LENGTH(inputPhoneNumber);
+      WHILE counter <= inputLenght DO
+        SET oneChar = SUBSTRING(inputPhoneNumber, counter, 1);
+        IF (oneChar REGEXP ('^[0-9]+$'))
+        THEN
+          SET sanitizedText = Concat(sanitizedText, oneChar);
+        END IF;
+        SET counter = counter + 1;
+      END WHILE;
+    END IF;
+    RETURN sanitizedText;
+ END |
+ DELIMITER ;
+
+
 
 /* CREATE VIEWS */
 

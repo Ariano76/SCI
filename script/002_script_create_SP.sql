@@ -559,8 +559,12 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-    UPDATE stage_data_historica 
-	SET numero_documento = user_regex_replace('[A-Za-z._/:-]', '', numero_documento)
+    UPDATE stage_data_historica 	
+    SET 
+    /* numero_documento = user_regex_replace('[A-Za-z._(/:),-]', '', numero_documento),
+    numero_documento = user_regex_replace('[áéíóúÁÉÍÓÚ]', '', numero_documento),
+    numero_documento = user_regex_replace('[—]', '', numero_documento) */
+    numero_documento = udf_remove_alpha(numero_documento)
     where nom_usuario=usuario;
     SET success = 1;
     COMMIT;
@@ -980,7 +984,7 @@ BEGIN
 	START TRANSACTION;
 	UPDATE stage_data_historica SET 
     numero_documento = user_regex_replace('[A-Za-z]', '', numero_documento), 
-    numero_documento = user_regex_replace('[áéíóú]', '', numero_documento) 
+    numero_documento = user_regex_replace('[áéíóúÁÉÍÓÚ]', '', numero_documento) 
     WHERE nom_usuario = usuario;
         SET success = 1;
     COMMIT;
