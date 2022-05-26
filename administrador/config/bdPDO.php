@@ -225,11 +225,13 @@ private $DB_PASSWORD = ''; //database password
 // FUNCION PARA MIGRAR LOS DATOS A PARA ACTUALIZAR LA INFORMACION DEL STAGE DATA HISTORICA
     public function cotejo($idBusqueda,$usuario) {
         $cadena=null;
-        $tipo;
+        $tipo='';
+        $cod_origen=0;
         try {
             $array = array();
             $contPrinc = 1;
             $contSecund = 1;
+
             $sql = "CALL SP_SelectCotejo('".$usuario."')";
             // call the stored procedure
             $q = $this->pdo->prepare($sql);            
@@ -243,6 +245,7 @@ private $DB_PASSWORD = ''; //database password
                     if ($i!=1) {
                         if ($usuario[$i]!=null) {
                             $cadena .= "+" . $usuario[$i] . "* ";
+
                         }
                     }
                 }
@@ -255,7 +258,7 @@ private $DB_PASSWORD = ''; //database password
                 // pass value to the command
                 $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
                 $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
-                $stmt->bindParam(':id_result', $nulo, PDO::PARAM_INT);
+                $stmt->bindParam(':id_result', $cod_origen, PDO::PARAM_INT);
                 $stmt->bindParam(':id_tipo', $nulo, PDO::PARAM_STR);
                 $stmt->bindParam(':nomb_1', $usuario[0], PDO::PARAM_STR);
                 $stmt->bindParam(':nomb_2', $usuario[1], PDO::PARAM_STR);

@@ -34,11 +34,12 @@
   		<!--nav class="navbar navbar-expand-md navbar-light" style="background-color: #DA291C;"-->
   		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
   			<div class="container-fluid">		
-  				<a class="navbar-brand" href="#"></a>
+  				<a class="navbar-brand" href="<?php echo $url."/index.php"?>">
   				<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
   				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  					</a>
   					<span class="navbar-toggler-icon"></span>
-  				</button>
+  				</button>  				
   				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   					<div class="navbar-nav">
   						<a class="nav-item nav-link active" href="<?php echo $url."/index.php"?>">Inicio</a>

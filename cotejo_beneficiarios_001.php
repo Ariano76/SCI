@@ -1,7 +1,6 @@
 <?php 
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-
 //require_once './administrador/config/bd.php';
 require_once './administrador/config/bdPDO.php';
 
@@ -10,11 +9,12 @@ $db_1 = new TransactionSCI();
 require_once ('./vendor/autoload.php');
 
 if (isset($_POST["import"])) {
+  $user = $_POST['txtUsuario'];
   $type = "OK";
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
   //echo "<script>console.log('Console: " . $timestamp1 . "' );</script>"; 
-  $db_1->cotejo($timestamp1,$nombreUsuario);
+  $db_1->cotejo($timestamp1,$user);
 
   $usuarios = $db_1->resultado_cotejo($timestamp1);
 
@@ -55,7 +55,7 @@ if (isset($_POST["import"])) {
   //$db_1->delete_resultado_cotejo($timestamp1);
 
   $writer = new Xlsx($spreadsheet);
-  $fileName = "Resultado_Cotejar_Usuarios_en_Data_Historica_" . $timestamp1 . ".xlsx";
+  $fileName = "Resultado_Cotejar_Usuarios_Data_Historica_" . $timestamp1 . ".xlsx";
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
   header('Cache-Control: max-age=0');

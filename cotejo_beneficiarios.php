@@ -16,6 +16,9 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
+
+
+
   $var=true;
 
   if (!empty($var)) {        
@@ -25,8 +28,8 @@ if (isset($_POST["import"])) {
     $type = "error";
     $message = "Problemas al importar los datos de Excel. Intente de nuevo";
   }
-
 }
+
 
 ?>
 
@@ -46,6 +49,7 @@ if (isset($_POST["import"])) {
           <br>          
         </div>
         <br>
+        <input type="hidden" name="txtUsuario" value="<?php echo $nombreUsuario;?>" />
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Cotejar Beneficiarios</button>
         </div>
