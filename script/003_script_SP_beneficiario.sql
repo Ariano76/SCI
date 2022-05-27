@@ -402,7 +402,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_01`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_01`(In region VARCHAR(250))
+CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_01`(In region VARCHAR(250), In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarios ;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
@@ -412,7 +412,7 @@ drop table if exists total_beneficiarios ;
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
 		END AS rango_edad
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
-		where e.esta_de_acuerdo = 1
+		where e.esta_de_acuerdo = 1 and b.transit_settle = situacion
 	);
     SELECT  genero,  
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',

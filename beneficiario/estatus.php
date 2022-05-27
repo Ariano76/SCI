@@ -84,6 +84,14 @@ include("../administrador/config/connection.php");
           nomEst = 'VALIDO'
         } else if (codEstatus==2){
           nomEst = 'INVALIDO'
+        } else if (codEstatus==4){
+          nomEst = 'REGISTRO VALIDO POSIBLE FRAUDE'
+        } else if (codEstatus==5){
+          nomEst = 'REGISTRO EN ESPERA POSIBLE FRAUDE'
+        } else if (codEstatus==6){
+          nomEst = 'FRAUDE'
+        } else if (codEstatus==7){
+          nomEst = 'ABANDONO'
         } else{
           nomEst = 'EN ESPERA'
         }
@@ -126,6 +134,14 @@ include("../administrador/config/connection.php");
             $('#exampleModal').find(':radio[name=estatus][value="1"]').prop('checked', true);
           } else if (json.id_estado == "INVALIDO") {
             $('#exampleModal').find(':radio[name=estatus][value="2"]').prop('checked', true);
+          } else if (json.id_estado == "REGISTRO VALIDO POSIBLE FRAUDE") {
+            $('#exampleModal').find(':radio[name=estatus][value="4"]').prop('checked', true);
+          } else if (json.id_estado == "REGISTRO EN ESPERA POSIBLE FRAUDE") {
+            $('#exampleModal').find(':radio[name=estatus][value="5"]').prop('checked', true);
+          } else if (json.id_estado == "FRAUDE") {
+            $('#exampleModal').find(':radio[name=estatus][value="6"]').prop('checked', true);
+          } else if (json.id_estado == "ABANDONO") {
+            $('#exampleModal').find(':radio[name=estatus][value="7"]').prop('checked', true);
           } else {
             $('#exampleModal').find(':radio[name=estatus][value="3"]').prop('checked', true);
           }
@@ -187,7 +203,23 @@ include("../administrador/config/connection.php");
                 </div>
                 <div class="custom-control custom-radio">
                   <input type="radio" id="id_estadoField3" name="estatus" class="custom-control-input" value="3">
-                  <label class="custom-control-label" for="customRadio2">REGISTRO EN ESPERA</label>
+                  <label class="custom-control-label" for="customRadio3">REGISTRO EN ESPERA</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField4" name="estatus" class="custom-control-input" value="4">
+                  <label class="custom-control-label" for="customRadio4">REGISTRO VALIDO POSIBLE FRAUDE</label>
+                </div>                                
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField5" name="estatus" class="custom-control-input" value="5">
+                  <label class="custom-control-label" for="customRadio5">REGISTRO EN ESPERA POSIBLE FRAUDE</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField6" name="estatus" class="custom-control-input" value="6">
+                  <label class="custom-control-label" for="customRadio6">FRAUDE</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="id_estadoField7" name="estatus" class="custom-control-input" value="7">
+                  <label class="custom-control-label" for="customRadio7">ABANDONO</label>
                 </div>                
               </div>
             </div>

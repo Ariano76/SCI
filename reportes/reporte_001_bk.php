@@ -32,7 +32,7 @@ $db_1 = new TransactionSCI();
           </select>                
         </div>
         <div class="col-md-3">
-          <select name="selectsit" id="situacion" class="form-control-lg">
+          <select name="selecttam" id="situacion" class="form-control-lg">
             <option value="" disabled selected>Seleccione situación</option>
               <option value="Transito">Tránsito</option>
               <option value="Estadia">Estadía</option>
@@ -74,13 +74,11 @@ $db_1 = new TransactionSCI();
 
   function CargarDatosGraficoBarParametro(storedprocedure){
     var region = $("#departamento").val();
-    var situacion = $("#situacion").val();
     $.ajax({
       url:'controlador_grafico_parametro.php',
       type:'POST',
       data:{
         dato_region:region,
-        dato_situacion:situacion,
         dato_sp:storedprocedure
       }
     }).done(function(resp){
