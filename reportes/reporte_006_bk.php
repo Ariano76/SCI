@@ -16,14 +16,14 @@ $db_1 = new TransactionSCI();
 <div class="col-md-12">
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Reportes de Control - Número de hogares con miembros que presentan alguna discapacidad por rango de edad y regiones
+      Reportes de Control - Número de hogares con miembros que tienen un ingreso por trabajos realizado por regiones
     </div>
     <div class="card-body">
       <!--form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data"-->
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <select name="selecttam" id="departamento" class="form-control-lg">
-            <option value="" disabled selected>Seleccione región</option>
+            <option value="" disabled selected>Seleccione una región</option>
             <?php 
             $datos = $db_1->traer_regiones();
             foreach($datos as $value) { ?>
@@ -31,18 +31,11 @@ $db_1 = new TransactionSCI();
             <?php } ?>
           </select>                
         </div>
-        <div class="col-md-3">
-          <select name="selectsit" id="situacion" class="form-control-lg">
-            <option value="" disabled selected>Seleccione situación</option>
-            <option value="Transito">Tránsito</option>
-            <option value="Estadia">Estadía</option>
-          </select>                
-        </div>                        
         <div class="col-md-3" aria-label="Basic example">
-          <button class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_03_discapacidad_x_region')">Graficar datos</button>
+          <button class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_06_obtienen_ingresos')">Graficar</button>
         </div>
         <div class="col-md-3" aria-label="Basic example">
-          <button class="btn btn-success btn-lg" onclick="CargarDatosTabla('SP_reporte_03_discapacidad_x_region_00')">Datos en Tabla</button>
+          <button class="btn btn-success btn-lg" onclick="CargarDatosTabla('SP_reporte_06_obtienen_ingresos_00')">Datos en Tabla</button>
         </div>        
       </div>
       <br>
@@ -54,15 +47,9 @@ $db_1 = new TransactionSCI();
         <div class="col-md-3">&nbsp;</div>
       </div>
       <div class="row">
-        <div class="col-md-2">&nbsp;</div>
-        <div class="col-md-8" id="myDataTable">
-        <div class="col-md-2">&nbsp;</div>
-        </div>        
-      </div>            
-      <div class="row">
-        <div class="col-md-2">&nbsp;</div>
-        <div class="col-md-8" id="myTableData">
-        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-3">&nbsp;</div>
+        <div class="col-md-6" id="myDataTable">
+        <div class="col-md-3">&nbsp;</div>
         </div>        
       </div>            
       <!--/form-->
@@ -77,56 +64,44 @@ $db_1 = new TransactionSCI();
 
   let myChart;
   let numSpan = 0;
-  let numSpan1 = 0;
-  let numSpan2 = 0;    
   
   function CargarDatosGraficoBarParametro(storedprocedure){
     var region = $("#departamento").val();
-    var situacion = $("#situacion").val();    
     $.ajax({
       url:'controlador_grafico_parametro.php',
       type:'POST',
       data:{
         dato_region:region,
-        dato_situacion:situacion,
         dato_sp:storedprocedure
       }
     }).done(function(resp){
       var titulo = [];
       var cantidad_1 = [];
-      var cantidad_2 = [];
-      var cantidad_3 = [];
-      var cantidad_4 = [];
       var colores = [];
       var data = JSON.parse(resp);
       for (var i = 0; i < data.length; i++) {
-        titulo.push(data[i]['algun_miembro_tiene_discapacidad']);
-        cantidad_1.push(data[i]['18-24']);
-        cantidad_2.push(data[i]['25-49']);
-        cantidad_3.push(data[i]['50+']);
-        cantidad_4.push(data[i]['<18']);
+        titulo.push(data[i]['cuantos_tienen_ingreso_por_trabajo']);
+        cantidad_1.push(data[i]['total']);
         colores.push(colorRGB());
       }
-      document.getElementById("myDataTable").style.display = 'none';
-      document.getElementById("myTableData").style.display = 'none';
-      pintarGrafico('bar',titulo,cantidad_1,cantidad_2,cantidad_3,cantidad_4,colores,'x','# de beneficiarios por regiones','myCharBarParam')
+      pintarGrafico('bar',titulo,cantidad_1,colores,'x','# de beneficiarios por regiones','myCharBarParam')
     })
   }
 
   function CargarDatosTabla(storedprocedure){    
-    var situacion = $("#situacion").val();      
     //var region = $("#departamento").val();
     $.ajax({
       url:'controlador_grafico_sin_parametro.php',
       type:'POST',
       data:{
-        dato_situacion:situacion,
+        //dato_region:region,
         dato_sp:storedprocedure
       }
     }).done(function(resp){
+      
       var col = [];
       var data = JSON.parse(resp);
-      //var tableBody = document.getElementById("myDataTable");
+      var tableBody = document.getElementById("myDataTable");
       for (var i = 0; i < data.length; i++) {
         for (var key in data[i]) {
           if (col.indexOf(key) === -1) {
@@ -135,12 +110,12 @@ $db_1 = new TransactionSCI();
         }
       }
        // CREATE DYNAMIC TABLE.
-       var table = document.createElement("table");
-       table.className = 'table table-striped table-bordered table-condensed';
+      var table = document.createElement("table");
+      table.className = 'table table-striped table-bordered table-condensed';
 
       // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
       var tr = table.insertRow(-1);                   // TABLE ROW.
-      for (var i = 0; i < col.length; i++) {
+        for (var i = 0; i < col.length; i++) {
             var th = document.createElement("th");      // TABLE HEADER.
             th.innerHTML = col[i];
             tr.appendChild(th);
@@ -148,46 +123,27 @@ $db_1 = new TransactionSCI();
 
         // ADD JSON DATA TO THE TABLE AS ROWS.
         for (var i = 0; i < data.length; i++) {
-          tr = table.insertRow(-1);
-          for (var j = 0; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
-            tabCell.innerHTML = data[i][col[j]];
-          }
+            tr = table.insertRow(-1);
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = data[i][col[j]];
+            }
         }
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        //var divContainer = document.getElementById("myDataTable");
-        if (typeof situacion !== 'undefined') {
-          if (situacion=="Transito") {
-            var divContainer = document.getElementById("myTableData");
-            if( numSpan1 == 0 ){
-              divContainer.append(table);
-              numSpan1 += 1;
-            }
-            document.getElementById("myTableData").style.display = 'block';
-            document.getElementById("myDataTable").style.display = 'none';
-          } else if (situacion=="Estadia"){
-            var divContainer = document.getElementById("myDataTable");
-            if( numSpan2 == 0 ){
-              divContainer.append(table);
-              numSpan2 += 1;
-            }
-            document.getElementById("myDataTable").style.display = 'block';
-            document.getElementById("myTableData").style.display = 'none';
-          }
-        }               
+        var divContainer = document.getElementById("myDataTable");
         //ctx = divContainer.getContext('2d');
 
         //divContainer.innerHTML = "";
         //divContainer.appendChild(table);
-        /*if( numSpan == 0 ){
+        if( numSpan == 0 ){
           divContainer.append(table);
           numSpan += 1;
-        }*/
-        //console.log(numSpan)
-      })
-  }
-  
-  function pintarGrafico(tipo,titulo,c1,c2,c3,c4,colores,tipoAxis,encabezado,id){
+        }
+        console.log(numSpan)
+    })
+  }  
+
+  function pintarGrafico(tipo,titulo,c1,colores,tipoAxis,encabezado,id){
     const ctx = document.getElementById(id);
     /* El bloque if solo se utilizara si queremos pintar varios graficos en la misma pagina. antes de dibujar un nuevo grafico, se valida si existe previamente, si es asi se elimina y se dibija el nuevo grafico.*/
 
@@ -201,39 +157,12 @@ $db_1 = new TransactionSCI();
         datasets: [
         {
           axis: tipoAxis,
-          label: '18-24',
+          label: 'Total',
           data: c1,
           backgroundColor: ['rgba(54, 162, 235, 0.2)'],
           borderColor: ['rgba(54, 162, 235, 1)'],
           borderWidth: 1,
           stack: 'Stack 0',
-        },
-        {
-          axis: tipoAxis,
-          label: '25-49',
-          data: c2,
-          backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-          borderColor: ['rgba(255, 99, 132, 1)'],
-          borderWidth: 1,
-          stack: 'Stack 1',
-        },
-        {
-          axis: tipoAxis,
-          label: '50+',
-          data: c3,
-          backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-          borderColor: ['rgba(75, 192, 192, 1)'],
-          borderWidth: 1,
-          stack: 'Stack 2'
-        },
-        {
-          axis: tipoAxis,
-          label: '<18',
-          data: c4,
-          backgroundColor: ['rgba(255, 205, 86, 0.2)'],
-          borderColor: ['rgba(255, 205, 86, 1)'],
-          borderWidth: 1,
-          stack: 'Stack 3'
         }
         ]
       },
@@ -242,7 +171,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Número de Familias con Embarazadas por Rango de Edad'
+            text: 'Número de Familias con miembros que obtienen ingresos económicos'
           },
         },
 

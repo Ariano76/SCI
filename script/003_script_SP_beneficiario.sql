@@ -423,7 +423,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_01_beneficiario_x_region_00`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_00`()
+CREATE PROCEDURE `SP_reporte_01_beneficiario_x_region_00`(In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarios ;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarios AS 
@@ -433,7 +433,7 @@ drop table if exists total_beneficiarios ;
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4
 		END AS rango_edad
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
-		where e.esta_de_acuerdo = 1
+		where e.esta_de_acuerdo = 1 and b.transit_settle=situacion
 	);
     SELECT  region_beneficiario as region,genero,  
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
@@ -444,7 +444,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region`(In region VARCHAR(250))
+CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region`(In region VARCHAR(250), In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarias_embarazada ;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_embarazada AS 
@@ -455,7 +455,7 @@ drop table if exists total_beneficiarias_embarazada ;
 		END AS rango_edad
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join nutricion n on b.id_beneficiario = n.id_beneficiario
-		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1
+		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1 and b.transit_settle=situacion
 	);
     SELECT 'Total',  
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
@@ -466,7 +466,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_02_embarazadas_x_region_00`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region_00`()
+CREATE PROCEDURE `SP_reporte_02_embarazadas_x_region_00`(In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarias_embarazada ;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_embarazada AS 
@@ -477,7 +477,7 @@ drop table if exists total_beneficiarias_embarazada ;
 		END AS rango_edad
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join nutricion n on b.id_beneficiario = n.id_beneficiario
-		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1
+		where e.esta_de_acuerdo = 1 and n.alguien_de_su_hogar_esta_embarazada=1 and b.transit_settle=situacion
 	);
     SELECT region_beneficiario as region, 
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
@@ -488,7 +488,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region`(In region VARCHAR(250))
+CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region`(In region VARCHAR(250), In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarias_discapacidad;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_discapacidad AS 
@@ -498,7 +498,7 @@ drop table if exists total_beneficiarias_discapacidad;
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4 END AS rango_edad
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join salud s on b.id_beneficiario = s.id_beneficiario 
-        where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno'
+        where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno' and b.transit_settle=situacion
 	);
     SELECT algun_miembro_tiene_discapacidad,  
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
@@ -509,7 +509,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_03_discapacidad_x_region_00`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region_00`()
+CREATE PROCEDURE `SP_reporte_03_discapacidad_x_region_00`(In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_beneficiarias_discapacidad;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_beneficiarias_discapacidad AS 
@@ -519,7 +519,7 @@ drop table if exists total_beneficiarias_discapacidad;
 		WHEN F_AGE(b.fecha_nacimiento) > 49 THEN 3 ELSE 4 END AS rango_edad
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join salud s on b.id_beneficiario = s.id_beneficiario 
-        where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno'
+        where e.esta_de_acuerdo = 1 and s.algun_miembro_tiene_discapacidad <> 'Ninguno' and b.transit_settle=situacion
 	);
     SELECT region_beneficiario as region, algun_miembro_tiene_discapacidad as problema,  
     COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24', COUNT(IF(rango_edad = 2, 1, NULL)) AS '25-49',
@@ -554,51 +554,53 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos`(In region VARCHAR(250))
+CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos`(In region VARCHAR(250), In situacion VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo,  
     COUNT(c.cuantos_tienen_ingreso_por_trabajo) AS 'total'
     FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 and b.region_beneficiario = region
+	where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 and b.region_beneficiario = region and b.transit_settle=situacion
 	group by b.region_beneficiario, c.cuantos_tienen_ingreso_por_trabajo;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_06_obtienen_ingresos_00`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos_00`()
+CREATE PROCEDURE `SP_reporte_06_obtienen_ingresos_00`(In situacion VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario as region,  
     COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 2, 1, NULL)) AS '02',
     COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_tienen_ingreso_por_trabajo > 0, 1, NULL)) AS 'Total'
     FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
-    where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 group by b.region_beneficiario order by b.region_beneficiario;
+    where e.esta_de_acuerdo = 1 and c.cuantos_tienen_ingreso_por_trabajo > 0 and b.transit_settle=situacion 
+    group by b.region_beneficiario order by b.region_beneficiario ;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_07_miembros_en_familia`(In region VARCHAR(250))
+CREATE PROCEDURE `SP_reporte_07_miembros_en_familia`(In region VARCHAR(250), In situacion VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted,  
     COUNT(c.cuantos_viven_o_viajan_con_usted) AS 'total'
     FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
 	inner join comunicacion c on b.id_beneficiario = c.id_beneficiario 
-	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region
+	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region and b.transit_settle=situacion
 	group by b.region_beneficiario, c.cuantos_viven_o_viajan_con_usted;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_07_miembros_en_familia_00`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_07_miembros_en_familia_00`()
+CREATE PROCEDURE `SP_reporte_07_miembros_en_familia_00`(In situacion VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario as region,  
     COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 2, 1, NULL)) AS '02',
     COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 0, 1, NULL)) AS 'Total'
     FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
-    where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 group by b.region_beneficiario order by b.region_beneficiario;
+    where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 and b.transit_settle=situacion
+    group by b.region_beneficiario order by b.region_beneficiario;
 END |
 DELIMITER ;
 

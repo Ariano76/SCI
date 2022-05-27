@@ -628,11 +628,11 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function traer_datos_reporte_sin_parametro($SP) {
+    public function traer_datos_reporte_sin_parametro($SP, $situacion) {
         try {               
             // calling stored procedure command
             //$arreglo = array();
-            $sql = "CALL " .$SP. "()";
+            $sql = "CALL " .$SP. "('".$situacion."')";
             //$sql = "call SP_reporte_01_beneficiario_x_region_01('".$region."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);
