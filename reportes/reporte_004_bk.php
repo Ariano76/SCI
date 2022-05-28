@@ -20,21 +20,6 @@ $db_1 = new TransactionSCI();
     </div>
     <div class="card-body">
       <br>
-      <div class="row">        
-        <div class="col-md-6">
-          <select name="selectsit" id="situacion" class="form-control-lg">
-            <option value="" disabled selected>Seleccione situación</option>
-            <option value="Transito">Tránsito</option>
-            <option value="Estadia">Estadía</option>
-          </select>                
-        </div>                        
-        <div class="col-md-3" aria-label="Basic example">
-          <button class="btn btn-success btn-lg" onclick="CargarDatosGraficoBarParametro('SP_reporte_04_matriculados')">Graficar datos</button>
-        </div>
-        <div class="col-md-3" aria-label="Basic example">
-          <button class="btn btn-success btn-lg" onclick="CargarDatosTabla('SP_reporte_04_matriculados')">Datos en Tabla</button>
-        </div>        
-      </div>      
       <div class="row">
         <div class="col-md-3">&nbsp;</div>
         <div class="col-md-6">
@@ -43,16 +28,13 @@ $db_1 = new TransactionSCI();
         <div class="col-md-3">&nbsp;</div>
       </div>
       <div class="row">
+        <div class="col-md-12">&nbsp;</div>
+      </div>
+      <div class="row">
         <div class="col-md-3">&nbsp;</div>
         <div class="col-md-6" id="myDataTable"></div>
         <div class="col-md-3">&nbsp;</div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">&nbsp;</div>
-        <div class="col-md-8" id="myTableData">
-          <div class="col-md-2">&nbsp;</div>
-        </div>        
-      </div>          
+      </div>                  
       <!--/form-->
     </div>
     <br>
@@ -60,21 +42,27 @@ $db_1 = new TransactionSCI();
 
 </div>
 </div>
+<div class="col-md-12">
+  <div class=card-text>
+    <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
+  </div>
+</div>
+</div>
 
 <script>
 
   let myChart;
   let numSpan = 0;
-  let numSpan1 = 0;
-  let numSpan2 = 0;      
+  
+  CargarDatosGraficoBarParametro('SP_reporte_04_matriculados')
+  CargarDatosTabla('SP_reporte_04_matriculados')
+
 
   function CargarDatosGraficoBarParametro(storedprocedure){    
-    var situacion = $("#situacion").val();
     $.ajax({
       url:'controlador_grafico_sin_parametro.php',
       type:'POST',
       data:{
-        dato_situacion:situacion,
         dato_sp:storedprocedure
       }
     }).done(function(resp){
@@ -87,26 +75,24 @@ $db_1 = new TransactionSCI();
         cantidad_1.push(data[i]['total']);
         colores.push(colorRGB());
       }
-      document.getElementById("myDataTable").style.display = 'none';
-      document.getElementById("myTableData").style.display = 'none';
       pintarGrafico('bar',titulo,cantidad_1,colores,'x','# de beneficiarios por regiones','myCharBarParam')
     })
   }
 
   function CargarDatosTabla(storedprocedure){    
-    var situacion = $("#situacion").val();
     //var region = $("#departamento").val();
     $.ajax({
       url:'controlador_grafico_sin_parametro.php',
       type:'POST',
       data:{
-        dato_situacion:situacion,
+        //dato_region:region,
         dato_sp:storedprocedure
       }
     }).done(function(resp){
+
       var col = [];
       var data = JSON.parse(resp);
-      //var tableBody = document.getElementById("myDataTable");
+      var tableBody = document.getElementById("myDataTable");
       for (var i = 0; i < data.length; i++) {
         for (var key in data[i]) {
           if (col.indexOf(key) === -1) {
@@ -125,7 +111,6 @@ $db_1 = new TransactionSCI();
             th.innerHTML = col[i];
             tr.appendChild(th);
           }
-
         // ADD JSON DATA TO THE TABLE AS ROWS.
         for (var i = 0; i < data.length; i++) {
           tr = table.insertRow(-1);
@@ -135,35 +120,16 @@ $db_1 = new TransactionSCI();
           }
         }
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        //var divContainer = document.getElementById("myDataTable");
-        if (typeof situacion !== 'undefined') {
-          if (situacion=="Transito") {
-            var divContainer = document.getElementById("myTableData");
-            if( numSpan1 == 0 ){
-              divContainer.append(table);
-              numSpan1 += 1;
-            }
-            document.getElementById("myTableData").style.display = 'block';
-            document.getElementById("myDataTable").style.display = 'none';
-          } else if (situacion=="Estadia"){
-            var divContainer = document.getElementById("myDataTable");
-            if( numSpan2 == 0 ){
-              divContainer.append(table);
-              numSpan2 += 1;
-            }
-            document.getElementById("myDataTable").style.display = 'block';
-            document.getElementById("myTableData").style.display = 'none';
-          }
-        }        
+        var divContainer = document.getElementById("myDataTable");
         //ctx = divContainer.getContext('2d');
 
         //divContainer.innerHTML = "";
         //divContainer.appendChild(table);
-        /*if( numSpan == 0 ){
+        if( numSpan == 0 ){
           divContainer.append(table);
           numSpan += 1;
-        }*/
-        //console.log(numSpan)
+        }
+        console.log(numSpan)
       })
   }
 

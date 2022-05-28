@@ -530,12 +530,12 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_04_matriculados`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_04_matriculados`()
+CREATE PROCEDURE `SP_reporte_04_matriculados`(In situacion VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario as region, sum(ed.todos_los_nna_estan_matriculados) as total
 		FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario
         inner join educacion ed on b.id_beneficiario = ed.id_beneficiario 
-        where e.esta_de_acuerdo = 1 and ed.todos_los_nna_estan_matriculados = 1
+        where e.esta_de_acuerdo = 1 and ed.todos_los_nna_estan_matriculados = 1 and transit_settle=situacion
         group by b.region_beneficiario;
 END |
 DELIMITER ;
