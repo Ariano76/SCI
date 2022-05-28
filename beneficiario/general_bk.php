@@ -14,8 +14,7 @@ include("../administrador/config/connection.php");
       <h1 class="display-8">DATOS PRINCIPALES DEL BENEFICIARIO </h1> 
 
       <div class="col-lg-12">
-        <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%"-->
-        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed small" style="width:100%">
+        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
           <thead class="text-center">
             <tr>
               <th>Codigo</th>
@@ -30,8 +29,6 @@ include("../administrador/config/connection.php");
               <th>Cuál&nbsp;es&nbsp;su&nbsp;número&nbsp;de&nbsp;whatsapp</th>
               <th>Cuál&nbsp;es&nbsp;su&nbsp;número&nbsp;de&nbsp;celular</th>
               <th>Fecha&nbsp;de&nbsp;nacimiento</th>
-              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;Observaciones&nbsp;Beneficiario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estatus&nbsp;Beneficiario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>  
               <th>Acción</th>
             </tr>
           </thead>
@@ -56,7 +53,7 @@ include("../administrador/config/connection.php");
             },
             "aoColumnDefs": [{
               "bSortable": false,
-              "aTargets": [14]
+              "aTargets": [12]
             },
             ]
           });
@@ -75,10 +72,6 @@ include("../administrador/config/connection.php");
       var cual_es_su_numero_whatsapp = $('#cual_es_su_numero_whatsappField').val();      
       var cual_es_su_numero_recibir_sms = $('#cual_es_su_numero_recibir_smsField').val();
       var fecha_nacimiento = $('#fecha_nacimientoField').val();
-      var observaciones = $('#observacionesField').val();
-      var id_estado = $('#id_estadoField').val();
-
-      var codEstatus = $("input[name=estatus]:checked").val();
 
       var trid = $('#trid').val();
       var id = $('#id').val();           
@@ -103,8 +96,6 @@ include("../administrador/config/connection.php");
             cual_es_su_numero_whatsapp: cual_es_su_numero_whatsapp,
             cual_es_su_numero_recibir_sms: cual_es_su_numero_recibir_sms,
             fecha_nacimiento: fecha_nacimiento,
-            observaciones: observaciones,
-            id_estado: codEstatus,
             id: id
           },
           success: function(data) {
@@ -114,24 +105,7 @@ include("../administrador/config/connection.php");
               table = $('#tablaUsuarios').DataTable();
               var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
               var row = table.row("[id='" + trid + "']");
-              var nomEst;
-              if (codEstatus==1) {
-                nomEst = 'VALIDO'
-              } else if (codEstatus==2){
-                nomEst = 'INVALIDO'
-              } else if (codEstatus==4){
-                nomEst = 'REGISTRO VALIDO POSIBLE FRAUDE'
-              } else if (codEstatus==5){
-                nomEst = 'REGISTRO EN ESPERA POSIBLE FRAUDE'
-              } else if (codEstatus==6){
-                nomEst = 'FRAUDE'
-              } else if (codEstatus==7){
-                nomEst = 'ABANDONO'
-              } else{
-                nomEst = 'EN ESPERA'
-              }
-
-              row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, observaciones, nomEst, button]);
+              row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, button]);
               $('#exampleModal').modal('hide');
             } else {
               alert('failed');
@@ -142,9 +116,9 @@ include("../administrador/config/connection.php");
         alert('Fill all the required fields');
       }*/
     });
-$('#tablaUsuarios').on('click', '.editbtn ', function(event) {
-  var table = $('#tablaUsuarios').DataTable();
-  var trid = $(this).closest('tr').attr('id');
+    $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
+    var table = $('#tablaUsuarios').DataTable();
+    var trid = $(this).closest('tr').attr('id');
       // console.log(selectedRow);
       var id = $(this).data('id');
       $('#exampleModal').modal('show');
@@ -168,27 +142,10 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
           $('#cual_es_su_numero_whatsappField').val(json.cual_es_su_numero_whatsapp);
           $('#cual_es_su_numero_recibir_smsField').val(json.cual_es_su_numero_recibir_sms);
           $('#fecha_nacimientoField').val(json.fecha_nacimiento);
-          $('#observacionesField').val(json.observaciones);
-          $('#id_estadoField').val(json.id_estado);
           
           $('#id').val(id);
           $('#trid').val(trid);
 
-          if (json.id_estado == "VALIDO") {
-            $('#exampleModal').find(':radio[name=estatus][value="1"]').prop('checked', true);
-          } else if (json.id_estado == "INVALIDO") {
-            $('#exampleModal').find(':radio[name=estatus][value="2"]').prop('checked', true);
-          } else if (json.id_estado == "REGISTRO VALIDO POSIBLE FRAUDE") {
-            $('#exampleModal').find(':radio[name=estatus][value="4"]').prop('checked', true);
-          } else if (json.id_estado == "REGISTRO EN ESPERA POSIBLE FRAUDE") {
-            $('#exampleModal').find(':radio[name=estatus][value="5"]').prop('checked', true);
-          } else if (json.id_estado == "FRAUDE") {
-            $('#exampleModal').find(':radio[name=estatus][value="6"]').prop('checked', true);
-          } else if (json.id_estado == "ABANDONO") {
-            $('#exampleModal').find(':radio[name=estatus][value="7"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=estatus][value="3"]').prop('checked', true);
-          }
           //console.log("cual_es_su_numero_whatsapp :" + json.cual_es_su_numero_whatsapp);
           //console.log("cual_es_su_numero_recibir_sms :" + json.cual_es_su_numero_recibir_sms);
         }        
@@ -200,7 +157,7 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
   <!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"-->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <!--div class="modal-dialog modal-lg" role="document"-->
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR DATOS GENERALES BENEFICIARIO</h5>
@@ -275,48 +232,10 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
             <div class="mb-3 row">
               <label for="fecha_nacimientoField" class="col-md-4 form-label">Fecha nacimiento</label>
               <div class="col-md-8">
+                <!--input type="text" class="form-control" id="fecha_nacimientoField" name="fecha"-->
                 <input id="fecha_nacimientoField" type="date" name="fecha" value="2017-06-01">
               </div>
             </div>
-            <div class="mb-3 row">
-              <label for="observacionesField" class="col-md-4 form-label">Observaciones</label>
-              <div class="col-md-8">
-                <textarea name="text" id="observacionesField" rows="3" cols="65" maxlength="250"></textarea>
-              </div>
-            </div>    
-            <div class="mb-3 row">
-              <label for="id_estadoField" class="col-md-3 form-label">Estatus</label>
-              <div class="col-md-9">
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField1" name="estatus" class="custom-control-input" value="1">
-                  <label class="custom-control-label" for="customRadio1">REGISTRO VALIDO</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField2" name="estatus" class="custom-control-input" value="2">
-                  <label class="custom-control-label" for="customRadio2">REGISTRO INVALIDO</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField3" name="estatus" class="custom-control-input" value="3">
-                  <label class="custom-control-label" for="customRadio3">REGISTRO EN ESPERA</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField4" name="estatus" class="custom-control-input" value="4">
-                  <label class="custom-control-label" for="customRadio4">REGISTRO VALIDO POSIBLE FRAUDE</label>
-                </div>                                
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField5" name="estatus" class="custom-control-input" value="5">
-                  <label class="custom-control-label" for="customRadio5">REGISTRO EN ESPERA POSIBLE FRAUDE</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField6" name="estatus" class="custom-control-input" value="6">
-                  <label class="custom-control-label" for="customRadio6">FRAUDE</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField7" name="estatus" class="custom-control-input" value="7">
-                  <label class="custom-control-label" for="customRadio7">ABANDONO</label>
-                </div>                
-              </div>
-            </div>            
 
             <div class="text-center">
               <button type="submit" class="btn btn-primary">Actualizar</button>

@@ -216,8 +216,10 @@ CREATE VIEW `vista_acciones` AS
 
 drop view IF EXISTS vista_general;
 CREATE VIEW `vista_general` AS
-	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.numero_cedula, b.tipo_identificacion, b.numero_identificacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, b.fecha_nacimiento
-    FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario; 
+	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.numero_cedula, b.tipo_identificacion, b.numero_identificacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, b.fecha_nacimiento, e.observaciones, 
+    CONCAT(UCASE(LEFT(es.estado, 1)), LCASE(SUBSTRING(es.estado, 2))) as id_estado
+    FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    inner join estatus e on b.id_beneficiario = e.id_beneficiario inner join estados es on e.id_estado = es.id_estado;  
 
 drop view IF EXISTS vista_integrante;
 CREATE VIEW `vista_integrante` AS

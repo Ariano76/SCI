@@ -19,8 +19,6 @@ $columns = array(
 	9 => 'cual_es_su_numero_whatsapp',
 	10 => 'cual_es_su_numero_recibir_sms',
 	11 => 'fecha_nacimiento',
-	12 => 'observaciones',
-	13 => 'id_estado',
 );
 
 if(isset($_POST['search']['value']))
@@ -33,8 +31,6 @@ if(isset($_POST['search']['value']))
 	$sql .= " OR cual_es_su_numero_whatsapp like '%".$search_value."%'";
 	$sql .= " OR cual_es_su_numero_recibir_sms like '%".$search_value."%'";
 	$sql .= " OR fecha_nacimiento like '%".$search_value."%'";
-	$sql .= " OR observaciones like '%".$search_value."%'";
-	$sql .= " OR id_estado like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -73,9 +69,6 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['cual_es_su_numero_whatsapp'];
 	$sub_array[] = $row['cual_es_su_numero_recibir_sms'];
 	$sub_array[] = $row['fecha_nacimiento'];	
-	$sub_array[] = $row['observaciones'];
-	$sub_array[] = $row['id_estado'];
-	
 	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;
 }
