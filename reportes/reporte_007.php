@@ -56,13 +56,13 @@ $db_1 = new TransactionSCI();
       <div class="row">
         <div class="col-md-2">&nbsp;</div>
         <div class="col-md-8" id="myDataTable">
-          <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-2">&nbsp;</div>
         </div>        
       </div>
       <div class="row">
         <div class="col-md-2">&nbsp;</div>
         <div class="col-md-8" id="myTableData">
-          <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-2">&nbsp;</div>
         </div>        
       </div>      
       <!--/form-->

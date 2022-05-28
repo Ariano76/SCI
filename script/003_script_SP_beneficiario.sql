@@ -596,9 +596,14 @@ DELIMITER |
 CREATE PROCEDURE `SP_reporte_07_miembros_en_familia_00`(In situacion VARCHAR(250))
 BEGIN
 SELECT b.region_beneficiario as region,  
-    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 1, 1, NULL)) AS '01', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 2, 1, NULL)) AS '02',
-    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 3, 1, NULL)) AS '03', COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 4, 1, NULL)) AS '04', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 4, 1, NULL)) AS '5 ó más', COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 0, 1, NULL)) AS 'Total'
-    FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 1, 1, NULL)) AS '01', 
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 2, 1, NULL)) AS '02',
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 3, 1, NULL)) AS '03', 
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted = 4, 1, NULL)) AS '04', 
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 4, 1, NULL)) AS '5 ó más', 
+    COUNT(IF(c.cuantos_viven_o_viajan_con_usted > 0, 1, NULL)) AS 'Total'
+    FROM beneficiario b inner join encuesta e on b.id_beneficiario = e.id_beneficiario 
+    inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
     where e.esta_de_acuerdo = 1 and c.cuantos_viven_o_viajan_con_usted > 0 and b.transit_settle=situacion
     group by b.region_beneficiario order by b.region_beneficiario;
 END |
@@ -606,23 +611,20 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_08_cantidad_menores`(In region VARCHAR(250))
+CREATE PROCEDURE `SP_reporte_08_cantidad_menores`(In region VARCHAR(250), In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_menores;
-	CREATE TEMPORARY TABLE IF NOT EXISTS total_menores AS 
-	(select * from vista_cantidad_ninos);
-    SELECT genero, COUNT(IF(meses < 7,  1, NULL)) AS '0-6 meses', 
-    COUNT(IF(meses > 6 and meses < 25, 1, NULL)) AS '7-24 meses',
+	CREATE TEMPORARY TABLE IF NOT EXISTS total_menores AS (select * from vista_cantidad_ninos);
+    SELECT genero, COUNT(IF(meses < 7,  1, NULL)) AS '0-6 meses', COUNT(IF(meses > 6 and meses < 25, 1, NULL)) AS '7-24 meses',
     COUNT(IF(meses > 24 and meses < 49, 1, NULL)) AS '25-48 meses',
-    COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años',
-    COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años'
-    FROM total_menores where region_beneficiario = region group by genero;
+    COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años', COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años'
+    FROM total_menores where region_beneficiario = region and transit_settle=situacion group by genero;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_reporte_08_cantidad_menores_00`;
 DELIMITER |
-CREATE PROCEDURE `SP_reporte_08_cantidad_menores_00`()
+CREATE PROCEDURE `SP_reporte_08_cantidad_menores_00`(In situacion VARCHAR(250))
 BEGIN
 drop table if exists total_menores;
 	CREATE TEMPORARY TABLE IF NOT EXISTS total_menores AS 
@@ -631,7 +633,8 @@ drop table if exists total_menores;
     COUNT(IF(meses > 6 and meses < 25, 1, NULL)) AS '7-24 meses', COUNT(IF(meses > 24 and meses < 49, 1, NULL)) AS '25-48 meses',
     COUNT(IF(meses > 48 and meses < 156, 1, NULL)) AS '5-12 años', COUNT(IF(meses > 155 , 1, NULL)) AS '13-17 años',
     COUNT(IF(meses > 0, 1, NULL)) AS 'total'
-    FROM total_menores group by region_beneficiario, genero order by region_beneficiario, genero;
+    FROM total_menores where transit_settle=situacion
+    group by region_beneficiario, genero order by region_beneficiario, genero;
 END |
 DELIMITER ;
 
