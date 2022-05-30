@@ -116,19 +116,19 @@ include("../administrador/config/connection.php");
               var row = table.row("[id='" + trid + "']");
               var nomEst;
               if (codEstatus==1) {
-                nomEst = 'VALIDO'
+                nomEst = 'Valido'
               } else if (codEstatus==2){
-                nomEst = 'INVALIDO'
+                nomEst = 'Invalido'
               } else if (codEstatus==4){
-                nomEst = 'REGISTRO VALIDO POSIBLE FRAUDE'
+                nomEst = 'Registro valido posible fraude'
               } else if (codEstatus==5){
-                nomEst = 'REGISTRO EN ESPERA POSIBLE FRAUDE'
+                nomEst = 'Registro en espera posible fraude'
               } else if (codEstatus==6){
-                nomEst = 'FRAUDE'
+                nomEst = 'Fraude'
               } else if (codEstatus==7){
-                nomEst = 'ABANDONO'
+                nomEst = 'Abandono'
               } else{
-                nomEst = 'EN ESPERA'
+                nomEst = 'En espera'
               }
 
               row.row("[id='" + trid + "']").data([id, nombre_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, numero_cedula, tipo_identificacion, numero_identificacion, cual_es_su_numero_whatsapp, cual_es_su_numero_recibir_sms,fecha_nacimiento, observaciones, nomEst, button]);
@@ -174,17 +174,17 @@ $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
           $('#id').val(id);
           $('#trid').val(trid);
 
-          if (json.id_estado == "VALIDO") {
+          if (json.id_estado == "Valido") {
             $('#exampleModal').find(':radio[name=estatus][value="1"]').prop('checked', true);
-          } else if (json.id_estado == "INVALIDO") {
+          } else if (json.id_estado == "Invalido") {
             $('#exampleModal').find(':radio[name=estatus][value="2"]').prop('checked', true);
-          } else if (json.id_estado == "REGISTRO VALIDO POSIBLE FRAUDE") {
+          } else if (json.id_estado == "Registro valido posible fraude") {
             $('#exampleModal').find(':radio[name=estatus][value="4"]').prop('checked', true);
-          } else if (json.id_estado == "REGISTRO EN ESPERA POSIBLE FRAUDE") {
+          } else if (json.id_estado == "Registro en espera posible fraude") {
             $('#exampleModal').find(':radio[name=estatus][value="5"]').prop('checked', true);
-          } else if (json.id_estado == "FRAUDE") {
+          } else if (json.id_estado == "Fraude") {
             $('#exampleModal').find(':radio[name=estatus][value="6"]').prop('checked', true);
-          } else if (json.id_estado == "ABANDONO") {
+          } else if (json.id_estado == "Abandono") {
             $('#exampleModal').find(':radio[name=estatus][value="7"]').prop('checked', true);
           } else {
             $('#exampleModal').find(':radio[name=estatus][value="3"]').prop('checked', true);
