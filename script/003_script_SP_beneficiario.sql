@@ -358,6 +358,21 @@ inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficia
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_Select_Finanzas`;
+DELIMITER |
+CREATE PROCEDURE `SP_Select_Finanzas`()
+BEGIN
+	SELECT estados.estado, enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, 'Cedula', b.numero_cedula, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_es_su_direccion, c.cuantos_viven_o_viajan_con_usted, c.tiene_los_siguientes_medios_comunicacion, c.como_accede_a_internet, F_SINO(dersec.interesado_participar_nutricion)
+FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+inner join educacion e on b.id_beneficiario = e.id_beneficiario
+inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
+inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
+inner join estatus est on b.id_beneficiario = est.id_beneficiario 
+inner join estados on estados.id_estado = est.id_estado 
+;
+END |
+DELIMITER ;
+
 /* STORED PROCEDURE PARA LA GENERACION DE REPORTES */
 DROP PROCEDURE IF EXISTS `SP_reporte_regiones`;
 DELIMITER |
