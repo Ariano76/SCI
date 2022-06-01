@@ -362,14 +362,15 @@ DROP PROCEDURE IF EXISTS `SP_Select_Finanzas`;
 DELIMITER |
 CREATE PROCEDURE `SP_Select_Finanzas`()
 BEGIN
-	SELECT estados.estado, enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, 'Cedula', b.numero_cedula, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_es_su_direccion, c.cuantos_viven_o_viajan_con_usted, c.tiene_los_siguientes_medios_comunicacion, c.como_accede_a_internet, F_SINO(dersec.interesado_participar_nutricion)
+	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, 'Cedula', b.numero_cedula, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_es_su_direccion, c.cuantos_viven_o_viajan_con_usted, c.tiene_los_siguientes_medios_comunicacion, c.como_accede_a_internet, F_SINO(dersec.interesado_participar_nutricion), IF((c.laptop=1 or c.smartphone=1) and dersec.interesado_participar_nutricion=1 
+    and (c.como_accede_a_internet="Por wifi  por horas" or c.como_accede_a_internet="Un conocido le provee acceso wifi o plan de datos en celular, por algunas horas/días" or c.como_accede_a_internet="Por datos de celular que recarga de forma interdiaria (prepago)" or c.como_accede_a_internet="Ninguna de las anteriores"),"Si","No") as bono, b.id_beneficiario
 FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
 inner join educacion e on b.id_beneficiario = e.id_beneficiario
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
 inner join estatus est on b.id_beneficiario = est.id_beneficiario 
 inner join estados on estados.id_estado = est.id_estado 
-;
+where estados.id_estado=1;
 END |
 DELIMITER ;
 
@@ -681,6 +682,11 @@ call SP_reporte_00();
 call SP_reporte_000('Lima');
 call SP_reporte_01_beneficiario_x_region_01('Lambayeque');
 
+call SP_Select_Finanzas();
+select distinct(como_accede_a_internet) from comunicacion ;
+select * from comunicacion where id_beneficiario in (1104,2333,3540,4649,4671,4718);
+select * from derivacion_sectores where id_beneficiario in (1104,2333,3540,4649,4671,4718);
+
 /* QUERY PIVOT */
 SELECT  region_beneficiario, genero,
   COUNT(IF(rango_edad = 1, 1, NULL)) AS '18-24',
@@ -716,4 +722,5 @@ INSERT INTO beneficiario(region_beneficiario, otra_region, se_instalara_en_esta_
 
 /* REINICIAR EL AUTO INCREMENTE DE LAS TABLAS */
 ALTER TABLE beneficiario AUTO_INCREMENT = 1;
+
 
