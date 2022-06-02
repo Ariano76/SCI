@@ -492,9 +492,9 @@ dato_144   TEXT NULL,
 dato_145   TEXT NULL
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;  
 /* AL UTILIZAR UTF8 Y UTO8_BIN PODEMOS DISTINGUIR ENTRE TILDES Y NO TILDES */
-
 ALTER TABLE stage_00 ADD PRIMARY KEY (id_stage);
 ALTER TABLE stage_00 MODIFY id_stage INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE stage_00 ADD INDEX idx_documento (dato_23);
 
 
 /*********************************
