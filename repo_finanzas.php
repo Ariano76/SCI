@@ -37,12 +37,12 @@ if (isset($_POST["import"])) {
 
   <div class="card text-dark bg-light">
     <div class="card-header">
-      SECTOR SALUD
+      SECTOR FINANZAS
     </div>
     <div class="card-body">
       <form action="repo_finanzas_001.php" method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="txtImagen">En este apartado podremos generar el reporte en formato excel con la información de todos los beneficiarios y su información complementaria para enviar al sector de Salud.</label>
+          <label for="txtImagen">En este apartado podremos generar el reporte en formato excel con la información de todos los beneficiarios y su información complementaria para enviar al sector de Finanzas.</label>
           <br>
           <br>          
         </div>
