@@ -23,6 +23,7 @@ DROP TABLE if exists data_historica;
 DROP TABLE if exists resultado_cotejo_datos_historicos;
 DROP TABLE if exists beneficiario;
 DROP TABLE if exists stage_00;
+DROP TABLE if exists stage_find;
 
 -- CREACION DE TABLAS
 
@@ -496,6 +497,20 @@ ALTER TABLE stage_00 ADD PRIMARY KEY (id_stage);
 ALTER TABLE stage_00 MODIFY id_stage INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE stage_00 ADD INDEX idx_documento (dato_23);
 
+
+CREATE TABLE stage_find
+(
+	id_stage INTEGER NOT NULL,
+    nom_01   TEXT NULL,
+	nom_02   TEXT NULL,
+	ape_01   TEXT NULL,
+	ape_02   TEXT NULL,
+	cedula   int NULL,
+	relacion TEXT NULL,
+	otro	 TEXT NULL,
+	usuario  TEXT NULL
+) ;
+ALTER TABLE stage_find ADD INDEX idx_cedula (cedula);
 
 /*********************************
 -- CREACION DE LLAVES FORANEAS 
