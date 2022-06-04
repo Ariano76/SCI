@@ -505,7 +505,7 @@ CREATE TABLE stage_find
 	nom_02   TEXT NULL,
 	ape_01   TEXT NULL,
 	ape_02   TEXT NULL,
-	cedula   int NULL,
+	cedula   TEXT NULL,
 	relacion TEXT NULL,
 	otro	 TEXT NULL,
 	usuario  TEXT NULL
