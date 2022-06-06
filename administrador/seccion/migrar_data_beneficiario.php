@@ -313,7 +313,7 @@ if (isset($_POST["import"])) {
           <label for="txtImagen">Este proceso borrará cualquier información existente en la tabla de Datos Históricos y la reemplazará con los nuevos datos.</label>
           <br>
           <br>
-          <label for="txtImagen">Verificar si realmente desea realizar este proceso ya que los datos eliminados no podrán ser recuperados.</label>
+          <label for="txtImagen">Verificar si realmente desea ejecutar este proceso, ya que los datos eliminados no podrán ser recuperados.</label>
         </div>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">

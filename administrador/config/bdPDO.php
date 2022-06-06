@@ -391,6 +391,63 @@ private $DB_PASSWORD = ''; //database password
             return null;
     }
 
+    public function cotejoIncial($idBusqueda,$usuario) {
+        $cadena=null;
+        $tipo='';
+        $cod_origen=0;
+        try {
+            $array = array();
+            $contPrinc = 1;
+            $contSecund = 1;
+
+            $sql = "CALL SP_SelectCotejoInicial('".$usuario."')";
+            // call the stored procedure
+            $q = $this->pdo->prepare($sql);            
+            $q->execute();
+            $q->closeCursor();
+
+        } catch (PDOException $e) {
+            die("Error occurred:" . $e->getMessage());
+        }
+    }
+
+    public function resultado_cotejoInicial($codigo) {
+        try {               
+            // calling stored procedure command
+            //$sql = 'CALL SP_SelectNombresConDigitos()';
+            $sql = "CALL SP_SelectResultadoCotejoInicial('".$codigo."')";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $data=$stmt->fetchAll();            
+            $stmt->closeCursor();
+            return $data;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+            return null;
+    }
+
+    public function delete_resultado_cotejoInicial($codigo) {
+        try {               
+            // calling stored procedure command
+            $sql = "CALL SP_DeleteResultadoCotejoInicial('".$codigo."')";
+                // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+                // execute the stored procedure
+            $stmt->execute();
+            $stmt->closeCursor();
+                // execute the second query to get customer's level
+            return true;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+            return null;
+    }
+
+
+
     public function login($usuario, $pass) {
         try {               
             $sql = "CALL SP_Login_validar('".$usuario."','".$pass."',@total)";

@@ -3,7 +3,7 @@ SELECT numero_cedula FROM beneficiario where region_beneficiario='Lima' GROUP BY
 having COUNT(*) >1)
 order by numero_cedula;
 
-select id_stage, nom_01, nom_02, cedula, relacion from stage_find where cedula in 
+select id_stage, nom_01, nom_02, ape_01, ape_02, cedula, relacion, otro from stage_find where cedula in 
 (SELECT cedula FROM stage_find GROUP BY cedula having COUNT(cedula) >1) order by cedula;
 
 SELECT cedula FROM stage_find where nom_01<>'' and nom_02<>'' GROUP BY cedula having COUNT(cedula) >1;

@@ -12,6 +12,7 @@ BEGIN
  
 	START TRANSACTION;
 		delete from stage_00 where dato_145 = usuario;
+        delete from stage_find where usuario = usuario;
         SET success = 1;
     COMMIT;
 END |
@@ -1103,6 +1104,31 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_SelectCotejoInicial`;
+DELIMITER |
+CREATE PROCEDURE `SP_SelectCotejoInicial`(in usuario varchar(50))
+BEGIN	    
+	insert into stage_find
+	SELECT id_stage, dato_16, dato_17, dato_18, dato_19, dato_23, 'Principal', '', dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_65, dato_66, dato_67, dato_68, dato_74, dato_71, dato_72, dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_75, dato_76, dato_77, dato_78, dato_84, dato_81, dato_82, dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_85, dato_86, dato_87, dato_88, dato_94, dato_91, dato_92, dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_95, dato_96, dato_97, dato_98, dato_104, dato_101, dato_102, dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_105, dato_106, dato_107, dato_108, dato_114, dato_111, dato_112, dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_115, dato_116, dato_117, dato_118, dato_124, dato_121, dato_122, dato_145 FROM stage_00 where dato_145=usuario
+	union all
+	SELECT id_stage, dato_125, dato_126, dato_127, dato_128, dato_134, dato_131, dato_132, dato_145 FROM stage_00 where dato_145=usuario;
+	
+    delete from stage_find where cedula='';
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_InsertResultadoCotejo`;
 DELIMITER |
 CREATE PROCEDURE `SP_InsertResultadoCotejo`(  In id_busqueda int, In id_caso int, In id_result int, In tipo_busqueda text,
@@ -1122,11 +1148,28 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_SelectResultadoCotejoInicial`;
+DELIMITER |
+CREATE PROCEDURE `SP_SelectResultadoCotejoInicial`(in usuario varchar(50))
+BEGIN	    
+	select id_stage, nom_01, nom_02, ape_01, ape_02, cedula, relacion, otro, usuario from stage_find where cedula in 
+	(SELECT cedula FROM stage_find where usuario=usuario GROUP BY cedula having COUNT(cedula) >1) order by cedula; 
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_DeleteResultadoCotejo`;
 DELIMITER |
 CREATE PROCEDURE `SP_DeleteResultadoCotejo`(in codigo int)
 BEGIN	    
     delete from resultado_cotejo_datos_historicos where id_busqueda = codigo; 
+END |
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_DeleteResultadoCotejoInicial`;
+DELIMITER |
+CREATE PROCEDURE `SP_DeleteResultadoCotejoInicial`(in usuario varchar(50))
+BEGIN	    
+    delete from stage_find where usuario = usuario; 
 END |
 DELIMITER ;
 

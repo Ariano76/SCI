@@ -71,7 +71,8 @@ if (!isset($_SESSION['usuario'])) {
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
-
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar duplicados mismo documento</a>
 							</div>
 						</li>
 						<li>
