@@ -4,8 +4,7 @@ having COUNT(*) >1)
 order by numero_cedula;
 
 select id_stage, nom_01, nom_02, cedula, relacion from stage_find where cedula in 
-(SELECT cedula FROM stage_find where nom_01 <> '' and nom_02 <> '' 
-GROUP BY cedula having COUNT(cedula) >1) ;
+(SELECT cedula FROM stage_find GROUP BY cedula having COUNT(cedula) >1) order by cedula;
 
 SELECT cedula FROM stage_find where nom_01<>'' and nom_02<>'' GROUP BY cedula having COUNT(cedula) >1;
 
@@ -18,7 +17,9 @@ having COUNT(*) >1;
 SELECT id_stage, dato_16 as nom1, dato_17 as nom2, dato_18 as ape1, dato_19 as ape2, dato_23 as cedula, 
 'Principal' as Relacion, '' as Otro, dato_145 FROM stage_00 ;
 
-select * from stage_find;
+select * from stage_find ;
+select count(*) from stage_find where cedula='';
+delete from stage_find where cedula='';
 delete from stage_find;
 truncate table stage_find;
 select count(*) from stage_find;
@@ -60,6 +61,6 @@ dato_95, dato_96, dato_97, dato_98, dato_104, dato_101, dato_102, dato_145,
 dato_105, dato_106, dato_107, dato_108, dato_114, dato_111, dato_112, dato_145, 
 dato_115, dato_116, dato_117, dato_118, dato_124, dato_121, dato_122, dato_145, 
 dato_125, dato_126, dato_127, dato_128, dato_134, dato_131, dato_132, dato_145
-from stage_00 where dato_23 = 1759218728 or dato_74 = 1759218728 or dato_84 = 1759218728 or dato_94 = 1759218728 
-or dato_104 = 1759218728 or dato_114 = 1759218728 or dato_124 = 1759218728 or dato_134 = 1759218728 ;
+from stage_00 where dato_23 = 14293424 or dato_74 = 14293424 or dato_84 = 14293424 or dato_94 = 14293424 
+or dato_104 = 14293424 or dato_114 = 14293424 or dato_124 = 14293424 or dato_134 = 14293424 ;
 
