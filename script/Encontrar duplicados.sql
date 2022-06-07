@@ -17,6 +17,8 @@ having COUNT(*) >1;
 SELECT id_stage, dato_16 as nom1, dato_17 as nom2, dato_18 as ape1, dato_19 as ape2, dato_23 as cedula, 
 'Principal' as Relacion, '' as Otro, dato_145 FROM stage_00 ;
 
+select * from stage_data_historica;
+select * from beneficiario;
 select * from stage_find ;
 select count(*) from stage_find where cedula='';
 delete from stage_find where cedula='';
