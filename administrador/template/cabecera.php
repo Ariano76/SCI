@@ -67,14 +67,14 @@ if (!isset($_SESSION['usuario'])) {
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
-								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Validación</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios con data historica</a>
 							</div>
 						</li>
 						<li>
