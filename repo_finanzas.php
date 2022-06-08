@@ -47,7 +47,7 @@ if (isset($_POST["import"])) {
           <br>          
         </div>
         <div class="col-md-3">
-          <label>Seleccione un departamento:</label>
+          <label>Seleccione una región:</label>
           <br><br>
           <select name="selectdepa" id="departamento" class="form-control-lg">
             <!--option value="" disabled selected>Seleccione región</option-->
