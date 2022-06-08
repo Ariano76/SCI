@@ -261,7 +261,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Mera_Proteccion`;
 DELIMITER |
-CREATE PROCEDURE `SP_Select_Mera_Proteccion`()
+CREATE PROCEDURE `SP_Select_Mera_Proteccion`(in depa varchar(50))
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.en_que_distrito, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, b.numero_cedula, b.fecha_caducidad_cedula, c.tiene_los_siguientes_medios_comunicacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, F_SINO(c.es_telefono_propio), c.como_accede_a_internet, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.alguien_de_su_hogar_tiene_siguientes_condiciones, F_SINO(e.viaja_con_menores_de_17_anios), F_SINO(e.todos_los_nna_estan_matriculados), e.que_dispositvo_utilizan_en_clases_virtuales, e.que_dificultades_tuvo_al_matricular_nna, s.algun_miembro_tiene_discapacidad, 
     i.nombre_1a, i.nombre_1b, i.apellido_1a, i.apellido_1b, i.genero_1, F_AGE(i.fecha_nacimiento_1) as Edad, concat(i.relacion_1,' ',i.otro_1) as Parentesco,
@@ -277,13 +277,13 @@ inner join educacion e on b.id_beneficiario = e.id_beneficiario
 inner join salud s on b.id_beneficiario = s.id_beneficiario 
 inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
-;
+where b.region_beneficiario=depa;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Salud`;
 DELIMITER |
-CREATE PROCEDURE `SP_Select_Salud`()
+CREATE PROCEDURE `SP_Select_Salud`(in depa varchar(50))
 BEGIN
 	SELECT enc.fecha_encuesta, enc.id_encuestador, enc.nombre_encuestador, b.region_beneficiario, F_SINO(b.se_instalara_en_esta_region), b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
     b.numero_cedula, b.fecha_caducidad_cedula, b.tipo_identificacion, b.numero_identificacion, b.fecha_caducidad_identificacion, b.documentos_fisico_original, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, F_SINO(c.es_telefono_propio), c.como_accede_a_internet, c.cual_es_su_direccion, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.tiempo_de_gestacion, F_SINO(n.lleva_su_control_en_centro_de_salud), n.alguien_de_su_hogar_tiene_siguientes_condiciones, F_SINO(n.lactando_con_nn_menor_2_anios), F_SINO(n.no_lactando_con_nn_menor_2_anios), F_SINO(n.madre_nn_2_a_5_anios), F_SINO(n.ninguno), 
@@ -303,13 +303,13 @@ inner join salud s on b.id_beneficiario = s.id_beneficiario
 inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
-;
+where b.region_beneficiario=depa;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Nutricion`;
 DELIMITER |
-CREATE PROCEDURE `SP_Select_Nutricion`()
+CREATE PROCEDURE `SP_Select_Nutricion`(in depa varchar(50))
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.en_que_distrito, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
     b.numero_cedula, b.tipo_identificacion, b.numero_identificacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, F_SINO(c.es_telefono_propio), c.cual_es_su_direccion, F_SINO(c.vive_o_viaja_con_otros_familiares), c.cuantos_viven_o_viajan_con_usted, F_SINO(n.alguien_de_su_hogar_esta_embarazada), n.tiempo_de_gestacion, F_SINO(n.lleva_su_control_en_centro_de_salud), n.alguien_de_su_hogar_tiene_siguientes_condiciones, s.algun_miembro_tiene_discapacidad, 
@@ -328,13 +328,13 @@ inner join salud s on b.id_beneficiario = s.id_beneficiario
 inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
-;
+where b.region_beneficiario=depa;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_MDV`;
 DELIMITER |
-CREATE PROCEDURE `SP_Select_MDV`()
+CREATE PROCEDURE `SP_Select_MDV`(in depa varchar(50))
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.en_que_distrito, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, F_AGE(fecha_nacimiento) AS edad, 
     b.numero_cedula, b.fecha_caducidad_cedula, b.tipo_identificacion, b.numero_identificacion, b.fecha_caducidad_identificacion, b.documentos_fisico_original, c.tiene_los_siguientes_medios_comunicacion, F_SINO(c.celular_basico), F_SINO(c.smartphone), F_SINO(c.laptop), F_SINO(c.ninguno), 
@@ -354,13 +354,13 @@ inner join salud s on b.id_beneficiario = s.id_beneficiario
 inner join integrantes i on b.id_beneficiario = i.id_beneficiario 
 inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario 
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
-;
+where b.region_beneficiario=depa;
 END |
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Select_Finanzas`;
 DELIMITER |
-CREATE PROCEDURE `SP_Select_Finanzas`()
+CREATE PROCEDURE `SP_Select_Finanzas`(in depa varchar(50))
 BEGIN
 	SELECT enc.fecha_encuesta, b.region_beneficiario, b.en_que_provincia, b.transit_settle, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, 'Cedula', b.numero_cedula, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_es_su_direccion, c.cuantos_viven_o_viajan_con_usted, c.tiene_los_siguientes_medios_comunicacion, c.como_accede_a_internet, F_SINO(dersec.interesado_participar_nutricion), IF((c.laptop=1 or c.smartphone=1) and dersec.interesado_participar_nutricion=1 
     and (c.como_accede_a_internet="Por wifi  por horas" or c.como_accede_a_internet="Un conocido le provee acceso wifi o plan de datos en celular, por algunas horas/días" or c.como_accede_a_internet="Por datos de celular que recarga de forma interdiaria (prepago)" or c.como_accede_a_internet="Ninguna de las anteriores"),"Si","No") as bono, b.id_beneficiario
@@ -370,7 +370,7 @@ inner join encuesta enc on b.id_beneficiario = enc.id_beneficiario
 inner join derivacion_sectores dersec on b.id_beneficiario = dersec.id_beneficiario 
 inner join estatus est on b.id_beneficiario = est.id_beneficiario 
 inner join estados on estados.id_estado = est.id_estado 
-where estados.id_estado=1;
+where estados.id_estado=1 and b.region_beneficiario=depa;
 END |
 DELIMITER ;
 

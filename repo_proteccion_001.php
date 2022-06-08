@@ -9,11 +9,12 @@ $db_1 = new TransactionSCI();
 require_once ('./vendor/autoload.php');
 
 if (isset($_POST["import"])) {
+  $depa = $_POST["selectdepa"];
   $type = "OK";
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
-  $usuarios = $db_1->select_repo_all("SP_Select_Mera_Proteccion");
+  $usuarios = $db_1->select_repo_all("SP_Select_Mera_Proteccion", $depa);
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();

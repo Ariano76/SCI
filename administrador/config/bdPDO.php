@@ -159,11 +159,11 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function select_repo_all($sp) {
+    public function select_repo_all($sp, $depa) {
         try {               
             // calling stored procedure command
             //$sql = 'CALL SP_SelectDocIdentConIncidencias()';
-            $sql = "CALL " . $sp . "()";
+            $sql = "CALL " . $sp . "('".$depa."')";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
