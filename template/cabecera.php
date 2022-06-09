@@ -42,7 +42,6 @@
   				</button>  				
   				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   					<div class="navbar-nav">
-  						<a class="nav-item nav-link active" href="<?php echo $url."/index.php"?>">Inicio</a>
   						<li>
   							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actualizar datos Beneficiarios</a>
   							<div class="dropdown-menu">

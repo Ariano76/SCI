@@ -299,7 +299,8 @@ CREATE TABLE stage_data_historica (
     numero_documento TEXT NULL,
     proyecto TEXT NULL,
     cod_familia TEXT NULL,
-    nom_usuario TEXT NULL
+    nom_usuario TEXT NULL,
+    id_stage_00 INTEGER
 )  DEFAULT CHARSET=UTF8 COLLATE = UTF8_BIN;  
 /* AL UTILIZAR UTF8 Y UTO8_BIN PODEMOS DISTINGUIR ENTRE TILDES Y NO TILDES */
 ALTER TABLE stage_data_historica ADD PRIMARY KEY (id_stage_dh);
@@ -336,7 +337,8 @@ CREATE TABLE resultado_cotejo_datos_historicos
 	tipo_documento   TEXT NULL,
 	numero_documento   TEXT NULL,
     cod_familia TEXT NULL,
-    proyecto	TEXT NULL
+    proyecto	TEXT NULL,
+    id_stage_00 INTEGER
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin;  
 /* AL UTILIZAR UTF8 Y UTO8_BIN PODEMOS DISTINGUIR ENTRE TILDES Y NO TILDES */
 ALTER TABLE resultado_cotejo_datos_historicos ADD PRIMARY KEY (id_cotejo);

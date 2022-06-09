@@ -1104,6 +1104,15 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_SelectCotejoNuevoBeneficiario`;
+DELIMITER |
+CREATE PROCEDURE `SP_SelectCotejoNuevoBeneficiario`(in usuario varchar(50))
+BEGIN	    
+    SELECT nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, id_stage_00
+	FROM stage_data_historica WHERE nom_usuario=usuario; 
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_SelectCotejoInicial`;
 DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejoInicial`(in usuario varchar(50))
@@ -1140,11 +1149,22 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_InsertResultadoCotejoNuevoBeneficiario`;
+DELIMITER |
+CREATE PROCEDURE `SP_InsertResultadoCotejoNuevoBeneficiario`(  In id_busqueda int, In id_caso int, In id_result int, In tipo_busqueda text,
+    In nomb_1 text, In nomb_2 text, In ape_1 text, In ape_2 text, In tipo_doc text, In numero_doc text, In proyecto text, In cod_familia text, in id_stage_00 int
+)
+BEGIN
+    insert into resultado_cotejo_datos_historicos (id_busqueda, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, id_stage_00)
+    values (id_busqueda, id_caso, id_result, tipo_busqueda, nomb_1, nomb_2, ape_1, ape_2, tipo_doc, numero_doc, proyecto, cod_familia, id_stage_00); 
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_SelectResultadoCotejo`;
 DELIMITER |
 CREATE PROCEDURE `SP_SelectResultadoCotejo`(in codigo int)
 BEGIN	    
-    SELECT id_busqueda, id_cotejo, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia FROM resultado_cotejo_datos_historicos where id_busqueda = codigo order by id_busqueda, id_caso, tipo_busqueda, apellido_1, apellido_2, nombre_1; 
+    SELECT id_busqueda, id_cotejo, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, id_stage_00 FROM resultado_cotejo_datos_historicos where id_busqueda = codigo order by id_busqueda, id_caso, tipo_busqueda, apellido_1, apellido_2, nombre_1; 
 END |
 DELIMITER ;
 
@@ -1327,7 +1347,23 @@ BEGIN
 END |
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS `SP_Migrar_NvosBeneficiarios_stage_data_historica`;
+DELIMITER |
+CREATE PROCEDURE `SP_Migrar_NvosBeneficiarios_stage_data_historica`(in usuario varchar(50), OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
+    INSERT INTO stage_data_historica (nombre_1, nombre_2, apellido_1, apellido_2, numero_documento, nom_usuario, id_stage_00) 
+    SELECT dato_16, dato_17, dato_18, dato_19, dato_23, dato_145, id_stage from stage_00 WHERE dato_145=usuario;    
+    SET success = 1;
+    COMMIT;
+END |
+DELIMITER ;
 
 /* 
 DROP PROCEDURE IF EXISTS `DropFK` ;
@@ -1449,6 +1485,10 @@ call SP_Usuario_Delete(4, @total);
 select @total;
 
 call SP_Login_validar('oswaldo', '123', @total);
+select @total;
+
+SET @total = 0;
+call SP_Migrar_NvosBeneficiarios_stage_data_historica('percy',@total);
 select @total;
 
 UPDATE stage_00 SET dato_84 = user_regex_replace('\\s+', '', dato_84);

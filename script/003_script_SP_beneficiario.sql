@@ -676,7 +676,10 @@ BEGIN
 END |
 DELIMITER ;
 
-/* VALIDACIONES */
+
+
+
+/***** VALIDACIONES *******/
 
 call SP_reporte_00();
 call SP_reporte_000('Lima');

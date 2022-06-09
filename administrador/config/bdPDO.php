@@ -356,6 +356,144 @@ private $DB_PASSWORD = ''; //database password
         }
     }
 
+    public function cotejoNuevoBeneficiario($idBusqueda,$usuario) {
+        $cadena=null;
+        $tipo='';
+        $cod_origen=0;
+        try {
+            $array = array();
+            $contPrinc = 1;
+            $contSecund = 1;
+
+            $sql = "CALL SP_SelectCotejoNuevoBeneficiario('".$usuario."')";
+            // call the stored procedure
+            $q = $this->pdo->prepare($sql);            
+            $q->execute();
+            //$q->setFetchMode(PDO::FETCH_ASSOC); 
+            $lista = $q->fetchAll();
+            $q->closeCursor();
+
+            foreach($lista as $usu) {
+                for ($i = 0; $i < 4; $i++) {
+                    if ($i!=1) {
+                        if ($usu[$i]!=null) {
+                            $cadena .= "+" . $usu[$i] . "* ";
+                        }
+                    }
+                }
+                // GUARDANDO EL CASO DE BUSQUEDA
+                $nulo = "Dato Fuente";
+                $tipo = "Nombre";
+                $vacio = "-";
+                $codigofila = $usu[6];
+                $sql1 = 'CALL SP_InsertResultadoCotejoNuevoBeneficiario(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia, :id_stage_00 )';
+                // prepare for execution of the stored procedure
+                $stmt = $this->pdo->prepare($sql1);
+                // pass value to the command
+                $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
+                $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
+                $stmt->bindParam(':id_result', $cod_origen, PDO::PARAM_INT);
+                $stmt->bindParam(':id_tipo', $nulo, PDO::PARAM_STR);
+                $stmt->bindParam(':nomb_1', $usu[0], PDO::PARAM_STR);
+                $stmt->bindParam(':nomb_2', $usu[1], PDO::PARAM_STR);
+                $stmt->bindParam(':ape_1', $usu[2], PDO::PARAM_STR);
+                $stmt->bindParam(':ape_2', $usu[3], PDO::PARAM_STR);
+                $stmt->bindParam(':tipo_doc', $usu[4], PDO::PARAM_STR);
+                $stmt->bindParam(':numero_doc', $usu[5], PDO::PARAM_STR);
+                $stmt->bindParam(':proyecto', $vacio, PDO::PARAM_STR);
+                $stmt->bindParam(':cod_familia', $vacio, PDO::PARAM_STR);                
+                $stmt->bindParam(':id_stage_00', $codigofila, PDO::PARAM_INT);
+                // execute the stored procedure
+                $stmt->execute();
+                $stmt->closeCursor();
+                // REALIZANDO LA BUSQUEDA FULLTEXT POR NOMBRE
+                $sql = "SELECT id_dh, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, MATCH(beneficiario, numero_documento) AGAINST('".$cadena."') as relevancia FROM data_historica WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
+                // call the stored procedure
+                $q = $this->pdo->prepare($sql);            
+                $q->execute();                
+                $resultado = $q->fetchAll();
+                $q->closeCursor();
+                // GUARDANDO EL RESULTADO DE LA BUSQUEDA
+                foreach($resultado as $usu_a) {
+                    $sql1 = 'CALL SP_InsertResultadoCotejoNuevoBeneficiario(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia, :id_stage_00 )';
+                    // prepare for execution of the stored procedure
+                    $stmt = $this->pdo->prepare($sql1);
+                    // pass value to the command
+                    $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_tipo', $tipo, PDO::PARAM_STR);
+                    $stmt->bindParam(':nomb_1', $usu_a[1], PDO::PARAM_STR);
+                    $stmt->bindParam(':nomb_2', $usu_a[2], PDO::PARAM_STR);
+                    $stmt->bindParam(':ape_1', $usu_a[3], PDO::PARAM_STR);
+                    $stmt->bindParam(':ape_2', $usu_a[4], PDO::PARAM_STR);
+                    $stmt->bindParam(':tipo_doc', $usu_a[5], PDO::PARAM_STR);
+                    $stmt->bindParam(':numero_doc', $usu_a[6], PDO::PARAM_STR);
+                    $stmt->bindParam(':proyecto', $usu_a[7], PDO::PARAM_STR);
+                    $stmt->bindParam(':cod_familia', $usu_a[8], PDO::PARAM_STR);
+                    $stmt->bindParam(':id_stage_00', $codigofila, PDO::PARAM_INT);
+                    // execute the stored procedure
+                    $stmt->execute();
+                    $stmt->closeCursor();                        
+                    $contSecund++;
+                }
+                $cadena = "";
+                $sql = "";
+                $contPrinc++;
+                $contSecund=1;
+            }
+
+            // BUSQUEDA FULLTEXT UTILIZANDO EL NUMERO DE DOCUMENTO
+            $contPrinc = 1;
+            $contSecund = 1000;
+            $tipo = "Numero";
+            foreach($lista as $usu){                    
+                // RECUPERANDO EL NUMERO DE DOCUMENTO
+                //$cadena .= "+" . $usuario[5] . "* ";
+                $cadena = $usu[5];
+                $codigofila = $usu[6];
+                // REALIZANDO LA BUSQUEDA FULLTEXT POR NUMERO DOCUMENTO
+                $sql = "SELECT id_dh, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, MATCH(beneficiario, numero_documento) AGAINST('".$cadena."') as relevancia FROM data_historica WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
+                    // call the stored procedure
+                $q = $this->pdo->prepare($sql);            
+                $q->execute();
+                    //$q->setFetchMode(PDO::FETCH_ASSOC); 
+                $resultado = $q->fetchAll();
+                $q->closeCursor();
+                    // GUARDANDO EL RESULTADO DE LA BUSQUEDA
+                foreach($resultado as $usu_b) {
+                    $sql1 = 'CALL SP_InsertResultadoCotejoNuevoBeneficiario(:id_busqueda, :id_caso, :id_result, :id_tipo, :nomb_1, :nomb_2, :ape_1, :ape_2, :tipo_doc, :numero_doc, :proyecto, :cod_familia, :id_stage_00 )';
+                        // prepare for execution of the stored procedure
+                    $stmt = $this->pdo->prepare($sql1);
+                    // pass value to the command
+                    $stmt->bindParam(':id_busqueda', $idBusqueda, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_caso', $contPrinc, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_result', $contSecund, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_tipo', $tipo, PDO::PARAM_STR);
+                    $stmt->bindParam(':nomb_1', $usu_b[1], PDO::PARAM_STR);
+                    $stmt->bindParam(':nomb_2', $usu_b[2], PDO::PARAM_STR);
+                    $stmt->bindParam(':ape_1', $usu_b[3], PDO::PARAM_STR);
+                    $stmt->bindParam(':ape_2', $usu_b[4], PDO::PARAM_STR);
+                    $stmt->bindParam(':tipo_doc', $usu_b[5], PDO::PARAM_STR);
+                    $stmt->bindParam(':numero_doc', $usu_b[6], PDO::PARAM_STR);
+                    $stmt->bindParam(':proyecto', $usu_b[7], PDO::PARAM_STR);
+                    $stmt->bindParam(':cod_familia', $usu_b[8], PDO::PARAM_STR);
+                    $stmt->bindParam(':id_stage_00', $codigofila, PDO::PARAM_INT);
+                    // execute the stored procedure
+                    $stmt->execute();
+                    $stmt->closeCursor();
+                    $contSecund++;
+                }
+                $cadena = "";
+                $sql = "";
+                $contPrinc++;
+                $contSecund=1000;
+            }
+        } catch (PDOException $e) {
+            die("Error occurred:" . $e->getMessage());
+        }
+    }
+
     public function resultado_cotejo($codigo) {
         try {               
             // calling stored procedure command

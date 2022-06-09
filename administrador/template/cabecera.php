@@ -74,7 +74,7 @@ if (!isset($_SESSION['usuario'])) {
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios con data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Beneficiarios con data historica</a>
 							</div>
 						</li>
 						<li>
