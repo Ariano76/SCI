@@ -1108,8 +1108,8 @@ DROP PROCEDURE IF EXISTS `SP_SelectCotejoNuevoBeneficiario`;
 DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejoNuevoBeneficiario`(in usuario varchar(50))
 BEGIN	    
-    SELECT nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, id_stage_00
-	FROM stage_data_historica WHERE nom_usuario=usuario; 
+    SELECT dato_16, dato_17, dato_18, dato_19, '' as tipo_documento, dato_23, id_stage
+	FROM stage_00 WHERE dato_145=usuario; 
 END |
 DELIMITER ;
 
@@ -1164,7 +1164,7 @@ DROP PROCEDURE IF EXISTS `SP_SelectResultadoCotejo`;
 DELIMITER |
 CREATE PROCEDURE `SP_SelectResultadoCotejo`(in codigo int)
 BEGIN	    
-    SELECT id_busqueda, id_cotejo, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, id_stage_00 FROM resultado_cotejo_datos_historicos where id_busqueda = codigo order by id_busqueda, id_caso, tipo_busqueda, apellido_1, apellido_2, nombre_1; 
+    SELECT id_busqueda, id_cotejo, id_caso, id_resultado, tipo_busqueda, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, id_stage_00 FROM resultado_cotejo_datos_historicos where id_busqueda = codigo order by id_busqueda, id_caso, tipo_busqueda, id_resultado, apellido_1, apellido_2, nombre_1; 
 END |
 DELIMITER ;
 

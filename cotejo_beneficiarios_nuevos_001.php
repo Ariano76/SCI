@@ -35,6 +35,7 @@ if (isset($_POST["import"])) {
   $sheet->setCellValue("L1", "Proyecto");
   $sheet->setCellValue("M1", "Cod_Familia");
   $sheet->setCellValue("N1", "ID_Beneficiario - no eliminar");
+  $sheet->setCellValue("O1", "Observaciones");
   $i = 2;
   foreach($usuarios as $usuario) {
     $sheet->setCellValue("A".$i, $usuario[0]);
