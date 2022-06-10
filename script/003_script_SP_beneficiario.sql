@@ -676,6 +676,38 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_reporte_all_records`;
+DELIMITER |
+CREATE PROCEDURE `SP_reporte_all_records`(In region VARCHAR(250))
+BEGIN
+	SELECT e.id_encuesta, e.fecha_encuesta, e.id_encuestador, e.nombre_encuestador, e.region_encuestador, e.como_realizo_encuesta, 
+e.esta_de_acuerdo, 
+b.region_beneficiario, b.otra_region, b.se_instalara_en_esta_region, b.en_que_provincia, b.transit_settle, b.en_que_otro_caso_1, b.en_que_distrito, b.en_que_otro_caso_2, b.en_que_otro_caso_3, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.genero, b.fecha_nacimiento, b.tiene_carne_extranjeria, b.numero_cedula, b.fecha_caducidad_cedula, b.tipo_identificacion, b.numero_identificacion, fecha_caducidad_identificacion, b.documentos_fisico_original, 
+i.nombre_1a, i.nombre_1b, i.apellido_1a, i.apellido_1b, i.genero_1, i.fecha_nacimiento_1, i.relacion_1, i.otro_1, i.tipo_identificacion_1, i.numero_identificacion_1, 
+i.nombre_2a, i.nombre_2b, i.apellido_2a, i.apellido_2b, i.genero_2, i.fecha_nacimiento_2, i.relacion_2, i.otro_2, i.tipo_identificacion_2, i.numero_identificacion_2, 
+i.nombre_3a, i.nombre_3b, i.apellido_3a, i.apellido_3b, i.genero_3, i.fecha_nacimiento_3, i.relacion_3, i.otro_3, i.tipo_identificacion_3, i.numero_identificacion_3,
+i.nombre_4a, i.nombre_4b, i.apellido_4a, i.apellido_4b, i.genero_4, i.fecha_nacimiento_4, i.relacion_4, i.otro_4, i.tipo_identificacion_4, i.numero_identificacion_4,
+i.nombre_5a, i.nombre_5b, i.apellido_5a, i.apellido_5b, i.genero_5, i.fecha_nacimiento_5, i.relacion_5, i.otro_5, i.tipo_identificacion_5, i.numero_identificacion_5,
+i.nombre_6a, i.nombre_6b, i.apellido_6a, i.apellido_6b, i.genero_6, i.fecha_nacimiento_6, i.relacion_6, i.otro_6, i.tipo_identificacion_6, i.numero_identificacion_6,
+i.nombre_7a, i.nombre_7b, i.apellido_7a, i.apellido_7b, i.genero_7, i.fecha_nacimiento_7, i.relacion_7, i.otro_7, i.tipo_identificacion_7, i.numero_identificacion_7,
+c.tiene_los_siguientes_medios_comunicacion, c.celular_basico, c.smartphone, c.laptop, c.ninguno, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, c.cual_numero_usa_con_frecuencia, c.es_telefono_propio, c.como_accede_a_internet, c.cual_es_su_direccion, c.vive_o_viaja_con_otros_familiares, c.cuantos_viven_o_viajan_con_usted, c.cuantos_tienen_ingreso_por_trabajo,
+edu.viaja_con_menores_de_17_anios, edu.todos_los_nna_estan_matriculados, edu.que_dispositvo_utilizan_en_clases_virtuales, edu.celular_basico, edu.smartphone, edu.laptop, edu.ninguno, edu.que_dificultades_tuvo_al_matricular_nna, edu.no_conocia_procedimiento_matricula, edu.no_cuento_con_los_documentos, edu.no_habia_vacantes, edu.otro,
+n.alguien_de_su_hogar_esta_embarazada, n.tiempo_de_gestacion, n.lleva_su_control_en_centro_de_salud, n.alguien_de_su_hogar_tiene_siguientes_condiciones, n.lactando_con_nn_menor_2_anios, n.no_lactando_con_nn_menor_2_anios, n.madre_nn_2_a_5_anios, n.ninguno,
+s.algun_miembro_tiene_discapacidad, s.algun_miembro_tiene_problemas_salud, s.derivacion_salud, s.derivacion_proteccion,
+est.observaciones, estados.estado
+	FROM beneficiario b 
+    inner join encuesta e on b.id_beneficiario = e.id_beneficiario
+    inner join integrantes i on b.id_beneficiario = i.id_beneficiario
+    inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    inner join educacion edu on b.id_beneficiario = edu.id_beneficiario
+    inner join nutricion n on b.id_beneficiario = n.id_beneficiario
+    inner join salud s on b.id_beneficiario = s.id_beneficiario
+    inner join estatus est on b.id_beneficiario = est.id_beneficiario
+    inner join estados on est.id_estado = estados.id_estado
+	where e.esta_de_acuerdo = 1 and b.region_beneficiario = region ;
+END |
+DELIMITER ;
+
 
 
 
