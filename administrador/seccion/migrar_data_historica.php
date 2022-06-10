@@ -76,7 +76,7 @@ if (isset($_POST["import"])) {
 
   <div class="card text-dark bg-light">
     <div class="card-header">
-      Migrar datos de beneficiarios a la Tabla de Datos Historica
+      Migrar datos de beneficiarios validados a la Tabla de Datos Historica
     </div>
     <div class="card-body">
       <form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">

@@ -64,7 +64,7 @@ if (!isset($_SESSION['usuario'])) {
 							</div>
 						</li>
 						<li>
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Informacion KOBO</a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Datos KOBO</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
 								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
@@ -74,30 +74,28 @@ if (!isset($_SESSION['usuario'])) {
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Beneficiarios con data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Nuevos Beneficiarios con data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/"?>">Subir Observaciones</a>
 							</div>
 						</li>
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Bases internas y aliados</a>
 								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Validación</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Nuevos Datos Historicos</a>
 							</div>
 						</li>			
 						<li>
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cotejar datos</a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar Datos</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos Nuevos Validados</a>
 								<div class="dropdown-divider"></div>
-								<div class="dropdown-menu-lg-left"> 
-									<a class="dropdown-item active" href="">Migrar Datos Validados</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios</a>
-									<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos</a>
-								</div>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios Validados</a>
 							</div>
 						</li>
 						<li>

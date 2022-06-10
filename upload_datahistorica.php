@@ -40,8 +40,8 @@ if (isset($_POST["import"])) {
 
     $insertId = $db_1->limpiarStage("SP_LimpiarTablaStageDataHistorica",$nombreUsuario);
     $conta=0;
-
-    for ($i = 0; $i <= $sheetCount; $i ++) {
+    //for ($i = 0; $i <= $sheetCount; $i ++) {
+    for ($i = 1; $i < $sheetCount; $i ++) {
         $dato_01 = "";
         if (isset($spreadSheetAry[$i][0])) {
             $dato_01  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]); }
