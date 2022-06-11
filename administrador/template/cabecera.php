@@ -86,7 +86,7 @@ if (!isset($_SESSION['usuario'])) {
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Datos KOBO</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Nuevos beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Cargar Nuevos beneficiarios</a>
 								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
@@ -101,7 +101,7 @@ if (!isset($_SESSION['usuario'])) {
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Bases internas y aliados</a>
+								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Cargar bases internas y de aliados</a>
 								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Validación</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
