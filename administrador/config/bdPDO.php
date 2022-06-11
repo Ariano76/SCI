@@ -607,6 +607,25 @@ private $DB_PASSWORD = ''; //database password
         return $data;
     }
 
+    public function update_observaciones($cod, $comentario) {
+        try {               
+            // calling stored procedure command
+            $sql = "CALL SP_update_observaciones(".$cod.",'".$comentario."',@total)";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $stmt->closeCursor();
+             // execute the second query to get customer's level
+            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+            //echo 'La operación se realizo satisfactoriamente';
+            return $row;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+            return null;
+    }
+
     public function select_usuarios() {
         try {               
             // calling stored procedure command

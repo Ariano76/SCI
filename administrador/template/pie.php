@@ -1,7 +1,7 @@
 <div class="col-md-12">
 	<div class="card-text">&nbsp;</div>
 	<div class="card-info">
-		<div class="success alert alert-warning role=success" align="center">Usuario conectado: <?php echo($nombreUsuario) ?>
+		<div class="firma alert alert-warning role=firma" align="center">Usuario conectado: <?php echo($nombreUsuario) ?>
 	</div>
 </div>
 </div>

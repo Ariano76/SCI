@@ -25,8 +25,17 @@ delete from stage_find where cedula='';
 delete from stage_find;
 truncate table stage_find;
 select count(*) from stage_find;
-SELECT * FROM stage_00;
+SELECT * FROM stage_00 where id_stage=5125;
 SELECT * FROM stage_find where nom_01<>'' and nom_02<>'' order by nom_01;
+
+-- obtener el codigo de actualizacion
+SET @LastUpdateID := 0;
+update stage_00 set dato_144 = 'no procede', id_stage = (SELECT @LastUpdateID := id_stage) where id_stage=5125;
+SELECT @LastUpdateID AS LastUpdateID;
+
+SET @total = 0;
+call SP_update_observaciones(5125,'este es mi', @total);
+select @total;
 
 insert into stage_find
 SELECT id_stage, dato_16, dato_17, dato_18, dato_19, dato_23, 'Principal', '', dato_145 FROM stage_00 

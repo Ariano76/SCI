@@ -58,7 +58,7 @@ if (isset($_POST["import"])) {
   $db_1->delete_resultado_cotejo($timestamp1);
 
   $writer = new Xlsx($spreadsheet);
-  $fileName = "Resultado_Cotejar_Usuarios_Data_Historica_" . $timestamp1 . ".xlsx";
+  $fileName = "Resultado_Cotejar_Nuevos_Beneficiarios_Data_Historica_" . $timestamp1 . ".xlsx";
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
   header('Cache-Control: max-age=0');

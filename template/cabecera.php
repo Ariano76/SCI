@@ -24,9 +24,9 @@
   		table.dataTable thead {
   			background: linear-gradient(to right, #0575E6, #0575E6);
   			color:white;	}
-  		</style>  
 
-  	</head>
+  	</style>  
+</head>
   	<body>
   		<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 

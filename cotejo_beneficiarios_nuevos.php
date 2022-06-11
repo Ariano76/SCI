@@ -47,7 +47,7 @@ if (isset($_POST["import"])) {
         <br>
         <input type="hidden" name="txtUsuario" value="<?php echo $nombreUsuario;?>" />
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Cotejar Beneficiarios</button>
+          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Cotejar Nuevos Beneficiarios</button>
         </div>
       </form>
     </div>

@@ -1365,6 +1365,24 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_update_observaciones`;
+DELIMITER |
+CREATE PROCEDURE `SP_update_observaciones`(in codigo int, in obs varchar(250), OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
+		SET @LastUpdateID := 0;
+		update stage_00 set dato_144 = obs, id_stage = (SELECT @LastUpdateID := id_stage) where id_stage = codigo;   
+        SET success = @LastUpdateID ;
+    COMMIT;
+END |
+DELIMITER ;
+
 /* 
 DROP PROCEDURE IF EXISTS `DropFK` ;
 DELIMITER ;;

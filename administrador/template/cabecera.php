@@ -40,8 +40,28 @@ if (!isset($_SESSION['usuario'])) {
 	<style>
 		table.dataTable thead {background: linear-gradient(to right, #0575E6, #0575E6);
 			color:white;}
-		</style>
-	</head>
+
+		.success {
+           background: #c7efd9;
+           border: #bbe2cd 1px solid;
+       }
+
+       .error {
+           background: #fbcfcf;
+           border: #f3c6c7 1px solid;
+       }
+
+       .firma {
+           background: #FFF3CD;
+           border: #f3c6c7 1px solid;
+       }
+
+       div#response.display-block {
+           display: block;
+       }
+
+	</style>
+</head>
 	<body>
 
 		<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
@@ -75,7 +95,7 @@ if (!isset($_SESSION['usuario'])) {
 								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Nuevos Beneficiarios con data historica</a>
-								<a class="dropdown-item" href="<?php echo $url."/"?>">Subir Observaciones</a>
+								<a class="dropdown-item" href="<?php echo $url."/upload_observaciones.php"?>">Subir Observaciones</a>
 							</div>
 						</li>
 						<li>
