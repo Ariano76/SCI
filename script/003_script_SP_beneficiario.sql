@@ -709,6 +709,27 @@ END |
 DELIMITER ;
 
 
+DROP PROCEDURE IF EXISTS `SP_resumen`;
+DELIMITER |
+CREATE PROCEDURE `SP_resumen`(in numero varchar(50))
+BEGIN
+	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.genero, b.fecha_nacimiento, b.transit_settle as Estado, b.numero_cedula, b.tipo_identificacion as Tipo_Identificacion_2, b.numero_identificacion as Numero_Identificacion_2, c.cual_es_su_numero_whatsapp as Nro_Whatsapp, c.cual_es_su_numero_recibir_sms as Nro_SMS, b.region_beneficiario as Región, b.en_que_distrito as Distrito, c.cual_es_su_direccion as Dirección, c.cuantos_viven_o_viajan_con_usted as '¿Cuántos viven o viajan con usted?', F_SINO(n.alguien_de_su_hogar_esta_embarazada) as alguien_de_su_hogar_esta_embarazada, n.tiempo_de_gestacion, F_SINO(n.lactando_con_nn_menor_2_anios), F_SINO(n.no_lactando_con_nn_menor_2_anios), F_SINO(n.madre_nn_2_a_5_anios), F_SINO(ed.viaja_con_menores_de_17_anios), s.algun_miembro_tiene_discapacidad, F_SINO(ds.interesado_participar_nutricion), F_SINO(ds.interesado_participar_salud), F_SINO(ds.interesado_participar_medios_vida),
+    CONCAT(UCASE(LEFT(es.estado, 1)), LCASE(SUBSTRING(es.estado, 2))) as id_estado
+    FROM beneficiario b 
+    inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
+    inner join estatus e on b.id_beneficiario = e.id_beneficiario 
+    inner join estados es on e.id_estado = es.id_estado
+    inner join nutricion n on n.id_beneficiario = b.id_beneficiario
+    inner join educacion ed on ed.id_beneficiario = b.id_beneficiario
+    inner join salud s on s.id_beneficiario = b.id_beneficiario
+    inner join derivacion_sectores ds on ds.id_beneficiario = b.id_beneficiario
+	where b.numero_cedula = numero ;
+END |
+DELIMITER ;
+
+
+
+	
 
 
 /***** VALIDACIONES *******/
