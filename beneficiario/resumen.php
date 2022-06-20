@@ -78,11 +78,11 @@ $db_1 = new TransactionSCI();
             </div>
             </div>  
             <div class='row'>
-            <div class='col-sm-12 col-md-4 form-group'>
+            <div class='col-sm-12 col-md-3 form-group'>
             <label for='disabledTextInput'>Número cédula</label>
             <input type='text' class='form-control' placeholder='' value='$consulta[5]' disabled>
             </div>            
-            <div class='col-sm-12 col-md-2 form-group'>
+            <div class='col-sm-12 col-md-3 form-group'>
             <label for='disabledTextInput'>Tipo identificación #2</label>
             <input type='text' class='form-control' placeholder='' value='$consulta[6]' disabled>
             </div>  
