@@ -132,6 +132,12 @@ if (!isset($_SESSION['usuario'])) {
 								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
 							</div>
 						</li>					
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerencia</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/" ?>">Cargar Datos</a>	
+							</div>
+						</li>
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
 						<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
 					</div>
