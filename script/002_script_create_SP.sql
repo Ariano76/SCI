@@ -18,6 +18,24 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_LimpiarTablaStage_dataproyecto`;
+DELIMITER |
+CREATE PROCEDURE `SP_LimpiarTablaStage_dataproyecto`(OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN
+     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
+		delete from stage_data_proyectos;
+        SET success = 1;
+    COMMIT;
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_LimpiarTablaStageDataHistorica`;
 DELIMITER |
 CREATE PROCEDURE `SP_LimpiarTablaStageDataHistorica`(in usuario varchar(50), OUT success INT)

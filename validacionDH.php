@@ -10,7 +10,7 @@ $conn = $db->Connect();
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-8">Validación Datos Historicos</h1>
+    <h1 class="display-8">Limpieza de datos Data Historica</h1>
     <p class="lead">Identificación de las principales incidencias presente en los datos y su corrección.</p>    
     <p class="lead">Habilite los procesos a ejecutarse.</p>    
     

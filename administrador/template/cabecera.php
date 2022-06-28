@@ -102,7 +102,7 @@ if (!isset($_SESSION['usuario'])) {
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Cargar bases internas y de aliados</a>
-								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Validación</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Limpieza de datos</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
 								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
@@ -135,7 +135,7 @@ if (!isset($_SESSION['usuario'])) {
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerencia</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/" ?>">Cargar Datos</a>	
+								<a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>">Cargar Datos de Proyectos</a>
 							</div>
 						</li>
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>

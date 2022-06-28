@@ -170,7 +170,7 @@ CREATE TABLE resultado_proyectos
 	edad                 INTEGER NULL,
 	id_proyecto          INTEGER NULL,
 	fecha_actividad      DATE NULL,
-	persona_registro     VARCHAR(250) NULL,
+	persona_registro_beneficiario     VARCHAR(250) NULL,
 	id_tipo_documento    INTEGER NULL,
 	id_nacionalidad      INTEGER NULL,
 	id_tipo_organizacion INTEGER NULL,
@@ -188,6 +188,48 @@ CREATE TABLE resultado_proyectos
 
 ALTER TABLE resultado_proyectos ADD PRIMARY KEY (id_resultado_proyectos);
 ALTER TABLE resultado_proyectos MODIFY id_resultado_proyectos INT NOT NULL AUTO_INCREMENT ;
+
+CREATE TABLE stage_data_proyectos
+(
+	id_stage_dp	INTEGER NOT NULL,
+    dato_01   TEXT NULL,
+	dato_02   TEXT NULL,
+	dato_03   TEXT NULL,
+	dato_04   TEXT NULL,
+	dato_05   TEXT NULL,
+	dato_06   TEXT NULL,
+	dato_07   TEXT NULL,
+	dato_08   TEXT NULL,
+	dato_09   TEXT NULL,
+	dato_10   TEXT NULL,
+	dato_11   TEXT NULL,
+	dato_12   TEXT NULL,
+	dato_13   TEXT NULL,
+	dato_14   TEXT NULL,
+	dato_15   TEXT NULL,
+	dato_16   TEXT NULL,
+	dato_17   TEXT NULL,
+	dato_18   TEXT NULL,
+	dato_19   TEXT NULL,
+	dato_20   TEXT NULL,
+	dato_21   TEXT NULL,
+	dato_22   TEXT NULL,
+	dato_23   TEXT NULL,
+	dato_24   TEXT NULL,
+	dato_25   TEXT NULL,
+	dato_26   TEXT NULL,
+	dato_27   TEXT NULL,
+	dato_28   TEXT NULL,
+	dato_29   TEXT NULL,
+	dato_30   TEXT NULL,
+	dato_31   TEXT NULL,
+	dato_32   TEXT NULL,
+	dato_33   TEXT NULL,
+	dato_34   TEXT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_bin; 
+ALTER TABLE stage_data_proyectos ADD PRIMARY KEY (id_stage_dp);
+ALTER TABLE stage_data_proyectos MODIFY id_stage_dp INT NOT NULL AUTO_INCREMENT;
+
 
 
 /*********************************
@@ -223,6 +265,13 @@ ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_63 (id_actividad) REFERENCES a
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_64 (id_proyecto) REFERENCES proyecto (id_proyecto);
 
 ALTER TABLE subtema ADD FOREIGN KEY R_65 (id_tema) REFERENCES tema (id_tema);
+
+
+/*********************************
+-- CONSULTAR ESTRUCTURA DE TABLAS 
+*********************************/
+SHOW TABLE STATUS where name like 'resultado_proyectos';
+DESCRIBE resultado_proyectos; -- LISTA TODAS LAS CARACTERISTICAS DE UNA TABLA
 
 /*********************************
 -- INSERTANDO DATOS BASICOS
@@ -309,3 +358,6 @@ insert into actividad (nom_actividad, fecha_actividad) values
 ('Taller sobre Disciplina Positiva dirigido a los Actores Sociales de CUNA MAS. Fecha: 30 de marzo','1900-1-1'),
 ('Conversatorio Virtual "Retorno a una escuela segura y transformada". Fecha: 24 de marzo','1900-1-1'),
 ('Entrega de Kits a madres adole scentes (Calendario informativo sobre ley 29600,mochila abrazo y set de alimentación). Mes de marzo','1900-1-1');
+
+
+
