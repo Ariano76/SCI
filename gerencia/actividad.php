@@ -1,9 +1,21 @@
-<?php include("../template/cabecera.php"); 
+<?php include("../administrador/template/cabecera.php"); 
 
 include("../administrador/config/connection.php");
 
 ?>
-<h1 class="display-8">ESTATUS DEL BENEFICIARIO</h1> 
+<style type="text/css">
+  .btnAdd {
+    text-align: right;
+    width: 83%;
+    margin-bottom: 20px;
+  }
+</style>
+
+<h1 class="display-8">MAESTRO DE ACTIVIDADES</h1> 
+
+<div class="btnAdd">
+  <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-success btn-sm">Add User</a>
+</div>
 
 <div class="col-lg-12">
   <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed small" style="width:100%">
@@ -11,10 +23,8 @@ include("../administrador/config/connection.php");
     <thead class="text-center">
       <tr>
         <th>Codigo</th>
-        <th>Nombres&nbsp;y&nbsp;apellidos&nbsp;del&nbsp;beneficiario</th>
-        <th>Número&nbsp;de&nbsp;Cedula</th>                                
-        <th>Observaciones</th>  
-        <th>Estatus</th>  
+        <th>Nombre&nbsp;de&nbsp;la&nbsp;Actividad</th>
+        <th>Fecha&nbsp;de&nbsp;realización</th>
         <th>Acción</th>
       </tr>
     </thead>
@@ -33,12 +43,12 @@ include("../administrador/config/connection.php");
       'paging': 'true',
       'order': [],
       'ajax': {
-        'url': 'fetch_data_estatus.php',
+        'url': 'actividad_fetch_data.php',
         'type': 'post',
       },
       "aoColumnDefs": [{
         "bSortable": false,
-        "aTargets": [5]
+        "aTargets": [3]
       },
       ]
     });
@@ -51,25 +61,19 @@ include("../administrador/config/connection.php");
         $(document).on('submit', '#updateUser', function(e) {
           e.preventDefault();
       //var tr = $(this).closest('tr');
-      var nombre = $('#nombreField').val();
-      var numero_cedula = $('#numero_cedulaField').val();
-      var observaciones = $('#observacionesField').val();
-      var id_estado = $('#id_estadoField').val();
-
-      var codEstatus = $("input[name=estatus]:checked").val();
+      var nom_actividad = $('#nom_actividadField').val();
+      var fecha_actividad = $('#fecha_actividadField').val();      
 
       var trid = $('#trid').val();
       var id = $('#id').val();           
 /*      if (region_beneficiario != '' && otra_region != '' && se_instalara_en_esta_region != '' && en_que_provincia != '' && transit_settle != '' && en_que_otro_caso_1 != '' && en_que_distrito != ''  && en_que_otro_caso_2 != '' && en_que_otro_caso_3 != '' && primer_nombre != '' && segundo_nombre != '' && primer_apellido != '' && segundo_apellido != '' && genero != '' && fecha_nacimiento != '' && tiene_carne_extranjeria != '' && numero_cedula != '' && fecha_caducidad_cedula != '' && tipo_identificacion != '' && numero_identificacion != '' && fecha_caducidad_identificacion != '' && documentos_fisico_original ) {
   */
   $.ajax({
-    url: "update_user_estatus.php",
+    url: "actividad_update_user.php",
     type: "post",
     data: {
-      nombre: nombre,
-      numero_cedula: numero_cedula,
-      observaciones: observaciones,
-      id_estado: codEstatus,
+      nom_actividad: nom_actividad,
+      fecha_actividad: fecha_actividad,
       id: id
     },
     success: function(data) {
@@ -79,24 +83,8 @@ include("../administrador/config/connection.php");
         table = $('#tablaUsuarios').DataTable();
         var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
         var row = table.row("[id='" + trid + "']");
-        var nomEst;
-        if (codEstatus==1) {
-          nomEst = 'VALIDO'
-        } else if (codEstatus==2){
-          nomEst = 'INVALIDO'
-        } else if (codEstatus==4){
-          nomEst = 'REGISTRO VALIDO POSIBLE FRAUDE'
-        } else if (codEstatus==5){
-          nomEst = 'REGISTRO EN ESPERA POSIBLE FRAUDE'
-        } else if (codEstatus==6){
-          nomEst = 'FRAUDE'
-        } else if (codEstatus==7){
-          nomEst = 'ABANDONO'
-        } else{
-          nomEst = 'EN ESPERA'
-        }
 
-        row.row("[id='" + trid + "']").data([id, nombre, numero_cedula, observaciones, nomEst, button]);
+        row.row("[id='" + trid + "']").data([id, nom_actividad, fecha_actividad, button]);
         $('#exampleModal').modal('hide');
       } else {
         alert('failed');
@@ -115,7 +103,7 @@ include("../administrador/config/connection.php");
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "get_single_estatus.php",
+        url: "actividad_get_single.php",
         data: {
           id: id
         },
@@ -123,28 +111,11 @@ include("../administrador/config/connection.php");
         success: function(data) {
           var json = JSON.parse(data);
           $('#nombreField').val(json.nombre);
-          $('#numero_cedulaField').val(json.numero_cedula);
-          $('#observacionesField').val(json.observaciones);
-          $('#id_estadoField').val(json.id_estado);
+          $('#fechaField').val(json.nombre);
 
           $('#id').val(id);
           $('#trid').val(trid);
           //console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
-          if (json.id_estado == "VALIDO") {
-            $('#exampleModal').find(':radio[name=estatus][value="1"]').prop('checked', true);
-          } else if (json.id_estado == "INVALIDO") {
-            $('#exampleModal').find(':radio[name=estatus][value="2"]').prop('checked', true);
-          } else if (json.id_estado == "REGISTRO VALIDO POSIBLE FRAUDE") {
-            $('#exampleModal').find(':radio[name=estatus][value="4"]').prop('checked', true);
-          } else if (json.id_estado == "REGISTRO EN ESPERA POSIBLE FRAUDE") {
-            $('#exampleModal').find(':radio[name=estatus][value="5"]').prop('checked', true);
-          } else if (json.id_estado == "FRAUDE") {
-            $('#exampleModal').find(':radio[name=estatus][value="6"]').prop('checked', true);
-          } else if (json.id_estado == "ABANDONO") {
-            $('#exampleModal').find(':radio[name=estatus][value="7"]').prop('checked', true);
-          } else {
-            $('#exampleModal').find(':radio[name=estatus][value="3"]').prop('checked', true);
-          }
 
         }
       })
@@ -158,7 +129,7 @@ include("../administrador/config/connection.php");
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ESTATUS BENEFICIARIO</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ACTIVIDADES</h5>
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -167,60 +138,15 @@ include("../administrador/config/connection.php");
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nombreField" class="col-md-3 form-label">Nombre Beneficiario</label>
+              <label for="nom_actividadField" class="col-md-3 form-label">Nombre Actividad</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="nombreField" name="name" disabled>
+                <input type="text" class="form-control" id="nom_actividadField" name="name">
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="numero_cedulaField" class="col-md-3 form-label">Número Cedula</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" id="numero_cedulaField" name="name" disabled>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="observacionesField" class="col-md-3 form-label">Observaciones</label>
-              <div class="col-md-9">
-                <!--input type="text" class="form-control" id="observacionesField" name="name"-->
-                <textarea name="text" id="observacionesField" rows="3" cols="70" maxlength="250"></textarea>
-              </div>
-            </div>            
-            <div class="mb-3 row">
-              <label for="id_estadoField" class="col-md-3 form-label">Estatus</label>
-              <div class="col-md-9">
-                <!--label class="radio-inline">
-                  <input type="radio" name="estatus" id="id_estadoField1" value="1"> REGISTRO VALIDO 
-                  <input type="radio" name="estatus" id="id_estadoField2" value="2"> REGISTRO INVALIDO 
-                  <input type="radio" name="estatus" id="id_estadoField3" value="3"> REGISTRO EN ESPERA 
-                </label-->
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField1" name="estatus" class="custom-control-input" value="1">
-                  <label class="custom-control-label" for="customRadio1">REGISTRO VALIDO</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField2" name="estatus" class="custom-control-input" value="2">
-                  <label class="custom-control-label" for="customRadio2">REGISTRO INVALIDO</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField3" name="estatus" class="custom-control-input" value="3">
-                  <label class="custom-control-label" for="customRadio3">REGISTRO EN ESPERA</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField4" name="estatus" class="custom-control-input" value="4">
-                  <label class="custom-control-label" for="customRadio4">REGISTRO VALIDO POSIBLE FRAUDE</label>
-                </div>                                
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField5" name="estatus" class="custom-control-input" value="5">
-                  <label class="custom-control-label" for="customRadio5">REGISTRO EN ESPERA POSIBLE FRAUDE</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField6" name="estatus" class="custom-control-input" value="6">
-                  <label class="custom-control-label" for="customRadio6">FRAUDE</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="id_estadoField7" name="estatus" class="custom-control-input" value="7">
-                  <label class="custom-control-label" for="customRadio7">ABANDONO</label>
-                </div>                
+              <label for="fecha_actividadField" class="col-md-4 form-label">Fecha realización</label>
+              <div class="col-md-8">
+                <input id="fecha_actividadField" type="date" name="fecha" value="2017-06-01">
               </div>
             </div>
 
@@ -237,4 +163,4 @@ include("../administrador/config/connection.php");
   </div>
 
 
-  <?php include("../template/pie.php"); ?>
+  <?php include("../administrador/template/pie.php"); ?>

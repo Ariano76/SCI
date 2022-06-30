@@ -330,10 +330,13 @@ CREATE VIEW `vista_cantidad_ninos` AS
 	where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7) <= 17 
 	and i.fecha_nacimiento_7 <> '1900-01-01' and i.fecha_nacimiento_7 < CURDATE();
 
-
+drop view IF EXISTS vista_actividades;
+CREATE VIEW `vista_actividades` AS
+	SELECT id_actividad, nom_actividad, fecha_actividad
+    FROM actividad;
 
 /* PRUEBAS */
-
+select * from vista_actividades;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
