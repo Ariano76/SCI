@@ -334,9 +334,14 @@ drop view IF EXISTS vista_actividades;
 CREATE VIEW `vista_actividades` AS
 	SELECT id_actividad, nom_actividad, fecha_actividad
     FROM actividad;
+    
+drop view IF EXISTS vista_adulto;
+CREATE VIEW `vista_adulto` AS
+	SELECT id_adulto, nom_adulto
+    FROM adulto;
 
 /* PRUEBAS */
-select * from vista_actividades;
+select * from vista_adulto;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
