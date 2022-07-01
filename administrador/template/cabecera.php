@@ -228,16 +228,17 @@ document.addEventListener("DOMContentLoaded", function(){
 									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
 									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/adulto.php"?>">Es Adulto</a></li>
 									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/discapacidad.php"?>">Discapacidad</a></li>
-									<li><a class="dropdown-item" href="#">Genero</a></li>
-									<li><a class="dropdown-item" href="#">Gestante</a></li>
-									<li><a class="dropdown-item" href="#">Indigena</a></li>
-									<li><a class="dropdown-item" href="#">Nacionalidad</a></li>
-									<li><a class="dropdown-item" href="#">Tema</a></li>
-									<li><a class="dropdown-item" href="#">Sub Tema</a></li>
-									<li><a class="dropdown-item" href="#">Tiempo Gestación</a></li>
-									<li><a class="dropdown-item" href="#">Tipo Discapacidad</a></li>
-									<li><a class="dropdown-item" href="#">Tipo Documento</a></li>
-									<li><a class="dropdown-item" href="#">Tipo Organización</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/genero.php"?>">Genero</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/gestante.php"?>">Gestante</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/indigena.php"?>">Indigena</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/nacionalidad.php"?>">Nacionalidad</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/proyecto.php"?>">Proyecto</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tema.php"?>">Tema</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/subtema.php"?>">Sub Tema</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tiempo_gestacion.php"?>">Tiempo Gestación</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_discapacidad.php"?>">Tipo Discapacidad</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_documento.php"?>">Tipo Documento</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
 								</ul>
 							</li>
 							<li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>

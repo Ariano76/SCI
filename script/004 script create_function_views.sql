@@ -350,8 +350,13 @@ CREATE VIEW `vista_genero` AS
 	SELECT id_genero, nom_genero
     FROM genero;
 
+drop view IF EXISTS vista_gestante;
+CREATE VIEW `vista_gestante` AS
+	SELECT id_gestante, nom_gestante
+    FROM gestante;
+    
 /* PRUEBAS */
-select * from vista_genero;
+select * from vista_gestante;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
