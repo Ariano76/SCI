@@ -1,11 +1,11 @@
 <?php 
 include('../administrador/config/connection.php');
-$nom_genero = $_POST['nom_genero'];
+$nom_gestante = $_POST['nom_gestante'];
 
 $id = $_POST['id'];
 
-$sql = "UPDATE `genero` SET  `nom_genero`= '$nom_genero' 
-WHERE id_genero='$id' ";
+$sql = "UPDATE `gestante` SET  `nom_gestante`= '$nom_gestante' 
+WHERE id_gestante='$id' ";
 
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);

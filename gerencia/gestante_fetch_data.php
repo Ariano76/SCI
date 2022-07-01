@@ -1,20 +1,20 @@
 <?php include("../administrador/config/connection.php");
 
 $output= array();
-$sql = "SELECT * FROM vista_genero";
+$sql = "SELECT * FROM vista_gestante";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(
-	0 => 'id_genero',
-	1 => 'nom_genero',
+	0 => 'id_gestante',
+	1 => 'nom_gestante',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE nom_genero like '%".$search_value."%'";
+	$sql .= " WHERE nom_gestante like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -25,7 +25,7 @@ if(isset($_POST['order']))
 }
 else
 {
-	$sql .= " ORDER BY id_genero asc";
+	$sql .= " ORDER BY id_gestante asc";
 }
 
 if($_POST['length'] != -1)
@@ -41,10 +41,10 @@ $data = array();
 while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
-	$sub_array[] = $row['id_genero'];
-	$sub_array[] = $row['nom_genero'];
+	$sub_array[] = $row['id_gestante'];
+	$sub_array[] = $row['nom_gestante'];
 	
-	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_genero'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
+	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_gestante'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;
 }
 

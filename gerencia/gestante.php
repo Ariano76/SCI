@@ -11,7 +11,7 @@ include("../administrador/config/connection.php");
   }
 </style>
 
-<h1 class="display-8">MAESTRO GENERO</h1> 
+<h1 class="display-8">MAESTRO ITEM GESTANTE</h1> 
 <div class="container">
 
 </div>
@@ -44,7 +44,7 @@ include("../administrador/config/connection.php");
       'paging': 'true',
       'order': [],
       'ajax': {
-        'url': 'genero_fetch_data.php',
+        'url': 'gestante_fetch_data.php',
         'type': 'post',
       },
       "aoColumnDefs": [{
@@ -56,13 +56,13 @@ include("../administrador/config/connection.php");
   });
   $(document).on('submit', '#addUser', function(e) {
     e.preventDefault();
-    var nom_genero = $('#addnom_generoField').val();
-    if (nom_genero != '') {
+    var nom_gestante = $('#addnom_gestanteField').val();
+    if (nom_gestante != '') {
       $.ajax({
-        url: "genero_add.php",
+        url: "gestante_add.php",
         type: "post",
         data: {
-          nom_genero: nom_genero
+          nom_gestante: nom_gestante
         },
         success: function(data) {
           var json = JSON.parse(data);
@@ -82,15 +82,15 @@ include("../administrador/config/connection.php");
   });  
   $(document).on('submit', '#updateUser', function(e) {
     e.preventDefault();
-    var nom_genero = $('#nom_generoField').val();
+    var nom_gestante = $('#nom_gestanteField').val();
     var trid = $('#trid').val();
     var id = $('#id').val();
-    if (nom_genero != '') {
+    if (nom_gestante != '') {
     $.ajax({
-      url: "genero_update.php",
+      url: "gestante_update.php",
       type: "post",
       data: {
-        nom_genero: nom_genero,
+        nom_gestante: nom_gestante,
         id: id
       },
       success: function(data) {
@@ -101,7 +101,7 @@ include("../administrador/config/connection.php");
           var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
           var row = table.row("[id='" + trid + "']");
 
-          row.row("[id='" + trid + "']").data([id, nom_genero, button]);
+          row.row("[id='" + trid + "']").data([id, nom_gestante, button]);
           $('#exampleModal').modal('hide');
         } else {
           alert('failed');
@@ -120,14 +120,14 @@ include("../administrador/config/connection.php");
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "genero_get_single.php",
+        url: "gestante_get_single.php",
         data: {
           id: id
         },
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
-          $('#nom_generoField').val(json.nom_genero);
+          $('#nom_gestanteField').val(json.nom_gestante);
 
           $('#id').val(id);
           $('#trid').val(trid);
@@ -152,9 +152,9 @@ include("../administrador/config/connection.php");
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nom_generoField" class="col-md-3 form-label">Nombre Item</label>
+              <label for="nom_gestanteField" class="col-md-3 form-label">Nombre Item</label>
               <div class="md-form amber-textarea active-amber-textarea col-md-8">
-                <input type="text" class="form-control" id="nom_generoField" name="tipoident" maxlength="50">
+                <input type="text" class="form-control" id="nom_gestanteField" name="tipoident" maxlength="50">
               </div>
             </div>
 
@@ -181,9 +181,9 @@ include("../administrador/config/connection.php");
         <div class="modal-body">
           <form id="addUser" action="">
             <div class="mb-3 row">
-              <label for="addnom_generoField" class="col-md-3 form-label">Item</label>
+              <label for="addnom_gestanteField" class="col-md-3 form-label">Item</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="addnom_generoField" name="tipoident" maxlength="50">
+                <input type="text" class="form-control" id="addnom_gestanteField" name="tipoident" maxlength="50">
               </div>
             </div>
             <div class="text-center">
