@@ -339,9 +339,19 @@ drop view IF EXISTS vista_adulto;
 CREATE VIEW `vista_adulto` AS
 	SELECT id_adulto, nom_adulto
     FROM adulto;
+    
+drop view IF EXISTS vista_discapacidad;
+CREATE VIEW `vista_discapacidad` AS
+	SELECT id_discapacidad, nom_discapacidad
+    FROM discapacidad;
+    
+drop view IF EXISTS vista_genero;
+CREATE VIEW `vista_genero` AS
+	SELECT id_genero, nom_genero
+    FROM genero;
 
 /* PRUEBAS */
-select * from vista_adulto;
+select * from vista_genero;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 

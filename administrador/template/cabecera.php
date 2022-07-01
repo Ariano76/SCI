@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function(){
 								<ul class="submenu dropdown-menu">
 									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
 									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/adulto.php"?>">Es Adulto</a></li>
-									<li><a class="dropdown-item" href="#">Discapacidad</a></li>
+									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/discapacidad.php"?>">Discapacidad</a></li>
 									<li><a class="dropdown-item" href="#">Genero</a></li>
 									<li><a class="dropdown-item" href="#">Gestante</a></li>
 									<li><a class="dropdown-item" href="#">Indigena</a></li>

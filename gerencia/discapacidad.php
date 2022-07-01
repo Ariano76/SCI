@@ -11,7 +11,7 @@ include("../administrador/config/connection.php");
   }
 </style>
 
-<h1 class="display-8">MAESTRO DE ACTIVIDADES</h1> 
+<h1 class="display-8">MAESTRO DISCAPACIDAD</h1> 
 <div class="container">
 
 </div>
@@ -24,8 +24,7 @@ include("../administrador/config/connection.php");
     <thead class="text-center">
       <tr>
         <th>Codigo</th>
-        <th>Nombre&nbsp;de&nbsp;la&nbsp;Actividad</th>
-        <th>Fecha&nbsp;de&nbsp;realización</th>
+        <th>Nombre&nbsp;de&nbsp;Item</th>
         <th>Acción</th>
       </tr>
     </thead>
@@ -45,27 +44,25 @@ include("../administrador/config/connection.php");
       'paging': 'true',
       'order': [],
       'ajax': {
-        'url': 'actividad_fetch_data.php',
+        'url': 'discapacidad_fetch_data.php',
         'type': 'post',
       },
       "aoColumnDefs": [{
         "bSortable": false,
-        "aTargets": [3]
+        "aTargets": [2]
       },
       ]
     });
   });
   $(document).on('submit', '#addUser', function(e) {
     e.preventDefault();
-    var nom_actividad = $('#addnom_actividadField').val();
-    var fecha_actividad = $('#addfecha_actividadField').val();
-    if (nom_actividad != '' && fecha_actividad != '') {
+    var nom_discapacidad = $('#addnom_discapacidadField').val();
+    if (nom_discapacidad != '') {
       $.ajax({
-        url: "actividad_add.php",
+        url: "discapacidad_add.php",
         type: "post",
         data: {
-          nom_actividad: nom_actividad,
-          fecha_actividad: fecha_actividad
+          nom_discapacidad: nom_discapacidad
         },
         success: function(data) {
           var json = JSON.parse(data);
@@ -85,17 +82,15 @@ include("../administrador/config/connection.php");
   });  
   $(document).on('submit', '#updateUser', function(e) {
     e.preventDefault();
-    var nom_actividad = $('#nom_actividadField').val();
-    var fecha_actividad = $('#fecha_actividadField').val();      
+    var nom_discapacidad = $('#nom_discapacidadField').val();
     var trid = $('#trid').val();
     var id = $('#id').val();
-    if (nom_actividad != '') {
+    if (nom_discapacidad != '') {
     $.ajax({
-      url: "actividad_update.php",
+      url: "discapacidad_update.php",
       type: "post",
       data: {
-        nom_actividad: nom_actividad,
-        fecha_actividad: fecha_actividad,
+        nom_discapacidad: nom_discapacidad,
         id: id
       },
       success: function(data) {
@@ -106,7 +101,7 @@ include("../administrador/config/connection.php");
           var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
           var row = table.row("[id='" + trid + "']");
 
-          row.row("[id='" + trid + "']").data([id, nom_actividad, fecha_actividad, button]);
+          row.row("[id='" + trid + "']").data([id, nom_discapacidad, button]);
           $('#exampleModal').modal('hide');
         } else {
           alert('failed');
@@ -125,15 +120,14 @@ include("../administrador/config/connection.php");
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "actividad_get_single.php",
+        url: "discapacidad_get_single.php",
         data: {
           id: id
         },
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
-          $('#nom_actividadField').val(json.nom_actividad);
-          $('#fecha_actividadField').val(json.fecha_actividad);
+          $('#nom_discapacidadField').val(json.nom_discapacidad);
 
           $('#id').val(id);
           $('#trid').val(trid);
@@ -145,13 +139,11 @@ include("../administrador/config/connection.php");
 
   </script>
   <!-- Modal -->
-  <!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"-->
   <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <!--div class="modal-dialog" role="document"-->
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ACTIVIDADES</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ITEM</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -160,15 +152,9 @@ include("../administrador/config/connection.php");
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nom_actividadField" class="col-md-3 form-label">Nombre Actividad</label>
+              <label for="nom_discapacidadField" class="col-md-3 form-label">Nombre Item</label>
               <div class="md-form amber-textarea active-amber-textarea col-md-8">
-                <textarea class="form-control rounded-0" name="text" id="nom_actividadField" rows="4" cols="45" maxlength="250" ></textarea>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="fecha_actividadField" class="col-md-3 form-label">Fecha realización</label>
-              <div class="col-md-8">
-                <input id="fecha_actividadField" type="date" name="fecha" value="2017-06-01">
+                <input type="text" class="form-control" id="nom_discapacidadField" name="tipoident" maxlength="50">
               </div>
             </div>
 
@@ -189,21 +175,15 @@ include("../administrador/config/connection.php");
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">AGREGAR NUEVA ACTIVIDAD</h5>
+          <h5 class="modal-title" id="exampleModalLabel">AGREGAR NUEVO ITEM</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form id="addUser" action="">
             <div class="mb-3 row">
-              <label for="addnom_actividadField" class="col-md-3 form-label">Actividad</label>
+              <label for="addnom_discapacidadField" class="col-md-3 form-label">Item</label>
               <div class="col-md-9">
-                <textarea class="form-control rounded-0" name="text" id="addnom_actividadField" rows="4" cols="45" maxlength="250" autocomplete="off"></textarea>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="addfecha_actividadField" class="col-md-3 form-label">Fecha realización</label>
-              <div class="col-md-9">
-                <input id="addfecha_actividadField" type="date" name="fecha" value="<?php echo date("Y-m-d"); ?>">
+                <input type="text" class="form-control" id="addnom_discapacidadField" name="tipoident" maxlength="50">
               </div>
             </div>
             <div class="text-center">
