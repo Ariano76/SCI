@@ -26,17 +26,11 @@ if (!isset($_SESSION['usuario'])) {
 
 	<!-- JS dependencies -->
 	<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script-->
-	<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script-->
 
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	
-
 	<!-- DataTables CSS -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-
-	<!-- Bootstrap 4 dependency -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 
 	<!-- libreria para utilizar iconos en nuestras paginas  -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">

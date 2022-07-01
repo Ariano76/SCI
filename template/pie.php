@@ -16,7 +16,7 @@
 	
 	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<!-- configuracion tabla  -->
-	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 
 
 

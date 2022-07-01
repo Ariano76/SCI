@@ -1,11 +1,9 @@
 <?php 
 include('connection.php');
-$username = $_POST['username'];
-$email = $_POST['email'];
-$mobile = $_POST['mobile'];
-$city = $_POST['city'];
+$nom_actividad = $_POST['nom_actividad'];
+$fecha_actividad = $_POST['fecha_actividad'];
 
-$sql = "INSERT INTO `users` (`username`,`email`,`mobile`,`city`) values ('$username', '$email', '$mobile', '$city' )";
+$sql = "INSERT INTO `actividad` (`nom_actividad`,`fecha_actividad`) values ('$nom_actividad', '$fecha_actividad' )";
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
 if($query ==true)
