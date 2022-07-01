@@ -12,14 +12,15 @@ include("../administrador/config/connection.php");
 </style>
 
 <h1 class="display-8">MAESTRO DE ACTIVIDADES</h1> 
+<div class="container">
+
+</div>
 
 <div class="col-lg-12">
   <div class="btnAdd">
-    <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-success btn-sm">Add User</a>
+    <a href="#!" data-id="" data-bs-toggle="modal" data-bs-target="#addUserModal" class="btn btn-success btn-lg">Agregar Nueva Actividad</a>
   </div>
-
   <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed small" style="width:100%">
-    <!--table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%"-->
     <thead class="text-center">
       <tr>
         <th>Codigo</th>
@@ -58,9 +59,9 @@ include("../administrador/config/connection.php");
     e.preventDefault();
     var nom_actividad = $('#addnom_actividadField').val();
     var fecha_actividad = $('#addfecha_actividadField').val();
-/*    if (nom_actividad != '' && fecha_actividad != '') {*/
+    if (nom_actividad != '' && fecha_actividad != '') {
       $.ajax({
-        url: "actividad_add_user.php",
+        url: "actividad_add.php",
         type: "post",
         data: {
           nom_actividad: nom_actividad,
@@ -78,19 +79,19 @@ include("../administrador/config/connection.php");
           }
         }
       });
-/*    } else {
-      alert('Fill all the required fields');
-    }*/
+    } else {
+      alert('Complete todos los campos requeridos');
+    }
   });  
   $(document).on('submit', '#updateUser', function(e) {
     e.preventDefault();
     var nom_actividad = $('#nom_actividadField').val();
     var fecha_actividad = $('#fecha_actividadField').val();      
-
     var trid = $('#trid').val();
-    var id = $('#id').val();           
+    var id = $('#id').val();
+    if (nom_actividad != '') {
     $.ajax({
-      url: "actividad_update_user.php",
+      url: "actividad_update.php",
       type: "post",
       data: {
         nom_actividad: nom_actividad,
@@ -112,9 +113,9 @@ include("../administrador/config/connection.php");
         }
       }
     });
-/*      } else {
-        alert('Fill all the required fields');
-      }*/
+      } else {
+        alert('Complete todos los campos requeridos');
+      }
     });
   $('#tablaUsuarios').on('click', '.editbtn ', function(event) {
     var table = $('#tablaUsuarios').DataTable();
@@ -151,7 +152,7 @@ include("../administrador/config/connection.php");
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ACTIVIDADES</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form id="updateUser">
@@ -161,8 +162,7 @@ include("../administrador/config/connection.php");
             <div class="mb-3 row">
               <label for="nom_actividadField" class="col-md-3 form-label">Nombre Actividad</label>
               <div class="md-form amber-textarea active-amber-textarea col-md-8">
-                <!--input type="text" class="form-control" id="nom_actividadField" name="name"-->
-                <textarea class="form-control rounded-0" name="text" id="nom_actividadField" rows="4" cols="45" maxlength="250"></textarea>
+                <textarea class="form-control rounded-0" name="text" id="nom_actividadField" rows="4" cols="45" maxlength="250" ></textarea>
               </div>
             </div>
             <div class="mb-3 row">
@@ -178,50 +178,12 @@ include("../administrador/config/connection.php");
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade bd-example-modal-lg" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <!--div class="modal-dialog" role="document"-->
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR ACTIVIDADES</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="updateUser">
-            <input type="hidden" name="id" id="id" value="">
-            <input type="hidden" name="trid" id="trid" value="">
-            
-            <div class="mb-3 row">
-              <label for="nom_actividadField" class="col-md-3 form-label">Nombre Actividad</label>
-              <div class="md-form amber-textarea active-amber-textarea col-md-8">
-                <!--input type="text" class="form-control" id="nom_actividadField" name="name"-->
-                <textarea class="form-control rounded-0" name="text" id="nom_actividadField" rows="4" cols="45" maxlength="250"></textarea>
-              </div>
-            </div>
-            <div class="mb-3 row">
-              <label for="fecha_actividadField" class="col-md-3 form-label">Fecha realización</label>
-              <div class="col-md-8">
-                <input id="fecha_actividadField" type="date" name="fecha" value="2017-06-01">
-              </div>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">Actualizar</button>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Add user Modal -->
   <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -233,19 +195,19 @@ include("../administrador/config/connection.php");
         <div class="modal-body">
           <form id="addUser" action="">
             <div class="mb-3 row">
-              <label for="addnom_actividadField" class="col-md-3 form-label">Name</label>
+              <label for="addnom_actividadField" class="col-md-3 form-label">Actividad</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="addnom_actividadField" name="name">
+                <textarea class="form-control rounded-0" name="text" id="addnom_actividadField" rows="4" cols="45" maxlength="250" autocomplete="off"></textarea>
               </div>
             </div>
             <div class="mb-3 row">
-              <label for="addfecha_actividadField" class="col-md-3 form-label">Email</label>
+              <label for="addfecha_actividadField" class="col-md-3 form-label">Fecha realización</label>
               <div class="col-md-9">
-                <input id="addfecha_actividadField" type="date" name="fecha" value="2022-01-01">
+                <input id="addfecha_actividadField" type="date" name="fecha" value="<?php echo date("Y-m-d"); ?>">
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Grabar</button>
             </div>
           </form>
         </div>

@@ -1,5 +1,5 @@
 <?php 
-include('connection.php');
+include('../administrador/config/connection.php');
 $nom_actividad = $_POST['nom_actividad'];
 $fecha_actividad = $_POST['fecha_actividad'];
 
