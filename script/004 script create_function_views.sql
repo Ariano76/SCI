@@ -359,10 +359,20 @@ drop view IF EXISTS vista_indigena;
 CREATE VIEW `vista_indigena` AS
 	SELECT id_indigena, nom_indigena
     FROM indigena;
+
+drop view IF EXISTS vista_nacionalidad;
+CREATE VIEW `vista_nacionalidad` AS
+	SELECT id_nacionalidad, nom_nacionalidad
+    FROM nacionalidad;
+    
+drop view IF EXISTS vista_proyecto;
+CREATE VIEW `vista_proyecto` AS
+	SELECT id_proyecto, nom_proyecto
+    FROM proyecto;
     
     
 /* PRUEBAS */
-select * from vista_indigena;
+select * from vista_proyecto;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
