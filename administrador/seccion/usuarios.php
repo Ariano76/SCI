@@ -19,6 +19,8 @@ $db_1 = new TransactionSCI();
 $nuevorol = 2;
 if ($optRoles == "Administrador") {
 	$nuevorol = 1;
+}elseif ($optRoles == "Gerencia") {
+	$nuevorol = 3;
 }
 
 switch ($accion) {
@@ -101,6 +103,7 @@ elseif($id == 0){
 					<select name="optRoles">
 						<option value="Administrador"<?=$txtNomRol == 'Administrador' ? ' selected="selected"' : '';?>>Administrador</option>
 						<option value="Analista"<?=$txtNomRol == 'Analista' ? ' selected="selected"' : '';?>>Analista</option>
+						<option value="Gerencia"<?=$txtNomRol == 'Gerencia' ? ' selected="selected"' : '';?>>Gerencia</option>
 					</select>
 				</div>
 				<div>
