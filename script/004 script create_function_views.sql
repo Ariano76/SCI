@@ -374,10 +374,14 @@ drop view IF EXISTS vista_tema;
 CREATE VIEW `vista_tema` AS
 	SELECT id_tema, nom_tema
     FROM tema;
-    
+
+drop view IF EXISTS vista_tiempo_gestacion;
+CREATE VIEW `vista_tiempo_gestacion` AS
+	SELECT id_tiempo_gestacion, nom_tiempo_gestacion
+    FROM tiempo_gestacion;
     
 /* PRUEBAS */
-select * from vista_tema;
+select * from vista_tiempo_gestacion;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
