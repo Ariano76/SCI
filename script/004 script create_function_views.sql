@@ -354,9 +354,15 @@ drop view IF EXISTS vista_gestante;
 CREATE VIEW `vista_gestante` AS
 	SELECT id_gestante, nom_gestante
     FROM gestante;
+
+drop view IF EXISTS vista_indigena;
+CREATE VIEW `vista_indigena` AS
+	SELECT id_indigena, nom_indigena
+    FROM indigena;
+    
     
 /* PRUEBAS */
-select * from vista_gestante;
+select * from vista_indigena;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
