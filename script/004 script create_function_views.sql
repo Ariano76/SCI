@@ -384,9 +384,15 @@ drop view IF EXISTS vista_tipo_discapacidad;
 CREATE VIEW `vista_tipo_discapacidad` AS
 	SELECT id_tipo_discapacidad, nom_tipo_discapacidad
     FROM tipo_discapacidad;
+
+drop view IF EXISTS vista_tipo_documento;
+CREATE VIEW `vista_tipo_documento` AS
+	SELECT id_tipo_documento, nom_documento
+    FROM tipo_documento;
+    
     
 /* PRUEBAS */
-select * from vista_tipo_discapacidad;
+select * from vista_tipo_documento;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
