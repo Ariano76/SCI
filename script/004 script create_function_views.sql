@@ -379,9 +379,14 @@ drop view IF EXISTS vista_tiempo_gestacion;
 CREATE VIEW `vista_tiempo_gestacion` AS
 	SELECT id_tiempo_gestacion, nom_tiempo_gestacion
     FROM tiempo_gestacion;
+
+drop view IF EXISTS vista_tipo_discapacidad;
+CREATE VIEW `vista_tipo_discapacidad` AS
+	SELECT id_tipo_discapacidad, nom_tipo_discapacidad
+    FROM tipo_discapacidad;
     
 /* PRUEBAS */
-select * from vista_tiempo_gestacion;
+select * from vista_tipo_discapacidad;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
