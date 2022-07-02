@@ -1,8 +1,8 @@
 <?php 
 include('../administrador/config/connection.php');
-$nom_nacionalidad = $_POST['nom_nacionalidad'];
+$nom_proyecto = $_POST['nom_proyecto'];
 
-$sql = "INSERT INTO `nacionalidad` (`nom_nacionalidad`) values ('$nom_nacionalidad')";
+$sql = "INSERT INTO `proyecto` (`nom_proyecto`) values ('$nom_proyecto')";
 $query= mysqli_query($con,$sql);
 $lastId = mysqli_insert_id($con);
 if($query ==true)

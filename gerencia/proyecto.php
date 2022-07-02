@@ -11,7 +11,7 @@ include("../administrador/config/connection.php");
   }
 </style>
 
-<h1 class="display-8">MAESTRO ITEM NACIONALIDAD</h1> 
+<h1 class="display-8">MAESTRO ITEM PROYECTOS</h1> 
 <div class="container">
 
 </div>
@@ -44,7 +44,7 @@ include("../administrador/config/connection.php");
       'paging': 'true',
       'order': [],
       'ajax': {
-        'url': 'nacionalidad_fetch_data.php',
+        'url': 'proyecto_fetch_data.php',
         'type': 'post',
       },
       "aoColumnDefs": [{
@@ -56,13 +56,13 @@ include("../administrador/config/connection.php");
   });
   $(document).on('submit', '#addUser', function(e) {
     e.preventDefault();
-    var nom_nacionalidad = $('#addnom_nacionalidadField').val();
-    if (nom_nacionalidad != '') {
+    var nom_proyecto = $('#addnom_proyectoField').val();
+    if (nom_proyecto != '') {
       $.ajax({
-        url: "nacionalidad_add.php",
+        url: "proyecto_add.php",
         type: "post",
         data: {
-          nom_nacionalidad: nom_nacionalidad
+          nom_proyecto: nom_proyecto
         },
         success: function(data) {
           var json = JSON.parse(data);
@@ -82,15 +82,15 @@ include("../administrador/config/connection.php");
   });  
   $(document).on('submit', '#updateUser', function(e) {
     e.preventDefault();
-    var nom_nacionalidad = $('#nom_nacionalidadField').val();
+    var nom_proyecto = $('#nom_proyectoField').val();
     var trid = $('#trid').val();
     var id = $('#id').val();
-    if (nom_nacionalidad != '') {
+    if (nom_proyecto != '') {
     $.ajax({
-      url: "nacionalidad_update.php",
+      url: "proyecto_update.php",
       type: "post",
       data: {
-        nom_nacionalidad: nom_nacionalidad,
+        nom_proyecto: nom_proyecto,
         id: id
       },
       success: function(data) {
@@ -101,7 +101,7 @@ include("../administrador/config/connection.php");
           var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
           var row = table.row("[id='" + trid + "']");
 
-          row.row("[id='" + trid + "']").data([id, nom_nacionalidad, button]);
+          row.row("[id='" + trid + "']").data([id, nom_proyecto, button]);
           $('#exampleModal').modal('hide');
         } else {
           alert('failed');
@@ -120,14 +120,14 @@ include("../administrador/config/connection.php");
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "nacionalidad_get_single.php",
+        url: "proyecto_get_single.php",
         data: {
           id: id
         },
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
-          $('#nom_nacionalidadField').val(json.nom_nacionalidad);
+          $('#nom_proyectoField').val(json.nom_proyecto);
 
           $('#id').val(id);
           $('#trid').val(trid);
@@ -152,9 +152,9 @@ include("../administrador/config/connection.php");
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nom_nacionalidadField" class="col-md-3 form-label">Nombre Item</label>
+              <label for="nom_proyectoField" class="col-md-3 form-label">Nombre Item</label>
               <div class="md-form amber-textarea active-amber-textarea col-md-8">
-                <input type="text" class="form-control" id="nom_nacionalidadField" name="tipoident" maxlength="50">
+                <input type="text" class="form-control" id="nom_proyectoField" name="tipoident" maxlength="50">
               </div>
             </div>
 
@@ -181,9 +181,9 @@ include("../administrador/config/connection.php");
         <div class="modal-body">
           <form id="addUser" action="">
             <div class="mb-3 row">
-              <label for="addnom_nacionalidadField" class="col-md-3 form-label">Item</label>
+              <label for="addnom_proyectoField" class="col-md-3 form-label">Item</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="addnom_nacionalidadField" name="tipoident" maxlength="50">
+                <input type="text" class="form-control" id="addnom_proyectoField" name="tipoident" maxlength="50">
               </div>
             </div>
             <div class="text-center">
