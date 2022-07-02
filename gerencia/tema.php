@@ -11,7 +11,7 @@ include("../administrador/config/connection.php");
   }
 </style>
 
-<h1 class="display-8">MAESTRO ITEM TEMA</h1> 
+<h1 class="display-8">MAESTRO DE TEMAS</h1> 
 <div class="container">
 
 </div>

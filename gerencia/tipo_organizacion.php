@@ -11,7 +11,7 @@ include("../administrador/config/connection.php");
   }
 </style>
 
-<h1 class="display-8">MAESTRO TIEMPO DE GESTACION</h1> 
+<h1 class="display-8">MAESTRO TIPO DE ORGANIZACION</h1> 
 <div class="container">
 
 </div>
@@ -44,7 +44,7 @@ include("../administrador/config/connection.php");
       'paging': 'true',
       'order': [],
       'ajax': {
-        'url': 'tiempo_gestacion_fetch_data.php',
+        'url': 'tipo_organizacion_fetch_data.php',
         'type': 'post',
       },
       "aoColumnDefs": [{
@@ -56,13 +56,13 @@ include("../administrador/config/connection.php");
   });
   $(document).on('submit', '#addUser', function(e) {
     e.preventDefault();
-    var nom_tiempo_gestacion = $('#addnom_tiempo_gestacionField').val();
-    if (nom_tiempo_gestacion != '') {
+    var nom_tipo_organizacion = $('#addnom_tipo_organizacionField').val();
+    if (nom_tipo_organizacion != '') {
       $.ajax({
-        url: "tiempo_gestacion_add.php",
+        url: "tipo_organizacion_add.php",
         type: "post",
         data: {
-          nom_tiempo_gestacion: nom_tiempo_gestacion
+          nom_tipo_organizacion: nom_tipo_organizacion
         },
         success: function(data) {
           var json = JSON.parse(data);
@@ -82,15 +82,15 @@ include("../administrador/config/connection.php");
   });  
   $(document).on('submit', '#updateUser', function(e) {
     e.preventDefault();
-    var nom_tiempo_gestacion = $('#nom_tiempo_gestacionField').val();
+    var nom_tipo_organizacion = $('#nom_tipo_organizacionField').val();
     var trid = $('#trid').val();
     var id = $('#id').val();
-    if (nom_tiempo_gestacion != '') {
+    if (nom_tipo_organizacion != '') {
     $.ajax({
-      url: "tiempo_gestacion_update.php",
+      url: "tipo_organizacion_update.php",
       type: "post",
       data: {
-        nom_tiempo_gestacion: nom_tiempo_gestacion,
+        nom_tipo_organizacion: nom_tipo_organizacion,
         id: id
       },
       success: function(data) {
@@ -101,7 +101,7 @@ include("../administrador/config/connection.php");
           var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
           var row = table.row("[id='" + trid + "']");
 
-          row.row("[id='" + trid + "']").data([id, nom_tiempo_gestacion, button]);
+          row.row("[id='" + trid + "']").data([id, nom_tipo_organizacion, button]);
           $('#exampleModal').modal('hide');
         } else {
           alert('failed');
@@ -120,14 +120,14 @@ include("../administrador/config/connection.php");
       $('#exampleModal').modal('show');
 
       $.ajax({
-        url: "tiempo_gestacion_get_single.php",
+        url: "tipo_organizacion_get_single.php",
         data: {
           id: id
         },
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
-          $('#nom_tiempo_gestacionField').val(json.nom_tiempo_gestacion);
+          $('#nom_tipo_organizacionField').val(json.nom_tipo_organizacion);
 
           $('#id').val(id);
           $('#trid').val(trid);
@@ -152,9 +152,9 @@ include("../administrador/config/connection.php");
             <input type="hidden" name="trid" id="trid" value="">
             
             <div class="mb-3 row">
-              <label for="nom_tiempo_gestacionField" class="col-md-3 form-label">Nombre Item</label>
+              <label for="nom_tipo_organizacionField" class="col-md-3 form-label">Nombre Item</label>
               <div class="md-form amber-textarea active-amber-textarea col-md-8">
-                <input type="text" class="form-control" id="nom_tiempo_gestacionField" name="tipoident" maxlength="50">
+                <input type="text" class="form-control" id="nom_tipo_organizacionField" name="tipoident" maxlength="50">
               </div>
             </div>
 
@@ -181,9 +181,9 @@ include("../administrador/config/connection.php");
         <div class="modal-body">
           <form id="addUser" action="">
             <div class="mb-3 row">
-              <label for="addnom_tiempo_gestacionField" class="col-md-3 form-label">Item</label>
+              <label for="addnom_tipo_organizacionField" class="col-md-3 form-label">Item</label>
               <div class="col-md-9">
-                <input type="text" class="form-control" id="addnom_tiempo_gestacionField" name="tipoident" maxlength="50">
+                <input type="text" class="form-control" id="addnom_tipo_organizacionField" name="tipoident" maxlength="50">
               </div>
             </div>
             <div class="text-center">

@@ -581,6 +581,7 @@ delimiter ;
 *********************************/
 insert into roles(nombre_rol) values('Administrador');
 insert into roles(nombre_rol) values('Analista');
+insert into roles(nombre_rol) values('Gerencia');
 
 insert into estados (estado) values('VALIDO'),('INVALIDO'),('EN ESPERA'),('REGISTRO VALIDO POSIBLE FRAUDE'),('REGISTRO EN ESPERA POSIBLE FRAUDE'),('FRAUDE'),('ABANDONO');
 insert into entidades (nombre) values('beneficiario'),('comunicacion'),('derivacion_sectores'),('educacion'),('encuesta'),('integrantes'),('nutricion'),('salud');

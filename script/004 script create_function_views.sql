@@ -390,9 +390,14 @@ CREATE VIEW `vista_tipo_documento` AS
 	SELECT id_tipo_documento, nom_documento
     FROM tipo_documento;
     
+drop view IF EXISTS vista_tipo_organizacion;
+CREATE VIEW `vista_tipo_organizacion` AS
+	SELECT id_tipo_organizacion, nom_tipo_organizacion
+    FROM tipo_organizacion;
+    
     
 /* PRUEBAS */
-select * from vista_tipo_documento;
+select * from vista_tipo_organizacion;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
