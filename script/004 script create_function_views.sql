@@ -370,9 +370,14 @@ CREATE VIEW `vista_proyecto` AS
 	SELECT id_proyecto, nom_proyecto
     FROM proyecto;
     
+drop view IF EXISTS vista_tema;
+CREATE VIEW `vista_tema` AS
+	SELECT id_tema, nom_tema
+    FROM tema;
+    
     
 /* PRUEBAS */
-select * from vista_proyecto;
+select * from vista_tema;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
