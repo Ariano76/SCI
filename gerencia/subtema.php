@@ -61,7 +61,9 @@ $db_1 = new TransactionSCI();
   $(document).on('submit', '#addUser', function(e) {
     e.preventDefault();
     var nom_subtema = $('#addnom_subtemaField').val();
+    var nom_tema = $('#addnom_temaField').val();
     var id_tema = $('#addid_temaField').val();
+
     if (nom_subtema != '') {
       $.ajax({
         url: "tema_add.php",
@@ -85,19 +87,27 @@ $db_1 = new TransactionSCI();
       alert('Complete todos los campos requeridos');
     }
   });  
+
   $(document).on('submit', '#updateUser', function(e) {
     e.preventDefault();
     var nom_subtema = $('#nom_subtemaField').val();
-    var id_tema = $('#id_temaField').val();
+    // recuperando el text del item seleccionado en un control SELECT
+    var nom_tema = $("#nom_temaField option:selected").text(); 
+    // recuperando el value del item seleccionado en un control SELECT
+    var id_tema = $('#nom_temaField').val();
+
     var trid = $('#trid').val();
-    var id = $('#id').val();
+    var id = $('#id').val();    
+
     if (nom_subtema != '') {
       $.ajax({
         url: "subtema_update.php",
         type: "post",
         data: {
           nom_subtema: nom_subtema,
+          nom_tema: nom_tema,
           id_tema: id_tema,
+          
           id: id
         },
         success: function(data) {
@@ -108,11 +118,14 @@ $db_1 = new TransactionSCI();
             var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Edit</a> </td>';
             var row = table.row("[id='" + trid + "']");
 
-            row.row("[id='" + trid + "']").data([id, nom_subtema, button]);
+            row.row("[id='" + trid + "']").data([id, nom_subtema, nom_tema, id_tema, button]);
             $('#exampleModal').modal('hide');
           } else {
             alert('failed');
           }
+          /*console.log("subtema :" + nom_subtema);
+          console.log("tema :" + nom_tema);
+          console.log("codigo de tema :" + id_tema);*/
         }
       });
     } else {
@@ -135,15 +148,28 @@ $db_1 = new TransactionSCI();
         success: function(data) {
           var json = JSON.parse(data);
           $('#nom_subtemaField').val(json.nom_subtema);
-          $('#id_temaField').val(json.id_tema);
-
+          $('#nom_temaField').val(json.nom_tema);
+          //$('#id_temaField').val(json.id_tema);
           $('#id').val(id);
           $('#trid').val(trid);
-          //console.log("La Respuesta esta_de_acuerdoField es :" + json.esta_de_acuerdo);
+          
+          // RECORRIENDO LOS ELEMENTOS DEL SELECT Y ;
+          var selectObj = document.getElementById("nom_temaField");
+          var codigotema = 0;
+          for (var i = 0; i < selectObj.options.length; i++) {
+            if (selectObj.options[i].text== json.nom_tema) {
+              selectObj.options[i].selected = true;
+              codigotema = selectObj.options[i];
+              return;
+            }
+          }
 
+          console.log("tema :" + json.nom_tema);
+          console.log("codigo de tema :" + codigotema);
         }
       })
     });
+
 
   </script>
   <!-- Modal -->
@@ -158,14 +184,26 @@ $db_1 = new TransactionSCI();
           <form id="updateUser">
             <input type="hidden" name="id" id="id" value="">
             <input type="hidden" name="trid" id="trid" value="">
-            
+
             <div class="mb-3 row">
               <label for="nom_subtemaField" class="col-md-3 form-label">Nombre Item</label>
               <div class="md-form amber-textarea active-amber-textarea col-md-8">
                 <input type="text" class="form-control" id="nom_subtemaField" name="tipoident" maxlength="50">
               </div>
             </div>
-
+            <div class="mb-3 row">
+              <label for="nom_temaField" class="col-md-3 form-label">Tema</label>
+              <div class="col-md-8">
+                <!--input type="text" class="form-control" id="addnom_subtemaField" name="tipoident" maxlength="50"-->
+                <select class="form-select" id="nom_temaField" aria-label="Default select example" name="estatus">
+                  <?php 
+                  $datos = $db_1->traer_tema();
+                  foreach($datos as $value) { ?>
+                    <option value="<?php echo $value['id_tema']; ?>"><?php echo $value['nom_tema'];?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary">Actualizar</button>
             </div>
@@ -198,7 +236,7 @@ $db_1 = new TransactionSCI();
               <label for="addnom_subtemaField" class="col-md-3 form-label">Tema</label>
               <div class="col-md-9">
                 <!--input type="text" class="form-control" id="addnom_subtemaField" name="tipoident" maxlength="50"-->
-                <select class="form-select" id="addnom_subtemaField" aria-label="Default select example">
+                <select class="form-select" id="addnom_subtemaField" aria-label="Default select example" name="addnom_subtemaField">
                   <?php 
                   $datos = $db_1->traer_tema();
                   foreach($datos as $value) { ?>
