@@ -241,8 +241,8 @@ document.addEventListener("DOMContentLoaded", function(){
 									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
 								</ul>
 							</li>
-							<li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
-							<li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
+							<li><a class="dropdown-item" href="#"> Reporte 1 </a></li>
+							<li><a class="dropdown-item" href="#"> Reporte 2 </a>
 							</ul>
 						</li>
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>

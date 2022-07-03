@@ -61,15 +61,15 @@ $db_1 = new TransactionSCI();
   $(document).on('submit', '#addUser', function(e) {
     e.preventDefault();
     var nom_subtema = $('#addnom_subtemaField').val();
-    var nom_tema = $('#addnom_temaField').val();
-    var id_tema = $('#addid_temaField').val();
+    var id_tema = $('#addnom_temaField').val();
 
     if (nom_subtema != '') {
       $.ajax({
-        url: "tema_add.php",
+        url: "subtema_add.php",
         type: "post",
         data: {
-          nom_subtema: nom_subtema
+          nom_subtema: nom_subtema,
+          id_tema: id_tema
         },
         success: function(data) {
           var json = JSON.parse(data);
@@ -236,7 +236,7 @@ $db_1 = new TransactionSCI();
               <label for="addnom_subtemaField" class="col-md-3 form-label">Tema</label>
               <div class="col-md-9">
                 <!--input type="text" class="form-control" id="addnom_subtemaField" name="tipoident" maxlength="50"-->
-                <select class="form-select" id="addnom_subtemaField" aria-label="Default select example" name="addnom_subtemaField">
+                <select class="form-select" id="addnom_temaField" aria-label="Default select example" name="estatus">
                   <?php 
                   $datos = $db_1->traer_tema();
                   foreach($datos as $value) { ?>
