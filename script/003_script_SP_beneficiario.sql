@@ -727,14 +727,24 @@ BEGIN
 END |
 DELIMITER ;
 
+/* STORED PROCEDURE PARA LA GENERACION DE REPORTES */
+DROP PROCEDURE IF EXISTS `SP_list_tema`;
+DELIMITER |
+CREATE PROCEDURE `SP_list_tema`()
+BEGIN
+    
+    select id_tema, nom_tema
+    from vista_tema order by id_tema;
 
+END |
+DELIMITER ;
 
 	
 
 
 /***** VALIDACIONES *******/
 
-call SP_reporte_00();
+call SP_list_tema();
 call SP_reporte_000('Lima');
 call SP_reporte_01_beneficiario_x_region_01('Lambayeque');
 

@@ -394,10 +394,15 @@ drop view IF EXISTS vista_tipo_organizacion;
 CREATE VIEW `vista_tipo_organizacion` AS
 	SELECT id_tipo_organizacion, nom_tipo_organizacion
     FROM tipo_organizacion;
-    
+
+drop view IF EXISTS vista_subtema;
+CREATE VIEW `vista_subtema` AS
+	SELECT s.id_subtema, s.nom_subtema, t.nom_tema, t.id_tema
+    FROM subtema s inner join tema t on s.id_tema = t.id_tema;
+		
     
 /* PRUEBAS */
-select * from vista_tipo_organizacion;
+select * from vista_subtema;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 

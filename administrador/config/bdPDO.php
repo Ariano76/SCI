@@ -823,6 +823,24 @@ private $DB_PASSWORD = ''; //database password
     }
 
 /*****************
+ *  MODULO GERENCIA
+ * ***************/
+    public function traer_tema() {
+        try {               
+            // calling stored procedure command
+            $sql = "call SP_list_tema();";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $arreglo;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
+/*****************
  *  REPORTES
  * ***************/
     public function traer_regiones() {
