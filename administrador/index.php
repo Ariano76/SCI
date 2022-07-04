@@ -10,8 +10,11 @@ if ($_POST) {
 
 	if($codigo >= 1){
 		$_SESSION['usuario'] = 'ok';
-		$_SESSION['nombreUsuario'] = strtolower($_POST['usuario']);		
-		//$_SESSION['xxx'] = $codigo;
+		$_SESSION['nombreUsuario'] = strtolower($_POST['usuario']);
+
+		$codigorol = $db->select_rol($codigo);
+		$_SESSION['rolusuario'] = $codigorol;
+
 		header('Location:inicio.php');	
 	} else {
 		$mensaje = "Error: El usuario o contraseña no coinciden.";

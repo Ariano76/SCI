@@ -1326,6 +1326,22 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_user_rol`;
+DELIMITER |
+CREATE PROCEDURE `SP_user_rol`(in codusuario int, OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;    
+    SELECT id_rol into success FROM usuarios where id_usuario = codusuario;
+    COMMIT;
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_Usuarios_Select`;
 DELIMITER |
 CREATE PROCEDURE `SP_Usuarios_Select`()
@@ -1496,8 +1512,8 @@ DELIMITER ;
 /*****************************
 PROBANDO LOS STORED PROCEDURE
 ******************************/
-SET @total = 9;
-call SP_Migrar_Data_Historica(@total);
+SET @total = 0;
+call SP_user_rol(2,@total);
 select @total;
 
 call SP_Usuario_Select(10);

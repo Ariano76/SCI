@@ -99,15 +99,12 @@ if (!isset($_SESSION['usuario'])) {
 
 document.addEventListener("DOMContentLoaded", function(){
 
-
     	/////// Prevent closing from click inside dropdown
     	document.querySelectorAll('.dropdown-menu').forEach(function(element){
     		element.addEventListener('click', function (e) {
     			e.stopPropagation();
     		});
     	})
-
-
 
 		// make it as accordion for smaller screens
 		if (window.innerWidth < 992) {
@@ -142,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function(){
 			})
 		}
 		// end if innerWidth
-
 	}); 
 	// DOMContentLoaded  end
 </script>
@@ -151,99 +147,141 @@ document.addEventListener("DOMContentLoaded", function(){
 <body>
 
 	<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
+	<?php 
+	if ($_SESSION['rolusuario']==1) {
+		?>
+		<!--nav class="navbar navbar-expand-md navbar-dark bg-primary"-->
+		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
+			<div class="container-fluid">		
+				<a class="navbar-brand" href="<?php echo $url."/administrador/inicio.php" ?>">
+					<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					</a>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=4" ?>">Mantenimiento Usuarios</a>	
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Datos KOBO</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Cargar Nuevos beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Nuevos Beneficiarios con data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/upload_observaciones.php"?>">Subir Observaciones</a>
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Cargar bases internas y de aliados</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Limpieza de datos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Nuevos Datos Historicos</a>
+							</div>
+						</li>			
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar Datos</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos Nuevos Validados</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios Validados</a>
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
+							</div>
+						</li>					
 
-	<!--nav class="navbar navbar-expand-md navbar-dark bg-primary"-->
-	<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
-		<div class="container-fluid">		
-			<a class="navbar-brand" href="<?php echo $url."/administrador/inicio.php" ?>">
-				<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				</a>
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<li>
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuarios</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/usuarios.php?id=4" ?>">Mantenimiento Usuarios</a>	
-						</div>
-					</li>
-					<li>
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Datos KOBO</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Cargar Nuevos beneficiarios</a>
-							<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
-							<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Nuevos Beneficiarios con data historica</a>
-							<a class="dropdown-item" href="<?php echo $url."/upload_observaciones.php"?>">Subir Observaciones</a>
-						</div>
-					</li>
-					<li>
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Cargar bases internas y de aliados</a>
-							<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Limpieza de datos</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
-							<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Nuevos Datos Historicos</a>
-						</div>
-					</li>			
-					<li>
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar Datos</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos Nuevos Validados</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios Validados</a>
-						</div>
-					</li>
-					<li>
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
-						<div class="dropdown-menu">
-							<!--a class="dropdown-item" href="<?php echo $url."/reportes/reporte.php" ?>">Reportes Control</a-->
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
-							<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
-						</div>
-					</li>					
-					<li class="nav-item dropdown">
-						<!--a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Gerencia  </a-->
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerencia</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a></li>
-							<li><a class="dropdown-item" href="#"> Maestros &raquo; </a>
-								<ul class="submenu dropdown-menu">
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/adulto.php"?>">Es Adulto</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/discapacidad.php"?>">Discapacidad</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/genero.php"?>">Genero</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/gestante.php"?>">Gestante</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/indigena.php"?>">Indigena</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/nacionalidad.php"?>">Nacionalidad</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/proyecto.php"?>">Proyecto</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tema.php"?>">Tema</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/subtema.php"?>">Sub Tema</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tiempo_gestacion.php"?>">Tiempo Gestación</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_discapacidad.php"?>">Tipo Discapacidad</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_documento.php"?>">Tipo Documento</a></li>
-									<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
-								</ul>
-							</li>
-							<li><a class="dropdown-item" href="#"> Reporte 1 </a></li>
-							<li><a class="dropdown-item" href="#"> Reporte 2 </a>
-							</ul>
+						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
+						<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<?php 
+	} elseif($_SESSION['rolusuario']==2) {
+		?>
+		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
+			<div class="container-fluid">		
+				<a class="navbar-brand" href="<?php echo $url."/administrador/inicio.php" ?>">
+					<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					</a>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Datos KOBO</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Cargar Nuevos beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Nuevos Beneficiarios con data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/upload_observaciones.php"?>">Subir Observaciones</a>
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Cargar bases internas y de aliados</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Limpieza de datos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Nuevos Datos Historicos</a>
+							</div>
+						</li>			
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar Datos</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos Nuevos Validados</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios Validados</a>
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
+							</div>
 						</li>
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
 						<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
@@ -251,7 +289,105 @@ document.addEventListener("DOMContentLoaded", function(){
 				</div>
 			</div>
 		</nav>
+		<?php	
+	}else{
+		?>
+		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
+			<div class="container-fluid">		
+				<a class="navbar-brand" href="<?php echo $url."/administrador/inicio.php" ?>">
+					<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					</a>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Datos KOBO</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/uploadfile.php"?>">Cargar Nuevos beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacion.php"?>">Limpieza de datos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_dni.php"?>">Documentos con incidencias</a>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacion_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_excel.php"?>">Validar registros mismo documento</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios_nuevos.php"?>">Cotejar Nuevos Beneficiarios con data historica</a>
+								<a class="dropdown-item" href="<?php echo $url."/upload_observaciones.php"?>">Subir Observaciones</a>
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Data Historica</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/upload_datahistorica.php"?>">Cargar bases internas y de aliados</a>
+								<a class="dropdown-item" href="<?php echo $url."/validacionDH.php"?>">Limpieza de datos</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_dni.php"?>">Documentos con incidencias</a>
+								<a class="dropdown-item" href="<?php echo $url."/repo_validacionDH_nombres.php"?>">Nombres con incidencias</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/cotejo_beneficiarios.php"?>">Cotejar Nuevos Datos Historicos</a>
+							</div>
+						</li>			
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Migrar Datos</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_historica.php" ?>">Datos Historicos Nuevos Validados</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_beneficiario.php" ?>">Nuevos Beneficiarios Validados</a>
+							</div>
+						</li>
+						<li>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes Control</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_001.php" ?>">Número de beneficiarios</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_002.php" ?>">Número de hogares con embarazadas</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_003.php" ?>">Hogares con familiares con discapacidad</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_004.php" ?>">Número de NNA matriculados en la escuela</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_005.php" ?>">Familias que viajan con menores de 17 años</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_006.php" ?>">Hogares con familiares que tienen ingresos</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_007.php" ?>">Número de integrantes por hogar</a>
+								<a class="dropdown-item" href="<?php echo $url."/reportes/reporte_008.php" ?>">Número de infantes menores de 18 años</a>
+							</div>
+						</li>					
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerencia</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a>
+								</li>
+								<li><a class="dropdown-item" href="#"> Maestros &raquo; </a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/adulto.php"?>">Es Adulto</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/discapacidad.php"?>">Discapacidad</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/genero.php"?>">Genero</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/gestante.php"?>">Gestante</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/indigena.php"?>">Indigena</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/nacionalidad.php"?>">Nacionalidad</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/proyecto.php"?>">Proyecto</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tema.php"?>">Tema</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/subtema.php"?>">Sub Tema</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tiempo_gestacion.php"?>">Tiempo Gestación</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_discapacidad.php"?>">Tipo Discapacidad</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_documento.php"?>">Tipo Documento</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
+									</ul>
+								</li>
+								<li><a class="dropdown-item" href="#"> Reporte 1 </a></li>
+								<li><a class="dropdown-item" href="#"> Reporte 2 </a>
+								</ul>
+							</li>
+							<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
+							<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<?php	
+		}
+		?>
 
+		
 		<div class="container">
 			<br><br>
 			<div class="row">
