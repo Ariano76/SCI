@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	<?php $url="http://".$_SERVER['HTTP_HOST']."/sci" ?>
 	<?php 
-	if ($_SESSION['rolusuario']==1) {
+	if ($_SESSION['rolusuario']==1) { // ROL ADMINISTRADOR
 		?>
 		<!--nav class="navbar navbar-expand-md navbar-dark bg-primary"-->
 		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			</div>
 		</nav>
 		<?php 
-	} elseif($_SESSION['rolusuario']==2) {
+	} elseif($_SESSION['rolusuario']==2) { // ROL ANALISTA
 		?>
 		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
 			<div class="container-fluid">		
@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			</div>
 		</nav>
 		<?php	
-	}else{
+	}else{ // ROL GERENCIA
 		?>
 		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
 			<div class="container-fluid">		
@@ -355,6 +355,8 @@ document.addEventListener("DOMContentLoaded", function(){
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a>
 								</li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a>
+								</li>
 								<li><a class="dropdown-item" href="#"> Maestros &raquo; </a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
@@ -373,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
 									</ul>
 								</li>
+								
 								<li><a class="dropdown-item" href="#"> Reporte 1 </a></li>
 								<li><a class="dropdown-item" href="#"> Reporte 2 </a>
 								</ul>

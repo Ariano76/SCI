@@ -1417,6 +1417,26 @@ BEGIN
 END |
 DELIMITER ;
 
+
+
+DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tipo_documento`;
+DELIMITER |
+CREATE PROCEDURE `SP_Gerencia_validar_tipo_documento`(OUT success INT)
+BEGIN
+	DECLARE exit handler for sqlexception
+	BEGIN     -- ERROR
+		SET success = 0;
+	ROLLBACK;
+	END;
+ 
+	START TRANSACTION;
+		SET @total_reg := ( SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_23 REGEXP '[[:alpha:]]';
+		update stage_00 set dato_144 = obs, id_stage = (SELECT @LastUpdateID := id_stage) where id_stage = codigo;   
+        SET success = @LastUpdateID ;
+    COMMIT;
+END |
+DELIMITER ;
+
 /* 
 DROP PROCEDURE IF EXISTS `DropFK` ;
 DELIMITER ;;
