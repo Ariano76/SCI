@@ -221,6 +221,25 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }    
 
+    public function select_repo_gerencia() {
+        try {               
+            // calling stored procedure command
+            //$sql = 'CALL SP_SelectDocIdentConIncidencias()';
+            $sql = "select * from vista_repo_total_reach;";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $data=$stmt->fetchAll();
+            $stmt->closeCursor();
+            return $data;
+            
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
     public function incidencia_Nombres($sp,$usuario) {
         try {               
             // calling stored procedure command

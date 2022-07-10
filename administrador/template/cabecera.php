@@ -379,7 +379,7 @@ document.addEventListener("DOMContentLoaded", function(){
 									</ul>
 								</li>
 								
-								<li><a class="dropdown-item" href="#"> Reporte 1 </a></li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Total Reach </a></li>
 								<li><a class="dropdown-item" href="#"> Reporte 2 </a>
 								</ul>
 							</li>
