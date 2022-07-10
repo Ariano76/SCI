@@ -188,6 +188,12 @@ CREATE TABLE resultado_proyectos
 
 ALTER TABLE resultado_proyectos ADD PRIMARY KEY (id_resultado_proyectos);
 ALTER TABLE resultado_proyectos MODIFY id_resultado_proyectos INT NOT NULL AUTO_INCREMENT ;
+ALTER TABLE resultado_proyectos ADD INDEX idx_busqueda (id_proyecto,id_tema,id_subtema,id_actividad,region);
+
+/* COMANDO PARA BORRAR INDICE 
+ALTER TABLE resultado_proyectos DROP INDEX idx_busqueda;
+*/
+
 
 CREATE TABLE stage_data_proyectos
 (
@@ -237,35 +243,27 @@ ALTER TABLE stage_data_proyectos MODIFY id_stage_dp INT NOT NULL AUTO_INCREMENT;
 *********************************/
 
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_51 (id_tipo_documento) REFERENCES tipo_documento (id_tipo_documento);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_52 (id_nacionalidad) REFERENCES nacionalidad (id_nacionalidad);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_53 (id_tipo_organizacion) REFERENCES tipo_organizacion (id_tipo_organizacion);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_54 (id_genero) REFERENCES genero (id_genero);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_55 (id_adulto) REFERENCES adulto (id_adulto);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_56 (id_indigena) REFERENCES indigena (id_indigena);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_57 (id_discapacidad) REFERENCES discapacidad (id_discapacidad);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_58 (id_tipo_discapacidad) REFERENCES tipo_discapacidad (id_tipo_discapacidad);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_59 (id_gestante) REFERENCES gestante (id_gestante);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_60 (id_tiempo_gestacion) REFERENCES tiempo_gestacion (id_tiempo_gestacion);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_61 (id_tema) REFERENCES tema (id_tema);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_62 (id_subtema) REFERENCES subtema (id_subtema);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_63 (id_actividad) REFERENCES actividad (id_actividad);
-
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_64 (id_proyecto) REFERENCES proyecto (id_proyecto);
-
 ALTER TABLE subtema ADD FOREIGN KEY R_65 (id_tema) REFERENCES tema (id_tema);
 
+/* COMANDO PARA BORRAR FOREIGN KEY Y PODER CREAR INDICES PARA ACELARAR CONSULTAS
+ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_64 ;
+ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_61 ;
+ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_62 ;
+ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_63 ;
+*/
 
 /*********************************
 -- CONSULTAR ESTRUCTURA DE TABLAS 

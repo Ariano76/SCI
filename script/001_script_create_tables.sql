@@ -288,7 +288,6 @@ CREATE TABLE entidades
 ALTER TABLE entidades ADD PRIMARY KEY (id_entidad);
 ALTER TABLE entidades MODIFY id_entidad INT NOT NULL AUTO_INCREMENT ;
 
-
 CREATE TABLE stage_data_historica (
     id_stage_dh INTEGER NOT NULL,
     nombre_1 TEXT NULL,

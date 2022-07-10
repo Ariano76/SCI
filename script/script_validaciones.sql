@@ -215,8 +215,9 @@ call SP_LimpiarTablaStage(@total);
 SELECT @total;
 
 /* ++++++++++++++++++++++++++++++++++ */
+SELECT p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.region;
 
-SELECT p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region, 
+SELECT p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.region as Región, 
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otro',
@@ -225,12 +226,12 @@ COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
 COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
 COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otro',
 COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal'
-FROM bd_bha_sci.resultado_proyectos rp
-inner join proyecto p on p.id_proyecto = p.id_proyecto
+FROM bd_bha_sci.resultado_proyectos rp 
+inner join proyecto p on rp.id_proyecto = p.id_proyecto
 inner join tema t on rp.id_tema = t.id_tema
 inner join subtema st on rp.id_subtema = st.id_subtema
 inner join actividad a on rp.id_actividad = a.id_actividad
-group by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region
+group by p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.region
 order by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region;
 
 
