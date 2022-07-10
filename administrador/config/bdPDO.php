@@ -162,10 +162,10 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function validarDataGerencia($sp) {
+    public function validarDataGerencia($sp, $campo) {
         try {               
             // calling stored procedure command
-            $sql = "CALL " . $sp . "('".$usuario."',@total)";
+            $sql = "CALL " . $sp . "('".$campo."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
@@ -174,10 +174,9 @@ private $DB_PASSWORD = ''; //database password
              // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             if ($row) {
-                return $row !== false ? $row['resultado'] : null;
+                return $row['resultado'] == 0 ? 0 : $row['resultado'];
             } 
-            //echo 'La operación se realizo satisfactoriamente';
-            return true;
+            //return $row ;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
@@ -803,7 +802,7 @@ private $DB_PASSWORD = ''; //database password
             if ($row) {
                 return $row !== false ? $row['resultado'] : null;
             } 
-                    //echo 'La operación se realizo satisfactoriamente';
+            //echo 'La operación se realizo satisfactoriamente';
             return true;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
@@ -837,6 +836,28 @@ private $DB_PASSWORD = ''; //database password
         try {               
             // calling stored procedure command
             $sql = "CALL SP_Migrar_Data_Historica('".$usuario."',@total)";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $stmt->closeCursor();
+            // execute the second query to get customer's level
+            $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+                return $row !== false ? $row['resultado'] : null;
+            } 
+            //echo 'La operación se realizo satisfactoriamente';
+            return true;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
+    public function migrar_data_gerencia() {
+        try {               
+            // calling stored procedure command
+            $sql = "CALL SP_Migrar_Data_Gerencia(@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure

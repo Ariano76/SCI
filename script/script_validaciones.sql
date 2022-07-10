@@ -214,34 +214,37 @@ SET @total = 0;
 call SP_LimpiarTablaStage(@total);
 SELECT @total;
 
-SET @total = 0;
-call SP_LimpiarTablaStageDataHistorica(@total);
-SELECT @total;
+/* ++++++++++++++++++++++++++++++++++ */
+
+SELECT p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otro',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otro',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal'
+FROM bd_bha_sci.resultado_proyectos rp
+inner join proyecto p on p.id_proyecto = p.id_proyecto
+inner join tema t on rp.id_tema = t.id_tema
+inner join subtema st on rp.id_subtema = st.id_subtema
+inner join actividad a on rp.id_actividad = a.id_actividad
+group by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region
+order by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region;
+
+
+SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_23 REGEXP '[[:alpha:]]';
+SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_23 REGEXP '^[0-9]*$';
+SELECT * FROM bd_bha_sci.stage_data_proyectos;
 
 SET @total = 0;
-call SP_UpdateDobleEspacioBlanco(@total);
-SELECT @total;
+call SP_Migrar_Data_Gerencia(@total);
+select @total;
 
-SET @total = 0;
-call SP_UpdateTab(@total);
-SELECT @total;
+SELECT dato_33, STR_TO_DATE(dato_33,'%m/%d/%Y') as result1, DATE_FORMAT(STR_TO_DATE(dato_33,'%m/%d/%Y'), '%Y-%m-%d') as result2 FROM bd_bha_sci.stage_data_proyectos;
+SELECT fecha_actividad, DATE_FORMAT(fecha_actividad,'%Y-%m-%d') as result2 FROM bd_bha_sci.resultado_proyectos;
 
-SET @total = 0;
-call SP_UpdateSaltoLinea(@total);
-SELECT @total;
-
-SET @total = 0;
-call SP_UpdateLetrasPuntoGuion(@total);
-SELECT @total;
-
-call SP_UpdateBackSlash;
-call SP_UpdateTrim;
-call SP_UpdateRecodificarSiNo;
-call SP_UpdateInfoTransito;
-call SP_SelectDocIdentConIncidencias();
-call SP_SelectNombresConDigitos();
-
-
-call SP_SelectNumeroIdentificacionConIncidencias(@total);
-SELECT @total;
+SELECT * FROM bd_bha_sci.stage_data_proyectos;
+SELECT * FROM bd_bha_sci.resultado_proyectos;
 

@@ -24,23 +24,50 @@ $conn = $db->Connect();
   <?php
   if(isset($_POST['submit'])){
     
-    $cod_00 = $db->validarDataGerencia("SP_UpdateAscii");
-    $cod_01 = $db->validarDataGerencia("SP_UpdateDobleEspacioBlanco");
-    $cod_02 = $db->validarDataGerencia("SP_UpdateTab");
-    $cod_03 = $db->validarDataGerencia("SP_UpdateSaltoLinea");
-    $cod_04 = $db->validarDataGerencia("SP_UpdateLetrasPuntoGuion");
-    $cod_05 = $db->validarDataGerencia("SP_UpdateBackSlash");
-    $cod_06 = $db->validarDataGerencia("SP_UpdateNewLineReturnLine");
-    $cod_07 = $db->validarDataGerencia("SP_UpdateTrim");
-    $cod_08 = $db->validarDataGerencia("SP_UpdateRecodificarSiNo");
-    $cod_09 = $db->validarDataGerencia("SP_UpdateInfoTransito");
+    $cod_00 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_13');
+    $cod_01 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_15');
+    $cod_02 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_17');
+    $cod_03 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_21');
+    $cod_04 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_22');
+    $cod_05 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_23');
+    $cod_06 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_24');
+    $cod_07 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_25');
+    $cod_08 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_26');
+    $cod_09 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_27');
+    $cod_10 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_28');
+    $cod_11 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_29');
+    $cod_12 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_30');
+    $cod_13 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_31');
+    $cod_14 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_32');
 
-    if ($cod_00 == 1 && $cod_01 == 1 && $cod_02 == 1 && $cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1) {
+    if ($cod_00 == 0 && $cod_01 == 0 && $cod_02 == 0 && $cod_03 == 0 && $cod_04 == 0 && $cod_05 == 0 && $cod_06 == 0 && $cod_07 == 0 && $cod_08 == 0 && $cod_09 == 0 && $cod_10 == 0 && $cod_11 == 0 && $cod_12 == 0 && $cod_13 == 0 && $cod_14 == 0 ) {
       $type = "success";
       $message = "Todos los procesos finalizarón satisfactoriamente.";
     }else{
       $type = "error";
-      $message = "Se encontrarón incidencias en los siguientes variables. Intente de nuevo.". $cod_00 ."-". $cod_01 ."-". $cod_02 ."-". $cod_03 ."-". $cod_04 ."-". $cod_05."-". $cod_06 ."-". $cod_07."-". $cod_08."-". $cod_09;
+      $message = "Se encontrarón incidencias en las siguientes variables.<br>Revise e intente de nuevo.<br>
+      <table><tr>
+        <th>Variable</th>
+        <th>&emsp;</th>
+        <th>Estado</th>
+      </tr>";
+      $d01 = "<tr><td>Tipo de documento</td><td></td><td>". ($cod_00 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d02 = "<tr><td>Nacionalidad</td><td></td><td>". ($cod_01 == 0 ? 'Ok':'Revisar') ."</td></tr>";
+      $d03 = "<tr><td>Tipo de organización</td><td></td><td>". ($cod_02 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d04 = "<tr><td>Genero</td><td></td><td>". ($cod_03 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d05 = "<tr><td>Edad</td><td></td><td>". ($cod_04 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d06 = "<tr><td>¿Es adulto?</td><td></td><td>". ($cod_05 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d07 = "<tr><td>Indigena </td><td></td><td>". ($cod_06 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d08 = "<tr><td>Discapacidad </td><td></td><td>". ($cod_07 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d09 = "<tr><td>Tipo discapacidad </td><td></td><td>". ($cod_08 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d10 = "<tr><td>Gestante </td><td></td><td>". ($cod_09 == 0 ? 'Ok':'Revisar'). "<br>";
+      $d11 = "<tr><td>Tiempo de gestación </td><td></td><td>". ($cod_10 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d12 = "<tr><td>Codigo del proyecto </td><td></td><td>". ($cod_11 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d13 = "<tr><td>Tema </td><td></td><td>". ($cod_12 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d14 = "<tr><td>Subtema </td><td></td><td>". ($cod_13 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d15 = "<tr><td>Taller - actividad </td><td></td><td>". ($cod_14 == 0 ? 'Ok':'Revisar')."</td></tr></table>";
+      $message .= $d01 . $d02 . $d03 . $d04 .$d05 . $d06 . $d07 . $d08 . $d09 . $d10;
+      $message .= $d11 . $d12 . $d13 . $d14 .$d15 ;
     }
   }
   ?>

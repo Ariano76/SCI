@@ -357,6 +357,9 @@ document.addEventListener("DOMContentLoaded", function(){
 								</li>
 								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a>
 								</li>
+								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a>
+								</li>
+
 								<li><a class="dropdown-item" href="#"> Maestros &raquo; </a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
