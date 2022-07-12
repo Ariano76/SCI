@@ -19,7 +19,7 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
-  $var = $db_1->migrar_data_gerencia();
+  $db_1->migrar_data_gerencia();
   
   //$var=true;
   if (!empty($var)) {        
