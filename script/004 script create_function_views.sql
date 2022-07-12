@@ -412,7 +412,7 @@ COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
 COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
 COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
 COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
-FROM bd_bha_sci.resultado_proyectos rp 
+FROM resultado_proyectos rp 
 inner join proyecto p on rp.id_proyecto = p.id_proyecto
 inner join tema t on rp.id_tema = t.id_tema
 inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema

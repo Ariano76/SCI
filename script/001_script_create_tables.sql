@@ -496,7 +496,7 @@ dato_145   TEXT NULL
 /* AL UTILIZAR UTF8 Y UTO8_BIN PODEMOS DISTINGUIR ENTRE TILDES Y NO TILDES */
 ALTER TABLE stage_00 ADD PRIMARY KEY (id_stage);
 ALTER TABLE stage_00 MODIFY id_stage INT NOT NULL AUTO_INCREMENT;
-ALTER TABLE stage_00 ADD INDEX idx_documento (dato_23);
+ALTER TABLE stage_00 ADD FULLTEXT idx_documento (dato_23);
 
 
 CREATE TABLE stage_find
@@ -511,7 +511,7 @@ CREATE TABLE stage_find
 	otro	 TEXT NULL,
 	usuario  TEXT NULL
 ) ;
-ALTER TABLE stage_find ADD INDEX idx_cedula (cedula);
+ALTER TABLE stage_find ADD FULLTEXT idx_cedula (cedula);
 
 /*********************************
 -- CREACION DE LLAVES FORANEAS 
@@ -589,7 +589,7 @@ call SP_Usuario_Insert('Percy', 'PERCY@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Ricardo', 'Ricardo@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Consultas', 'consultas@gmail.com', '123456', 1, 1, @total);
-select @total;
+
 
 /** creando usuario en BD **/
 CREATE USER 'consulta'@'localhost' IDENTIFIED BY '123';

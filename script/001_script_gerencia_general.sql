@@ -16,7 +16,7 @@ DROP TABLE if exists tiempo_gestacion;
 DROP TABLE if exists tipo_discapacidad;
 DROP TABLE if exists tipo_documento;
 DROP TABLE if exists tipo_organizacion;
-
+DROP TABLE if exists stage_data_proyectos;
 -- CREACION DE TABLAS
 
 CREATE TABLE actividad
@@ -235,7 +235,6 @@ CREATE TABLE stage_data_proyectos
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin; 
 ALTER TABLE stage_data_proyectos ADD PRIMARY KEY (id_stage_dp);
 ALTER TABLE stage_data_proyectos MODIFY id_stage_dp INT NOT NULL AUTO_INCREMENT;
-
 
 
 /*********************************
