@@ -287,11 +287,11 @@ insert into indigena (nom_indigena) values('Sí'),('No'),('Desconocido'),('No re
 
 insert into discapacidad (nom_discapacidad) values('Sí'),('No'),('Desconocido'),('No reportado');
 
-insert into gestante (nom_gestante) values('Sí'),('No'),('Desconocido'),('No reportado');
+insert into gestante (nom_gestante) values('Sí'),('No');
 
-insert into tipo_discapacidad (nom_tipo_discapacidad) values('Física'),('Auditiva'),('Visual'),('Intelectual'),('Psicológica'),('Otro'),('Desconocido'),('No'),('No reportado');
+insert into tipo_discapacidad (nom_tipo_discapacidad) values('Física'),('Auditiva'),('Visual'),('Intelectual'),('Psicológica'),('Otro');
 
-insert into tiempo_gestacion (nom_tiempo_gestacion) values('1 mes'),('2 meses'),('3 meses'),('4 meses'),('5 meses'),('6 meses'),('7 meses'),('8 meses'),('9 meses'),('No'),('Desconocido'),('No reportado');
+insert into tiempo_gestacion (nom_tiempo_gestacion) values('1 mes'),('2 meses'),('3 meses'),('4 meses'),('5 meses'),('6 meses'),('7 meses'),('8 meses'),('9 meses');
 
 insert into tema (nom_tema) values('Child Protection'),('Education'),('Health and Nutrition'),('Child Rights Governance'),('Child Poverty');
 
