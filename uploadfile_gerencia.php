@@ -144,13 +144,16 @@ if (isset($_POST["import"])) {
         $dato_34 = "";
         if (isset($spreadSheetAry[$i][33])) {
             $dato_34  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][33]); }
+        $dato_35 = "";
+        if (isset($spreadSheetAry[$i][34])) {
+            $dato_35  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][34]); }
       
       if (
-        ! empty($dato_01) || ! empty($dato_02) || ! empty($dato_03) || ! empty($dato_04) || ! empty($dato_05) || ! empty($dato_06) || ! empty($dato_07) || ! empty($dato_08) || ! empty($dato_09) || ! empty($dato_10) || ! empty($dato_11) || ! empty($dato_12) || ! empty($dato_13) || ! empty($dato_14) || ! empty($dato_15) || ! empty($dato_16) || ! empty($dato_17) || ! empty($dato_18) || ! empty($dato_19) || ! empty($dato_20) || ! empty($dato_21) || ! empty($dato_22) || ! empty($dato_23) || ! empty($dato_24) || ! empty($dato_25) || ! empty($dato_26) || ! empty($dato_27) || ! empty($dato_28) || ! empty($dato_29) || ! empty($dato_30) || ! empty($dato_31) || ! empty($dato_32) || ! empty($dato_33) || ! empty($dato_34) ) {
-        $query = "insert into stage_data_proyectos (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13, dato_14, dato_15, dato_16, dato_17, dato_18, dato_19, dato_20, dato_21, dato_22, dato_23, dato_24, dato_25, dato_26, dato_27, dato_28, dato_29, dato_30, dato_31, dato_32, dato_33, dato_34) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $paramType = "ssssssssssssssssssssssssssssssssss";
+        ! empty($dato_01) || ! empty($dato_02) || ! empty($dato_03) || ! empty($dato_04) || ! empty($dato_05) || ! empty($dato_06) || ! empty($dato_07) || ! empty($dato_08) || ! empty($dato_09) || ! empty($dato_10) || ! empty($dato_11) || ! empty($dato_12) || ! empty($dato_13) || ! empty($dato_14) || ! empty($dato_15) || ! empty($dato_16) || ! empty($dato_17) || ! empty($dato_18) || ! empty($dato_19) || ! empty($dato_20) || ! empty($dato_21) || ! empty($dato_22) || ! empty($dato_23) || ! empty($dato_24) || ! empty($dato_25) || ! empty($dato_26) || ! empty($dato_27) || ! empty($dato_28) || ! empty($dato_29) || ! empty($dato_30) || ! empty($dato_31) || ! empty($dato_32) || ! empty($dato_33) || ! empty($dato_34) || ! empty($dato_35) ) {
+        $query = "insert into stage_data_proyectos (dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_13, dato_14, dato_15, dato_16, dato_17, dato_18, dato_19, dato_20, dato_21, dato_22, dato_23, dato_24, dato_25, dato_26, dato_27, dato_28, dato_29, dato_30, dato_31, dato_32, dato_33, dato_34, dato_35) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $paramType = "sssssssssssssssssssssssssssssssssss";
         $paramArray = array(
-          $dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08, $dato_09, $dato_10, $dato_11, $dato_12, $dato_13, $dato_14, $dato_15, $dato_16, $dato_17, $dato_18, $dato_19, $dato_20, $dato_21, $dato_22, $dato_23, $dato_24, $dato_25, $dato_26, $dato_27, $dato_28, $dato_29, $dato_30, $dato_31, $dato_32, $dato_33, $dato_34
+          $dato_01, $dato_02, $dato_03, $dato_04, $dato_05, $dato_06, $dato_07, $dato_08, $dato_09, $dato_10, $dato_11, $dato_12, $dato_13, $dato_14, $dato_15, $dato_16, $dato_17, $dato_18, $dato_19, $dato_20, $dato_21, $dato_22, $dato_23, $dato_24, $dato_25, $dato_26, $dato_27, $dato_28, $dato_29, $dato_30, $dato_31, $dato_32, $dato_33, $dato_34, $dato_35
         );
         $insertId = $db->insert($query, $paramType, $paramArray);
         $conta++;

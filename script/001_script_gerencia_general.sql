@@ -9,6 +9,8 @@ DROP TABLE if exists genero;
 DROP TABLE if exists gestante;
 DROP TABLE if exists indigena;
 DROP TABLE if exists nacionalidad;
+DROP TABLE if exists region;
+DROP TABLE if exists tipo_proyecto;
 DROP TABLE if exists proyecto;
 DROP TABLE if exists subtema;
 DROP TABLE if exists tema;
@@ -83,6 +85,15 @@ CREATE TABLE nacionalidad
 ALTER TABLE nacionalidad ADD PRIMARY KEY (id_nacionalidad);
 ALTER TABLE nacionalidad MODIFY id_nacionalidad INT NOT NULL AUTO_INCREMENT ;
 
+CREATE TABLE tipo_proyecto
+(
+	id_tipo_proyecto          INTEGER NOT NULL,
+	nom_tipo_proyecto         VARCHAR(250) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE tipo_proyecto ADD PRIMARY KEY (id_tipo_proyecto);
+ALTER TABLE tipo_proyecto MODIFY id_tipo_proyecto INT NOT NULL AUTO_INCREMENT ;
+
 CREATE TABLE proyecto
 (
 	id_proyecto          INTEGER NOT NULL,
@@ -91,6 +102,15 @@ CREATE TABLE proyecto
 
 ALTER TABLE proyecto ADD PRIMARY KEY (id_proyecto);
 ALTER TABLE proyecto MODIFY id_proyecto INT NOT NULL AUTO_INCREMENT ;
+
+CREATE TABLE region
+(
+	id_region          INTEGER NOT NULL,
+	nom_region         VARCHAR(250) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE region ADD PRIMARY KEY (id_region);
+ALTER TABLE region MODIFY id_region INT NOT NULL AUTO_INCREMENT ;
 
 CREATE TABLE subtema
 (
@@ -154,7 +174,7 @@ CREATE TABLE resultado_proyectos
 	organizacion         CHAR(18) NULL,
 	categoria            VARCHAR(250) NULL,
 	anio                 INTEGER NULL,
-	region               VARCHAR(100) NULL,
+	id_region            INTEGER NOT NULL,
 	distrito             VARCHAR(250) NULL,
 	comunidad            VARCHAR(250) NULL,
 	nombre_1             VARCHAR(250) NULL,
@@ -168,7 +188,8 @@ CREATE TABLE resultado_proyectos
 	celular_1            VARCHAR(15) NULL,
 	celular_2            VARCHAR(15) NULL,
 	edad                 INTEGER NULL,
-	id_proyecto          INTEGER NULL,
+	id_tipo_proyecto     INTEGER NULL,
+    id_proyecto          INTEGER NULL,
 	fecha_actividad      DATE NULL,
 	persona_registro_beneficiario     VARCHAR(250) NULL,
 	id_tipo_documento    INTEGER NULL,
@@ -231,7 +252,8 @@ CREATE TABLE stage_data_proyectos
 	dato_31   TEXT NULL,
 	dato_32   TEXT NULL,
 	dato_33   TEXT NULL,
-	dato_34   TEXT NULL
+	dato_34   TEXT NULL,
+    dato_35   TEXT NULL
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_bin; 
 ALTER TABLE stage_data_proyectos ADD PRIMARY KEY (id_stage_dp);
 ALTER TABLE stage_data_proyectos MODIFY id_stage_dp INT NOT NULL AUTO_INCREMENT;
@@ -279,7 +301,7 @@ insert into nacionalidad(nom_nacionalidad) values('Peruana'),('Venezolana'),('Ot
 
 insert into tipo_organizacion(nom_tipo_organizacion) values('Institución Intergubernamental'),('Gobierno'),('ONG Internacional'),('Sociedad Civil'),('Comunidad'),('Otro'),('Desconocido'),('No reportado');
 
-insert into genero (nom_genero) values('Femenino'),('Masculino'),('Otro'),('Desconocido'),('No reportado');
+insert into genero (nom_genero) values('Femenino'),('Masculino'),('Otro');
 
 insert into adulto (nom_adulto) values('Adultos (>=18)'),('Niños - Niñas (<18)');
 
@@ -289,6 +311,8 @@ insert into discapacidad (nom_discapacidad) values('Sí'),('No'),('Desconocido')
 
 insert into gestante (nom_gestante) values('Sí'),('No');
 
+insert into region (nom_region) values('Lima');
+
 insert into tipo_discapacidad (nom_tipo_discapacidad) values('Física'),('Auditiva'),('Visual'),('Intelectual'),('Psicológica'),('Otro');
 
 insert into tiempo_gestacion (nom_tiempo_gestacion) values('1 mes'),('2 meses'),('3 meses'),('4 meses'),('5 meses'),('6 meses'),('7 meses'),('8 meses'),('9 meses');
@@ -296,6 +320,8 @@ insert into tiempo_gestacion (nom_tiempo_gestacion) values('1 mes'),('2 meses'),
 insert into tema (nom_tema) values('Child Protection'),('Education'),('Health and Nutrition'),('Child Rights Governance'),('Child Poverty');
 
 insert into subtema (nom_subtema,id_tema) values('Appropriate care',1), ('Protection of children from violence',1), ('Child protection systems',1), ('Protection of children from harmful work',1), ('Other child protection',1), ('Early childhood care and development',2), ('Basic education',2), ('Other education',2), ('Maternal, neonatal and reproductive health',3), ('Child health',3), ('Maternal, infant and young child nutrition',3), ('Adolescent sexual and reproductive health',3), ('Water, sanitation and hygiene',3), ('HIV',3), ('Other health and nutrition',3), ('Good governance delivers childrens rights',4), ('Monitoring and demanding child rights with children',4), ('Public investment in children',4), ('Other child rights governance',4), ('Child-sensitive social protection',5), ('Food security and livelihoods',5),('Adolescent skills for successful transitions',5), ('Other child poverty',5);
+
+insert into tipo_proyecto (nom_tipo_proyecto) values('Start Fund Amazonas') ;
 
 insert into proyecto (nom_proyecto) values('Start Fund Amazonas'), ('Start Fund Herramientas Anticipatorias'), ('COVID-19 BHA'), ('LACT'), ('BHA Migrantes'), ('BPRM Migrantes'), ('GIRD MMLN BHA'), ('GIRD MRNO BHA'), ('(+)Diversidad ECW'), ('Pooled Funds'), ('CHLOE'), ('Prevención En Nuestras Manos – Higiene, Protección Y Educación Para Hacer Frente Al Covid-19 (Covid-19 Swiss Solidarity)'), ('ECHO HI - 2020'), ('Niarchos'), ('Prevención De La Violencia Sexual En Entornos Virtuales (Sida)'), ('Covid-19 – Respuesta Integrada De Wash Y Protección En Lima Y Piura (Covid-19 Bha 1)'), ('COVID Central Fund');
 
