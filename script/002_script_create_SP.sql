@@ -1394,7 +1394,18 @@ BEGIN
 	START TRANSACTION;
     delete from resultado_proyectos where id_resultado_proyectos >0;
     ALTER TABLE resultado_proyectos AUTO_INCREMENT = 1;
-    INSERT INTO resultado_proyectos (fecha_entrada, organizacion, categoria, anio, region, distrito, comunidad, nombre_1, nombre_2, apellido_1, apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, edad, id_proyecto, fecha_actividad, persona_registro_beneficiario, id_tipo_documento, id_nacionalidad, id_tipo_organizacion, id_genero, id_adulto, id_indigena, id_discapacidad, id_tipo_discapacidad, id_gestante, id_tiempo_gestacion, id_tema, id_subtema, id_actividad) SELECT dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, dato_11, dato_12, dato_14, dato_16, dato_18, dato_19, dato_20, dato_22, dato_29, DATE_FORMAT(STR_TO_DATE(dato_33,'%m/%d/%Y'), '%Y-%m-%d'), dato_34, dato_13, dato_15, dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, dato_28, dato_30, dato_31, dato_32 from stage_data_proyectos ;
+    INSERT INTO resultado_proyectos (
+    fecha_entrada, organizacion, categoria, anio, region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
+    apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, 
+    edad, id_proyecto, fecha_actividad, persona_registro_beneficiario, id_tipo_documento, id_nacionalidad,
+    id_tipo_organizacion, id_genero, id_adulto, id_indigena, id_discapacidad, id_tipo_discapacidad, id_gestante,
+    id_tiempo_gestacion, id_tema, id_subtema, id_actividad) SELECT 
+    dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, 
+    dato_11, dato_12, dato_14, dato_16, dato_18, dato_19, dato_20, 
+    dato_22, dato_29, DATE_FORMAT(STR_TO_DATE(dato_33,'%m/%d/%Y'), '%Y-%m-%d'), dato_34, dato_13, dato_15, 
+    dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
+    dato_28, dato_30, dato_31, dato_32 
+    from stage_data_proyectos ;
     delete from stage_data_proyectos where id_stage_dp >0;    
     SET success = 1;
     COMMIT;
