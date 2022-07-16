@@ -885,14 +885,15 @@ private $DB_PASSWORD = ''; //database password
             // execute the second query to get customer's level
             $row = $this->pdo->query("SELECT @total AS resultado")->fetch(PDO::FETCH_ASSOC);
             if ($row) {
-                return $row !== false ? $row['resultado'] : null;
+                //return $row !== false ? $row['resultado'] : null;
+                return $row !== 0 ? $row['resultado'] : 0;
             } 
                     //echo 'La operación se realizo satisfactoriamente';
-            return true;
+            //return true;
         } catch (PDOException $e) {         
             die("Error ocurrido:" . $e->getMessage());
         }
-        return null;
+        return 0;
     }
 
     public function validar_fecha_espanol($fecha){

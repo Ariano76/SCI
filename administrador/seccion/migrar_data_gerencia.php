@@ -4,13 +4,10 @@
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-//require_once './administrador/config/bd.php';
 require_once ('../config/bdPDO.php');
 
 $db_1 = new TransactionSCI();
 //$conn_1 = $db_1->Connect();
-
-//echo $insertId;
 
 require_once ('../../vendor/autoload.php');
 
@@ -19,19 +16,24 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
-  $db_1->migrar_data_gerencia();
-  
+  $var = $db_1->migrar_data_gerencia();
+  echo "<script>console.log('Dato de la variable var: " . $var . "' );</script>"; 
   //$var=true;
-  if (!empty($var)) {        
-    $type = "success";
-    $message = "La migración se ha realizado con exito.";
+  if (!empty($var)) { 
+    echo "<script>console.log('entre al if: " . $var . "' );</script>"; 
+    if ( $var == 1 ) {
+      $type = "success";
+      $message = "La migración se ha realizado con exito.";           
+    } else {
+      $type = "error";
+      $message = "Hubierón problemas al momento de la migración. Intente de nuevo";           
+    }       
   } else {
-    $type = "error";
-    $message = "Hubierón problemas al momento de la migración. Intente de nuevo";
+      echo "<script>console.log('entre al ese:' );</script>"; 
+      $type = "error";
+      $message = "Hubierón problemas al momento de la migración. Intente de nuevo";
   }
-
 }
-
 ?>
 
 <div class="col-md-12">

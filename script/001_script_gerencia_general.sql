@@ -191,7 +191,7 @@ CREATE TABLE resultado_proyectos
 	id_tipo_proyecto     INTEGER NULL,
     id_proyecto          INTEGER NULL,
 	fecha_actividad      DATE NULL,
-	persona_registro_beneficiario     VARCHAR(250) NULL,
+	id_persona_registro	 INTEGER NULL,
 	id_tipo_documento    INTEGER NULL,
 	id_nacionalidad      INTEGER NULL,
 	id_tipo_organizacion INTEGER NULL,
@@ -204,12 +204,14 @@ CREATE TABLE resultado_proyectos
 	id_tiempo_gestacion  INTEGER NULL,
 	id_tema              INTEGER NULL,
 	id_subtema           INTEGER NULL,
-	id_actividad         INTEGER NULL
+	id_actividad         INTEGER NULL,
+    id_anio_actividad         INTEGER NULL DEFAULT (YEAR(fecha_actividad)),
+    id_trimestre_actividad         INTEGER NULL DEFAULT (QUARTER(fecha_actividad))
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 ALTER TABLE resultado_proyectos ADD PRIMARY KEY (id_resultado_proyectos);
 ALTER TABLE resultado_proyectos MODIFY id_resultado_proyectos INT NOT NULL AUTO_INCREMENT ;
-ALTER TABLE resultado_proyectos ADD INDEX idx_busqueda (id_proyecto,id_tema,id_subtema,id_actividad,region);
+ALTER TABLE resultado_proyectos ADD INDEX idx_busqueda (id_proyecto,id_tema,id_subtema,id_actividad,id_region);
 
 /* COMANDO PARA BORRAR INDICE 
 ALTER TABLE resultado_proyectos DROP INDEX idx_busqueda;

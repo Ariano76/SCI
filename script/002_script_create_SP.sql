@@ -1388,16 +1388,16 @@ BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
 		SET success = 0;
-	ROLLBACK;
+		ROLLBACK;
 	END;
  
 	START TRANSACTION;
     delete from resultado_proyectos where id_resultado_proyectos >0;
     ALTER TABLE resultado_proyectos AUTO_INCREMENT = 1;
     INSERT INTO resultado_proyectos (
-    fecha_entrada, organizacion, categoria, anio, region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
+    fecha_entrada, organizacion, categoria, anio, id_region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
     apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, 
-    edad, id_tipo_proyecto, id_proyecto, fecha_actividad, persona_registro_beneficiario, id_tipo_documento, id_nacionalidad,
+    edad, id_tipo_proyecto, id_proyecto, fecha_actividad, id_persona_registro, id_tipo_documento, id_nacionalidad,
     id_tipo_organizacion, id_genero, id_adulto, id_indigena, id_discapacidad, id_tipo_discapacidad, id_gestante,
     id_tiempo_gestacion, id_tema, id_subtema, id_actividad) SELECT 
     dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, 
@@ -1699,7 +1699,7 @@ DELIMITER ;
 PROBANDO LOS STORED PROCEDURE
 ******************************/
 SET @total = 0;
-call SP_Gerencia_validar_tipo_documento(@total);
+call SP_Migrar_Data_Gerencia(@total);
 select @total;
 
 call SP_Usuario_Select(10);

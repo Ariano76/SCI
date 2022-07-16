@@ -400,10 +400,16 @@ CREATE VIEW `vista_subtema` AS
 	SELECT s.id_subtema, s.nom_subtema, t.nom_tema, t.id_tema
     FROM subtema s inner join tema t on s.id_tema = t.id_tema;
 
+drop view IF EXISTS vista_region;
+CREATE VIEW `vista_region` AS
+	SELECT id_region, nom_region
+    FROM region;
+
+
 
 drop view IF EXISTS vista_repo_total_reach;
 CREATE VIEW `vista_repo_total_reach` AS
-	SELECT p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.region as Región, 
+	SELECT p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.id_region as Región, 
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
@@ -417,8 +423,8 @@ inner join proyecto p on rp.id_proyecto = p.id_proyecto
 inner join tema t on rp.id_tema = t.id_tema
 inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
 inner join actividad a on rp.id_actividad = a.id_actividad
-group by p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.region
-order by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.region;
+group by p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.id_region
+order by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.id_region;
 
 
 
