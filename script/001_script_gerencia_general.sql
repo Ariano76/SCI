@@ -18,6 +18,7 @@ DROP TABLE if exists tiempo_gestacion;
 DROP TABLE if exists tipo_discapacidad;
 DROP TABLE if exists tipo_documento;
 DROP TABLE if exists tipo_organizacion;
+DROP TABLE if exists responsable_registro;
 DROP TABLE if exists stage_data_proyectos;
 -- CREACION DE TABLAS
 
@@ -167,6 +168,15 @@ CREATE TABLE tipo_organizacion
 ALTER TABLE tipo_organizacion ADD PRIMARY KEY (id_tipo_organizacion);
 ALTER TABLE tipo_organizacion MODIFY id_tipo_organizacion INT NOT NULL AUTO_INCREMENT ;
 
+CREATE TABLE responsable_registro
+(
+	id_persona_registro INTEGER NOT NULL,
+	nom_persona_registro VARCHAR(100) NOT NULL
+) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+ALTER TABLE responsable_registro ADD PRIMARY KEY (id_persona_registro);
+ALTER TABLE responsable_registro MODIFY id_persona_registro INT NOT NULL AUTO_INCREMENT ;
+
 CREATE TABLE resultado_proyectos
 (
 	id_resultado_proyectos INTEGER NOT NULL,
@@ -314,6 +324,8 @@ insert into discapacidad (nom_discapacidad) values('Sí'),('No'),('Desconocido')
 insert into gestante (nom_gestante) values('Sí'),('No');
 
 insert into region (nom_region) values('Lima');
+
+insert into responsable_registro(nom_persona_registro) values('Carlos Zambrano');
 
 insert into tipo_discapacidad (nom_tipo_discapacidad) values('Física'),('Auditiva'),('Visual'),('Intelectual'),('Psicológica'),('Otro');
 

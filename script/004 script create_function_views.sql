@@ -405,6 +405,10 @@ CREATE VIEW `vista_region` AS
 	SELECT id_region, nom_region
     FROM region;
 
+drop view IF EXISTS vista_responsable_registro;
+CREATE VIEW `vista_responsable_registro` AS
+	SELECT id_persona_registro, nom_persona_registro
+    FROM responsable_registro;
 
 
 drop view IF EXISTS vista_repo_total_reach;

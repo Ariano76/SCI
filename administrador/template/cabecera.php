@@ -353,13 +353,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerencia</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a>
-								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a>
-								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a>
-								</li>
-
+								
 								<li><a class="dropdown-item" href="#"> Maestros &raquo; </a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
@@ -373,13 +367,19 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/proyecto.php"?>">Proyecto</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tema.php"?>">Tema</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/subtema.php"?>">Sub Tema</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/responsable_registro.php"?>">Responsable registro</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tiempo_gestacion.php"?>">Tiempo Gestación</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_discapacidad.php"?>">Tipo Discapacidad</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_documento.php"?>">Tipo Documento</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
 									</ul>
 								</li>
-								
+								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a>
+								</li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a>
+								</li>
+								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a>
+								</li>								
 								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Total Reach </a></li>
 								<li><a class="dropdown-item" href="#"> Reporte 2 </a>
 								</ul>
