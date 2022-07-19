@@ -1406,7 +1406,8 @@ BEGIN
     dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
     dato_28, dato_31, dato_32, dato_33 
     from stage_data_proyectos ;
-    delete from stage_data_proyectos where id_stage_dp >0;    
+    UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
+    DELETE FROM stage_data_proyectos WHERE id_stage_dp >0;    
     SET success = 1;
     COMMIT;
 END |
@@ -1715,7 +1716,7 @@ DELIMITER ;
 PROBANDO LOS STORED PROCEDURE
 ******************************/
 SET @total = 0;
-call SP_Gerencia_validar_campos_date('dato_34',@total);
+call SP_Migrar_Data_Gerencia(@total);
 select @total;
 
 call SP_Usuario_Select(10);

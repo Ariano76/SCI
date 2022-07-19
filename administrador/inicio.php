@@ -7,9 +7,9 @@
 		<p class="lead">Estamos en la seccion de administracion del sistema web.</p>
 		<hr class="m-y-md">
 		<p>Desde esta sección podrá realizar tareas de mantenimiento sobre cuentas existentes, crear nuevos usuarios para acceder al sistema, eliminar cuentas, así como la migración de datos.</p>
-		<p class="lead">
+		<!--p class="lead">
 			<a class="btn btn-primary btn-lg" href="seccion/usuarios.php?id=null" role="button">Administrar Beneficiarios</a>
-		</p>
+		</p-->
 	</div>
 </div>
 

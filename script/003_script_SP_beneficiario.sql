@@ -746,7 +746,7 @@ DELIMITER ;
 
 call SP_list_tema();
 call SP_reporte_000('Lima');
-call SP_reporte_01_beneficiario_x_region_01('Lambayeque');
+call SP_reporte_06_obtienen_ingresos('Lima','Estadia');
 
 call SP_Select_Finanzas();
 select distinct(como_accede_a_internet) from comunicacion ;

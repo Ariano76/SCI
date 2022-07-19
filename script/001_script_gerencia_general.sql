@@ -215,8 +215,8 @@ CREATE TABLE resultado_proyectos
 	id_tema              INTEGER NULL,
 	id_subtema           INTEGER NULL,
 	id_actividad         INTEGER NULL,
-    id_anio_actividad         INTEGER NULL DEFAULT (YEAR(fecha_actividad)),
-    id_trimestre_actividad         INTEGER NULL DEFAULT (QUARTER(fecha_actividad))
+    anio_actividad         INTEGER NULL ,
+    trimestre_actividad         INTEGER NULL 
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 ALTER TABLE resultado_proyectos ADD PRIMARY KEY (id_resultado_proyectos);
@@ -297,12 +297,6 @@ ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_61 ;
 ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_62 ;
 ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_63 ;
 */
-
-/*********************************
--- CONSULTAR ESTRUCTURA DE TABLAS 
-*********************************/
-SHOW TABLE STATUS where name like 'resultado_proyectos';
-DESCRIBE resultado_proyectos; -- LISTA TODAS LAS CARACTERISTICAS DE UNA TABLA
 
 /*********************************
 -- INSERTANDO DATOS BASICOS
@@ -397,4 +391,10 @@ insert into actividad (nom_actividad, fecha_actividad) values
 ('Entrega de Kits a madres adole scentes (Calendario informativo sobre ley 29600,mochila abrazo y set de alimentación). Mes de marzo','1900-1-1');
 
 
+
+/*********************************
+-- CONSULTAR ESTRUCTURA DE TABLAS 
+*********************************/
+SHOW TABLE STATUS where name like 'resultado_proyectos';
+DESCRIBE resultado_proyectos; -- LISTA TODAS LAS CARACTERISTICAS DE UNA TABLA
 
