@@ -242,7 +242,7 @@ $db_1 = new TransactionSCI();
         plugins: {
           title: {
             display: true,
-            text: 'Número de Familias con Embarazadas por Rango de Edad'
+            text: 'Número de hogares con miembros que presentan alguna discapacidad por Rango de Edad'
           },
         },
 
