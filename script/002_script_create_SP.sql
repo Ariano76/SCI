@@ -1465,6 +1465,22 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_campos_date`;
+DELIMITER |
+CREATE PROCEDURE `SP_Gerencia_validar_campos_date`(in campo varchar(250), OUT success INT)
+BEGIN
+-- SP dinamico para validar que los campos fecha tengan el formato correcto y no esten vacios
+	SET @s = CONCAT('SET @total_reg := (
+    SELECT count(*) FROM stage_data_proyectos 
+	WHERE DATE(STR_TO_DATE(',campo, ', ''%m/%d/%Y'')) IS NULL AND ',campo, ' NOT REGEXP ''^[0-9\.]+$''
+    )' );
+	PREPARE stmt FROM @s;
+	EXECUTE stmt;
+	DEALLOCATE PREPARE stmt;
+	SET success = @total_reg ;
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tipo_documento`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_tipo_documento`(OUT success INT)
@@ -1699,7 +1715,7 @@ DELIMITER ;
 PROBANDO LOS STORED PROCEDURE
 ******************************/
 SET @total = 0;
-call SP_Migrar_Data_Gerencia(@total);
+call SP_Gerencia_validar_campos_date('dato_34',@total);
 select @total;
 
 call SP_Usuario_Select(10);

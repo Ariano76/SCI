@@ -40,8 +40,9 @@ $conn = $db->Connect();
     $cod_13 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_31');
     $cod_14 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_32');
     $cod_15 = $db->validarDataGerencia("SP_Gerencia_validar_campos_numericos", 'dato_33');
+    $cod_16 = $db->validarDataGerencia("SP_Gerencia_validar_campos_date", 'dato_34');
 
-    if ($cod_00 == 0 && $cod_01 == 0 && $cod_02 == 0 && $cod_03 == 0 && $cod_04 == 0 && $cod_05 == 0 && $cod_06 == 0 && $cod_07 == 0 && $cod_08 == 0 && $cod_09 == 0 && $cod_10 == 0 && $cod_11 == 0 && $cod_12 == 0 && $cod_13 == 0 && $cod_14 == 0 && $cod_15 == 0 ) {
+    if ($cod_00 == 0 && $cod_01 == 0 && $cod_02 == 0 && $cod_03 == 0 && $cod_04 == 0 && $cod_05 == 0 && $cod_06 == 0 && $cod_07 == 0 && $cod_08 == 0 && $cod_09 == 0 && $cod_10 == 0 && $cod_11 == 0 && $cod_12 == 0 && $cod_13 == 0 && $cod_14 == 0 && $cod_15 == 0 && $cod_16 == 0) {
       $type = "success";
       $message = "Todos los procesos finalizarón satisfactoriamente.";
     }else{
@@ -63,13 +64,14 @@ $conn = $db->Connect();
       $d09 = "<tr><td>Tipo discapacidad </td><td></td><td>". ($cod_08 == 0 ? 'Ok':'Revisar')."</td></tr>";
       $d10 = "<tr><td>Gestante </td><td></td><td>". ($cod_09 == 0 ? 'Ok':'Revisar'). "<br>";
       $d11 = "<tr><td>Tiempo de gestación </td><td></td><td>". ($cod_10 == 0 ? 'Ok':'Revisar')."</td></tr>";
-      $d12 = "<tr><td>Tipo del proyecto </td><td></td><td>". ($cod_11 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d12 = "<tr><td>Tipo de proyecto </td><td></td><td>". ($cod_11 == 0 ? 'Ok':'Revisar')."</td></tr>";
       $d13 = "<tr><td>Codigo de proyecto </td><td></td><td>". ($cod_12 == 0 ? 'Ok':'Revisar')."</td></tr>";
       $d14 = "<tr><td>Tema </td><td></td><td>". ($cod_13 == 0 ? 'Ok':'Revisar')."</td></tr>";
-      $d15 = "<tr><td>Subtema </td><td></td><td>". ($cod_14 == 0 ? 'Ok':'Revisar')."</td></tr></table>";
-      $d16 = "<tr><td>Taller - actividad </td><td></td><td>". ($cod_15 == 0 ? 'Ok':'Revisar')."</td></tr></table>";
+      $d15 = "<tr><td>Subtema </td><td></td><td>". ($cod_14 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d16 = "<tr><td>Taller - actividad </td><td></td><td>". ($cod_15 == 0 ? 'Ok':'Revisar')."</td></tr>";
+      $d17 = "<tr><td>Fecha de actividad </td><td></td><td>". ($cod_16 == 0 ? 'Ok':'Revisar. Faltan fechas o formato invalido. El formato esperado es dd/mm/aaaa (27/12/2021)')."</td></tr></table>";
       $message .= $d01 . $d02 . $d03 . $d04 .$d05 . $d06 . $d07 . $d08 . $d09 . $d10;
-      $message .= $d11 . $d12 . $d13 . $d14 .$d15 . $d16 ;
+      $message .= $d11 . $d12 . $d13 . $d14 .$d15 . $d16 . $d17 ;
     }
   }
   ?>
