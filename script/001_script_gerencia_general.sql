@@ -200,7 +200,7 @@ CREATE TABLE resultado_proyectos
 	edad                 INTEGER NULL,
 	id_tipo_proyecto     INTEGER NULL,
     id_proyecto          INTEGER NULL,
-	fecha_actividad      DATE NULL,
+	fecha_actividad      DATE NOT NULL,
 	id_persona_registro	 INTEGER NULL,
 	id_tipo_documento    INTEGER NULL,
 	id_nacionalidad      INTEGER NULL,

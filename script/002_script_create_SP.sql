@@ -1457,7 +1457,7 @@ DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_campos_numericos`(in campo varchar(250), OUT success INT)
 BEGIN
 -- stored procedure dinamico para validar que los campos numericos no presenten caracteres
-	SET @s = CONCAT('SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE ',campo, ' REGEXP ''[[:alpha:]]'')' );
+	SET @s = CONCAT('SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE ',campo, ' REGEXP ''[[:alpha:]]'' OR ',campo, ' ="" )' );
 	PREPARE stmt FROM @s;
 	EXECUTE stmt;
 	DEALLOCATE PREPARE stmt;
