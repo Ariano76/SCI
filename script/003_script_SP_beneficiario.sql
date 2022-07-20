@@ -732,10 +732,7 @@ DROP PROCEDURE IF EXISTS `SP_list_tema`;
 DELIMITER |
 CREATE PROCEDURE `SP_list_tema`()
 BEGIN
-    
-    select id_tema, nom_tema
-    from vista_tema order by id_tema;
-
+    select id_tema, nom_tema from vista_tema order by id_tema;
 END |
 DELIMITER ;
 

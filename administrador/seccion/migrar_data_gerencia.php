@@ -29,9 +29,9 @@ if (isset($_POST["import"])) {
       $message = "Hubierón problemas al momento de la migración. Intente de nuevo";           
     }       
   } else {
-      echo "<script>console.log('entre al ese:' );</script>"; 
-      $type = "error";
-      $message = "Hubierón problemas al momento de la migración. Intente de nuevo";
+    echo "<script>console.log('entre al ese:' );</script>"; 
+    $type = "error";
+    $message = "Hubierón problemas al momento de la migración. Intente de nuevo";
   }
 }
 ?>
@@ -47,11 +47,23 @@ if (isset($_POST["import"])) {
         <div class="form-group">
           <label for="txtImagen">Este proceso realiza la migración de datos de los proyectos del ambiente Stage a la tabla de Resultados de Proyectos.</label>
           <br>
-          <br>
-          <label for="txtImagen">Este proceso borrará cualquier información existente en la tabla de Resultados de Proyectos y la reemplazará con los nuevos datos.</label>
-          <br>
-          <br>
-          <label for="txtImagen">Verificar si realmente desea realizar este proceso ya que los datos eliminados no podrán ser recuperados.</label>
+        </div>        
+        <br>
+        <div class="card text-center">          
+          <div class="card-body">
+            <h4 class="card-title">Periodos Identificados</h4>
+            <?php 
+            $periodos = $db_1->select_periodos_data_gerencia();
+            if (!empty($periodos)) {
+              foreach ($periodos as $periodo) {
+                ?>
+                <label for="txtPeriodo">Año :&nbsp;</label><?php echo($periodo[0]) ?><br>
+                <?php 
+              }
+            }
+            ?>
+            <p class="card-text"><h5>¿Desea reemplazar los datos existente de los periodos identificados en esta nueva carga?</h5></p>
+          </div>
         </div>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">

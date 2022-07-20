@@ -240,6 +240,20 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
+    public function select_periodos_data_gerencia() {
+        try {               
+            $sql = "select * from vista_periodos_data_proyectos;";
+            $stmt = $this->pdo->prepare($sql);                  
+            $stmt->execute();
+            $data=$stmt->fetchAll();
+            $stmt->closeCursor();
+            return $data;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
     public function incidencia_Nombres($sp,$usuario) {
         try {               
             // calling stored procedure command

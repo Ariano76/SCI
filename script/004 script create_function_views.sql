@@ -431,12 +431,17 @@ group by p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st
 order by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.id_region;
 
 
+drop view IF EXISTS vista_periodos_data_proyectos;
+CREATE VIEW `vista_periodos_data_proyectos` AS
+	SELECT distinct(year(STR_TO_DATE(dato_34,'%m/%d/%Y'))) as periodos 
+    FROM stage_data_proyectos ;
+
 
 /***********/
 /* PRUEBAS */
 /***********/
 
-select * from vista_repo_total_reach;
+select * from vista_periodos_data_proyectos;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
