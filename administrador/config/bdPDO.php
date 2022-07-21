@@ -887,10 +887,11 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
-    public function migrar_data_gerencia() {
+    public function migrar_data_gerencia($accion, $anios) {
         try {               
             // calling stored procedure command
-            $sql = "CALL SP_Migrar_Data_Gerencia(@total)";
+            //$sql = "CALL SP_Migrar_Data_Gerencia(@total)";
+            $sql = "CALL SP_Migrar_Data_Gerencia(".$accion.",'".$anios."',@total)";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure

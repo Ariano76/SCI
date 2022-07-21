@@ -1383,7 +1383,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_Data_Gerencia`;
 DELIMITER |
-CREATE PROCEDURE `SP_Migrar_Data_Gerencia`(OUT success INT)
+CREATE PROCEDURE `SP_Migrar_Data_Gerencia`(IN accion INT, IN anios varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR
@@ -1392,26 +1392,47 @@ BEGIN
 	END;
  
 	START TRANSACTION;
-    delete from resultado_proyectos where id_resultado_proyectos >0;
-    ALTER TABLE resultado_proyectos AUTO_INCREMENT = 1;
-    INSERT INTO resultado_proyectos (
-    fecha_entrada, organizacion, categoria, anio, id_region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
-    apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, 
-    edad, id_tipo_proyecto, id_proyecto, fecha_actividad, id_persona_registro, id_tipo_documento, id_nacionalidad,
-    id_tipo_organizacion, id_genero, id_adulto, id_indigena, id_discapacidad, id_tipo_discapacidad, id_gestante,
-    id_tiempo_gestacion, id_tema, id_subtema, id_actividad) SELECT 
-    dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, 
-    dato_11, dato_12, dato_14, dato_16, dato_18, dato_19, dato_20, 
-    dato_22, dato_29, dato_30, DATE_FORMAT(STR_TO_DATE(dato_34,'%m/%d/%Y'), '%Y-%m-%d'), dato_35, dato_13, dato_15, 
-    dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
-    dato_28, dato_31, dato_32, dato_33 
-    from stage_data_proyectos ;
-    UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
-    DELETE FROM stage_data_proyectos WHERE id_stage_dp >0;    
+    /* ACCION = 1, Inserta datos en la tabla resultado_proyectos
+    ACCION = 2, Elimina los registros del año indicado e inserta datos en la tabla resultado_proyectos */
+    IF accion = 1 THEN
+	 INSERT INTO resultado_proyectos (
+	 fecha_entrada, organizacion, categoria, anio, id_region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
+     apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, 
+     edad, id_tipo_proyecto, id_proyecto, fecha_actividad, id_persona_registro, id_tipo_documento, id_nacionalidad,
+     id_tipo_organizacion, id_genero, id_adulto, id_indigena, id_discapacidad, id_tipo_discapacidad, id_gestante,
+     id_tiempo_gestacion, id_tema, id_subtema, id_actividad) SELECT 
+     dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, 
+     dato_11, dato_12, dato_14, dato_16, dato_18, dato_19, dato_20, 
+     dato_22, dato_29, dato_30, DATE_FORMAT(STR_TO_DATE(dato_34,'%m/%d/%Y'), '%Y-%m-%d'), dato_35, dato_13, dato_15, 
+     dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
+     dato_28, dato_31, dato_32, dato_33 
+     from stage_data_proyectos ;
+     UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
+     DELETE FROM stage_data_proyectos WHERE id_stage_dp >0;  
+	ELSE
+	 DELETE FROM resultado_proyectos WHERE anio_actividad IN (anios);
+	 INSERT INTO resultado_proyectos (
+	 fecha_entrada, organizacion, categoria, anio, id_region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
+     apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, 
+     edad, id_tipo_proyecto, id_proyecto, fecha_actividad, id_persona_registro, id_tipo_documento, id_nacionalidad,
+     id_tipo_organizacion, id_genero, id_adulto, id_indigena, id_discapacidad, id_tipo_discapacidad, id_gestante,
+     id_tiempo_gestacion, id_tema, id_subtema, id_actividad) SELECT 
+     dato_01, dato_02, dato_03, dato_04, dato_05, dato_06, dato_07, dato_08, dato_09, dato_10, 
+     dato_11, dato_12, dato_14, dato_16, dato_18, dato_19, dato_20, 
+     dato_22, dato_29, dato_30, DATE_FORMAT(STR_TO_DATE(dato_34,'%m/%d/%Y'), '%Y-%m-%d'), dato_35, dato_13, dato_15, 
+     dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
+     dato_28, dato_31, dato_32, dato_33 
+     FROM stage_data_proyectos ;
+     UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
+	END IF;
+    -- ALTER TABLE resultado_proyectos AUTO_INCREMENT = 1;
     SET success = 1;
     COMMIT;
 END |
-DELIMITER ;
+
+SET @total = 0;
+call SP_Migrar_Data_Gerencia(1,'2021',@total);
+select @total;
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_NvosBeneficiarios_stage_data_historica`;
 DELIMITER |
