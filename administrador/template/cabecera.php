@@ -369,6 +369,7 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/subtema.php"?>">Sub Tema</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/responsable_registro.php"?>">Responsable registro</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tiempo_gestacion.php"?>">Tiempo Gestación</a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_proyecto.php"?>">Tipo Proyecto</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_discapacidad.php"?>">Tipo Discapacidad</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_documento.php"?>">Tipo Documento</a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>

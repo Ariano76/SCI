@@ -394,6 +394,11 @@ drop view IF EXISTS vista_tipo_organizacion;
 CREATE VIEW `vista_tipo_organizacion` AS
 	SELECT id_tipo_organizacion, nom_tipo_organizacion
     FROM tipo_organizacion;
+    
+drop view IF EXISTS vista_tipo_proyecto;
+CREATE VIEW `vista_tipo_proyecto` AS
+	SELECT id_tipo_proyecto, nom_tipo_proyecto
+    FROM tipo_proyecto;
 
 drop view IF EXISTS vista_subtema;
 CREATE VIEW `vista_subtema` AS
@@ -441,7 +446,7 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 /* PRUEBAS */
 /***********/
 
-select * from vista_periodos_data_proyectos;
+select * from vista_tipo_proyecto;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
