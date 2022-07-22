@@ -301,37 +301,37 @@ ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_63 ;
 /*********************************
 -- INSERTANDO DATOS BASICOS
 *********************************/
-insert into tipo_documento(nom_documento) values('DNI'),('Cédula'),('Carnet de extranjería'),('Carnet de refugio'),('Pasaporte'),('Otro'),('Ninguno'),('Desconocido'),('No reportado');
+insert into tipo_documento(nom_documento) values('DNI'),('Cédula'),('Carnet de extranjería'),('Carnet de refugio'),('Pasaporte'),('Otro'),('Ninguno'),('Desconocido');
 
-insert into nacionalidad(nom_nacionalidad) values('Peruana'),('Venezolana'),('Otra'),('Desconocida'),('No reportada');
+insert into nacionalidad(nom_nacionalidad) values('Peruana'),('Venezolana'),('Otra');
 
-insert into tipo_organizacion(nom_tipo_organizacion) values('Institución Intergubernamental'),('Gobierno'),('ONG Internacional'),('Sociedad Civil'),('Comunidad'),('Otro'),('Desconocido'),('No reportado');
+insert into tipo_organizacion(nom_tipo_organizacion) values('Institución Intergubernamental'),('Gobierno'),('ONG Internacional'),('Sociedad Civil'),('Comunidad'),('Otro'),('Desconocido');
 
 insert into genero (nom_genero) values('Femenino'),('Masculino'),('Otro');
 
 insert into adulto (nom_adulto) values('Adultos (>=18)'),('Niños - Niñas (<18)');
 
-insert into indigena (nom_indigena) values('Sí'),('No'),('Desconocido'),('No reportado');
+insert into indigena (nom_indigena) values('Sí'),('No');
 
 insert into discapacidad (nom_discapacidad) values('Sí'),('No'),('Desconocido'),('No reportado');
 
 insert into gestante (nom_gestante) values('Sí'),('No');
 
-insert into region (nom_region) values('Lima');
+insert into region (nom_region) values('Amazonas'),('Arequipa'),('Cajamarca'),('Huancavelica'),('Junín'),('La Libertad'),('Lambayeque'),('Lima'),('Loreto'),('Piura'),('San Martín'),('Tumbes');
 
-insert into responsable_registro(nom_persona_registro) values('Carlos Zambrano');
+insert into responsable_registro(nom_persona_registro) values('Yasmin Salinas'),('Jean Carlos Alejos'),('Cristian Castillo'),('Yanina Gonzales'),('Rosemarie Caldas'),('Diana Orellana'),('Jonatan Graus'),('Katherine Flores');
 
-insert into tipo_discapacidad (nom_tipo_discapacidad) values('Física'),('Auditiva'),('Visual'),('Intelectual'),('Psicológica'),('Otro');
+insert into tipo_discapacidad (nom_tipo_discapacidad) values('Física'),('Auditiva'),('Visual'),('Intelectual'),('Psicológica'),('Otro'),('Desconocido');
 
-insert into tiempo_gestacion (nom_tiempo_gestacion) values('1 mes'),('2 meses'),('3 meses'),('4 meses'),('5 meses'),('6 meses'),('7 meses'),('8 meses'),('9 meses');
+insert into tiempo_gestacion (nom_tiempo_gestacion) values('1 mes'),('2 meses'),('3 meses'),('4 meses'),('5 meses'),('6 meses'),('7 meses'),('8 meses'),('9 meses'),('Desconocido');
 
 insert into tema (nom_tema) values('Child Protection'),('Education'),('Health and Nutrition'),('Child Rights Governance'),('Child Poverty');
 
 insert into subtema (nom_subtema,id_tema) values('Appropriate care',1), ('Protection of children from violence',1), ('Child protection systems',1), ('Protection of children from harmful work',1), ('Other child protection',1), ('Early childhood care and development',2), ('Basic education',2), ('Other education',2), ('Maternal, neonatal and reproductive health',3), ('Child health',3), ('Maternal, infant and young child nutrition',3), ('Adolescent sexual and reproductive health',3), ('Water, sanitation and hygiene',3), ('HIV',3), ('Other health and nutrition',3), ('Good governance delivers childrens rights',4), ('Monitoring and demanding child rights with children',4), ('Public investment in children',4), ('Other child rights governance',4), ('Child-sensitive social protection',5), ('Food security and livelihoods',5),('Adolescent skills for successful transitions',5), ('Other child poverty',5);
 
-insert into tipo_proyecto (nom_tipo_proyecto) values('Start Fund Amazonas') ;
+insert into tipo_proyecto (nom_tipo_proyecto) values('Desarrollo'),('Emergencia'),('Ayuda Humanitaria');
 
-insert into proyecto (nom_proyecto) values('Start Fund Amazonas'), ('Start Fund Herramientas Anticipatorias'), ('COVID-19 BHA'), ('LACT'), ('BHA Migrantes'), ('BPRM Migrantes'), ('GIRD MMLN BHA'), ('GIRD MRNO BHA'), ('(+)Diversidad ECW'), ('Pooled Funds'), ('CHLOE'), ('Prevención En Nuestras Manos – Higiene, Protección Y Educación Para Hacer Frente Al Covid-19 (Covid-19 Swiss Solidarity)'), ('ECHO HI - 2020'), ('Niarchos'), ('Prevención De La Violencia Sexual En Entornos Virtuales (Sida)'), ('Covid-19 – Respuesta Integrada De Wash Y Protección En Lima Y Piura (Covid-19 Bha 1)'), ('COVID Central Fund');
+insert into proyecto (nom_proyecto) values('Start Fund Amazonas'), ('Start Fund Herramientas Anticipatorias'), ('COVID-19 BHA (San Juan de Lurigancho, Lima)'), ('LACT'), ('BHA Migrantes'), ('BPRM Migrantes'), ('GIRD MMLN BHA'), ('GIRD MRNO BHA'), ('(+)Diversidad ECW'), ('Pooled Funds'), ('CHLOE'), ('Covid-19 Swiss Solidarity'), ('ECHO HI - 2020'), ('Niarchos'), ('Prevención De La Violencia Sexual En Entornos Virtuales (Sida)'), ('COVID-19 BHA (Lima y Piura)'), ('COVID-19 Global Central Fund');
 
 insert into actividad (nom_actividad, fecha_actividad) values 
 ('Concurso de carteles sobre la prevención del embarazo adolescente. Fecha: 26/05/2019','2019-5-26'),
