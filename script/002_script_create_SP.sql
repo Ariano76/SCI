@@ -1737,7 +1737,7 @@ DELIMITER ;
 PROBANDO LOS STORED PROCEDURE
 ******************************/
 SET @total = 0;
-call SP_Migrar_Data_Gerencia(@total);
+call SP_Migrar_Data_Gerencia(1,'2021',@total);
 select @total;
 
 call SP_Usuario_Select(10);

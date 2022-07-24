@@ -416,9 +416,9 @@ CREATE VIEW `vista_responsable_registro` AS
     FROM responsable_registro;
 
 
-drop view IF EXISTS vista_repo_total_reach;
-CREATE VIEW `vista_repo_total_reach` AS
-	SELECT p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.id_region as Región, 
+drop view IF EXISTS vista_repo_total_reach_actividades;
+CREATE VIEW `vista_repo_total_reach_actividades` AS
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.id_region as Región, r.nom_region, 
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
@@ -432,9 +432,133 @@ inner join proyecto p on rp.id_proyecto = p.id_proyecto
 inner join tema t on rp.id_tema = t.id_tema
 inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
 inner join actividad a on rp.id_actividad = a.id_actividad
-group by p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.id_region
-order by p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.id_region;
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region;
 
+
+drop view IF EXISTS vista_repo_total_reach_subtemas;
+CREATE VIEW `vista_repo_total_reach_subtemas` AS
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join proyecto p on rp.id_proyecto = p.id_proyecto
+inner join tema t on rp.id_tema = t.id_tema
+inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, r.nom_region;
+
+drop view IF EXISTS vista_repo_total_reach_temas;
+CREATE VIEW `vista_repo_total_reach_temas` AS
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join proyecto p on rp.id_proyecto = p.id_proyecto
+inner join tema t on rp.id_tema = t.id_tema
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, r.nom_region;
+
+drop view IF EXISTS vista_repo_total_reach_proyectos;
+CREATE VIEW `vista_repo_total_reach_proyectos` AS
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join proyecto p on rp.id_proyecto = p.id_proyecto
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, r.nom_region;
+
+
+drop view IF EXISTS vista_repo_total_reach_tipoproyectos;
+CREATE VIEW `vista_repo_total_reach_tipoproyectos` AS
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, r.nom_region;
+
+drop view IF EXISTS vista_repo_total_reach_region_tri;
+CREATE VIEW `vista_repo_total_reach_region_tri` AS
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, r.nom_region;
+
+drop view IF EXISTS vista_repo_total_reach_region;
+CREATE VIEW `vista_repo_total_reach_region` AS
+	SELECT rp.anio_actividad, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join region r on rp.id_region = r.id_region
+group by rp.anio_actividad, rp.id_region, r.nom_region
+order by rp.anio_actividad, r.nom_region;
+
+drop view IF EXISTS vista_repo_total_reach_pais;
+CREATE VIEW `vista_repo_total_reach_pais` AS
+	SELECT rp.anio_actividad, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+group by rp.anio_actividad
+order by rp.anio_actividad;
 
 drop view IF EXISTS vista_periodos_data_proyectos;
 CREATE VIEW `vista_periodos_data_proyectos` AS
@@ -446,7 +570,7 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 /* PRUEBAS */
 /***********/
 
-select * from vista_tipo_proyecto;
+select * from vista_repo_total_reach_pais;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 

@@ -353,7 +353,6 @@ document.addEventListener("DOMContentLoaded", function(){
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gerencia</a>
 							<ul class="dropdown-menu">
-								
 								<li><a class="dropdown-item" href="#"> Maestros &raquo; </a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/actividad.php"?>">Actividades</a></li>
@@ -375,27 +374,38 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/tipo_organizacion.php"?>">Tipo Organización</a></li>
 									</ul>
 								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a>
-								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a>
-								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a>
-								</li>								
+								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a></li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a></li>
+								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a></li>			
 								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Total Reach </a></li>
-								<li><a class="dropdown-item" href="#"> Reporte 2 </a>
-								</ul>
-							</li>
-							<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
-							<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
-						</div>
+								<li><a class="dropdown-item" href="#"> Reporte 2 </a></li>
+
+								<li><a class="dropdown-item" href="#"> Reporte Total Reach &raquo; </a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_actividades.php"?>"> Actividades </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_subtemas.php"?>"> Subtemas </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_temas.php"?>"> Temas </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_proyectos.php"?>"> Proyectos </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_tipoproyectos.php"?>"> Tipo de Proyectos </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_region_tri.php"?>"> Región x trimestre </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_region.php"?>"> Región </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_pais.php"?>"> País </a></li>
+									</ul>
+								</li>
+
+							</ul>
+						</li>
+						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
+						<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
 					</div>
 				</div>
-			</nav>
-			<?php	
-		}
-		?>
+			</div>
+		</nav>
+		<?php	
+	}
+	?>
 
-		
-		<div class="container">
-			<br><br>
-			<div class="row">
+
+	<div class="container">
+		<br><br>
+		<div class="row">
