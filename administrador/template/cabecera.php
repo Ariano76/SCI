@@ -376,10 +376,7 @@ document.addEventListener("DOMContentLoaded", function(){
 								</li>
 								<li><a class="dropdown-item" href="<?php echo $url."/uploadfile_gerencia.php"?>"> Cargar Datos de Proyectos </a></li>
 								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/validacion_datos.php"?>"> Validar Datos </a></li>
-								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a></li>			
-								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Total Reach </a></li>
-								<li><a class="dropdown-item" href="#"> Reporte 2 </a></li>
-
+								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a></li>
 								<li><a class="dropdown-item" href="#"> Reporte Total Reach &raquo; </a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_actividades.php"?>"> Actividades </a></li>
@@ -392,6 +389,8 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_pais.php"?>"> País </a></li>
 									</ul>
 								</li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Total Reach </a></li>
+								<li><a class="dropdown-item" href="#"> Reporte 2 </a></li>
 
 							</ul>
 						</li>
