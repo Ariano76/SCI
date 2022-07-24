@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_pais.php"?>"> País </a></li>
 									</ul>
 								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Total Reach </a></li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Power BI </a></li>
 								<li><a class="dropdown-item" href="#"> Reporte 2 </a></li>
 
 							</ul>
