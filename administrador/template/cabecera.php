@@ -389,9 +389,7 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_pais.php"?>"> País </a></li>
 									</ul>
 								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach.php"?>"> Reporte Power BI </a></li>
-								<li><a class="dropdown-item" href="#"> Reporte 2 </a></li>
-
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_powerbi.php"?>"> Reporte Power BI </a></li>
 							</ul>
 						</li>
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
