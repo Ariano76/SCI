@@ -560,6 +560,24 @@ FROM resultado_proyectos rp
 group by rp.anio_actividad
 order by rp.anio_actividad;
 
+
+drop view IF EXISTS vista_repo_total_reach_powerbi;
+CREATE VIEW `vista_repo_total_reach_powerbi` AS
+SELECT rp.anio_actividad as Anio, rp.trimestre_actividad as Trimestre, tp.nom_tipo_proyecto as Tipo_Proyecto,t.nom_tema as Tema, st.nom_subtema as Subtema, a.nom_actividad as Actividad, rp.fecha_actividad, g.nom_genero as Sexo, r.nom_region as Region,  p.nom_proyecto as Proyecto, ad.nom_adulto as Grupo_Edad, count(rp.id_resultado_proyectos) as conteo
+FROM resultado_proyectos rp 
+inner join proyecto p on rp.id_proyecto = p.id_proyecto
+inner join tema t on rp.id_tema = t.id_tema
+inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
+inner join actividad a on rp.id_actividad = a.id_actividad
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+inner join genero g on rp.id_genero = g.id_genero
+inner join adulto ad on rp.id_adulto = ad.id_adulto
+group by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region, rp.fecha_actividad, g.nom_genero, ad.nom_adulto
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region, rp.fecha_actividad, rp.id_genero;
+
+
+
 drop view IF EXISTS vista_periodos_data_proyectos;
 CREATE VIEW `vista_periodos_data_proyectos` AS
 	SELECT distinct(year(STR_TO_DATE(dato_34,'%m/%d/%Y'))) as periodos 
@@ -570,7 +588,7 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 /* PRUEBAS */
 /***********/
 
-select * from vista_repo_total_reach_pais;
+select * from vista_repo_total_reach_powerbi;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 
