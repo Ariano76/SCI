@@ -379,17 +379,17 @@ document.addEventListener("DOMContentLoaded", function(){
 								<li><a class="dropdown-item" href="<?php echo $url."/administrador/seccion/migrar_data_gerencia.php"?>">Migrar datos</a></li>
 								<li><a class="dropdown-item" href="#"> Reporte Total Reach &raquo; </a>
 									<ul class="submenu dropdown-menu">
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_actividades.php"?>"> Actividades </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_subtemas.php"?>"> Subtemas </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_temas.php"?>"> Temas </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_proyectos.php"?>"> Proyectos </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_tipoproyectos.php"?>"> Tipo de Proyectos </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_region_tri.php"?>"> Región x trimestre </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_region.php"?>"> Región </a></li>
-										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_pais.php"?>"> País </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_actividades_page.php"?>"> Actividades </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_subtemas_page.php"?>"> Subtemas </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_temas_page.php"?>"> Temas </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_proyectos_page.php"?>"> Proyectos </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_tipoproyectos_page.php"?>"> Tipo de Proyectos </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_region_tri_page.php"?>"> Región x trimestre </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_region_page.php"?>"> Región </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_total_reach_pais_page.php"?>"> País </a></li>
 									</ul>
 								</li>
-								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_powerbi.php"?>"> Reporte Power BI </a></li>
+								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo01_total_reach_powerbi_page.php"?>"> Reporte Power BI </a></li>
 							</ul>
 						</li>
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>

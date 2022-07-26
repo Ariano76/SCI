@@ -3,7 +3,7 @@ require "../vendor/autoload.php";
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-require_once '../administrador/config/bdPDO.php';
+require_once ('../administrador/config/bdPDO.php');
 
 $db = new TransactionSCI();
 
