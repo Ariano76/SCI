@@ -1,3 +1,4 @@
+
 DROP PROCEDURE IF EXISTS `SP_Insert_beneficiario`;
 DELIMITER |
 CREATE PROCEDURE `SP_Insert_beneficiario`(
@@ -738,8 +739,9 @@ DELIMITER ;
 
 	
 
-
+/**************************/
 /***** VALIDACIONES *******/
+/**************************/
 
 call SP_list_tema();
 call SP_reporte_000('Lima');

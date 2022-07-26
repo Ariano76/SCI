@@ -946,7 +946,9 @@ BEGIN
 END |
 DELIMITER ;
 
+/*********************************************************/
 /* CREACION DE STORED PROCEDURE TABLA DATA HISTORICA	 */
+/*********************************************************/
 
 DROP PROCEDURE IF EXISTS `SP_SelectDHDocIdentConIncidencias`;
 DELIMITER |
@@ -1110,9 +1112,10 @@ BEGIN
 END |
 DELIMITER ;
 
-
+/*****************************************************************************/
 /* CREACION DE STORED PROCEDURE PROCESO COTEJO DE RESULTADO CON DATA HISTORICA
-*/
+/*****************************************************************************/
+
 DROP PROCEDURE IF EXISTS `SP_SelectCotejo`;
 DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejo`(in usuario varchar(50))
@@ -1211,7 +1214,10 @@ BEGIN
 END |
 DELIMITER ;
 
+/************************/
 /* CREACION DE USUARIOS */
+/************************/
+
 DROP PROCEDURE IF EXISTS `SP_Usuario_Insert`;
 DELIMITER |
 CREATE PROCEDURE `SP_Usuario_Insert`(in nombre varchar(50), in email varchar(100), in pass varchar(50), in idrol int, in idestado int, OUT success INT)
@@ -1429,10 +1435,7 @@ BEGIN
     SET success = 1;
     COMMIT;
 END |
-
-SET @total = 0;
-call SP_Migrar_Data_Gerencia(1,'2021',@total);
-select @total;
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_NvosBeneficiarios_stage_data_historica`;
 DELIMITER |
