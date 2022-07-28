@@ -14,7 +14,7 @@ $db = new TransactionSCI();
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
-  $sheet->setTitle("Users");
+  $sheet->setTitle("conteo_beneficiarios");
   $sheet->setCellValue("A1", "Año");
   $sheet->setCellValue("B1", "Niñas");
   $sheet->setCellValue("C1", "Niños");
@@ -39,7 +39,7 @@ $db = new TransactionSCI();
   }
 
   $writer = new Xlsx($spreadsheet);
-  $fileName = "Reporte_total_reach_pais_" . $timestamp1 . ".xlsx";
+  $fileName = "Reporte_total_reach_anios_" . $timestamp1 . ".xlsx";
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
   header('Cache-Control: max-age=0');

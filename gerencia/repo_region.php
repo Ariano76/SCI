@@ -14,7 +14,7 @@ $db = new TransactionSCI();
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
-  $sheet->setTitle("Users");
+  $sheet->setTitle("conteo_beneficiarios");
   $sheet->setCellValue("A1", "Año");
   $sheet->setCellValue("B1", "id_región");
   $sheet->setCellValue("C1", "Región");

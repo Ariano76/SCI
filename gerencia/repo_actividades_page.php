@@ -42,7 +42,7 @@ if (isset($_POST["import"])) {
     <div class="card-body">
       <form action="repo_actividades.php" method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="txtImagen">En este apartado podremos generar el reporte en formato excel con la información de todos los beneficiarios y su información complementaria para enviar al sector de Protección.</label>
+          <label for="txtImagen">En este apartado podremos generar el reporte en formato excel que nos permitirá conocer el número de beneficiarios que han participado en cada una de las diferentes actividades realizadas.</label>
           <br>
           <br>          
         </div>
