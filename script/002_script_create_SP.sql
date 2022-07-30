@@ -1497,7 +1497,7 @@ BEGIN
 -- SP dinamico para validar que los campos fecha tengan el formato correcto y no esten vacios
 	SET @s = CONCAT('SET @total_reg := (
     SELECT count(*) FROM stage_data_proyectos 
-	WHERE DATE(STR_TO_DATE(',campo, ', ''%m/%d/%Y'')) IS NULL AND ',campo, ' NOT REGEXP ''^[0-9\.]+$''
+	WHERE DATE(STR_TO_DATE(',campo, ', "%m/%d/%Y")) IS NULL AND ',campo, ' NOT REGEXP "^[0-9\.]+$"
     )' );
 	PREPARE stmt FROM @s;
 	EXECUTE stmt;
@@ -1505,6 +1505,11 @@ BEGIN
 	SET success = @total_reg ;
 END |
 DELIMITER ;
+
+SET @total = 0;
+call SP_Gerencia_validar_campos_date('dato_34',@total);
+select @total;
+
 
 DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tipo_documento`;
 DELIMITER |
