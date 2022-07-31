@@ -1413,8 +1413,7 @@ BEGIN
      dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
      dato_28, dato_31, dato_32, dato_33 
      from stage_data_proyectos ;
-     UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
-     DELETE FROM stage_data_proyectos WHERE id_stage_dp >0;  
+     UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);     
 	ELSE
 	 DELETE FROM resultado_proyectos WHERE anio_actividad IN (anios);
 	 INSERT INTO resultado_proyectos (
@@ -1431,6 +1430,8 @@ BEGIN
      FROM stage_data_proyectos ;
      UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
 	END IF;
+    UPDATE resultado_proyectos SET id_adulto = IF(edad > 17, 1, 2);
+    DELETE FROM stage_data_proyectos WHERE id_stage_dp >0;  
     -- ALTER TABLE resultado_proyectos AUTO_INCREMENT = 1;
     SET success = 1;
     COMMIT;
