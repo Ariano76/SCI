@@ -1482,7 +1482,7 @@ DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_campos_numericos`(in campo varchar(250), OUT success INT)
 BEGIN
 -- stored procedure dinamico para validar que los campos numericos no presenten caracteres
-	SET @s = CONCAT('SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE ',campo, ' REGEXP ''[[:alpha:]]'' OR ',campo, ' ="" )' );
+	SET @s = CONCAT('SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE ',campo, ' REGEXP "[[:alpha:]]" OR ',campo, ' ="" )' );
 	PREPARE stmt FROM @s;
 	EXECUTE stmt;
 	DEALLOCATE PREPARE stmt;
@@ -1506,16 +1506,11 @@ BEGIN
 END |
 DELIMITER ;
 
-SET @total = 0;
-call SP_Gerencia_validar_campos_date('dato_34',@total);
-select @total;
-
-
 DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tipo_documento`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_tipo_documento`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_13 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_13 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1524,7 +1519,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_nacionalidad`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_nacionalidad`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_15 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_15 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1533,7 +1528,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tipo_organizacion`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_tipo_organizacion`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_17 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_17 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1542,7 +1537,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_genero`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_genero`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_21 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_21 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1551,7 +1546,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_edad`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_edad`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_22 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_22 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1560,7 +1555,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_esadulto`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_esadulto`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_23 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_23 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1569,7 +1564,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_indigena`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_indigena`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_24 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_24 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1578,7 +1573,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_discapacidad`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_discapacidad`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_25 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_25 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1587,7 +1582,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tipo_discapacidad`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_tipo_discapacidad`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_26 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_26 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1596,7 +1591,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_gestante`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_gestante`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_27 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_27 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1605,7 +1600,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_tiempo_gestante`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_tiempo_gestante`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_28 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_28 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1614,7 +1609,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_cod_proyecto`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_cod_proyecto`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_29 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_29 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1623,7 +1618,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_cod_tema`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_cod_tema`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_30 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_30 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1632,7 +1627,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_cod_sub_tema`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_cod_sub_tema`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_31 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_31 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
@@ -1641,7 +1636,7 @@ DROP PROCEDURE IF EXISTS `SP_Gerencia_validar_cod_actividad`;
 DELIMITER |
 CREATE PROCEDURE `SP_Gerencia_validar_cod_actividad`(OUT success INT)
 BEGIN
-	SET @total_reg := (SELECT count(*) FROM bd_bha_sci.stage_data_proyectos WHERE dato_32 REGEXP '[[:alpha:]]');
+	SET @total_reg := (SELECT count(*) FROM stage_data_proyectos WHERE dato_32 REGEXP '[[:alpha:]]');
 	SET success = @total_reg ;
 END |
 DELIMITER ;
