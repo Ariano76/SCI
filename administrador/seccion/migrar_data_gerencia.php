@@ -99,7 +99,7 @@ if (isset($_POST["import"])) {
         </div>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos Historicos</button>
+          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos</button>
         </div>
       </form>
     </div>
