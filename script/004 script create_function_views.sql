@@ -588,7 +588,7 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 /* PRUEBAS */
 /***********/
 
-select * from vista_repo_total_reach_powerbi;	
+select * from vista_repo_total_reach_actividades;	
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 

@@ -1415,7 +1415,11 @@ BEGIN
      from stage_data_proyectos ;
      UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);     
 	ELSE
-	 DELETE FROM resultado_proyectos WHERE anio_actividad IN (anios);
+	 -- DELETE FROM resultado_proyectos WHERE anio_actividad IN (anios);
+     SET @s = CONCAT('DELETE FROM resultado_proyectos WHERE anio_actividad IN (',anios,');' );
+	 PREPARE stmt FROM @s;
+	 EXECUTE stmt;
+     
 	 INSERT INTO resultado_proyectos (
 	 fecha_entrada, organizacion, categoria, anio, id_region, distrito, comunidad, nombre_1, nombre_2, apellido_1, 
      apellido_2, cod_grupo_familiar, numero_documento, nombre_organizacion, correo_electronico, celular_1, celular_2, 
@@ -1437,6 +1441,11 @@ BEGIN
     COMMIT;
 END |
 DELIMITER ;
+
+SET @total = 0;
+call SP_Migrar_Data_Gerencia(2,'2020,2021',@total);
+select @total;
+
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_NvosBeneficiarios_stage_data_historica`;
 DELIMITER |

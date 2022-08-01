@@ -21,7 +21,6 @@ if (isset($_POST["import"])) {
   $check = $_POST["flexRadioDefault"];
   $conta = $_POST["txtContPeriodos"];
   $xper = $_POST["txtPeriodos"];
-
   
   //echo "<script>console.log('Dato del Check: " . $check . "' );</script>"; 
   //echo "<script>console.log('Numero de periodos: " . $conta . "' );</script>"; 
@@ -70,7 +69,7 @@ if (isset($_POST["import"])) {
                 $contperiodos ++;
                 $xperiodos .= $periodo[0] .",";
               }
-              $xperiodos = substr($xperiodos,0,strlen($xperiodos)-1);
+              $xperiodos = substr($xperiodos,0,strlen($xperiodos)-1);              
             }
             ?>
             <p class="card-text"><h5>¿Desea reemplazar los datos existente de los periodos identificados en esta nueva carga?</h5></p>

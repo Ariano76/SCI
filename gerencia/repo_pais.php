@@ -10,7 +10,7 @@ $db = new TransactionSCI();
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
-  $usuarios = $db->select_repo_gerencia("vista_repo_total_reach_pais");
+  $usuarios = $db->select_repo_gerencia("SP_repo_gerencia_total");
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();

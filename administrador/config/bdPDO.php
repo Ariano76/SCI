@@ -221,11 +221,11 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }    
 
-    public function select_repo_gerencia($vista) {
+    public function select_repo_gerencia($sp) {
         try {               
             // calling stored procedure command
-            //$sql = 'CALL SP_SelectDocIdentConIncidencias()';
-            $sql = "select * from " .$vista. ";";
+            $sql = "CALL " . $sp . "()";
+            //$sql = "select * from " .$vista. ";";
             // prepare for execution of the stored procedure
             $stmt = $this->pdo->prepare($sql);                  
             // execute the stored procedure
