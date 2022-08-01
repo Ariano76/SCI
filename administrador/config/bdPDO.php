@@ -940,6 +940,22 @@ private $DB_PASSWORD = ''; //database password
 /*****************
  *  REPORTES
  * ***************/
+    public function poblar_combobox($sp) {
+        try {               
+            // calling stored procedure command
+            $sql = "CALL " .$sp. "();";
+            //$sql = "call SP_reporte_regiones();";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $arreglo;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
     public function traer_regiones() {
         try {               
             // calling stored procedure command

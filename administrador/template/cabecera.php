@@ -389,6 +389,18 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_pais_page.php"?>"> Total General </a></li>
 									</ul>
 								</li>
+								<li><a class="dropdown-item" href="#"> Reporte TR Gestante &raquo; </a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_actividades_gestante_page.php"?>"> Actividades </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_subtemas_gestante_page.php"?>"> Subtemas </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_temas_gestante_page.php"?>"> Temas </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_proyectos_gestante_page.php"?>"> Proyectos </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_tipoproyectos_gestante_page.php"?>"> Tipo de Proyectos </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_region_tri_gestante_page.php"?>"> Región x trimestre </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_region_gestante_page.php"?>"> Región </a></li>
+										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_pais_gestante_page.php"?>"> Total General </a></li>
+									</ul>
+								</li>								
 								<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo_powerbi_page.php"?>"> Reporte Power BI </a></li>
 							</ul>
 						</li>

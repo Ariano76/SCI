@@ -951,14 +951,20 @@ order by anio_actividad, trimestre_actividad, nom_tipo_proyecto, nom_proyecto, n
 END |
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS `SP_list_gestante`;
+DELIMITER |
+CREATE PROCEDURE `SP_list_gestante`()
+BEGIN
+    select id_gestante, nom_gestante from gestante order by id_gestante;
+END |
+DELIMITER ;
 
 
 /**************************/
 /***** VALIDACIONES *******/
 /**************************/
 
-call SP_repo_gerencia_powerbi();
+call SP_list_gestante();
 call SP_reporte_000('Lima');
 call SP_reporte_06_obtienen_ingresos('Lima','Estadia');
 
