@@ -926,11 +926,39 @@ group by anio_actividad ;
 END |
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_powerbi`;
+DELIMITER |
+CREATE PROCEDURE `SP_repo_gerencia_powerbi`()
+BEGIN
+DROP TABLE IF EXISTS totalreach_powerbi ;
+CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_powerbi AS 
+(
+SELECT DISTINCT rp.id_resultado_proyectos, rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.fecha_actividad, g.nom_genero, r.nom_region, p.nom_proyecto, ad.nom_adulto, rp.id_adulto, rp.id_genero, CONCAT(rp.nombre_1,' ',rp.nombre_2,' ',rp.apellido_1,' ',rp.apellido_2) as beneficiario FROM resultado_proyectos rp 
+ inner join proyecto p on rp.id_proyecto = p.id_proyecto
+ inner join tema t on rp.id_tema = t.id_tema
+ inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
+ inner join actividad a on rp.id_actividad = a.id_actividad
+ inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+ inner join region r on rp.id_region = r.id_region
+ inner join genero g on rp.id_genero = g.id_genero
+ inner join adulto ad on rp.id_adulto = ad.id_adulto
+);
+SELECT anio_actividad as Anio, trimestre_actividad as Trimestre, nom_tipo_proyecto as Tipo_Proyecto, nom_tema as Tema, nom_subtema as Subtema, nom_actividad as Actividad, fecha_actividad, nom_genero as Sexo, nom_region as Region,  nom_proyecto as Proyecto, nom_adulto as Grupo_Edad, count(id_resultado_proyectos) as conteo
+FROM totalreach_powerbi
+group by anio_actividad, trimestre_actividad, nom_tipo_proyecto, nom_tema, nom_subtema, nom_actividad, fecha_actividad, nom_genero, nom_region, nom_proyecto, nom_adulto
+order by anio_actividad, trimestre_actividad, nom_tipo_proyecto, nom_proyecto, nom_tema, nom_subtema, nom_actividad, nom_genero, nom_region, nom_adulto;
+END |
+DELIMITER ;
+
+
+
+
 /**************************/
 /***** VALIDACIONES *******/
 /**************************/
 
-call SP_repo_gerencia_region();
+call SP_repo_gerencia_powerbi();
 call SP_reporte_000('Lima');
 call SP_reporte_06_obtienen_ingresos('Lima','Estadia');
 
