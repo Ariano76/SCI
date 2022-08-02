@@ -415,6 +415,9 @@ CREATE VIEW `vista_responsable_registro` AS
 	SELECT id_persona_registro, nom_persona_registro
     FROM responsable_registro;
 
+/******************/
+/* VISTA GERENCIA */
+/******************/
 
 drop view IF EXISTS vista_repo_total_reach_actividades;
 CREATE VIEW `vista_repo_total_reach_actividades` AS
@@ -437,7 +440,7 @@ inner join region r on rp.id_region = r.id_region
 group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.id_region, r.nom_region
 order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region;
 
-
+/*
 drop view IF EXISTS vista_repo_total_reach_subtemas;
 CREATE VIEW `vista_repo_total_reach_subtemas` AS
 	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, rp.id_region as Región, r.nom_region, 
@@ -576,6 +579,7 @@ inner join adulto ad on rp.id_adulto = ad.id_adulto
 group by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, rp.fecha_actividad, g.nom_genero, r.nom_region, p.nom_proyecto, ad.nom_adulto
 order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region, rp.fecha_actividad, g.nom_genero;
 
+*/
 
 
 drop view IF EXISTS vista_periodos_data_proyectos;

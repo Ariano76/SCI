@@ -240,6 +240,25 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
+    public function select_repo_gerencia_gestante($sp, $gestante) {
+        try {               
+            // calling stored procedure command
+            //$sql = "CALL " . $sp . "()";
+            $sql = "CALL " . $sp . "(".$gestante.")";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);                  
+            // execute the stored procedure
+            $stmt->execute();
+            $data=$stmt->fetchAll();
+            $stmt->closeCursor();
+            return $data;
+            
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }    
+
     public function select_periodos_data_gerencia() {
         try {               
             $sql = "select * from vista_periodos_data_proyectos;";
