@@ -1190,6 +1190,14 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_list_nacionalidad`;
+DELIMITER |
+CREATE PROCEDURE `SP_list_nacionalidad`()
+BEGIN
+    select id_nacionalidad, nom_nacionalidad from nacionalidad order by id_nacionalidad;
+END |
+DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS `SP_repo_gerencia_actividades_gestante`;
 DELIMITER |
@@ -1413,7 +1421,7 @@ DELIMITER ;
 /***** VALIDACIONES *******/
 /**************************/
 
-call SP_list_gestante();
+call SP_list_nacionalidad();
 call SP_reporte_000('Lima');
 call SP_reporte_06_obtienen_ingresos('Lima','Estadia');
 
