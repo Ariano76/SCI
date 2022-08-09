@@ -58,7 +58,6 @@
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-//require_once './administrador/config/bd.php';
 require_once '../../administrador/config/bdPDO.php';
 
 $db_1 = new TransactionSCI();
@@ -123,9 +122,11 @@ $db_1 = new TransactionSCI();
         <input type="hidden" id="txtdiscapacidad" name="txtdiscapacidad" value=""/>
         <input type="hidden" id="txtgestante" name="txtgestante" value=""/>
         <input type="hidden" id="txtnacionalidad" name="txtnacionalidad" value=""/>
+        
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="submit" id="submit" name="import" value="agregar" onclick="return validarFormulario();" class="btn btn-success btn-lg">Generar Reporte Actividades</button>
         </div>
+        
       </form>
     </div>
   </div>
