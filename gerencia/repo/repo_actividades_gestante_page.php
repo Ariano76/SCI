@@ -74,7 +74,7 @@ $db_1 = new TransactionSCI();
     <div class="card-body">
       <form action="repo_actividades_gestante.php" method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="txtImagen">En este apartado podremos generar el reporte en formato excel que nos permitirá conocer el número de beneficiarios que han participado en cada una de las diferentes actividades realizadas.</label>
+          <label for="txtImagen">En este apartado podremos generar el reporte en formato Excel que nos permitirá conocer el número de beneficiarios que han participado en cada una de las diferentes actividades segmentada por las siguientes variables:</label>
           <br>
           <br>          
         </div>
@@ -136,8 +136,5 @@ $db_1 = new TransactionSCI();
   </div>
 </div>
 </div>
-
-
-
 
 <?php include("../../administrador/template/pie.php"); ?>

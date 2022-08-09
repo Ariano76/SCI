@@ -1178,9 +1178,9 @@ group by anio_actividad ;
 END |
 DELIMITER ;
 
-/********************************************************************/
-/* REPORTES REGISTROS UNICOS PARA GERENCIA - VARIABLE DISCAPACIDAD  */
-/********************************************************************/
+/**********************************************************************************/
+/* REPORTES REGISTROS UNICOS PARA GERENCIA - VARIABLE DISCAPACIDAD Y NACIONALIDAD */
+/**********************************************************************************/
 
 DROP PROCEDURE IF EXISTS `SP_list_discapacidad`;
 DELIMITER |
@@ -1199,9 +1199,9 @@ END |
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS `SP_repo_gerencia_actividades_gestante`;
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_actividades_discapacidad`;
 DELIMITER |
-CREATE PROCEDURE `SP_repo_gerencia_actividades_gestante`(in valor int)
+CREATE PROCEDURE `SP_repo_gerencia_actividades_discapacidad`(in valor int)
 BEGIN
 	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.id_region as Región, r.nom_region, 
 COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
@@ -1219,11 +1219,56 @@ inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_te
 inner join actividad a on rp.id_actividad = a.id_actividad
 inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
 inner join region r on rp.id_region = r.id_region
-where rp.id_gestante = valor
+where rp.id_discapacidad = valor
 group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.id_region, r.nom_region
 order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region;
 END |
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_actividades_nacionalidad`;
+DELIMITER |
+CREATE PROCEDURE `SP_repo_gerencia_actividades_nacionalidad`(in valor int)
+BEGIN
+	SELECT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto as Proyecto, t.id_tema, t.nom_tema as Tema, st.id_subtema, st.nom_subtema as Subtema, a.id_actividad, a.nom_actividad as Actividad, rp.id_region as Región, r.nom_region, 
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(rp.id_adulto = 2 and rp.id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(rp.id_adulto = 2 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(rp.id_adulto = 1 and rp.id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(rp.id_adulto = 1 and (rp.id_genero=3 or rp.id_genero=2 or rp.id_genero=1), 1, NULL)) AS 'Subtotal adultos'
+FROM resultado_proyectos rp 
+inner join proyecto p on rp.id_proyecto = p.id_proyecto
+inner join tema t on rp.id_tema = t.id_tema
+inner join subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
+inner join actividad a on rp.id_actividad = a.id_actividad
+inner join tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+inner join region r on rp.id_region = r.id_region
+where rp.id_nacionalidad = valor
+group by rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, a.id_actividad, a.nom_actividad, rp.id_region, r.nom_region
+order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_proyecto, t.nom_tema, st.nom_subtema, a.nom_actividad, r.nom_region;
+END |
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 DROP PROCEDURE IF EXISTS `SP_repo_gerencia_subtemas_gestante`;
 DELIMITER |

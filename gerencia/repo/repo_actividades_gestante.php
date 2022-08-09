@@ -21,10 +21,10 @@ $db = new TransactionSCI();
     $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$gestante);
     $retVal = 'Gestante' . "_" . $txt1;
   } elseif ($discapacidad>0) {
-    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$discapacidad);
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_discapacidad",$discapacidad);
     $retVal = 'Discapacidad' . "_" . $txt2;
   } else {
-    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$nacionalidad);
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_nacionalidad",$nacionalidad);
     $retVal = 'Nacionalidad' . "_" . $txt3;
   }
   $name = "Reporte_total_reach_actividades_".$retVal;
@@ -89,6 +89,5 @@ $db = new TransactionSCI();
 
   $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
   $writer->save('php://output');  
-
 
 ?>
