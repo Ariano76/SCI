@@ -9,10 +9,26 @@ $db = new TransactionSCI();
 
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
-  $gestante = $_POST["selectgestante"];
 
-  $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$gestante);
-  $retVal = ($gestante==1) ? 'conteo_gestantes' : 'conteo_no_gestantes';
+  $gestante = $_POST["selectgestante"];
+  $txt1 = $_POST["txtgestante"];
+  $discapacidad = $_POST["selectdiscapacidad"];
+  $txt2 = $_POST["txtdiscapacidad"];
+  $nacionalidad = $_POST["selectnacionalidad"];
+  $txt3 = $_POST["txtnacionalidad"];
+
+  if ($gestante>0) {
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$gestante);
+    $retVal = 'Gestante' . "_" . $txt1;
+  } elseif ($discapacidad>0) {
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$discapacidad);
+    $retVal = 'Discapacidad' . "_" . $txt2;
+  } else {
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$nacionalidad);
+    $retVal = 'Nacionalidad' . "_" . $txt3;
+  }
+  $name = "Reporte_total_reach_actividades_".$retVal;
+  
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
   $sheet->setTitle($retVal);
@@ -66,7 +82,7 @@ $db = new TransactionSCI();
   }
 
   $writer = new Xlsx($spreadsheet);
-  $fileName = "Reporte_total_reach_actividades_gestante_" . $timestamp1 . ".xlsx";
+  $fileName = $name . "_" . $timestamp1 . ".xlsx";
   header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
   header('Cache-Control: max-age=0');

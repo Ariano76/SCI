@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded", function(){
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo/repo_pais_page.php"?>"> Total General </a></li>
 									</ul>
 								</li>
-								<li><a class="dropdown-item" href="#"> Reporte TR Gestante &raquo; </a>
+								<li><a class="dropdown-item" href="#"> Reporte TR Filtro &raquo; </a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo/repo_actividades_gestante_page.php"?>"> Actividades </a></li>
 										<li><a class="dropdown-item" href="<?php echo $url."/gerencia/repo/repo_subtemas_gestante_page.php"?>"> Subtemas </a></li>
