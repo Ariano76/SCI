@@ -1198,7 +1198,6 @@ BEGIN
 END |
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS `SP_repo_gerencia_actividades_discapacidad`;
 DELIMITER |
 CREATE PROCEDURE `SP_repo_gerencia_actividades_discapacidad`(in valor int)
@@ -1251,31 +1250,12 @@ order by rp.anio_actividad, rp.trimestre_actividad, tp.nom_tipo_proyecto, p.nom_
 END |
 DELIMITER ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-DROP PROCEDURE IF EXISTS `SP_repo_gerencia_subtemas_gestante`;
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_subtemas_discapacidad`;
 DELIMITER |
-CREATE PROCEDURE `SP_repo_gerencia_subtemas_gestante`(in valor int)
+CREATE PROCEDURE `SP_repo_gerencia_subtemas_discapacidad`(in valor int)
 BEGIN
-DROP TABLE IF EXISTS totalreach_subtemas_gestante ;
-CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_subtemas_gestante AS 
+DROP TABLE IF EXISTS totalreach_subtemas_discapacidad;
+CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_subtemas_discapacidad AS 
 (
 SELECT DISTINCT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, rp.id_region, r.nom_region, rp.id_adulto, rp.id_genero, CONCAT(rp.nombre_1,' ',rp.nombre_2,' ',rp.apellido_1,' ',rp.apellido_2) as beneficiario FROM resultado_proyectos rp 
  INNER JOIN proyecto p on rp.id_proyecto = p.id_proyecto
@@ -1283,7 +1263,7 @@ SELECT DISTINCT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, 
  INNER JOIN subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
  INNER JOIN tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
  INNER JOIN region r on rp.id_region = r.id_region
- WHERE id_gestante = valor
+ WHERE rp.id_discapacidad = valor
 );
 SELECT anio_actividad, trimestre_actividad, id_tipo_proyecto, nom_tipo_proyecto, id_proyecto, nom_proyecto as Proyecto, id_tema, nom_tema as Tema, id_subtema, nom_subtema as Subtema, id_region as Región, nom_region, 
 COUNT(IF(id_adulto = 2 and id_genero = 1 , 1, NULL)) AS 'Niñas',
@@ -1294,10 +1274,43 @@ COUNT(IF(id_adulto = 1 and id_genero = 1 , 1, NULL)) AS 'Mujeres',
 COUNT(IF(id_adulto = 1 and id_genero = 2 , 1, NULL)) AS 'Hombres',
 COUNT(IF(id_adulto = 1 and id_genero = 3 , 1, NULL)) AS 'Otros adultos',
 COUNT(IF(id_adulto = 1 and (id_genero = 3 or id_genero = 2 or id_genero = 1), 1, NULL)) AS 'Subtotal adultos'
-FROM totalreach_subtemas_gestante
+FROM totalreach_subtemas_discapacidad
 group by anio_actividad, trimestre_actividad, id_tipo_proyecto, nom_tipo_proyecto, id_proyecto, nom_proyecto, id_tema, nom_tema, id_subtema, nom_subtema, id_region, nom_region;
 END |
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_subtemas_nacionalidad`;
+DELIMITER |
+CREATE PROCEDURE `SP_repo_gerencia_subtemas_nacionalidad`(in valor int)
+BEGIN
+DROP TABLE IF EXISTS totalreach_subtemas_nacionalidad;
+CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_subtemas_nacionalidad AS 
+(
+SELECT DISTINCT rp.anio_actividad, rp.trimestre_actividad, rp.id_tipo_proyecto, tp.nom_tipo_proyecto, p.id_proyecto, p.nom_proyecto, t.id_tema, t.nom_tema, st.id_subtema, st.nom_subtema, rp.id_region, r.nom_region, rp.id_adulto, rp.id_genero, CONCAT(rp.nombre_1,' ',rp.nombre_2,' ',rp.apellido_1,' ',rp.apellido_2) as beneficiario FROM resultado_proyectos rp 
+ INNER JOIN proyecto p on rp.id_proyecto = p.id_proyecto
+ INNER JOIN tema t on rp.id_tema = t.id_tema
+ INNER JOIN subtema st on st.id_subtema = rp.id_subtema and st.id_tema = rp.id_tema
+ INNER JOIN tipo_proyecto tp on rp.id_tipo_proyecto = tp.id_tipo_proyecto
+ INNER JOIN region r on rp.id_region = r.id_region
+ WHERE rp.id_nacionalidad = valor
+);
+SELECT anio_actividad, trimestre_actividad, id_tipo_proyecto, nom_tipo_proyecto, id_proyecto, nom_proyecto as Proyecto, id_tema, nom_tema as Tema, id_subtema, nom_subtema as Subtema, id_region as Región, nom_region, 
+COUNT(IF(id_adulto = 2 and id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(id_adulto = 2 and id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(id_adulto = 2 and id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(id_adulto = 2 and (id_genero = 3 or id_genero = 2 or id_genero = 1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(id_adulto = 1 and id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(id_adulto = 1 and id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(id_adulto = 1 and id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(id_adulto = 1 and (id_genero = 3 or id_genero = 2 or id_genero = 1), 1, NULL)) AS 'Subtotal adultos'
+FROM totalreach_subtemas_nacionalidad
+group by anio_actividad, trimestre_actividad, id_tipo_proyecto, nom_tipo_proyecto, id_proyecto, nom_proyecto, id_tema, nom_tema, id_subtema, nom_subtema, id_region, nom_region;
+END |
+DELIMITER ;
+
+
+
+
 
 DROP PROCEDURE IF EXISTS `SP_repo_gerencia_temas_gestante`;
 DELIMITER |

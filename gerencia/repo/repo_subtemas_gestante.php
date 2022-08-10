@@ -18,13 +18,13 @@ $db = new TransactionSCI();
   $txt3 = $_POST["txtnacionalidad"];
 
   if ($gestante>0) {
-    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_gestante",$gestante);
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_subtemas_gestante",$gestante);
     $retVal = 'Gestante' . "_" . $txt1;
   } elseif ($discapacidad>0) {
-    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_discapacidad",$discapacidad);
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_subtemas_discapacidad",$discapacidad);
     $retVal = 'Discapacidad' . "_" . $txt2;
   } else {
-    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_actividades_nacionalidad",$nacionalidad);
+    $usuarios = $db->select_repo_gerencia_gestante("SP_repo_gerencia_subtemas_nacionalidad",$nacionalidad);
     $retVal = 'Nacionalidad' . "_" . $txt3;
   }
   $name = "Reporte_total_reach_subtemas_".$retVal;
