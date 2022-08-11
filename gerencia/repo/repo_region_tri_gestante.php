@@ -70,5 +70,4 @@ $db = new TransactionSCI();
   $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
   $writer->save('php://output');  
 
-
 ?>
