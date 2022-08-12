@@ -1572,19 +1572,14 @@ group by anio_actividad, id_region, nom_region;
 END |
 DELIMITER ;
 
-
-
-
-
-
-DROP PROCEDURE IF EXISTS `SP_repo_gerencia_total_gestante`;
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_total_discapacidad`;
 DELIMITER |
-CREATE PROCEDURE `SP_repo_gerencia_total_gestante`(in valor int)
+CREATE PROCEDURE `SP_repo_gerencia_total_discapacidad`(in valor int)
 BEGIN
-DROP TABLE IF EXISTS totalreach_total_gestante ;
-CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_total_gestante AS 
+DROP TABLE IF EXISTS totalreach_total_discapacidad;
+CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_total_discapacidad AS 
 (
-SELECT DISTINCT rp.anio_actividad, rp.id_adulto, rp.id_genero, CONCAT(rp.nombre_1,' ',rp.nombre_2,' ',rp.apellido_1,' ',rp.apellido_2) as beneficiario FROM resultado_proyectos rp WHERE id_gestante = valor
+SELECT DISTINCT rp.anio_actividad, rp.id_adulto, rp.id_genero, CONCAT(rp.nombre_1,' ',rp.nombre_2,' ',rp.apellido_1,' ',rp.apellido_2) as beneficiario FROM resultado_proyectos rp WHERE id_discapacidad = valor
 );
 SELECT anio_actividad, 
 COUNT(IF(id_adulto = 2 and id_genero = 1 , 1, NULL)) AS 'Niñas',
@@ -1595,10 +1590,34 @@ COUNT(IF(id_adulto = 1 and id_genero = 1 , 1, NULL)) AS 'Mujeres',
 COUNT(IF(id_adulto = 1 and id_genero = 2 , 1, NULL)) AS 'Hombres',
 COUNT(IF(id_adulto = 1 and id_genero = 3 , 1, NULL)) AS 'Otros adultos',
 COUNT(IF(id_adulto = 1 and (id_genero = 3 or id_genero = 2 or id_genero = 1), 1, NULL)) AS 'Subtotal adultos'
-FROM totalreach_total_gestante
+FROM totalreach_total_discapacidad
 group by anio_actividad ;
 END |
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `SP_repo_gerencia_total_nacionalidad`;
+DELIMITER |
+CREATE PROCEDURE `SP_repo_gerencia_total_nacionalidad`(in valor int)
+BEGIN
+DROP TABLE IF EXISTS totalreach_total_nacionalidad;
+CREATE TEMPORARY TABLE IF NOT EXISTS totalreach_total_nacionalidad AS 
+(
+SELECT DISTINCT rp.anio_actividad, rp.id_adulto, rp.id_genero, CONCAT(rp.nombre_1,' ',rp.nombre_2,' ',rp.apellido_1,' ',rp.apellido_2) as beneficiario FROM resultado_proyectos rp WHERE id_nacionalidad = valor
+);
+SELECT anio_actividad, 
+COUNT(IF(id_adulto = 2 and id_genero = 1 , 1, NULL)) AS 'Niñas',
+COUNT(IF(id_adulto = 2 and id_genero = 2 , 1, NULL)) AS 'Niños',
+COUNT(IF(id_adulto = 2 and id_genero = 3 , 1, NULL)) AS 'Otros menores',
+COUNT(IF(id_adulto = 2 and (id_genero = 3 or id_genero = 2 or id_genero = 1), 1, NULL)) AS 'Subtotal menores',
+COUNT(IF(id_adulto = 1 and id_genero = 1 , 1, NULL)) AS 'Mujeres',
+COUNT(IF(id_adulto = 1 and id_genero = 2 , 1, NULL)) AS 'Hombres',
+COUNT(IF(id_adulto = 1 and id_genero = 3 , 1, NULL)) AS 'Otros adultos',
+COUNT(IF(id_adulto = 1 and (id_genero = 3 or id_genero = 2 or id_genero = 1), 1, NULL)) AS 'Subtotal adultos'
+FROM totalreach_total_nacionalidad
+group by anio_actividad ;
+END |
+DELIMITER ;
+
 
 
 
