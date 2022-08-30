@@ -460,7 +460,8 @@ private $DB_PASSWORD = ''; //database password
             $contPrinc = 1;
             $contSecund = 1;
 
-            $sql = "CALL SP_SelectCotejoNuevoBeneficiario('".$usuario."')";
+            // $sql = "CALL SP_SelectCotejoNuevoBeneficiario('".$usuario."')"; solo INTEG.principal
+            $sql = "CALL SP_SelectCotejoNuevoBeneficiario_mas_integranteshogar('".$usuario."')";
             // call the stored procedure
             $q = $this->pdo->prepare($sql);            
             $q->execute();
@@ -501,6 +502,7 @@ private $DB_PASSWORD = ''; //database password
                 // execute the stored procedure
                 $stmt->execute();
                 $stmt->closeCursor();
+
                 // REALIZANDO LA BUSQUEDA FULLTEXT POR NOMBRE
                 $sql = "SELECT id_dh, nombre_1, nombre_2, apellido_1, apellido_2, tipo_documento, numero_documento, proyecto, cod_familia, MATCH(beneficiario, numero_documento) AGAINST('".$cadena."') as relevancia FROM data_historica WHERE MATCH(beneficiario, numero_documento) AGAINST('" . $cadena . "' IN BOOLEAN MODE)";
                 // call the stored procedure

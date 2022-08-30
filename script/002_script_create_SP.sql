@@ -1125,6 +1125,31 @@ BEGIN
 END |
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS `SP_SelectCotejoNuevoBeneficiario_mas_integranteshogar`;
+DELIMITER |
+CREATE PROCEDURE `SP_SelectCotejoNuevoBeneficiario_mas_integranteshogar`(in usuario varchar(50))
+BEGIN	    
+    CREATE TEMPORARY TABLE IF NOT EXISTS total_parientes AS 
+	(SELECT dato_16 as nom1, dato_17 as nom2, dato_18 as ape1, dato_19 as ape2, '' as tipo_documento, dato_23 as numdocu, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_65, dato_66, dato_67, dato_68, dato_73, dato_74, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_75, dato_76, dato_77, dato_78, dato_83, dato_84, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_85, dato_86, dato_87, dato_88, dato_93, dato_94, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_95, dato_96, dato_97, dato_98, dato_103, dato_104, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_105, dato_106, dato_107, dato_108, dato_113, dato_114, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_115, dato_116, dato_117, dato_118, dato_123, dato_124, id_stage FROM stage_00 WHERE dato_145=usuario
+	UNION ALL
+	SELECT dato_125, dato_126, dato_127, dato_128, dato_133, dato_134, id_stage FROM stage_00 WHERE dato_145=usuario);
+    DELETE FROM total_parientes WHERE numdocu='';
+    SELECT nom1, nom2, ape1, ape2, tipo_documento, numdocu, id_stage FROM total_parientes;
+END |
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS `SP_SelectCotejoNuevoBeneficiario`;
 DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejoNuevoBeneficiario`(in usuario varchar(50))
