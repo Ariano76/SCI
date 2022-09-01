@@ -20,6 +20,7 @@ DROP TABLE if exists tipo_documento;
 DROP TABLE if exists tipo_organizacion;
 DROP TABLE if exists responsable_registro;
 DROP TABLE if exists stage_data_proyectos;
+
 -- CREACION DE TABLAS
 
 CREATE TABLE actividad
@@ -291,7 +292,7 @@ ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_63 (id_actividad) REFERENCES a
 ALTER TABLE resultado_proyectos ADD FOREIGN KEY R_64 (id_proyecto) REFERENCES proyecto (id_proyecto);
 ALTER TABLE subtema ADD FOREIGN KEY R_65 (id_tema) REFERENCES tema (id_tema);
 
-/* COMANDO PARA BORRAR FOREIGN KEY Y PODER CREAR INDICES PARA ACELARAR CONSULTAS
+/* COMANDO PARA BORRAR FOREIGN KEY Y PODER CREAR INDICES PARA ACELERAR CONSULTAS
 ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_64 ;
 ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_61 ;
 ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_62 ;
@@ -301,6 +302,7 @@ ALTER TABLE resultado_proyectos DROP FOREIGN KEY R_63 ;
 /*********************************
 -- INSERTANDO DATOS BASICOS
 *********************************/
+
 insert into tipo_documento(nom_documento) values('DNI'),('Cédula'),('Carnet de extranjería'),('Carnet de refugio'),('Pasaporte'),('Otro'),('Ninguno'),('Desconocido');
 
 insert into nacionalidad(nom_nacionalidad) values('Peruana'),('Venezolana'),('Otra');
@@ -391,10 +393,10 @@ insert into actividad (nom_actividad, fecha_actividad) values
 ('Entrega de Kits a madres adole scentes (Calendario informativo sobre ley 29600,mochila abrazo y set de alimentación). Mes de marzo','1900-1-1');
 
 
-
 /*********************************
 -- CONSULTAR ESTRUCTURA DE TABLAS 
 *********************************/
+
 SHOW TABLE STATUS where name like 'resultado_proyectos';
 DESCRIBE resultado_proyectos; -- LISTA TODAS LAS CARACTERISTICAS DE UNA TABLA
 

@@ -588,9 +588,11 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
     FROM stage_data_proyectos ;
 
 
+
 /***********/
 /* PRUEBAS */
 /***********/
+
 
 select * from vista_repo_total_reach_actividades;	
 select F_AGE('1900-01-01') as edad;

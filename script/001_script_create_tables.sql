@@ -586,13 +586,18 @@ insert into estados (estado) values('VALIDO'),('INVALIDO'),('EN ESPERA'),('REGIS
 insert into entidades (nombre) values('beneficiario'),('comunicacion'),('derivacion_sectores'),('educacion'),('encuesta'),('integrantes'),('nutricion'),('salud');
 
 call SP_Usuario_Insert('Percy', 'PERCY@gmail.com', '123456', 1, 1, @total);
-call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 1, 1, @total);
+call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 3, 1, @total);
 call SP_Usuario_Insert('Ricardo', 'Ricardo@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Consultas', 'consultas@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Analista', 'analista@gmail.com', '123456', 2, 1, @total);
 
 
-/** creando usuario en BD **/
+
+/**************************
+** creando usuario en BD **
+***************************/
+
+
 CREATE USER 'consulta'@'localhost' IDENTIFIED BY '123';
 GRANT ALL PRIVILEGES ON * . * TO 'consulta'@'localhost';
 FLUSH PRIVILEGES;
