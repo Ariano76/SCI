@@ -47,8 +47,9 @@ $conn = $db->Connect();
     $cod_07 = $db->limpiarDataKobo("SP_UpdateTrim",$nombreUsuario);
     $cod_08 = $db->limpiarDataKobo("SP_UpdateRecodificarSiNo",$nombreUsuario);
     $cod_09 = $db->limpiarDataKobo("SP_UpdateInfoTransito",$nombreUsuario);
+    //$cod_10 = $db->limpiarDataKobo("SP_UpdateCerosIniciales",$nombreUsuario);
 
-    if ($cod_00 == 1 && $cod_01 == 1 && $cod_02 == 1 && $cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1) {
+    if ($cod_00 == 1 && $cod_01 == 1 && $cod_02 == 1 && $cod_03 == 1 && $cod_04 == 1 && $cod_05 == 1 && $cod_06 == 1 && $cod_07 == 1 && $cod_08 == 1 && $cod_09 == 1 ) {
       $type = "success";
       $message = "Todos los procesos finalizarón satisfactoriamente.";
     }else{
