@@ -171,56 +171,56 @@ drop view IF EXISTS vista_encuesta;
 CREATE VIEW `vista_encuesta` AS
 	SELECT concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.fecha_encuesta, e.id_encuestador, e.nombre_encuestador, e.region_encuestador, e.como_realizo_encuesta, e.esta_de_acuerdo, e.id_beneficiario
     FROM encuesta e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;    
-
+DELIMITER ;
 drop view IF EXISTS vista_beneficiario;
 CREATE VIEW `vista_beneficiario` AS
 	SELECT id_beneficiario, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, region_beneficiario, otra_region, se_instalara_en_esta_region, en_que_provincia, transit_settle, en_que_otro_caso_1, en_que_distrito, en_que_otro_caso_2, en_que_otro_caso_3, genero, fecha_nacimiento, tiene_carne_extranjeria, numero_cedula, fecha_caducidad_cedula, tipo_identificacion, numero_identificacion, fecha_caducidad_identificacion, documentos_fisico_original
     FROM beneficiario;    
-
+DELIMITER ;
 drop view IF EXISTS vista_comunicacion;
 CREATE VIEW `vista_comunicacion` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.tiene_los_siguientes_medios_comunicacion, e.celular_basico, e.smartphone, e.laptop, e.ninguno, e.cual_es_su_numero_whatsapp, e.cual_es_su_numero_recibir_sms, e.cual_numero_usa_con_frecuencia, e.es_telefono_propio, e.como_accede_a_internet, e.cual_es_su_direccion, e.vive_o_viaja_con_otros_familiares, e.cuantos_viven_o_viajan_con_usted, e.cuantos_tienen_ingreso_por_trabajo
     FROM comunicacion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
-
+DELIMITER ;
 drop view IF EXISTS vista_nutricion;
 CREATE VIEW `vista_nutricion` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.alguien_de_su_hogar_esta_embarazada, e.tiempo_de_gestacion, e.lleva_su_control_en_centro_de_salud, e.alguien_de_su_hogar_tiene_siguientes_condiciones, e.lactando_con_nn_menor_2_anios, e.no_lactando_con_nn_menor_2_anios, e.madre_nn_2_a_5_anios, e.ninguno
     FROM nutricion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
-
+DELIMITER ;
 drop view IF EXISTS vista_salud;
 CREATE VIEW `vista_salud` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.algun_miembro_tiene_discapacidad, e.algun_miembro_tiene_problemas_salud, e.derivacion_salud, e.derivacion_proteccion
     FROM salud e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
-
+DELIMITER ;
 drop view IF EXISTS vista_educacion;
 CREATE VIEW `vista_educacion` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.viaja_con_menores_de_17_anios, e.todos_los_nna_estan_matriculados, e.que_dispositvo_utilizan_en_clases_virtuales, e.celular_basico, e.smartphone, e.laptop, e.ninguno, e.que_dificultades_tuvo_al_matricular_nna, e.no_conocia_procedimiento_matricula, e.no_cuento_con_los_documentos, e.no_habia_vacantes, e.otro
     FROM educacion e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
-
+DELIMITER ;
 drop view IF EXISTS vista_derivacion_sectores;
 CREATE VIEW `vista_derivacion_sectores` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.interesado_participar_nutricion, e.interesado_participar_salud, e.interesado_participar_medios_vida, e.actividades_interesado_participar, e.interesado_entrenamiento_vocacional, e.interesado_emprendimiento 
     FROM derivacion_sectores e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario ;  
-
+DELIMITER ;
 drop view IF EXISTS vista_estatus;
 CREATE VIEW `vista_estatus` AS
 	SELECT e.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre, b.numero_cedula, e.observaciones, es.estado as id_estado
     FROM estatus e inner join beneficiario b on e.id_beneficiario = b.id_beneficiario 
     inner join estados es on e.id_estado = es.id_estado;  
-
+DELIMITER ;
 drop view IF EXISTS vista_acciones;
 CREATE VIEW `vista_acciones` AS
 	SELECT a.id_accion, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.numero_cedula, e.nombre as entidad, a.fecha
     FROM acciones a inner join beneficiario b on a.id_beneficiario = b.id_beneficiario 
     inner join entidades e on a.id_entidad = e.id_entidad order by a.fecha DESC;  
-
+DELIMITER ;
 drop view IF EXISTS vista_general;
 CREATE VIEW `vista_general` AS
 	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.primer_nombre, b.segundo_nombre, b.primer_apellido, b.segundo_apellido, b.numero_cedula, b.tipo_identificacion, b.numero_identificacion, c.cual_es_su_numero_whatsapp, c.cual_es_su_numero_recibir_sms, b.fecha_nacimiento, e.observaciones, 
     CONCAT(UCASE(LEFT(es.estado, 1)), LCASE(SUBSTRING(es.estado, 2))) as id_estado
     FROM beneficiario b inner join comunicacion c on b.id_beneficiario = c.id_beneficiario
     inner join estatus e on b.id_beneficiario = e.id_beneficiario inner join estados es on e.id_estado = es.id_estado;  
-
+DELIMITER ;
 drop view IF EXISTS vista_integrante;
 CREATE VIEW `vista_integrante` AS
 	SELECT b.id_beneficiario, concat(b.primer_nombre,' ',b.segundo_nombre,' ',b.primer_apellido,' ',b.segundo_apellido) AS nombre_beneficiario, b.numero_cedula, i.nombre_1a, i.nombre_1b, i.apellido_1a, i.apellido_1b, i.genero_1, i.fecha_nacimiento_1, i.relacion_1, i.otro_1, i.tipo_identificacion_1, i.numero_identificacion_1, i.nombre_2a, i.nombre_2b, i.apellido_2a, i.apellido_2b, i.genero_2, i.fecha_nacimiento_2, i.relacion_2, i.otro_2, i.tipo_identificacion_2, i.numero_identificacion_2,
@@ -229,7 +229,7 @@ CREATE VIEW `vista_integrante` AS
 	i.nombre_6a, i.nombre_6b, i.apellido_6a, i.apellido_6b, i.genero_6, i.fecha_nacimiento_6, i.relacion_6, i.otro_6, i.tipo_identificacion_6, i.numero_identificacion_6,
 	i.nombre_7a, i.nombre_7b, i.apellido_7a, i.apellido_7b, i.genero_7, i.fecha_nacimiento_7, i.relacion_7, i.otro_7, i.tipo_identificacion_7, i.numero_identificacion_7
     FROM beneficiario b inner join integrantes i on b.id_beneficiario = i.id_beneficiario;
-
+DELIMITER ;
 drop view IF EXISTS vista_inconsistencia_fecha_nacimiento;
 CREATE VIEW `vista_inconsistencia_fecha_nacimiento` AS
 	SELECT b.id_beneficiario, b.numero_cedula as cedula_beneficiario_principal, b.primer_nombre as nombre, 
@@ -285,7 +285,7 @@ CREATE VIEW `vista_inconsistencia_fecha_nacimiento` AS
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7)<19 
 	and i.fecha_nacimiento_7='1900-01-01' or i.fecha_nacimiento_7>CURDATE();
-
+DELIMITER ;
 drop view IF EXISTS vista_cantidad_ninos;
 CREATE VIEW `vista_cantidad_ninos` AS
 	SELECT b.id_beneficiario, b.region_beneficiario, b.numero_cedula as cedula_beneficiario_principal, i.nombre_1a as nombre, i.genero_1 as genero, i.fecha_nacimiento_1 as fecha_nacimiento, F_AGE(i.fecha_nacimiento_1) as edad, F_MES(i.fecha_nacimiento_1) as meses, i.relacion_1 as relacion, b.transit_settle 
@@ -329,22 +329,22 @@ CREATE VIEW `vista_cantidad_ninos` AS
 	inner join beneficiario b on b.id_beneficiario = e.id_beneficiario 
 	where e.esta_de_acuerdo = 1 and i.relacion_7 <> '' and F_AGE(i.fecha_nacimiento_7) <= 17 
 	and i.fecha_nacimiento_7 <> '1900-01-01' and i.fecha_nacimiento_7 < CURDATE();
-
+DELIMITER ;
 drop view IF EXISTS vista_actividades;
 CREATE VIEW `vista_actividades` AS
 	SELECT id_actividad, nom_actividad, fecha_actividad
     FROM actividad;
-    
+DELIMITER ;
 drop view IF EXISTS vista_adulto;
 CREATE VIEW `vista_adulto` AS
 	SELECT id_adulto, nom_adulto
     FROM adulto;
-    
+DELIMITER ;
 drop view IF EXISTS vista_discapacidad;
 CREATE VIEW `vista_discapacidad` AS
 	SELECT id_discapacidad, nom_discapacidad
     FROM discapacidad;
-    
+DELIMITER ;
 drop view IF EXISTS vista_genero;
 CREATE VIEW `vista_genero` AS
 	SELECT id_genero, nom_genero
@@ -354,66 +354,68 @@ drop view IF EXISTS vista_gestante;
 CREATE VIEW `vista_gestante` AS
 	SELECT id_gestante, nom_gestante
     FROM gestante;
-
+DELIMITER ;
 drop view IF EXISTS vista_indigena;
 CREATE VIEW `vista_indigena` AS
 	SELECT id_indigena, nom_indigena
     FROM indigena;
-
+DELIMITER ;
 drop view IF EXISTS vista_nacionalidad;
 CREATE VIEW `vista_nacionalidad` AS
 	SELECT id_nacionalidad, nom_nacionalidad
     FROM nacionalidad;
-    
+DELIMITER ;
 drop view IF EXISTS vista_proyecto;
 CREATE VIEW `vista_proyecto` AS
 	SELECT id_proyecto, nom_proyecto
     FROM proyecto;
-    
+DELIMITER ;
 drop view IF EXISTS vista_tema;
 CREATE VIEW `vista_tema` AS
 	SELECT id_tema, nom_tema
     FROM tema;
-
+DELIMITER ;
 drop view IF EXISTS vista_tiempo_gestacion;
 CREATE VIEW `vista_tiempo_gestacion` AS
 	SELECT id_tiempo_gestacion, nom_tiempo_gestacion
     FROM tiempo_gestacion;
-
+DELIMITER ;
 drop view IF EXISTS vista_tipo_discapacidad;
 CREATE VIEW `vista_tipo_discapacidad` AS
 	SELECT id_tipo_discapacidad, nom_tipo_discapacidad
     FROM tipo_discapacidad;
-
+DELIMITER ;
 drop view IF EXISTS vista_tipo_documento;
 CREATE VIEW `vista_tipo_documento` AS
 	SELECT id_tipo_documento, nom_documento
     FROM tipo_documento;
-    
+DELIMITER ;
 drop view IF EXISTS vista_tipo_organizacion;
 CREATE VIEW `vista_tipo_organizacion` AS
 	SELECT id_tipo_organizacion, nom_tipo_organizacion
     FROM tipo_organizacion;
-    
+DELIMITER ;
 drop view IF EXISTS vista_tipo_proyecto;
 CREATE VIEW `vista_tipo_proyecto` AS
 	SELECT id_tipo_proyecto, nom_tipo_proyecto
     FROM tipo_proyecto;
-
+DELIMITER ;
 drop view IF EXISTS vista_subtema;
 CREATE VIEW `vista_subtema` AS
 	SELECT s.id_subtema, s.nom_subtema, t.nom_tema, t.id_tema
     FROM subtema s inner join tema t on s.id_tema = t.id_tema;
-
+DELIMITER ;
 drop view IF EXISTS vista_region;
 CREATE VIEW `vista_region` AS
 	SELECT id_region, nom_region
     FROM region;
-
+DELIMITER ;
 drop view IF EXISTS vista_responsable_registro;
 CREATE VIEW `vista_responsable_registro` AS
 	SELECT id_persona_registro, nom_persona_registro
     FROM responsable_registro;
+DELIMITER ;
+
 
 /******************/
 /* VISTA GERENCIA */

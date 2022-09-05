@@ -1434,11 +1434,6 @@ BEGIN
 END |
 DELIMITER ;
 
-SET @total = 0;
-call SP_Migrar_Data_Gerencia(2,'2020,2021',@total);
-select @total;
-
-
 DROP PROCEDURE IF EXISTS `SP_Migrar_NvosBeneficiarios_stage_data_historica`;
 DELIMITER |
 CREATE PROCEDURE `SP_Migrar_NvosBeneficiarios_stage_data_historica`(in usuario varchar(50), OUT success INT)
@@ -1645,9 +1640,6 @@ BEGIN
 END |
 DELIMITER ;
 
-
-
-
 /* 
 DROP PROCEDURE IF EXISTS `DropFK` ;
 DELIMITER ;;
@@ -1780,3 +1772,11 @@ select @total;
 
 UPDATE stage_00 SET dato_84 = user_regex_replace('\\s+', '', dato_84);
 select dato_23, dato_84 from stage_00 where dato_23=25725477;
+
+
+SET @total = 0;
+call SP_Migrar_Data_Gerencia(2,'2020,2021',@total);
+select @total;
+
+
+
