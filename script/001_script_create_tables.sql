@@ -590,6 +590,7 @@ call SP_Usuario_Insert('Salvador', 'Salvador@gmail.com', '123456', 3, 1, @total)
 call SP_Usuario_Insert('Ricardo', 'Ricardo@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Consultas', 'consultas@gmail.com', '123456', 1, 1, @total);
 call SP_Usuario_Insert('Analista', 'analista@gmail.com', '123456', 2, 1, @total);
+call SP_Usuario_Insert('Gerencia', 'gerencia@gmail.com', '123456', 3, 1, @total);
 
 
 

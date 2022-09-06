@@ -931,10 +931,6 @@ FROM stage_data_historica where nom_usuario=usuario and (nombre_1 REGEXP '[[:dig
 END |
 DELIMITER ;
 
-
-
-
-
 DROP PROCEDURE IF EXISTS `SP_UpdateDHSoloAlfanumericos`;
 DELIMITER |
 CREATE PROCEDURE `SP_UpdateDHSoloAlfanumericos`(in usuario varchar(50), OUT success INT)
@@ -1042,8 +1038,6 @@ BEGIN
 END |
 DELIMITER ;
 
-
-
 DROP PROCEDURE IF EXISTS `SP_UpdateChar`;
 DELIMITER |
 CREATE PROCEDURE `SP_UpdateChar`(in usuario varchar(50), OUT success INT)
@@ -1095,21 +1089,21 @@ DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejoNuevoBeneficiario_mas_integranteshogar`(in usuario varchar(50))
 BEGIN	    
     CREATE TEMPORARY TABLE IF NOT EXISTS total_parientes AS 
-	(SELECT dato_16 as nom1, dato_17 as nom2, dato_18 as ape1, dato_19 as ape2, '' as tipo_documento, dato_23 as numdocu, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_16 as nom1, dato_17 as nom2, dato_18 as ape1, dato_19 as ape2, '' as tipo_documento, dato_23 as numdocu, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_65, dato_66, dato_67, dato_68, dato_73, dato_74, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_65, dato_66, dato_67, dato_68, dato_73, dato_74, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_75, dato_76, dato_77, dato_78, dato_83, dato_84, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_75, dato_76, dato_77, dato_78, dato_83, dato_84, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_85, dato_86, dato_87, dato_88, dato_93, dato_94, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_85, dato_86, dato_87, dato_88, dato_93, dato_94, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_95, dato_96, dato_97, dato_98, dato_103, dato_104, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_95, dato_96, dato_97, dato_98, dato_103, dato_104, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_105, dato_106, dato_107, dato_108, dato_113, dato_114, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_105, dato_106, dato_107, dato_108, dato_113, dato_114, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_115, dato_116, dato_117, dato_118, dato_123, dato_124, id_stage FROM stage_00 WHERE dato_145=usuario
+	(SELECT dato_115, dato_116, dato_117, dato_118, dato_123, dato_124, id_stage FROM stage_00 WHERE dato_145=usuario)
 	UNION ALL
-	SELECT dato_125, dato_126, dato_127, dato_128, dato_133, dato_134, id_stage FROM stage_00 WHERE dato_145=usuario);
+	(SELECT dato_125, dato_126, dato_127, dato_128, dato_133, dato_134, id_stage FROM stage_00 WHERE dato_145=usuario);
     DELETE FROM total_parientes WHERE numdocu='';
     SELECT nom1, nom2, ape1, ape2, tipo_documento, numdocu, id_stage FROM total_parientes;
 END |
@@ -1129,21 +1123,21 @@ DELIMITER |
 CREATE PROCEDURE `SP_SelectCotejoInicial`(in usuario varchar(50))
 BEGIN	    
 	insert into stage_find
-	SELECT id_stage, dato_16, dato_17, dato_18, dato_19, dato_23, 'Principal', '', dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_16, dato_17, dato_18, dato_19, dato_23, 'Principal', '', dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_65, dato_66, dato_67, dato_68, dato_74, dato_71, dato_72, dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_65, dato_66, dato_67, dato_68, dato_74, dato_71, dato_72, dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_75, dato_76, dato_77, dato_78, dato_84, dato_81, dato_82, dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_75, dato_76, dato_77, dato_78, dato_84, dato_81, dato_82, dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_85, dato_86, dato_87, dato_88, dato_94, dato_91, dato_92, dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_85, dato_86, dato_87, dato_88, dato_94, dato_91, dato_92, dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_95, dato_96, dato_97, dato_98, dato_104, dato_101, dato_102, dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_95, dato_96, dato_97, dato_98, dato_104, dato_101, dato_102, dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_105, dato_106, dato_107, dato_108, dato_114, dato_111, dato_112, dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_105, dato_106, dato_107, dato_108, dato_114, dato_111, dato_112, dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_115, dato_116, dato_117, dato_118, dato_124, dato_121, dato_122, dato_145 FROM stage_00 where dato_145=usuario
+	(SELECT id_stage, dato_115, dato_116, dato_117, dato_118, dato_124, dato_121, dato_122, dato_145 FROM stage_00 where dato_145=usuario)
 	union all
-	SELECT id_stage, dato_125, dato_126, dato_127, dato_128, dato_134, dato_131, dato_132, dato_145 FROM stage_00 where dato_145=usuario;
+	(SELECT id_stage, dato_125, dato_126, dato_127, dato_128, dato_134, dato_131, dato_132, dato_145 FROM stage_00 where dato_145=usuario);
 	
     delete from stage_find where cedula='';
 END |
@@ -1639,56 +1633,6 @@ BEGIN
 	SET success = @total_reg ;
 END |
 DELIMITER ;
-
-/* 
-DROP PROCEDURE IF EXISTS `DropFK` ;
-DELIMITER ;;
-CREATE PROCEDURE `DropFK`()
--- ELIMINANDO LOS FOREIGN KEY y CONSTRAINT
-BEGIN
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_22') THEN ALTER TABLE `comunicacion` DROP FOREIGN KEY `R_22`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_20') THEN	ALTER TABLE `derivacion_sectores` DROP FOREIGN KEY `R_20`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_21') THEN	ALTER TABLE `educacion` DROP FOREIGN KEY `R_21`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_19') THEN	ALTER TABLE `encuesta` DROP FOREIGN KEY `R_19`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_23') THEN	ALTER TABLE `Integrantes` DROP FOREIGN KEY `R_23`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_24') THEN	ALTER TABLE `nutricion` DROP FOREIGN KEY `R_24`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_25') THEN	ALTER TABLE `salud` DROP FOREIGN KEY `R_25`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_37') THEN	ALTER TABLE `estatus` DROP FOREIGN KEY `R_37`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_38') THEN	ALTER TABLE `estatus` DROP FOREIGN KEY `R_38`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_39') THEN	ALTER TABLE `usuarios` DROP FOREIGN KEY `R_39`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'UC_usuarios') THEN ALTER TABLE `usuarios` DROP CONSTRAINT `UC_usuarios`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_40') THEN	ALTER TABLE `acciones` DROP FOREIGN KEY `R_40`; 
-END IF;
-IF EXISTS (SELECT NULL FROM information_schema.TABLE_CONSTRAINTS
-WHERE CONSTRAINT_SCHEMA = DATABASE() AND CONSTRAINT_NAME = 'R_41') THEN	ALTER TABLE `acciones` DROP FOREIGN KEY `R_41`; 
-END IF;
-END;;
-DELIMITER ;
-
-*/
 
 DROP PROCEDURE IF EXISTS `DropViews` ;
 DELIMITER ;;
