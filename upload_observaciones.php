@@ -50,7 +50,7 @@ if (isset($_POST["import"])) {
         $dato_02  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][14]); 
       }
 
-      if (strlen($dato_01)>3 && strlen($dato_02)>3 ) {
+      if (strlen($dato_01)>0 && strlen($dato_02)>3 ) {
         $type = "success";
         $message = "Todos los datos estan completos.";
       } else {
