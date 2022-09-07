@@ -1458,7 +1458,7 @@ BEGIN
  
 	START TRANSACTION;
 		SET @LastUpdateID := 0;
-		update stage_00 set dato_144 = obs, id_stage = (SELECT @LastUpdateID := id_stage) where id_stage = codigo;   
+		update stage_00 set dato_144 = obs, dato_143 = 2, id_stage = (SELECT @LastUpdateID := id_stage) where id_stage = codigo;   
         SET success = @LastUpdateID ;
     COMMIT;
 END |

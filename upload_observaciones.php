@@ -74,9 +74,9 @@ if (isset($_POST["import"])) {
           $dato_02  = mysqli_real_escape_string($conn, $spreadSheetAry[$i][14]); 
         }
 
-        $query = "update stage_00 set dato_144 = ? where id_stage = ?";
-        $paramType = "ss";
-        $paramArray = array($dato_02, $dato_01);
+        //$query = "update stage_00 set dato_144 = ?, dato_143=2 where id_stage = ?";
+        //$paramType = "ss";
+        //$paramArray = array($dato_02, $dato_01);
       //$insertId = $db->insert($query, $paramType, $paramArray);
         $insertId = $db_1->update_observaciones($dato_01, $dato_02);
         if ($insertId > 0) {        
