@@ -261,7 +261,8 @@ private $DB_PASSWORD = ''; //database password
 
     public function select_periodos_data_gerencia() {
         try {               
-            $sql = "select * from vista_periodos_data_proyectos;";
+            //$sql = "select * from vista_periodos_data_proyectos;";
+            $sql = "select * from vista_periodo_y_proyecto_migracion_stage_data_proyecto;";
             $stmt = $this->pdo->prepare($sql);                  
             $stmt->execute();
             $data=$stmt->fetchAll();

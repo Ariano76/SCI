@@ -589,6 +589,18 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 	SELECT distinct(year(STR_TO_DATE(dato_34,'%m/%d/%Y'))) as periodos 
     FROM stage_data_proyectos ;
 
+drop view IF EXISTS vista_periodo_y_proyecto_migracion_stage_data_proyecto;
+CREATE VIEW `vista_periodo_y_proyecto_migracion_stage_data_proyecto` AS
+	SELECT anio, nom_proyecto, sum(regstage) as nuevos, sum(regresult) as existente FROM (
+    SELECT year(STR_TO_DATE(sdp.dato_34,'%m/%d/%Y')) as anio, p.nom_proyecto, count(sdp.dato_30) as regstage, 0 as regresult
+    FROM stage_data_proyectos sdp inner join proyecto p on sdp.dato_30 = p.id_proyecto
+    group by anio, nom_proyecto
+    union all
+    SELECT anio_actividad, p.nom_proyecto,  0 as regstage, count(rdp.id_proyecto) as regresult
+    FROM resultado_proyectos rdp inner join proyecto p on rdp.id_proyecto = p.id_proyecto
+    group by anio_actividad, nom_proyecto) AS combined
+    group by anio, nom_proyecto HAVING SUM(regstage) > 0
+ ;
 
 
 /***********/
@@ -596,7 +608,7 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 /***********/
 
 
-select * from vista_repo_total_reach_actividades;	
+select * from vista_periodo_y_proyecto_migracion_stage_data_proyecto;
 select F_AGE('1900-01-01') as edad;
 select F_SINO(2) as Respuesta;
 

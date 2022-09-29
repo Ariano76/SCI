@@ -58,30 +58,48 @@ if (isset($_POST["import"])) {
         <br>
         <div class="card text-center">          
           <div class="card-body">
-            <h4 class="card-title">Periodos Identificados</h4>
-            <?php 
-            $periodos = $db_1->select_periodos_data_gerencia();
-            if (!empty($periodos)) {
-              foreach ($periodos as $periodo) {
-                ?>
-                <label for="txtPeriodo">Año :&nbsp;</label><?php echo($periodo[0]) ?><br>
+            <h4 class="card-title">Periodos y Proyectos Identificados</h4>
+            <table class="table table-bordered table-inverse table-hover">
+              <thead>
+                <tr>
+                  <th>Año</th>
+                  <th>Nombre de Proyecto</th>
+                  <th>Registros nuevos</th>
+                  <th>Registros existentes</th>
+                </tr>
+              </thead>
+              <tbody>
                 <?php 
-                $contperiodos ++;
-                $xperiodos .= $periodo[0] .",";
-              }
-              $xperiodos = substr($xperiodos,0,strlen($xperiodos)-1);              
-            }
-            ?>
+                $periodos = $db_1->select_periodos_data_gerencia();
+                if (!empty($periodos)) {
+                  foreach ($periodos as $periodo) {
+                    ?>
+                    <tr>
+                      <td><?php echo($periodo[0]) ?></td>
+                      <td><?php echo($periodo[1]) ?></td>
+                      <td><?php echo($periodo[2]) ?></td>
+                      <td><?php echo($periodo[3]) ?></td>
+                    </tr>
+                    <?php 
+                    $contperiodos ++;
+                    $xperiodos .= $periodo[0] .",";
+                  }
+                  $xperiodos = substr($xperiodos,0,strlen($xperiodos)-1);              
+                }
+                ?>
+              </tbody>
+            </table>
+            
             <p class="card-text"><h5>¿Desea reemplazar los datos existente de los periodos identificados en esta nueva carga?</h5></p>
           </div>
 
           <div class="mb-3 row">
-            <div class="col-md-4">&nbsp;</div>
-            <div class="col-md-4">             
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-7">             
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" checked>
                 <label class="form-check-label" for="flexRadioDefault1">
-                  NO deseo reemplazar los datos existentes.
+                  NO deseo reemplazar los datos existentes. Agregarlos como nuevos registros.
                 </label>
               </div>
               <div class="form-check">
