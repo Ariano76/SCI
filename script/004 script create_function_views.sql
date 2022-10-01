@@ -591,16 +591,15 @@ CREATE VIEW `vista_periodos_data_proyectos` AS
 
 drop view IF EXISTS vista_periodo_y_proyecto_migracion_stage_data_proyecto;
 CREATE VIEW `vista_periodo_y_proyecto_migracion_stage_data_proyecto` AS
-	SELECT anio, nom_proyecto, sum(regstage) as nuevos, sum(regresult) as existente FROM (
-    SELECT year(STR_TO_DATE(sdp.dato_34,'%m/%d/%Y')) as anio, p.nom_proyecto, count(sdp.dato_30) as regstage, 0 as regresult
+	SELECT anio, idproy, nom_proyecto, sum(regstage) as nuevos, sum(regresult) as existente FROM (
+    SELECT year(STR_TO_DATE(sdp.dato_34,'%m/%d/%Y')) as anio, sdp.dato_30 as idproy, p.nom_proyecto, count(sdp.dato_30) as regstage, 0 as regresult
     FROM stage_data_proyectos sdp inner join proyecto p on sdp.dato_30 = p.id_proyecto
-    group by anio, nom_proyecto
+    group by anio, sdp.dato_30, p.nom_proyecto
     union all
-    SELECT anio_actividad, p.nom_proyecto,  0 as regstage, count(rdp.id_proyecto) as regresult
+    SELECT anio_actividad, rdp.id_proyecto as idproy, p.nom_proyecto,  0 as regstage, count(rdp.id_proyecto) as regresult
     FROM resultado_proyectos rdp inner join proyecto p on rdp.id_proyecto = p.id_proyecto
-    group by anio_actividad, nom_proyecto) AS combined
-    group by anio, nom_proyecto HAVING SUM(regstage) > 0
- ;
+    group by rdp.anio_actividad, rdp.id_proyecto, p.nom_proyecto) AS combined
+    group by anio, idproy, nom_proyecto HAVING SUM(regstage) > 0 ;
 
 
 /***********/

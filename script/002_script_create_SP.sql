@@ -1399,7 +1399,8 @@ BEGIN
      dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
      dato_28, dato_31, dato_32, dato_33 
      from stage_data_proyectos ;
-     UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);     
+     UPDATE resultado_proyectos SET anio = YEAR(fecha_actividad), anio_actividad = YEAR(fecha_actividad), 
+     trimestre_actividad = QUARTER(fecha_actividad);     
 	ELSE
 	 -- DELETE FROM resultado_proyectos WHERE anio_actividad IN (anios);
      SET @s = CONCAT('DELETE FROM resultado_proyectos WHERE anio_actividad IN (',anios,');' );
@@ -1418,7 +1419,8 @@ BEGIN
      dato_17, dato_21, dato_23, dato_24, dato_25, dato_26, dato_27, 
      dato_28, dato_31, dato_32, dato_33 
      FROM stage_data_proyectos ;
-     UPDATE resultado_proyectos SET anio_actividad = YEAR(fecha_actividad), trimestre_actividad = QUARTER(fecha_actividad);
+     UPDATE resultado_proyectos SET anio = YEAR(fecha_actividad), anio_actividad = YEAR(fecha_actividad), 
+     trimestre_actividad = QUARTER(fecha_actividad);
 	END IF;
     UPDATE resultado_proyectos SET id_adulto = IF(edad > 17, 1, 2);
     DELETE FROM stage_data_proyectos WHERE id_stage_dp >0;  
@@ -1430,7 +1432,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `SP_Migrar_Data_Gerencia_v1`;
 DELIMITER |
-CREATE PROCEDURE `SP_Migrar_Data_Gerencia`(IN accion INT, IN anios varchar(50), OUT success INT)
+CREATE PROCEDURE `SP_Migrar_Data_Gerencia_v1`(IN accion INT, IN anios varchar(50), OUT success INT)
 BEGIN
 	DECLARE exit handler for sqlexception
 	BEGIN     -- ERROR

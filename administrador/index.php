@@ -11,7 +11,7 @@ if ($_POST) {
 	if($codigo >= 1){
 		$_SESSION['usuario'] = 'ok';
 		$_SESSION['nombreUsuario'] = strtolower($_POST['usuario']);
-
+		$_SESSION['validaciongerencia'] = '0';
 		$codigorol = $db->select_rol($codigo);
 		$_SESSION['rolusuario'] = $codigorol;
 
@@ -57,12 +57,10 @@ if ($_POST) {
 							if (isset($mensaje)) { ?>
 								<div class="alert alert-danger" role="alert">
 									<?php echo $mensaje; ?>
-
 								</div>
-
 							<?php }
 							?>
-							
+						
 							<form method="POST">
 								<div class="form-group">
 									<label>Usuario</label>

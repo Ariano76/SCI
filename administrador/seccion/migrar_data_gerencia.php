@@ -14,37 +14,42 @@ $xperiodos = "";
 require_once ('../../vendor/autoload.php');
 
 if (isset($_POST["import"])) {
-  $type = "OK";
+  $type = "success";
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
   $check = $_POST["flexRadioDefault"];
   $conta = $_POST["txtContPeriodos"];
   $xper = $_POST["txtPeriodos"];
-  
   //echo "<script>console.log('Dato del Check: " . $check . "' );</script>"; 
   //echo "<script>console.log('Numero de periodos: " . $conta . "' );</script>"; 
   //echo "<script>console.log('Años encontrados: " . $xper . "' );</script>"; 
   //$var=true;
   if ($conta > 0) { 
     $var = $db_1->migrar_data_gerencia($check,$xper);
+    echo "<script>console.log('entre al IF var: " . $var . "');</script>"; 
     if (!empty($var) && $var == 1) { 
+      echo "<script>console.log('entre al IF 1: " . $var . "');</script>"; 
       $type = "success";
       $message = "La migración se ha realizado con exito.";           
     } else {
+      echo "<script>console.log('entre al IF 2: " . $var . "');</script>"; 
       $type = "error";
       $message = "Se presentarón problemas al momento de la migración. Intente de nuevo";           
     }       
   } else {
-    echo "<script>console.log('entre al else:' );</script>"; 
+    echo "<script>console.log('entre al else:');</script>"; 
     $type = "error";
     $message = "Se presentarón problemas al momento de la migración. No se identificaron años. Intente de nuevo";
   }
 }
+// else {
+//  $type = "success";
+//  $message = "Existen valores que no estan registrados en los maestros. Revise e intente de nuevo";
+// }
 ?>
 
 <div class="col-md-12">
-
   <div class="card text-dark bg-light">
     <div class="card-header">
       Migrar datos de proyectos validados a la Tabla Resultados de Proyectos
@@ -76,9 +81,9 @@ if (isset($_POST["import"])) {
                     ?>
                     <tr>
                       <td><?php echo($periodo[0]) ?></td>
-                      <td><?php echo($periodo[1]) ?></td>
                       <td><?php echo($periodo[2]) ?></td>
                       <td><?php echo($periodo[3]) ?></td>
+                      <td><?php echo($periodo[4]) ?></td>
                     </tr>
                     <?php 
                     $contperiodos ++;
@@ -94,18 +99,18 @@ if (isset($_POST["import"])) {
           </div>
 
           <div class="mb-3 row">
-            <div class="col-md-2">&nbsp;</div>
-            <div class="col-md-7">             
+            <div class="col-md-4">&nbsp;</div>
+            <div class="col-md-4">             
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1" checked>
                 <label class="form-check-label" for="flexRadioDefault1">
-                  NO deseo reemplazar los datos existentes. Agregarlos como nuevos registros.
+                  NO, agregarlos como nuevos registros.
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
                 <label class="form-check-label" for="flexRadioDefault2">
-                  SI deseo reemplazar los datos existentes.
+                  SI, deseo reemplazar los datos existentes.
                 </label>
               </div>
               <input type="hidden" name="txtContPeriodos" value="<?php echo $contperiodos;?>" />
@@ -115,9 +120,25 @@ if (isset($_POST["import"])) {
           </div>
         </div>
         <br>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos</button>
-        </div>
+        <?php
+        if ($_SESSION['validaciongerencia'] == 1 ) {
+          ?>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Migrar Datos</button>
+          </div>
+          <?php
+        }else{
+          ?>
+          <div class="col-md-12">
+            <div class="card-text">&nbsp;</div>
+            <div class="card-info">
+              <div class="error alert alert-warning role=alert" align="center">Los datos no se han validado. Ejecute los procesos correspondientes.
+              </div>
+            </div>
+          </div>
+          <?php
+        }
+        ?>
       </form>
     </div>
   </div>

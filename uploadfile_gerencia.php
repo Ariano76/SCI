@@ -161,6 +161,7 @@ if (isset($_POST["import"])) {
         if (! empty($insertId)) {        
           $type = "success";
           $message = "Datos importados de Excel a la Base de Datos: ".$conta." registros.";
+          $_SESSION['validaciongerencia'] = '0';
         } else {
           $type = "error";
           $message = "Problemas al importar los datos de Excel. Intente de nuevo";
