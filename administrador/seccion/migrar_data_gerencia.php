@@ -9,12 +9,12 @@ require_once ('../config/bdPDO.php');
 $db_1 = new TransactionSCI();
 $contperiodos = 0;
 $xperiodos = "";
-//$conn_1 = $db_1->Connect();
 
 require_once ('../../vendor/autoload.php');
 
 if (isset($_POST["import"])) {
   $type = "success";
+  
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
 
@@ -29,24 +29,20 @@ if (isset($_POST["import"])) {
     $var = $db_1->migrar_data_gerencia($check,$xper);
     echo "<script>console.log('entre al IF var: " . $var . "');</script>"; 
     if (!empty($var) && $var == 1) { 
-      echo "<script>console.log('entre al IF 1: " . $var . "');</script>"; 
+      //echo "<script>console.log('entre al IF 1: " . $var . "');</script>"; 
       $type = "success";
-      $message = "La migración se ha realizado con exito.";           
+      $message = "La migración se ha realizado con exito.";
     } else {
-      echo "<script>console.log('entre al IF 2: " . $var . "');</script>"; 
+      //echo "<script>console.log('entre al IF 2: " . $var . "');</script>"; 
       $type = "error";
       $message = "Se presentarón problemas al momento de la migración. Intente de nuevo";           
     }       
   } else {
-    echo "<script>console.log('entre al else:');</script>"; 
+    //echo "<script>console.log('entre al else:');</script>"; 
     $type = "error";
-    $message = "Se presentarón problemas al momento de la migración. No se identificaron años. Intente de nuevo";
+    $message = "Se presentarón problemas al momento de la migración. Valide e intente de nuevo";
   }
 }
-// else {
-//  $type = "success";
-//  $message = "Existen valores que no estan registrados en los maestros. Revise e intente de nuevo";
-// }
 ?>
 
 <div class="col-md-12">
@@ -89,12 +85,15 @@ if (isset($_POST["import"])) {
                     $contperiodos ++;
                     $xperiodos .= $periodo[0] .",";
                   }
-                  $xperiodos = substr($xperiodos,0,strlen($xperiodos)-1);              
+                  $xperiodos = substr($xperiodos,0,strlen($xperiodos)-1);
+                  $message1 = "";
+                }else{
+                  $message1 = " No existen datos por migrar.";
                 }
                 ?>
               </tbody>
             </table>
-            
+
             <p class="card-text"><h5>¿Desea reemplazar los datos existente de los periodos identificados en esta nueva carga?</h5></p>
           </div>
 
@@ -132,7 +131,7 @@ if (isset($_POST["import"])) {
           <div class="col-md-12">
             <div class="card-text">&nbsp;</div>
             <div class="card-info">
-              <div class="error alert alert-warning role=alert" align="center">Los datos no se han validado. Ejecute los procesos correspondientes.
+              <div class="error alert alert-warning role=alert" align="center">Los datos no se han validado o no existen. Ejecute los procesos correspondientes.
               </div>
             </div>
           </div>
@@ -145,7 +144,12 @@ if (isset($_POST["import"])) {
 </div>
 <div class="col-md-12">
   <div class=card-text>
-    <div class="<?php if(!empty($type)) { echo $type . " alert alert-success role=alert"; } ?>"><?php if(!empty($var)) { echo $message; } ?>
+    <div class="<?php if(!empty($type)){ echo $type . " alert alert-success role=alert"; } ?>
+    <?php if(!empty($message1) && $_SESSION['validaciongerencia'] == 0){ echo "error alert alert-success role=alert"; } ?>
+    ">
+    <?php if(!empty($var)) { echo $message; } 
+    if(!empty($message1) && $_SESSION['validaciongerencia'] == 1 ) { echo $message1; } 
+    ?>
   </div>
 </div>
 </div>
