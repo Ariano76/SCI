@@ -40,6 +40,7 @@ if (isset($_POST["import"])) {
 
     $insertId = $db_1->limpiarStageDataProyecto("SP_LimpiarTablaStage_dataproyecto");
     $conta=0;
+    //echo "<script>console.log('Numero de hojas: " . $sheetCount . "' );</script>"; 
     //for ($i = 0; $i <= $sheetCount; $i ++) {
     for ($i = 1; $i < $sheetCount; $i ++) {
         $dato_01 = "";
