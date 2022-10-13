@@ -3,17 +3,11 @@ create table EmployeeRecords
 ENGINE=INNODB;
 
 -- sobre una columna
-CREATE TABLE articles (
-id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
-titulo VARCHAR(200), 
-descripcion TEXT, 
-FULLTEXT (descripcion)
+CREATE TABLE articles (id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, 
+titulo VARCHAR(200), descripcion TEXT, FULLTEXT (descripcion)
 ) ENGINE=MyISAM;
  
 -- sobre dos columnas
-CREATE TABLE articles (
-id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-titulo VARCHAR(200), 
-descripcion TEXT, 
-FULLTEXT (titulo,descripcion)
+CREATE TABLE articles (id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+titulo VARCHAR(200), descripcion TEXT, FULLTEXT (titulo,descripcion)
 ) ENGINE=MyISAM;
