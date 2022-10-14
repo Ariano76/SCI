@@ -993,6 +993,21 @@ private $DB_PASSWORD = ''; //database password
         return null;
     }
 
+    public function finanzas_traer_regiones() {
+        try {               
+            // calling stored procedure command
+            $sql = "call SP_reporte_finanzas_regiones();";
+            // prepare for execution of the stored procedure
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $arreglo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $arreglo;
+        } catch (PDOException $e) {         
+            die("Error ocurrido:" . $e->getMessage());
+        }
+        return null;
+    }
+
     public function traer_datos_reporte() {
         try {               
             // calling stored procedure command

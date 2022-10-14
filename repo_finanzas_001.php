@@ -15,7 +15,7 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
   //$db_1->cotejo($timestamp1);
-  $usuarios = $db_1->select_repo_all("SP_Paquete_Finanzas", $depa);
+  $usuarios = $db_1->select_repo_all("SP_Select_Finanzas", $depa);
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();

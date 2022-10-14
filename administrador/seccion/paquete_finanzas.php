@@ -52,15 +52,17 @@ if (isset($_POST["import"])) {
           <select name="selectdepa" id="departamento" class="form-control-lg">
             <!--option value="" disabled selected>Seleccione región</option-->
             <?php 
-            $datos = $db_1->traer_regiones();
+            $datos = $db_1->finanzas_traer_regiones();
             foreach($datos as $value) { ?>
               <option value="<?php echo $value['region']; ?>"><?php echo $value['region'];?></option>
             <?php } ?>
           </select>
         </div>
         <br>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Generar Reporte Finanzas</button>
+        <div class="row">
+          <div class="col-md-5">
+            <button type="submit" id="submit" name="import" value="agregar" class="btn btn-success btn-lg">Consultar datos que se enviaran a Finanzas</button>
+          </div>
         </div>
       </form>
     </div>

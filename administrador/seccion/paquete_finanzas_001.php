@@ -3,11 +3,11 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 //require_once './administrador/config/bd.php';
-require_once './administrador/config/bdPDO.php';
+require_once '../config/bdPDO.php';
 
 $db_1 = new TransactionSCI();
 
-require_once ('./vendor/autoload.php');
+require_once ('../../vendor/autoload.php');
 
 if (isset($_POST["import"])) {
   $depa = $_POST["selectdepa"];
@@ -15,7 +15,7 @@ if (isset($_POST["import"])) {
   $dt = date('Y-m-d H:i:s');
   $timestamp1 = strtotime($dt);
   //$db_1->cotejo($timestamp1);
-  $usuarios = $db_1->select_repo_all("SP_Select_Finanzas", $depa);
+  $usuarios = $db_1->select_repo_all("SP_Paquete_Finanzas", $depa);
 
   $spreadsheet = new Spreadsheet();
   $sheet = $spreadsheet->getActiveSheet();
@@ -23,22 +23,24 @@ if (isset($_POST["import"])) {
   $sheet->setCellValue("A1", "Fecha Encuesta");
   $sheet->setCellValue("B1", "Región");
   $sheet->setCellValue("C1", "Provincia");  
-  $sheet->setCellValue("D1", "Tipo de Transferencia");
-  $sheet->setCellValue("E1", "Primer Nombre");
-  $sheet->setCellValue("F1", "Segundo Nombre");
-  $sheet->setCellValue("G1", "Primer Apellido");
-  $sheet->setCellValue("H1", "Segundo Apellido");
-  $sheet->setCellValue("I1", "Tipo de Identificación");
-  $sheet->setCellValue("J1", "Número de identificación");
-  $sheet->setCellValue("K1", "Número de WhatsApp");
-  $sheet->setCellValue("L1", "Número de Teléfono Alternativo");
-  $sheet->setCellValue("M1", "Direccion");
-  $sheet->setCellValue("N1", "# de personas en la familia");
-  $sheet->setCellValue("O1", "Usted cuenta con..");
-  $sheet->setCellValue("P1", "¿Cómo accede a internet..?");
-  $sheet->setCellValue("Q1", "¿Le interesaría y autoriza ser contactado a su celular con información de nutrición?");
-  $sheet->setCellValue("R1", "Nutrición BONO");
-  $sheet->setCellValue("S1", "IdBeneficiario");
+  $sheet->setCellValue("D1", "Distrito");  
+  $sheet->setCellValue("E1", "Tipo de Transferencia");
+  $sheet->setCellValue("F1", "Primer Nombre");
+  $sheet->setCellValue("G1", "Segundo Nombre");
+  $sheet->setCellValue("H1", "Primer Apellido");
+  $sheet->setCellValue("I1", "Segundo Apellido");
+  $sheet->setCellValue("J1", "Tipo de Identificación");
+  $sheet->setCellValue("K1", "Número de identificación");
+  $sheet->setCellValue("L1", "¿Cuál de los documentos se encuentra en físico y es original?");
+  $sheet->setCellValue("M1", "Número de WhatsApp");
+  $sheet->setCellValue("N1", "Número de Teléfono Alternativo");
+  $sheet->setCellValue("O1", "Direccion");
+  $sheet->setCellValue("P1", "# de personas en la familia");
+  $sheet->setCellValue("Q1", "Usted cuenta con..");
+  $sheet->setCellValue("R1", "¿Cómo accede a internet..?");
+  $sheet->setCellValue("S1", "¿Le interesaría recibir información de nutrición?");
+  $sheet->setCellValue("T1", "Nutrición BONO");
+  $sheet->setCellValue("U1", "IdBeneficiario");
 
   $i = 2;
   foreach($usuarios as $usuario) {
@@ -61,6 +63,8 @@ if (isset($_POST["import"])) {
     $sheet->setCellValue("Q".$i, $usuario[16]);
     $sheet->setCellValue("R".$i, $usuario[17]);
     $sheet->setCellValue("S".$i, $usuario[18]);
+    $sheet->setCellValue("T".$i, $usuario[19]);
+    $sheet->setCellValue("U".$i, $usuario[20]);
 
     $i++;
   }

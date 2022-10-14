@@ -286,10 +286,9 @@ document.addEventListener("DOMContentLoaded", function(){
 						<li>
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Finanzas</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/paquete_finanzas.php" ?>">Crear Paquete</a>
-								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/generar_paquete.php" ?>">Consultar Paquetes</a>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/paquete_finanzas.php" ?>">Consultar datos</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/generar_paquete.php" ?>">Enviar Proveedor Pago</a>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/generar_paquete.php" ?>">Enviar datos a coordinador</a>
 							</div>
 						</li>						
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
