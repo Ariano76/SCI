@@ -9,7 +9,7 @@ require_once '../config/bdPDO.php';
 
 $db_1 = new TransactionSCI();
 
-require_once ('../../vendor/autoload.php');
+//require_once ('../../vendor/autoload.php');
 
 if (isset($_POST["import"])) {
   $type = "OK";
@@ -20,7 +20,7 @@ if (isset($_POST["import"])) {
 
   if (!empty($var)) {        
     $type = "success";
-    $message = "Datos se importaron al archivo : Reporte_Finanzas_" . $timestamp1 . ".xlsx";
+    $message = "Datos se importarón al archivo : Reporte_Finanzas_" . $timestamp1 . ".xlsx";
   } else {
     $type = "error";
     $message = "Problemas al importar los datos de Excel. Intente de nuevo";
@@ -37,12 +37,12 @@ if (isset($_POST["import"])) {
       SECTOR FINANZAS
     </div>
     <div class="card-body">
-      <form action="paquete_finanzas_001.php" method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
+      <form method="POST" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="txtImagen">Este proceso realiza el envio de los datos al coordinador de finanzas para que inicio al proceso de valorización.</label>
+          <label for="txtImagen">Este proceso realiza el envío de los datos al coordinador de finanzas para que de inicio al proceso de valorización.</label>
           <br>
           <br>
-          <label for="txtImagen">Este proceso borrará cualquier información existente en la tabla de Datos Históricos y la reemplazará con los nuevos datos.</label>
+          <label for="txtImagen">Se recomienda haber revisado previamente el reporte de los datos que se enviaran para estar seguros de esta acción.</label>
           <br>
           <br>          
         </div>
