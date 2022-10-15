@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			</div>
 		</nav>
 		<?php	
-	}else{ // ROL GERENCIA
+	} elseif($_SESSION['rolusuario']==3) { // ROL GERENCIA
 		?>
 		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
 			<div class="container-fluid">		
@@ -419,9 +419,27 @@ document.addEventListener("DOMContentLoaded", function(){
 			</div>
 		</nav>
 		<?php	
+	} else{ // PARA USUARIOS DE FINANZAS
+		?>
+		<nav class="navbar navbar-expand-md navbar-light bg-white border border-dark">
+			<div class="container-fluid">		
+				<a class="navbar-brand" href="<?php echo $url."/administrador/inicio.php" ?>">
+					<img src="https://www.savethechildren.org.pe/wp-content/themes/save-the-children/images/logo-save-the-children.svg" alt="" width="" height="">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					</a>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav">
+						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
+						<a class="nav-item nav-link" href="<?php echo $url;?>">Ver sitio web</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<?php	
 	}
 	?>
-
 
 	<div class="container">
 		<br><br>

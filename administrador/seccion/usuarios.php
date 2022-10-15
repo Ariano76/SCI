@@ -21,6 +21,10 @@ if ($optRoles == "Administrador") {
 	$nuevorol = 1;
 }elseif ($optRoles == "Gerencia") {
 	$nuevorol = 3;
+}elseif ($optRoles == "Coordinador Finanzas") {
+	$nuevorol = 4;
+}elseif ($optRoles == "Analista Finanzas") {
+	$nuevorol = 5;
 }
 
 switch ($accion) {
@@ -104,6 +108,8 @@ elseif($id == 0){
 						<option value="Administrador"<?=$txtNomRol == 'Administrador' ? ' selected="selected"' : '';?>>Administrador</option>
 						<option value="Analista"<?=$txtNomRol == 'Analista' ? ' selected="selected"' : '';?>>Analista</option>
 						<option value="Gerencia"<?=$txtNomRol == 'Gerencia' ? ' selected="selected"' : '';?>>Gerencia</option>
+						<option value="Coordinador Finanzas"<?=$txtNomRol == 'Coordinador Finanzas' ? ' selected="selected"' : '';?>>Coordinador Finanzas</option>
+						<option value="Analista Finanzas"<?=$txtNomRol == 'Analista Finanzas' ? ' selected="selected"' : '';?>>Analista Finanzas</option>
 					</select>
 				</div>
 				<div>
