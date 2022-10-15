@@ -50,7 +50,7 @@ if (isset($_POST["import"])) {
           <label>Seleccione una región:</label>
           <br><br>
           <select name="selectdepa" id="departamento" class="form-control-lg">
-            <!--option value="" disabled selected>Seleccione región</option-->
+            <option value="demo" selected>Seleccione región</option>
             <?php 
             $datos = $db_1->finanzas_traer_regiones();
             foreach($datos as $value) { ?>
