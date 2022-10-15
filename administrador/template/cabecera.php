@@ -289,6 +289,8 @@ document.addEventListener("DOMContentLoaded", function(){
 								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/paquete_finanzas.php" ?>">Consultar datos</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/generar_paquete.php" ?>">Enviar datos a coordinador</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo $url."/administrador/seccion/generar_paquete.php" ?>">Consultar estado de paquetes</a>
 							</div>
 						</li>						
 						<a class="nav-item nav-link" href="<?php echo $url."/administrador/seccion/cerrar.php"?>">Cerrar</a>
