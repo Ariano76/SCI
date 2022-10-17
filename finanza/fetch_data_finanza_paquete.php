@@ -1,26 +1,28 @@
 <?php include("../administrador/config/connection.php");
 
 $output= array();
-$sql = "SELECT * FROM vista_estatus";
+$sql = "SELECT * FROM vista_finanzas_enviados_consulta";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
-$columns = array(
-	0 => 'id_beneficiario',
-	1 => 'nombre',
-	2 => 'numero_cedula',
-	3 => 'observaciones',
-	4 => 'id_estado',
+$columns = array(	
+	0 => 'id_paquete',
+	1 => 'estado',
+	2 => 'fecha_envio',
+	3 => 'nombre_usuario',
+	4 => 'estado_aprobacion',
+	5 => 'numero_beneficiarios',	
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE nombre like '%".$search_value."%'";
-	$sql .= " OR numero_cedula like '%".$search_value."%'";
-	$sql .= " OR observaciones like '%".$search_value."%'";
-	$sql .= " OR id_estado like '%".$search_value."%'";
+	$sql .= " WHERE id_paquete like '%".$search_value."%'";
+	$sql .= " OR estado like '%".$search_value."%'";
+	$sql .= " OR fecha_envio like '%".$search_value."%'";
+	$sql .= " OR nombre_usuario like '%".$search_value."%'";
+	$sql .= " OR estado_aprobacion like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -31,7 +33,7 @@ if(isset($_POST['order']))
 }
 else
 {
-	$sql .= " ORDER BY id_beneficiario asc";
+	$sql .= " ORDER BY id_paquete asc";
 }
 
 if($_POST['length'] != -1)
@@ -47,13 +49,13 @@ $data = array();
 while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
-	$sub_array[] = $row['id_beneficiario'];
-	$sub_array[] = $row['nombre'];
-	$sub_array[] = $row['numero_cedula'];
-	$sub_array[] = $row['observaciones'];
-	$sub_array[] = $row['id_estado'];
-	
-	$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
+	$sub_array[] = $row['id_paquete'];	
+	$sub_array[] = $row['estado'];
+	$sub_array[] = $row['fecha_envio'];
+	$sub_array[] = $row['nombre_usuario'];
+	$sub_array[] = $row['estado_aprobacion'];
+	$sub_array[] = $row['numero_beneficiarios'];
+	//$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;
 }
 
