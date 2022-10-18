@@ -1,7 +1,7 @@
 <?php include("../administrador/config/connection.php");
 
 $output= array();
-$sql = "SELECT * FROM vista_finanzas_enviados_consulta";
+$sql = "SELECT * FROM vista_finanzas_consulta";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
