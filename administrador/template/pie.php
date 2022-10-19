@@ -24,6 +24,8 @@
 	<!-- configuracion tabla  -->
 	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<!--script src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script-->
+	<!-- configuracion tabla  -->
+	<script src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 
 	<!-- configuracion graficos  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
