@@ -33,7 +33,7 @@ if(isset($_POST['order']))
 }
 else
 {
-	$sql .= " ORDER BY id_paquete asc";
+	$sql .= " ORDER BY id_paquete desc";
 }
 
 if($_POST['length'] != -1)
