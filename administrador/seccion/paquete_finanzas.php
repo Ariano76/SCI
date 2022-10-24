@@ -18,7 +18,6 @@ if (isset($_POST["import"])) {
 
   //$db_1->cotejo($timestamp1);
 
-
   $var=true;
 
   if (!empty($var)) {        
