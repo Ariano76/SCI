@@ -13,7 +13,7 @@ include("../administrador/config/connection.php");
               <th>Estado&nbsp;de&nbsp;envio</th>
               <th>Fecha&nbsp;de&nbsp;envio</th>
               <th>Nombre&nbsp;de&nbsp;usuario</th>
-              <th>Estado&nbsp;de&nbsp;aprobación</th>
+              <th>Estado&nbsp;aprobación</th>
               <th>N°&nbsp;de&nbsp;beneficiarios</th>
               <!--th>Acción</th-->
             </tr>
@@ -46,4 +46,4 @@ include("../administrador/config/connection.php");
   </script>
 
 
-  <?php include("../template/pie.php"); ?>
+  <?php include("../administrador/template/pie.php"); ?>
