@@ -6,7 +6,7 @@ include("../administrador/config/connection.php");
       <h1 class="display-8">CONSULTA PAQUETES ENVIADOS AL COORDINADOR</h1> 
 
       <div class="col-lg-12">
-        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small nowrap" style="width:100%">
+        <table id="tablaUsuarios" class="table table-striped table-bordered table-condensed w-auto small" style="width:100%">
           <thead class="text-center">
             <tr>
               <th>Codigo</th>
@@ -15,7 +15,7 @@ include("../administrador/config/connection.php");
               <th>Nombre&nbsp;de&nbsp;usuario</th>
               <th>Estado&nbsp;aprobación</th>
               <th>N°&nbsp;de&nbsp;beneficiarios</th>
-              <!--th>Acción</th-->
+              <th>Observaciones</th>
             </tr>
           </thead>
         </table>   
@@ -38,7 +38,7 @@ include("../administrador/config/connection.php");
             },
             "aoColumnDefs": [{
               "bSortable": false,
-              "aTargets": [5]
+              "aTargets": [6]
             },
             ]
           });

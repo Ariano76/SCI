@@ -13,6 +13,7 @@ $columns = array(
 	3 => 'nombre_usuario',
 	4 => 'estado_aprobacion',
 	5 => 'numero_beneficiarios',	
+	6 => 'observaciones',	
 );
 
 if(isset($_POST['search']['value']))
@@ -23,6 +24,7 @@ if(isset($_POST['search']['value']))
 	$sql .= " OR fecha_envio like '%".$search_value."%'";
 	$sql .= " OR nombre_usuario like '%".$search_value."%'";
 	$sql .= " OR estado_aprobacion like '%".$search_value."%'";
+	$sql .= " OR observaciones like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -55,6 +57,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array[] = $row['nombre_usuario'];
 	$sub_array[] = $row['estado_aprobacion'];
 	$sub_array[] = $row['numero_beneficiarios'];
+	$sub_array[] = $row['observaciones'];
 	//$sub_array[] = '<a href="javascript:void();" data-id="'.$row['id_beneficiario'].'" class="btn btn-info btn-sm editbtn" >Edit</a>';
 	$data[] = $sub_array;
 }
